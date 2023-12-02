@@ -35,7 +35,7 @@ export default SettingsScreen = ({ navigation, props }) => {
 					headline={currentLanguage.settingsThemeHeadline}
 					description={currentLanguage.settingsThemeDescription}
 				></SettingsSection>
-				{currentVersion === AppVersions.FREE && (
+				{currentVersion === AppVersions.LIGHT && (
 					<SettingsSection
 						action={AvailableSettingsActions.SHOW_PERSONAL_ADS}
 						iconName={'user-following'}
@@ -68,7 +68,7 @@ export default SettingsScreen = ({ navigation, props }) => {
 					description={currentLanguage.settingsInformationDescription}
 				></SettingsSection>
 			</ScrollView>
-			{currentVersion === AppVersions.FREE && (
+			{currentVersion === AppVersions.LIGHT && (
 				<BannerAd
 					unitId={adUnitId}
 					size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}

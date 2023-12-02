@@ -68,7 +68,7 @@ export default HomeScreen = ({ navigation, props }) => {
 					lastElement={true}
 				></HomeSection>
 			</ScrollView>
-			{currentVersion === AppVersions.FREE && (
+			{currentVersion === AppVersions.LIGHT && (
 				<BannerAd
 					unitId={adUnitId}
 					size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}

@@ -166,7 +166,7 @@ export default ConverterScreen = ({ navigation, props }) => {
 					lastElement={true}
 				></ConverterSection>*/}
 			</ScrollView>
-			{currentVersion === AppVersions.FREE && (
+			{currentVersion === AppVersions.LIGHT && (
 				<BannerAd
 					unitId={adUnitId}
 					size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}

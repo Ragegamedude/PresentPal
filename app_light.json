@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "Gift Box Free",
-    "slug": "GiftBoxFree",
+    "name": "App Template Light",
+    "slug": "AppTemplateLight",
     "platforms": [
       "android"
     ],
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon_free.png",
+    "icon": "./assets/icon_light.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash_free.png",
+      "image": "./assets/splash_light.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.argames15.giftboxfree",
+      "bundleIdentifier": "com.argames15.apptemplatelight",
       "buildNumber": "1.0.1"
     },
     "android": {
-      "package": "com.argames15.giftboxfree",
+      "package": "com.argames15.apptemplatelight",
       "versionCode": 1,
       "permissions": [
         "WRITE_EXTERNAL_STORAGE",
@@ -35,7 +35,7 @@
       ],
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF",
-        "foregroundImage": "./assets/icon_free.png"
+        "foregroundImage": "./assets/icon_light.png"
       }
     },
     "extra": {

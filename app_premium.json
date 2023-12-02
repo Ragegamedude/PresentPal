@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Gift Box Premium",
-    "slug": "GiftBoxPremium",
+    "name": "App Template Premium",
+    "slug": "AppTemplatePremium",
     "platforms": [
       "android"
     ],
@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.argames15.giftboxpremium",
+      "bundleIdentifier": "com.argames15.apptemplatepremium",
       "buildNumber": "1.0.1"
     },
     "android": {
-      "package": "com.argames15.giftboxpremium",
+      "package": "com.argames15.apptemplatepremium",
       "versionCode": 1,
       "permissions": [
         "WRITE_EXTERNAL_STORAGE",

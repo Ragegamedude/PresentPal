@@ -1,6 +1,6 @@
 export const AppVersions = {
-	FREE: {
-		version: 'free',
+	LIGHT: {
+		version: 'light',
 		token: 'af3b9403-0b33-45f3-8df5-43371c060e1f',
 		fileSizeLimit: 2
 	},

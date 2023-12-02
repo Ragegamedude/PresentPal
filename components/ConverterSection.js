@@ -184,7 +184,7 @@ export default ConverterSection = (props) => {
 	};
 	//change filename input
 	const changeFileNewName = (text, fieldNumber) => {
-		if (currentVersion === AppVersions.FREE && !rewardedInterstitial.loaded) {
+		if (currentVersion === AppVersions.LIGHT && !rewardedInterstitial.loaded) {
 			prepareRewardedAd();
 		}
 		if (text.length > 0 && fileError === currentLanguage.errorMessageNoNameSelected) {
@@ -199,7 +199,7 @@ export default ConverterSection = (props) => {
 	};
 	//change filename input
 	const selectPassword = (text, fieldNumber) => {
-		if (currentVersion === AppVersions.FREE && !rewardedInterstitial.loaded) {
+		if (currentVersion === AppVersions.LIGHT && !rewardedInterstitial.loaded) {
 			prepareRewardedAd();
 		}
 		if (text.length > 0 && fileError === currentLanguage.errorMessagePasswordSelected) {
@@ -214,7 +214,7 @@ export default ConverterSection = (props) => {
 	};
 	//change filepage input
 	const selectPage = (text, fieldNumber) => {
-		if (currentVersion === AppVersions.FREE && !rewardedInterstitial.loaded) {
+		if (currentVersion === AppVersions.LIGHT && !rewardedInterstitial.loaded) {
 			prepareRewardedAd();
 		}
 		if (text.length > 0 && fileError === currentLanguage.errorMessageNoNameSelected) {
@@ -230,7 +230,7 @@ export default ConverterSection = (props) => {
 		}
 	};
 	const selectQuality = (text, fieldNumber) => {
-		if (currentVersion === AppVersions.FREE && !rewardedInterstitial.loaded) {
+		if (currentVersion === AppVersions.LIGHT && !rewardedInterstitial.loaded) {
 			prepareRewardedAd();
 		}
 		if (text.length > 0 && fileError === currentLanguage.errorMessageNoNameSelected) {
@@ -245,7 +245,7 @@ export default ConverterSection = (props) => {
 	};
 	//Select file depend on order 1 or 2 for file1 or file2
 	const selectPDFFile = async (order) => {
-		if (currentVersion === AppVersions.FREE && !rewardedInterstitial.loaded) {
+		if (currentVersion === AppVersions.LIGHT && !rewardedInterstitial.loaded) {
 			prepareRewardedAd();
 		}
 		try {
@@ -277,7 +277,7 @@ export default ConverterSection = (props) => {
 		}
 	};
 	const selectImageFile = async (order) => {
-		if (currentVersion === AppVersions.FREE && !rewardedInterstitial.loaded) {
+		if (currentVersion === AppVersions.LIGHT && !rewardedInterstitial.loaded) {
 			prepareRewardedAd();
 		}
 		try {
@@ -311,7 +311,7 @@ export default ConverterSection = (props) => {
 
 	//Select directory to save files
 	const selectDirectory = async () => {
-		if (currentVersion === AppVersions.FREE && !rewardedInterstitial.loaded) {
+		if (currentVersion === AppVersions.LIGHT && !rewardedInterstitial.loaded) {
 			prepareRewardedAd();
 		}
 		try {
@@ -366,7 +366,7 @@ export default ConverterSection = (props) => {
 			} else {
 				showErrorMessage('');
 				showSuccessMessage(currentLanguage.successHeadline, currentLanguage.successMessageInProgress, true, 0.1);
-				if (currentVersion === AppVersions.FREE && rewardedInterstitial.loaded) {
+				if (currentVersion === AppVersions.LIGHT && rewardedInterstitial.loaded) {
 					await rewardedInterstitial.show();
 				}
 				await uploadFile(action);
@@ -387,7 +387,7 @@ export default ConverterSection = (props) => {
 			} else {
 				showErrorMessage('');
 				showSuccessMessage(currentLanguage.successHeadline, currentLanguage.successMessageInProgress, true, 0.1);
-				if (currentVersion === AppVersions.FREE && rewardedInterstitial.loaded) {
+				if (currentVersion === AppVersions.LIGHT && rewardedInterstitial.loaded) {
 					await rewardedInterstitial.show();
 				}
 				await uploadFile(action);
@@ -409,7 +409,7 @@ export default ConverterSection = (props) => {
 			} else {
 				showErrorMessage('');
 				showSuccessMessage(currentLanguage.successHeadline, currentLanguage.successMessageInProgress, true, 0.1);
-				if (currentVersion === AppVersions.FREE && rewardedInterstitial.loaded) {
+				if (currentVersion === AppVersions.LIGHT && rewardedInterstitial.loaded) {
 					await rewardedInterstitial.show();
 				}
 				await uploadFile(action);
@@ -428,7 +428,7 @@ export default ConverterSection = (props) => {
 			} else {
 				showErrorMessage('');
 				showSuccessMessage(currentLanguage.successHeadline, currentLanguage.successMessageInProgress, true, 0.1);
-				if (currentVersion === AppVersions.FREE && rewardedInterstitial.loaded) {
+				if (currentVersion === AppVersions.LIGHT && rewardedInterstitial.loaded) {
 					await rewardedInterstitial.show();
 				}
 				if (fileImageFormat === 'JPG') {
@@ -460,7 +460,7 @@ export default ConverterSection = (props) => {
 			} else {
 				showErrorMessage('');
 				showSuccessMessage(currentLanguage.successHeadline, currentLanguage.successMessageInProgress, true, 0.1);
-				if (currentVersion === AppVersions.FREE && rewardedInterstitial.loaded) {
+				if (currentVersion === AppVersions.LIGHT && rewardedInterstitial.loaded) {
 					await rewardedInterstitial.show();
 				}
 				await uploadFile(action);
@@ -483,7 +483,7 @@ export default ConverterSection = (props) => {
 			} else {
 				showErrorMessage('');
 				showSuccessMessage(currentLanguage.successHeadline, currentLanguage.successMessageInProgress, true, 0.1);
-				if (currentVersion === AppVersions.FREE && rewardedInterstitial.loaded) {
+				if (currentVersion === AppVersions.LIGHT && rewardedInterstitial.loaded) {
 					await rewardedInterstitial.show();
 				}
 				await uploadFile(action);
@@ -502,7 +502,7 @@ export default ConverterSection = (props) => {
 			} else {
 				showErrorMessage('');
 				showSuccessMessage(currentLanguage.successHeadline, currentLanguage.successMessageInProgress, true, 0.1);
-				if (currentVersion === AppVersions.FREE && rewardedInterstitial.loaded) {
+				if (currentVersion === AppVersions.LIGHT && rewardedInterstitial.loaded) {
 					await rewardedInterstitial.show();
 				}
 				await uploadFile(action);

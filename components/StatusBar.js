@@ -17,7 +17,7 @@ export default StatusBar = (props) => {
 			<View style={StatusBarStyle.status}>
 				<Text style={StatusBarStyle.statusHeadline}>{currentLanguage.settingsStatusHeadlineVersion + ': '}</Text>
 				<Text style={StatusBarStyle.statusText}>
-					{currentVersion === AppVersions.FREE
+					{currentVersion === AppVersions.LIGHT
 						? currentLanguage.settingsStatusHeadlineFreeVersion
 						: currentLanguage.settingsStatusHeadlinePremiumVersion}
 				</Text>
