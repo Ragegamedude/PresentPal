@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Gift Box Free",
+    "slug": "GiftBoxFree",
+    "platforms": [
+      "android"
+    ],
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon_free.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash_free.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": false,
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.argames15.giftboxfree",
+      "buildNumber": "1.0.1"
+    },
+    "android": {
+      "package": "com.argames15.giftboxfree",
+      "versionCode": 1,
+      "permissions": [
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/icon_free.png"
+      }
+    },
+    "extra": {
+      "eas": {
+      }
+    }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9694787014775307~4065245853"
+  }
+}

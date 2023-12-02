@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "Gift Box",
+    "slug": "GiftBox",
+    "platforms": [
+      "android"
+    ],
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon_premium.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash_premium.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": false,
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.argames15.giftbox",
+      "buildNumber": "1.0.1"
+    },
+    "android": {
+      "package": "com.argames15.giftbox",
+      "versionCode": 1,
+      "permissions": [
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/icon_premium.png"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d82f510d-1db5-45cc-b867-a126007f366a"
+      }
+    }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9694787014775307~4065245853"
+  }
+}
