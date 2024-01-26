@@ -9,8 +9,7 @@ import { TouchableRipple } from 'react-native-paper';
 import CountryFlag from 'react-native-country-flag';
 import { AvailableLanguages, TranslationManager } from '../translations/TranslationManager';
 import { StorageKeys } from '../constants/StorageKeys';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
 
 export default SettingsSection = (props) => {
 	const { theme, language, personalAds } = useContext(Context);
@@ -95,12 +94,12 @@ export default SettingsSection = (props) => {
 				<View style={SettingsSectionStyle.settingsSectionModalWrapper}>
 					<View style={SettingsSectionStyle.settingsSectionModal}>
 						<View style={SettingsSectionStyle.settingsSectionModalHeader}>
-							<MaterialCommunityIcons
+							<Feather
 								style={SettingsSectionStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
 								color={currentTheme.secondaryColor}
 								size={IconSettings.modalHeadlineIconSize}
-							></MaterialCommunityIcons>
+							></Feather>
 							<Text style={SettingsSectionStyle.settingsSectionModalHeaderText}>
 								{currentLanguage.settingsInformationHeadline}
 							</Text>
@@ -142,12 +141,12 @@ export default SettingsSection = (props) => {
 				<View style={SettingsSectionStyle.settingsSectionModalWrapper}>
 					<View style={SettingsSectionStyle.settingsSectionModal}>
 						<View style={SettingsSectionStyle.settingsSectionModalHeader}>
-							<MaterialCommunityIcons
+							<Feather
 								style={SettingsSectionStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
 								color={currentTheme.secondaryColor}
 								size={IconSettings.modalHeadlineIconSize}
-							></MaterialCommunityIcons>
+							></Feather>
 							<Text style={SettingsSectionStyle.settingsSectionModalHeaderText}>
 								{currentLanguage.settingsLanguageHeadline}
 							</Text>
@@ -309,11 +308,11 @@ export default SettingsSection = (props) => {
 			>
 				<View style={SettingsSectionStyle.settingsSection}>
 					<View style={SettingsSectionStyle.settingsIconSection}>
-						<MaterialCommunityIcons
+						<Feather
 							name={props.iconName}
 							color={currentTheme.secondaryColor}
 							size={IconSettings.settingsSectionIconSize}
-						></MaterialCommunityIcons>
+						></Feather>
 					</View>
 					<View style={SettingsSectionStyle.settingsSectionDividerWrapper}>
 						<View style={SettingsSectionStyle.settingsSectionDivider}></View>
@@ -325,17 +324,17 @@ export default SettingsSection = (props) => {
 					<View style={SettingsSectionStyle.settingsFunctionSection}>
 						{props.action === AvailableSettingsActions.TOGGLE_THEME &&
 							(currentTheme === Themes.light ? (
-								<MaterialCommunityIcons
-									name={'lightbulb-on-outline'}
+								<Feather
+									name={'sun'}
 									color={currentTheme.secondaryColor}
 									size={IconSettings.settingsSectionIconSize}
-								></MaterialCommunityIcons>
+								></Feather>
 							) : (
-								<MaterialCommunityIcons
-									name={'lightbulb-outline'}
+								<Feather
+									name={'moon'}
 									color={currentTheme.secondaryColor}
 									size={IconSettings.settingsSectionIconSize}
-								></MaterialCommunityIcons>
+								></Feather>
 							))}
 						{props.action === AvailableSettingsActions.CHANGE_LANGUAGE && (
 							<View style={SettingsSectionStyle.settingsFunctionLanguage}>
@@ -347,17 +346,17 @@ export default SettingsSection = (props) => {
 						)}
 						{props.action === AvailableSettingsActions.SHOW_PERSONAL_ADS &&
 							(showPersonalAds ? (
-								<FontAwesome
-									name={'toggle-on'}
+								<Feather
+									name={'circle'}
 									color={currentTheme.secondaryColor}
 									size={IconSettings.settingsSectionIconSize}
-								></FontAwesome>
+								></Feather>
 							) : (
-								<FontAwesome
-									name={'toggle-off'}
+								<Feather
+									name={'check-circle'}
 									color={currentTheme.secondaryColor}
 									size={IconSettings.settingsSectionIconSize}
-								></FontAwesome>
+								></Feather>
 							))}
 					</View>
 				</View>

@@ -206,27 +206,7 @@ const German = {
 		Constants.expoConfig.name +
 		'"' +
 		' vorzustellen, die mit viel Liebe, Sorgfalt und Engagement entwickelt wurde.\n\nUnser Ziel ist es, allgemeine Probleme, die jeder von uns im täglichen Umgang mit PDF-Dateien hat, ohne großen Aufwand zu lösen.',
-	homeSectionDate1: '15.05.2023',
-	homeSectionTopic2: 'Updates',
-	homeSectionTitle2: 'Kleiner Hotfix',
-	homeSectionMessage2:
-		'Wir haben soeben ein kleines Update veröffentlicht, das die Leistung der App um etwa 25 % gesteigert hat.\n\nDadurch sollten nun alle Funktionen flüssiger und schneller ausgeführt werden.',
-	homeSectionDate2: '22.05.2023',
-	homeSectionTopic3: 'Updates',
-	homeSectionTitle3: 'Neue Funktionen',
-	homeSectionMessage3:
-		'Wir arbeiten derzeit an neuen Funktionen, die innerhalb der nächsten Monate veröffentlicht werden sollen.\n\nWenn Sie weitere Funktionen wünschen, können Sie uns gerne eine E-Mail schreiben, und wir werden unser Bestes tun, um diese in den kommenden Updates zu integrieren.',
-	homeSectionDate3: '28.05.2023',
-	homeSectionTopic4: 'Updates',
-	homeSectionTitle4: 'Sicherheitsupdate',
-	homeSectionMessage4:
-		'Die App wurde heute mit neuen Sicherheitsupdates und neuen Bugfixes ausgeliefert.\n\nDadurch werden nun einige Fehler auf Android 9 und 10 behoben sowie die allgemeine performance verbessert.',
-	homeSectionDate4: '29.09.2023',
-	homeSectionTopic5: 'Updates',
-	homeSectionTitle5: 'Funktionsupdate',
-	homeSectionMessage5:
-		'Heute wurde ein neues Funktionsupdate veröffentlicht.\n\nDabei wurden neue Funktionen hinzugefügt:\nSeite extrahieren\nSeite löschen\n\nNeben den neuen Funktionen wurden ebenfalls verschiedene Elemente innerhalb der App verbessert.\n\nWir arbeiten kontinuierlich daran die App weiterhin mit neuen Updates und Funktionen zu versorgen.',
-	homeSectionDate5: '11.10.2023'
+	homeSectionDate1: '15.05.2023'
 };
 const English = {
 	introductionDone: 'Done',
@@ -386,27 +366,7 @@ const English = {
 		Constants.expoConfig.name +
 		'"' +
 		', which has been developed with a lot of love, care, and dedication.\n\nOur goal is to solve common problems we all face in dealing with PDF files in our daily lives without much effort.',
-	homeSectionDate1: '15.05.2023',
-	homeSectionTopic2: 'Updates',
-	homeSectionTitle2: 'Minor Hotfix',
-	homeSectionMessage2:
-		'We have just released a small update that has improved the performance of the app by about 25%.\n\nAs a result, all functions should now run smoother and faster.',
-	homeSectionDate2: '22.05.2023',
-	homeSectionTopic3: 'Updates',
-	homeSectionTitle3: 'New Features',
-	homeSectionMessage3:
-		"We are currently working on new features that are planned to be released within the next few months.\n\nIf you have more feature requests, feel free to send us an email, and we'll do our best to incorporate them in upcoming updates.",
-	homeSectionDate3: '28.05.2023',
-	homeSectionTopic4: 'Updates',
-	homeSectionTitle4: 'Security Update',
-	homeSectionMessage4:
-		'The app has been delivered today with new security updates and bug fixes.\n\nAs a result, some issues on Android 9 and 10 are now resolved, and overall performance has been improved.',
-	homeSectionDate4: '29.09.2023',
-	homeSectionTopic5: 'Updates',
-	homeSectionTitle5: 'Feature Update',
-	homeSectionMessage5:
-		'A new feature update has been released today.\n\nNew features added include:\nExtract Page\nDelete Page\n\nIn addition to the new features, various elements within the app have also been improved.\n\nWe are continuously working to provide the app with new updates and features.',
-	homeSectionDate5: '11.10.2023'
+	homeSectionDate1: '15.05.2023'
 };
 const Spanish = {
 	introductionDone: 'Listo',
@@ -569,27 +529,7 @@ const Spanish = {
 		Constants.expoConfig.name +
 		'"' +
 		', que ha sido desarrollada con mucho amor, cuidado y dedicación.\n\nNuestro objetivo es resolver problemas comunes que todos enfrentamos al lidiar con archivos PDF en nuestra vida diaria sin mucho esfuerzo.',
-	homeSectionDate1: '15.05.2023',
-	homeSectionTopic2: 'Actualizaciones',
-	homeSectionTitle2: 'Pequeña Corrección',
-	homeSectionMessage2:
-		'Acabamos de lanzar una pequeña actualización que ha mejorado el rendimiento de la aplicación en aproximadamente un 25 %.\n\nComo resultado, todas las funciones ahora deberían funcionar de manera más fluida y rápida.',
-	homeSectionDate2: '22.05.2023',
-	homeSectionTopic3: 'Actualizaciones',
-	homeSectionTitle3: 'Nuevas Funciones',
-	homeSectionMessage3:
-		'Actualmente estamos trabajando en nuevas funciones que están planeadas para ser lanzadas en los próximos meses.\n\nSi tienes más solicitudes de funciones, no dudes en enviarnos un correo electrónico y haremos nuestro mejor esfuerzo para incorporarlas en futuras actualizaciones.',
-	homeSectionDate3: '28.05.2023',
-	homeSectionTopic4: 'Actualizaciones',
-	homeSectionTitle4: 'Actualización de seguridad',
-	homeSectionMessage4:
-		'La aplicación se ha entregado hoy con nuevas actualizaciones de seguridad y correcciones de errores.\n\nComo resultado, algunos problemas en Android 9 y 10 ahora están resueltos, y se ha mejorado el rendimiento general.',
-	homeSectionDate4: '29.09.2023',
-	homeSectionTopic5: 'Actualizaciones',
-	homeSectionTitle5: 'Actualización de funciones',
-	homeSectionMessage5:
-		'Hoy se ha lanzado una nueva actualización de funciones.\n\nLas nuevas funciones añadidas incluyen:\nExtraer página\nEliminar página\n\nAdemás de las nuevas funciones, también se han mejorado varios elementos dentro de la aplicación.\n\nEstamos trabajando continuamente para proporcionar a la aplicación nuevas actualizaciones y funciones.',
-	homeSectionDate5: '11.10.2023'
+	homeSectionDate1: '15.05.2023'
 };
 const Portuguese = {
 	introductionDone: 'Concluído',
@@ -750,27 +690,7 @@ const Portuguese = {
 		Constants.expoConfig.name +
 		'"' +
 		', que foi desenvolvido com muito amor, cuidado e dedicação.\n\nNosso objetivo é resolver problemas comuns que todos enfrentamos ao lidar com arquivos PDF em nossa vida diária, sem muito esforço.',
-	homeSectionDate1: '15.05.2023',
-	homeSectionTopic2: 'Atualizações',
-	homeSectionTitle2: 'Pequena Correção',
-	homeSectionMessage2:
-		'Acabamos de lançar uma pequena atualização que melhorou o desempenho do aplicativo em cerca de 25%.\n\nComo resultado, todas as funções devem funcionar de maneira mais suave e rápida.',
-	homeSectionDate2: '22.05.2023',
-	homeSectionTopic3: 'Atualizações',
-	homeSectionTitle3: 'Novas Funcionalidades',
-	homeSectionMessage3:
-		'Estamos trabalhando em novas funcionalidades que estão planejadas para serem lançadas nos próximos meses.\n\nSe você tiver mais solicitações de funcionalidades, fique à vontade para nos enviar um e-mail, e faremos o nosso melhor para incorporá-las em atualizações futuras.',
-	homeSectionDate3: '28.05.2023',
-	homeSectionTopic4: 'Atualizações',
-	homeSectionTitle4: 'Atualização de Segurança',
-	homeSectionMessage4:
-		'O aplicativo foi entregue hoje com novas atualizações de segurança e correções de bugs.\n\nComo resultado, alguns problemas no Android 9 e 10 agora estão resolvidos, e o desempenho geral foi melhorado.',
-	homeSectionDate4: '29.09.2023',
-	homeSectionTopic5: 'Atualizações',
-	homeSectionTitle5: 'Atualização de Recursos',
-	homeSectionMessage5:
-		'Hoje foi lançada uma nova atualização de recursos.\n\nNovas funcionalidades adicionadas incluem:\nExtrair página\nExcluir página\n\nAlém das novas funcionalidades, vários elementos dentro do aplicativo também foram aprimorados.\n\nEstamos trabalhando continuamente para fornecer ao aplicativo novas atualizações e recursos.',
-	homeSectionDate5: '11.10.2023'
+	homeSectionDate1: '15.05.2023'
 };
 const French = {
 	introductionDone: 'Terminé',
@@ -935,25 +855,5 @@ const French = {
 		Constants.expoConfig.name +
 		'"' +
 		", qui a été développée avec beaucoup d'amour, de soin et d'engagement.\n\nNotre objectif est de résoudre les problèmes courants que nous rencontrons tous en traitant les fichiers PDF dans notre vie quotidienne, sans trop d'efforts.",
-	homeSectionDate1: '15.05.2023',
-	homeSectionTopic2: 'Mises à Jour',
-	homeSectionTitle2: 'Petite Correction',
-	homeSectionMessage2:
-		"Nous venons de publier une petite mise à jour qui a amélioré les performances de l'application d'environ 25 %.\n\nEn conséquence, toutes les fonctions devraient fonctionner de manière plus fluide et plus rapide.",
-	homeSectionDate2: '22.05.2023',
-	homeSectionTopic3: 'Mises à Jour',
-	homeSectionTitle3: 'Nouvelles Fonctionnalités',
-	homeSectionMessage3:
-		"Nous travaillons actuellement sur de nouvelles fonctionnalités prévues pour être lancées dans les prochains mois.\n\nSi vous avez d'autres demandes de fonctionnalités, n'hésitez pas à nous envoyer un e-mail et nous ferons de notre mieux pour les intégrer dans les mises à jour futures.",
-	homeSectionDate3: '28.05.2023',
-	homeSectionTopic4: 'Mises à jour',
-	homeSectionTitle4: 'Mise à jour de sécurité',
-	homeSectionMessage4:
-		"L'application a été livrée aujourd'hui avec de nouvelles mises à jour de sécurité et des corrections de bugs.\n\nEn conséquence, certains problèmes sur Android 9 et 10 sont maintenant résolus, et les performances générales ont été améliorées.",
-	homeSectionDate4: '29.09.2023',
-	homeSectionTopic5: 'Mises à jour',
-	homeSectionTitle5: 'Mise à jour des fonctionnalités',
-	homeSectionMessage5:
-		"Une nouvelle mise à jour des fonctionnalités a été publiée aujourd'hui.\n\nLes nouvelles fonctionnalités ajoutées incluent :\nExtraire la page\nSupprimer la page\n\nEn plus des nouvelles fonctionnalités, divers éléments au sein de l'application ont également été améliorés.\n\nNous travaillons continuellement à fournir de nouvelles mises à jour et fonctionnalités à l'application.",
-	homeSectionDate5: '11.10.2023'
+	homeSectionDate1: '15.05.2023'
 };

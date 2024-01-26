@@ -9,7 +9,7 @@ import { IconSettings } from '../constants/IconSettings';
 import { TextSettings } from '../constants/TextSettings';
 import { Text } from 'react-native';
 import { StyleSettings } from '../constants/StyleSettings';
-import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
+import Feather from 'react-native-vector-icons/Feather';
 
 export default BottomTabNavigator = () => {
 	const { theme, language, version } = useContext(Context);
@@ -44,8 +44,8 @@ export default BottomTabNavigator = () => {
 				component={ConverterNavigator}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
-						<MaterialCommunityIcons
-							name={'refresh'}
+						<Feather
+							name={'file'}
 							color={focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor}
 							size={IconSettings.tabNavigationIconSize}
 						/>
@@ -68,7 +68,7 @@ export default BottomTabNavigator = () => {
 				component={HomeNavigator}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
-						<MaterialCommunityIcons
+						<Feather
 							name={'home'}
 							color={focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor}
 							size={IconSettings.tabNavigationIconSize}
@@ -92,8 +92,8 @@ export default BottomTabNavigator = () => {
 				component={SettingsNavigator}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
-						<MaterialCommunityIcons
-							name={'cog'}
+						<Feather
+							name={'settings'}
 							color={focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor}
 							size={IconSettings.tabNavigationIconSize}
 						/>

@@ -3,10 +3,9 @@ import { Context } from '../context/Context';
 import { useContext } from 'react';
 import { createSocialButtonsBarStyle } from './SocialButtonsBarStyle';
 import { IconSettings } from '../constants/IconSettings';
-import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { TouchableRipple } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Feather from 'react-native-vector-icons/Feather';
 
 export default SocialButtonBar = () => {
 	const { theme, language, version } = useContext(Context);
@@ -34,11 +33,7 @@ export default SocialButtonBar = () => {
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://www.facebook.com/profile.php?id=100095044938509')}
 			>
-				<MaterialCommunityIcons
-					name={'facebook'}
-					color={currentTheme.secondaryColor}
-					size={IconSettings.socialIconSize}
-				></MaterialCommunityIcons>
+				<Feather name={'facebook'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 			<TouchableRipple
 				rippleColor={currentTheme.rippleEffectColor}
@@ -46,11 +41,7 @@ export default SocialButtonBar = () => {
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://twitter.com/ARGames15')}
 			>
-				<MaterialCommunityIcons
-					name={'twitter'}
-					color={currentTheme.secondaryColor}
-					size={IconSettings.socialIconSize}
-				></MaterialCommunityIcons>
+				<Feather name={'twitter'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 			<TouchableRipple
 				rippleColor={currentTheme.rippleEffectColor}
@@ -58,11 +49,7 @@ export default SocialButtonBar = () => {
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://www.youtube.com/channel/UCFXWwzZr9rm29e4HxybSKZQ')}
 			>
-				<MaterialCommunityIcons
-					name={'youtube'}
-					color={currentTheme.secondaryColor}
-					size={IconSettings.socialIconSize}
-				></MaterialCommunityIcons>
+				<Feather name={'youtube'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 			<TouchableRipple
 				rippleColor={currentTheme.rippleEffectColor}
@@ -70,11 +57,7 @@ export default SocialButtonBar = () => {
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://www.instagram.com/argames15/?hl=de')}
 			>
-				<FontAwesome5
-					name={'instagram-square'}
-					color={currentTheme.secondaryColor}
-					size={IconSettings.socialIconSize}
-				></FontAwesome5>
+				<Feather name={'instagram'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 		</View>
 	);

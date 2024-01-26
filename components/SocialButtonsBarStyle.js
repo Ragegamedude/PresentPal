@@ -15,9 +15,9 @@ export const createSocialButtonsBarStyle = (currentTheme) =>
 			elevation: StyleSettings.defaultElevation,
 			backgroundColor: currentTheme.primaryColor,
 			borderRadius: StyleSettings.defaultBorderRadius,
+			marginHorizontal: StyleSettings.defaultPadding / 2,
 			marginTop: StyleSettings.defaultPadding,
 			marginBottom: StyleSettings.defaultPadding / 2,
-			marginHorizontal: StyleSettings.defaultPadding / 2,
 			paddingVertical: StyleSettings.defaultMargin,
 			alignItems: 'center',
 			justifyContent: 'center'

@@ -1,12 +1,12 @@
 import { ScrollView, View } from 'react-native';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../context/Context';
 import SettingsSection, { AvailableSettingsActions } from '../components/SettingsSection';
 import { createSettingsScreenStyle } from './SettingsScreenStyle';
 import SocialButtonsBar from '../components/SocialButtonsBar';
-import StatusBar from '../components/StatusBar';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import { AppVersions } from '../constants/AppVersions';
+import Header from '../components/Header';
 
 export default SettingsScreen = ({ navigation, props }) => {
 	const { theme, language, version, personalAds } = useContext(Context);
@@ -21,49 +21,50 @@ export default SettingsScreen = ({ navigation, props }) => {
 
 	return (
 		<View style={SettingsScreenStyle.settings}>
+			<Header screen={'settings'} title={currentLanguage.settingsScreenTitle} currentTheme={currentTheme}></Header>
 			<ScrollView>
 				<SocialButtonsBar></SocialButtonsBar>
 				<SettingsSection
 					action={AvailableSettingsActions.CHANGE_LANGUAGE}
-					iconName={'ab-testing'}
+					iconName={'globe'}
 					headline={currentLanguage.settingsLanguageHeadline}
 					description={currentLanguage.settingsLanguageDescription}
 				></SettingsSection>
 				<SettingsSection
 					action={AvailableSettingsActions.TOGGLE_THEME}
-					iconName={'theme-light-dark'}
+					iconName={'layout'}
 					headline={currentLanguage.settingsThemeHeadline}
 					description={currentLanguage.settingsThemeDescription}
 				></SettingsSection>
 				{currentVersion === AppVersions.LIGHT && (
 					<SettingsSection
 						action={AvailableSettingsActions.SHOW_PERSONAL_ADS}
-						iconName={'user-following'}
+						iconName={'grid'}
 						headline={currentLanguage.settingsPersonalAdsHeadline}
 						description={currentLanguage.settingsPersonalAdsDescription}
 					></SettingsSection>
 				)}
 				<SettingsSection
 					action={AvailableSettingsActions.OPEN_PRIVACY_POLICY}
-					iconName={'police-badge-outline'}
+					iconName={'lock'}
 					headline={currentLanguage.settingsPrivacyPolicyHeadline}
 					description={currentLanguage.settingsPrivacyPolicyDescription}
 				></SettingsSection>
 				<SettingsSection
 					action={AvailableSettingsActions.OPEN_DISCLAIMER}
-					iconName={'sticker-text-outline'}
+					iconName={'alert-triangle'}
 					headline={currentLanguage.settingsDisclaimerHeadline}
 					description={currentLanguage.settingsDisclaimerDescription}
 				></SettingsSection>
 				<SettingsSection
 					action={AvailableSettingsActions.CONTACT}
-					iconName={'email-outline'}
+					iconName={'mail'}
 					headline={currentLanguage.settingsContactHeadline}
 					description={currentLanguage.settingsContactDescription}
 				></SettingsSection>
 				<SettingsSection
 					action={AvailableSettingsActions.INFORMATION}
-					iconName={'information-outline'}
+					iconName={'info'}
 					headline={currentLanguage.settingsInformationHeadline}
 					description={currentLanguage.settingsInformationDescription}
 				></SettingsSection>

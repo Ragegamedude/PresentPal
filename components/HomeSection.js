@@ -3,8 +3,8 @@ import { IconSettings } from '../constants/IconSettings';
 import { createHomeSectionStyle } from './HomeSectionStyle';
 import { Context } from '../context/Context';
 import { useContext, useState } from 'react';
-import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { TouchableRipple } from 'react-native-paper';
+import Feather from 'react-native-vector-icons/Feather';
 
 export default HomeSection = (props) => {
 	const { theme, language } = useContext(Context);
@@ -24,11 +24,11 @@ export default HomeSection = (props) => {
 			<View style={HomeSectionStyle.homeSection}>
 				<View style={HomeSectionStyle.homeSectionLeftContainer}>
 					<View style={HomeSectionStyle.homeSectionHeaderIcon}>
-						<SimpleLineIcon
+						<Feather
 							name={props.iconName}
 							color={currentTheme.secondaryColor}
 							size={IconSettings.settingsSectionIconSize}
-						></SimpleLineIcon>
+						></Feather>
 					</View>
 					<Text style={HomeSectionStyle.homeSectionLeftUser}>{props.sectionUser}</Text>
 					<Text style={HomeSectionStyle.homeSectionLeftDate}>{props.date}</Text>

@@ -23,48 +23,12 @@ export default HomeScreen = ({ navigation, props }) => {
 			<Header title={currentLanguage.homeScreenTitle} currentTheme={currentTheme}></Header>
 			<ScrollView>
 				<HomeSection
-					date={currentLanguage.homeSectionDate5}
-					sectionUser={currentLanguage.homeSectionUser}
-					sectionTopic={currentLanguage.homeSectionTopic5}
-					sectionTitle={currentLanguage.homeSectionTitle5}
-					sectionMessage={currentLanguage.homeSectionMessage5}
-					iconName="feed"
-					lastElement={false}
-				></HomeSection>
-				<HomeSection
-					date={currentLanguage.homeSectionDate4}
-					sectionUser={currentLanguage.homeSectionUser}
-					sectionTopic={currentLanguage.homeSectionTopic4}
-					sectionTitle={currentLanguage.homeSectionTitle4}
-					sectionMessage={currentLanguage.homeSectionMessage4}
-					iconName="feed"
-					lastElement={false}
-				></HomeSection>
-				<HomeSection
-					date={currentLanguage.homeSectionDate3}
-					sectionUser={currentLanguage.homeSectionUser}
-					sectionTopic={currentLanguage.homeSectionTopic3}
-					sectionTitle={currentLanguage.homeSectionTitle3}
-					sectionMessage={currentLanguage.homeSectionMessage3}
-					iconName="feed"
-					lastElement={false}
-				></HomeSection>
-				<HomeSection
-					date={currentLanguage.homeSectionDate2}
-					sectionUser={currentLanguage.homeSectionUser}
-					sectionTopic={currentLanguage.homeSectionTopic2}
-					sectionTitle={currentLanguage.homeSectionTitle2}
-					sectionMessage={currentLanguage.homeSectionMessage2}
-					iconName="feed"
-					lastElement={false}
-				></HomeSection>
-				<HomeSection
 					date={currentLanguage.homeSectionDate1}
 					sectionUser={currentLanguage.homeSectionUser}
 					sectionTopic={currentLanguage.homeSectionTopic1}
 					sectionTitle={currentLanguage.homeSectionTitle1}
 					sectionMessage={currentLanguage.homeSectionMessage1}
-					iconName="book-open"
+					iconName="columns"
 					lastElement={true}
 				></HomeSection>
 			</ScrollView>
