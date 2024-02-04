@@ -10,6 +10,7 @@ import CountryFlag from 'react-native-country-flag';
 import { AvailableLanguages, TranslationManager } from '../translations/TranslationManager';
 import { StorageKeys } from '../constants/StorageKeys';
 import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default SettingsSection = (props) => {
 	const { theme, language, personalAds } = useContext(Context);
@@ -319,7 +320,9 @@ export default SettingsSection = (props) => {
 					</View>
 					<View style={SettingsSectionStyle.settingsDescriptionSection}>
 						<Text style={SettingsSectionStyle.settingsHeadline}>{props.headline}</Text>
-						<Text style={SettingsSectionStyle.settingsDescription}>{props.description}</Text>
+						<Text style={SettingsSectionStyle.settingsDescription} numberOfLines={2}>
+							{props.description}
+						</Text>
 					</View>
 					<View style={SettingsSectionStyle.settingsFunctionSection}>
 						{props.action === AvailableSettingsActions.TOGGLE_THEME &&
@@ -346,17 +349,17 @@ export default SettingsSection = (props) => {
 						)}
 						{props.action === AvailableSettingsActions.SHOW_PERSONAL_ADS &&
 							(showPersonalAds ? (
-								<Feather
-									name={'circle'}
+								<FontAwesome
+									name={'toggle-off'}
 									color={currentTheme.secondaryColor}
 									size={IconSettings.settingsSectionIconSize}
-								></Feather>
+								></FontAwesome>
 							) : (
-								<Feather
-									name={'check-circle'}
+								<FontAwesome
+									name={'toggle-on'}
 									color={currentTheme.secondaryColor}
 									size={IconSettings.settingsSectionIconSize}
-								></Feather>
+								></FontAwesome>
 							))}
 					</View>
 				</View>

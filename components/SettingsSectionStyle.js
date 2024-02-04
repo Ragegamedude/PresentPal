@@ -44,7 +44,8 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		settingsDescriptionSection: {
 			flex: 1,
 			justifyContent: 'center',
-			marginLeft: StyleSettings.defaultMargin
+			marginLeft: StyleSettings.defaultMargin,
+			marginVertical: StyleSettings.defaultMargin
 		},
 		settingsFunctionSection: {
 			flex: 0.2,
