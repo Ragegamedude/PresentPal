@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "App Template Premium",
-    "slug": "AppTemplatePremium",
+    "name": "Present Pal Premium",
+    "slug": "PresentPalPremium",
     "platforms": [
       "android"
     ],
@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.argames15.apptemplatepremium",
+      "bundleIdentifier": "com.argames15.presentpalpremium",
       "buildNumber": "1.0.1"
     },
     "android": {
-      "package": "com.argames15.apptemplatepremium",
+      "package": "com.argames15.presentpalpremium",
       "versionCode": 1,
       "permissions": [
         "WRITE_EXTERNAL_STORAGE",
