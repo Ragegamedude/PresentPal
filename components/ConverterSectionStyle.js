@@ -7,7 +7,7 @@ const windowWidth = Dimensions.get('window').width;
 export default createConverterSectionStyle = (currentTheme) =>
 	StyleSheet.create({
 		converterSectionWrapper: {
-			flex: 1,
+			flex: 2,
 			marginHorizontal: StyleSettings.defaultPadding,
 			marginTop: StyleSettings.defaultPadding
 		},

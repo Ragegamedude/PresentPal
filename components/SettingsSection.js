@@ -106,8 +106,20 @@ export default SettingsSection = (props) => {
 							</Text>
 						</View>
 						<View style={SettingsSectionStyle.settingsSectionModalContent}>
+							<Text style={SettingsSectionStyle.settingsSectionModalContentHeadline}>
+								{currentLanguage.settingsInformationGeneral}
+							</Text>
+							<Text style={SettingsSectionStyle.settingsSectionModalContentText}>
+								{currentLanguage.settingsInformationGeneralContent}
+							</Text>
+							<Text style={SettingsSectionStyle.settingsSectionModalContentHeadline}>
+								{currentLanguage.settingsInformationApplication}
+							</Text>
 							<Text style={SettingsSectionStyle.settingsSectionModalContentText}>
 								{currentLanguage.settingsInformationModalContent}
+							</Text>
+							<Text style={SettingsSectionStyle.settingsSectionModalContentHeadline}>
+								{currentLanguage.settingsInformationWebsite}
 							</Text>
 							<Text style={SettingsSectionStyle.settingsSectionModalContentText}>
 								{currentLanguage.settingsInformationModalCreator}

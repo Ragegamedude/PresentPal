@@ -1,14 +1,12 @@
 import { ScrollView, View } from 'react-native';
 import React, { useContext } from 'react';
 import { Context } from '../context/Context';
-import { createConverterScreenStyle } from './ConverterScreenStyle';
-import ConverterSection, { AvailableConverterActions } from '../components/ConverterSection';
+import {createListsScreenStyle} from './ListsScreenStyle';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import { AppVersions } from '../constants/AppVersions';
-import HeadlineSection from '../components/HeadlineSection';
 import Header from '../components/Header';
 
-export default ConverterScreen = ({ navigation, props }) => {
+export default ListsScreen = ({ navigation, props }) => {
 	const { theme, language, version, personalAds } = useContext(Context);
 	const [currentTheme, setCurrentTheme] = theme;
 	const [currentLanguage, setCurrentLanguage] = language;
@@ -17,11 +15,11 @@ export default ConverterScreen = ({ navigation, props }) => {
 
 	const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9694787014775307/4284015587';
 
-	const ConverterScreenStyle = createConverterScreenStyle(currentTheme);
+	const ListsScreenStyle = createListsScreenStyle(currentTheme);
 
 	return (
-		<View style={ConverterScreenStyle.converter}>
-			<Header screen={'settings'} title={currentLanguage.secondScreenTitle} currentTheme={currentTheme}></Header>
+		<View style={ListsScreenStyle.lists}>
+			<Header screen={'settings'} title={currentLanguage.listsScreenTitle} currentTheme={currentTheme}></Header>
 			<ScrollView></ScrollView>
 			{currentVersion === AppVersions.LIGHT && (
 				<BannerAd

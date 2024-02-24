@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useContext } from 'react';
 import { Context } from '../context/Context';
-import ConverterScreen from '../screens/ConverterScreen';
 import { TextSettings } from '../constants/TextSettings';
+import GiftsScreen from "../screens/GiftsScreen";
 
-export default ConverterNavigator = ({ navigation }) => {
+export default GiftsNavigator = ({ navigation }) => {
 	const { theme, language, version } = useContext(Context);
 	const [currentTheme, setCurrentTheme] = theme;
 	const [currentLanguage, setCurrentLanguage] = language;
@@ -15,10 +15,10 @@ export default ConverterNavigator = ({ navigation }) => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name={'ConverterScreen'}
-				component={ConverterScreen}
+				name={'GiftsScreen'}
+				component={GiftsScreen}
 				options={{
-					title: currentLanguage.secondScreenTitle,
+					title: currentLanguage.giftsScreenTitle,
 					headerShown: false,
 					headerStyle: {
 						backgroundColor: currentTheme.primaryColor

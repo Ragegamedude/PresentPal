@@ -108,6 +108,13 @@ export default createSettingsSectionStyle = (currentTheme) =>
 			borderRadius: StyleSettings.defaultBorderRadius,
 			backgroundColor: currentTheme.backgroundColor
 		},
+		settingsSectionModalContentHeadline: {
+			marginHorizontal: StyleSettings.defaultMargin,
+			marginTop: StyleSettings.defaultPadding,
+			fontSize: TextSettings.textDefaultSize,
+			fontFamily: TextSettings.defaultFontMedium,
+			color: currentTheme.secondaryVariantColor
+		},
 		settingsSectionModalContentText: {
 			marginHorizontal: StyleSettings.defaultMargin,
 			marginTop: StyleSettings.defaultPadding,

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-export const createConverterScreenStyle = (currentTheme) =>
+export const createGiftsScreenStyle = (currentTheme) =>
 	StyleSheet.create({
-		converter: {
+		gifts: {
 			flex: 1,
 			backgroundColor: currentTheme.background
 		}
