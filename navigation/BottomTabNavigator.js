@@ -1,5 +1,5 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useContext } from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useContext} from 'react';
 import HomeNavigator from '../navigation/HomeNavigator';
 import SettingsNavigator from './SettingsNavigator';
 import {Context} from '../context/Context';
@@ -20,121 +20,129 @@ export default BottomTabNavigator = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator
-      initialRouteName={'HomeNavigator'}
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          backgroundColor: currentTheme.primaryVariantColor,
-          height: StyleSettings.tabHeight
-        },
-        tabBarLabelStyle: {
-          fontSize: TextSettings.tabTextSize,
-          fontFamily: TextSettings.defaultFontLight,
-          color: currentTheme.secondaryColor
-        },
-        tabBarItemStyle: {
-          marginTop: 8,
-          marginBottom: 10
-        }
-      }}
-    >
-      <Tab.Screen
-        name={'GiftsNavigator'}
-        component={GiftsNavigator}
-        options={{
-          tabBarIcon: ({focused, color}) => (
-            <Feather
-              name={'gift'}
-              color={focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor}
-              size={IconSettings.tabNavigationIconSize}
-            />
-          ),
-          tabBarLabel: ({focused, color}) => (
-            <Text
-              style={{
-                color: focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor,
-                fontFamily: TextSettings.defaultFontLight,
-                fontSize: TextSettings.tabTextSize
-              }}
-            >
-              {currentLanguage.giftsScreenTitle}
-            </Text>
-          )
-        }}
-      />
-      <Tab.Screen
-        name={'ListsNavigator'}
-        component={ListsNavigator}
-        options={{
-          tabBarIcon: ({focused, color}) => (
-            <Feather
-              name={'list'}
-              color={focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor}
-              size={IconSettings.tabNavigationIconSize}
-            />
-          ),
-          tabBarLabel: ({focused, color}) => (
-            <Text
-              style={{
-                color: focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor,
-                fontFamily: TextSettings.defaultFontLight,
-                fontSize: TextSettings.tabTextSize
-              }}
-            >
-              {currentLanguage.listsScreenTitle}
-            </Text>
-          )
-        }}
-      />
-      <Tab.Screen
-        name={'HomeNavigator'}
-        component={HomeNavigator}
-        options={{
-          tabBarIcon: ({focused, color}) => (
-            <Feather
-              name={'home'}
-              color={focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor}
-              size={IconSettings.tabNavigationIconSize}
-            />
-          ),
-          tabBarLabel: ({focused, color}) => (
-            <Text
-              style={{
-                color: focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor,
-                fontFamily: TextSettings.defaultFontLight,
-                fontSize: TextSettings.tabTextSize
-              }}
-            >
-              {currentLanguage.homeScreenTitle}
-            </Text>
-          )
-        }}
-      />
-      <Tab.Screen
-        name={'SettingsNavigator'}
-        component={SettingsNavigator}
-        options={{
-          tabBarIcon: ({focused, color}) => (
-            <Feather
-              name={'settings'}
-              color={focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor}
-              size={IconSettings.tabNavigationIconSize}
-            />
-          ),
-          tabBarLabel: ({focused, color}) => (
-            <Text
-              style={{
-                color: focused ? currentTheme.secondaryColor : currentTheme.secondaryVariantColor,
-                fontFamily: TextSettings.defaultFontLight,
-                fontSize: TextSettings.tabTextSize
-              }}
-            >
-              {currentLanguage.settingsScreenTitle}
-            </Text>
-          )
-        }}
-      />
-    </Tab.Navigator>
+      <Tab.Navigator
+          initialRouteName={'HomeNavigator'}
+          screenOptions={{
+            headerShown: false,
+            tabBarStyle: {
+              backgroundColor: currentTheme.primaryVariantColor,
+              height: StyleSettings.tabHeight
+            },
+            tabBarLabelStyle: {
+              fontSize: TextSettings.tabTextSize,
+              fontFamily: TextSettings.defaultFontLight,
+              color: currentTheme.secondaryColor
+            },
+            tabBarItemStyle: {
+              marginTop: 8,
+              marginBottom: 10
+            }
+          }}
+      >
+        <Tab.Screen
+            name={'GiftsNavigator'}
+            component={GiftsNavigator}
+            options={{
+              tabBarIcon: ({focused, color}) => (
+                  <Feather
+                      name={'gift'}
+                      color={focused ? currentTheme.secondaryColor
+                          : currentTheme.secondaryVariantColor}
+                      size={IconSettings.tabNavigationIconSize}
+                  />
+              ),
+              tabBarLabel: ({focused, color}) => (
+                  <Text
+                      style={{
+                        color: focused ? currentTheme.secondaryColor
+                            : currentTheme.secondaryVariantColor,
+                        fontFamily: TextSettings.defaultFontLight,
+                        fontSize: TextSettings.tabTextSize
+                      }}
+                  >
+                    {currentLanguage.giftsScreenTitle}
+                  </Text>
+              )
+            }}
+        />
+        <Tab.Screen
+            name={'ListsNavigator'}
+            component={ListsNavigator}
+            options={{
+              tabBarIcon: ({focused, color}) => (
+                  <Feather
+                      name={'list'}
+                      color={focused ? currentTheme.secondaryColor
+                          : currentTheme.secondaryVariantColor}
+                      size={IconSettings.tabNavigationIconSize}
+                  />
+              ),
+              tabBarLabel: ({focused, color}) => (
+                  <Text
+                      style={{
+                        color: focused ? currentTheme.secondaryColor
+                            : currentTheme.secondaryVariantColor,
+                        fontFamily: TextSettings.defaultFontLight,
+                        fontSize: TextSettings.tabTextSize
+                      }}
+                  >
+                    {currentLanguage.listsScreenTitle}
+                  </Text>
+              )
+            }}
+        />
+        <Tab.Screen
+            name={'HomeNavigator'}
+            component={HomeNavigator}
+            options={{
+              tabBarIcon: ({focused, color}) => (
+                  <Feather
+                      name={'home'}
+                      color={focused ? currentTheme.secondaryColor
+                          : currentTheme.secondaryVariantColor}
+                      size={IconSettings.tabNavigationIconSize}
+                  />
+              ),
+              tabBarLabel: ({focused, color}) => (
+                  <Text
+                      style={{
+                        color: focused ? currentTheme.secondaryColor
+                            : currentTheme.secondaryVariantColor,
+                        fontFamily: TextSettings.defaultFontLight,
+                        fontSize: TextSettings.tabTextSize
+                      }}
+                  >
+                    {currentLanguage.homeScreenTitle}
+                  </Text>
+              )
+            }}
+        />
+        <Tab.Screen
+            name={'SettingsNavigator'}
+            component={SettingsNavigator}
+            options={{
+              tabBarIcon: ({focused, color}) => (
+                  <Feather
+                      name={'settings'}
+                      color={focused ? currentTheme.secondaryColor
+                          : currentTheme.secondaryVariantColor}
+                      size={IconSettings.tabNavigationIconSize}
+                  />
+              ),
+              tabBarLabel: ({focused, color}) => (
+                  <Text
+                      style={{
+                        color: focused ? currentTheme.secondaryColor
+                            : currentTheme.secondaryVariantColor,
+                        fontFamily: TextSettings.defaultFontLight,
+                        fontSize: TextSettings.tabTextSize
+                      }}
+                  >
+                    {currentLanguage.settingsScreenTitle}
+                  </Text>
+              )
+            }}
+        />
+      </Tab.Navigator>
   );
 };

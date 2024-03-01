@@ -8,6 +8,6 @@ export const createSettingsScreenStyle = (currentTheme) =>
       backgroundColor: currentTheme.background,
     },
     settingsWrapper: {
-      marginTop: StyleSettings.defaultPadding /2
+      marginVertical: StyleSettings.defaultPadding /2
     }
   });

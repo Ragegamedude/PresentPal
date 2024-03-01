@@ -320,16 +320,6 @@ export default SettingsSection = (props) => {
 				onPress={() => executeAction(props.action)}
 			>
 				<View style={SettingsSectionStyle.settingsSection}>
-					<View style={SettingsSectionStyle.settingsIconSection}>
-						<Feather
-							name={props.iconName}
-							color={currentTheme.secondaryColor}
-							size={IconSettings.settingsSectionIconSize}
-						></Feather>
-					</View>
-					<View style={SettingsSectionStyle.settingsSectionDividerWrapper}>
-						<View style={SettingsSectionStyle.settingsSectionDivider}></View>
-					</View>
 					<View style={SettingsSectionStyle.settingsDescriptionSection}>
 						<Text style={SettingsSectionStyle.settingsHeadline}>{props.headline}</Text>
 						<Text style={SettingsSectionStyle.settingsDescription} numberOfLines={2}>

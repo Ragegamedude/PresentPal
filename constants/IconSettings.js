@@ -1,5 +1,5 @@
 export const IconSettings = {
-	tabNavigationIconSize: 32,
+	tabNavigationIconSize: 28,
 	headerIconSize: 32,
 	buttonIconSize: 24,
 	settingsSectionIconSize: 32,

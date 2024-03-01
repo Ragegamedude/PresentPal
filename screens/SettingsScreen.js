@@ -22,6 +22,7 @@ export default SettingsScreen = ({ navigation, props }) => {
 	return (
 		<View style={SettingsScreenStyle.settings}>
 			<Header screen={'settings'} title={currentLanguage.settingsScreenTitle} currentTheme={currentTheme}></Header>
+			<SocialButtonsBar></SocialButtonsBar>
 			<ScrollView style={SettingsScreenStyle.settingsWrapper}>
 				<SettingsSection
 					action={AvailableSettingsActions.CHANGE_LANGUAGE}
