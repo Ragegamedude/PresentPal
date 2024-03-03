@@ -16,7 +16,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
 			elevation: StyleSettings.defaultElevation,
 			flexDirection: 'row',
 			justifyContent: 'center',
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.onBackground,
 			borderRadius: StyleSettings.defaultBorderRadius
 		},
 		settingsSection: {
@@ -32,7 +32,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		settingsSectionDivider: {
 			width: StyleSettings.defaultDividerWidth,
 			height: '100%',
-			backgroundColor: currentTheme.secondaryVariantColor
+			backgroundColor: currentTheme.colors.primary
 		},
 		settingsIconSection: {
 			flex: 0.2,
@@ -54,12 +54,12 @@ export default createSettingsSectionStyle = (currentTheme) =>
 			marginHorizontal: StyleSettings.defaultMargin
 		},
 		settingsHeadline: {
-			color: currentTheme.secondaryColor,
+			color: currentTheme.colors.primary,
 			fontFamily: TextSettings.defaultFontBold,
 			fontSize: TextSettings.textDefaultSize
 		},
 		settingsDescription: {
-			color: currentTheme.secondaryVariantColor,
+			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontLight,
 			fontSize: TextSettings.textSmallSize
 		},
@@ -77,12 +77,12 @@ export default createSettingsSectionStyle = (currentTheme) =>
 			flex: 1,
 			alignItems: 'center',
 			justifyContent: 'center',
-			backgroundColor: currentTheme.transparentBackground
+			backgroundColor: currentTheme.colors.backdrop
 		},
 		settingsSectionModal: {
 			width: windowWidth - StyleSettings.defaultPaddingModal,
 			borderRadius: StyleSettings.defaultBorderRadius,
-			backgroundColor: currentTheme.background
+			backgroundColor: currentTheme.colors.onBackground
 		},
 		settingsSectionModalHeader: {
 			flexDirection: 'row',
@@ -92,7 +92,9 @@ export default createSettingsSectionStyle = (currentTheme) =>
 			paddingHorizontal: StyleSettings.defaultMargin,
 			borderTopStartRadius: StyleSettings.defaultBorderRadius,
 			borderTopEndRadius: StyleSettings.defaultBorderRadius,
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.onBackground,
+			borderBottomWidth: StyleSettings.defaultBorderWidth,
+			borderBottomColor: currentTheme.colors.primary,
 			elevation: StyleSettings.defaultElevation
 		},
 		settingsSectionModalHeaderIcon: {
@@ -102,32 +104,33 @@ export default createSettingsSectionStyle = (currentTheme) =>
 			marginLeft: StyleSettings.defaultMargin,
 			fontSize: TextSettings.textDefaultSize,
 			fontFamily: TextSettings.defaultFontBold,
-			color: currentTheme.secondaryColor
+			color: currentTheme.colors.primary
 		},
 		settingsSectionModalContent: {
-			borderRadius: StyleSettings.defaultBorderRadius,
-			backgroundColor: currentTheme.backgroundColor
+			borderBottomEndRadius: StyleSettings.defaultBorderRadius,
+			borderBottomStartRadius: StyleSettings.defaultBorderRadius,
+			backgroundColor: currentTheme.colors.onBackground
 		},
 		settingsSectionModalContentHeadline: {
 			marginHorizontal: StyleSettings.defaultMargin,
 			marginTop: StyleSettings.defaultPadding,
 			fontSize: TextSettings.textDefaultSize,
 			fontFamily: TextSettings.defaultFontMedium,
-			color: currentTheme.secondaryVariantColor
+			color: currentTheme.colors.primary
 		},
 		settingsSectionModalContentText: {
 			marginHorizontal: StyleSettings.defaultMargin,
 			marginTop: StyleSettings.defaultPadding,
 			fontSize: TextSettings.textDefaultSize,
 			fontFamily: TextSettings.defaultFontLight,
-			color: currentTheme.secondaryVariantColor
+			color: currentTheme.colors.secondary
 		},
 		settingsSectionModalButtonWrapper: {
 			flexDirection: 'row'
 		},
 		settingsSectionModalContentButton: {
 			flex: 1,
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.primary,
 			paddingVertical: StyleSettings.defaultPadding,
 			marginVertical: StyleSettings.defaultMargin,
 			marginHorizontal: StyleSettings.defaultMargin,
@@ -136,7 +139,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		},
 		settingsSectionModalContentButton2: {
 			flex: 1,
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.primary,
 			paddingVertical: StyleSettings.defaultPadding,
 			marginVertical: StyleSettings.defaultMargin,
 			marginLeft: StyleSettings.defaultMargin,
@@ -146,7 +149,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		},
 		settingsSectionModalContentButton3: {
 			flex: 1,
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.primary,
 			paddingVertical: StyleSettings.defaultPadding,
 			marginVertical: StyleSettings.defaultMargin,
 			marginLeft: StyleSettings.defaultMargin / 2,
@@ -156,9 +159,9 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		},
 		settingsSectionModalContentButtonText: {
 			fontSize: TextSettings.textDefaultSize,
-			fontFamily: TextSettings.defaultFontLight,
+			fontFamily: TextSettings.defaultFontRegular,
 			textAlign: 'center',
-			color: currentTheme.secondaryColor
+			color: currentTheme.colors.onPrimary
 		},
 		settingsSectionModalInputWrapper: {
 			flexDirection: 'row',
@@ -167,7 +170,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		settingsSectionModalInputButton: {
 			justifyContent: 'center',
 			alignItems: 'center',
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.onBackground,
 			marginLeft: StyleSettings.defaultMargin,
 			borderTopStartRadius: StyleSettings.defaultBorderRadius,
 			borderBottomStartRadius: StyleSettings.defaultBorderRadius,
@@ -176,7 +179,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		settingsSectionModalInputButton2: {
 			justifyContent: 'center',
 			alignItems: 'center',
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.primary,
 			marginRight: StyleSettings.defaultMargin,
 			borderTopEndRadius: StyleSettings.defaultBorderRadius,
 			borderBottomEndRadius: StyleSettings.defaultBorderRadius,
@@ -188,7 +191,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
 		settingsSectionModalInputField: {
 			flexDirection: 'row',
 			flex: 1,
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.onBackground,
 			marginRight: StyleSettings.defaultMargin,
 			borderTopEndRadius: StyleSettings.defaultBorderRadius,
 			borderBottomEndRadius: StyleSettings.defaultBorderRadius,
@@ -198,14 +201,14 @@ export default createSettingsSectionStyle = (currentTheme) =>
 			marginVertical: StyleSettings.defaultMargin / 2,
 			marginHorizontal: StyleSettings.defaultMargin / 2,
 			fontSize: TextSettings.textDefaultSize,
-			fontFamily: TextSettings.defaultFontLight,
-			color: currentTheme.secondaryVariantColor
+			fontFamily: TextSettings.defaultFontBold,
+			color: currentTheme.colors.primary
 		},
 		settingsSectionModalInputFieldTextActive: {
 			marginVertical: StyleSettings.defaultMargin / 2,
 			marginHorizontal: StyleSettings.defaultMargin / 2,
 			fontSize: TextSettings.textDefaultSize,
 			fontFamily: TextSettings.defaultFontLight,
-			color: currentTheme.secondaryColor
+			color: currentTheme.colors.secondary
 		}
 	});

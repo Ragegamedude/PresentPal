@@ -5,5 +5,6 @@ export const StyleSettings = {
 	defaultBorderRadius: 10,
 	defaultPaddingModal: 50,
 	defaultDividerWidth: 1,
+	defaultBorderWidth: 2,
 	tabHeight: 70
 };

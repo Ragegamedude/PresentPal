@@ -4,7 +4,7 @@ export const createGiftsScreenStyle = (currentTheme) =>
 	StyleSheet.create({
 		gifts: {
 			flex: 1,
-			backgroundColor: currentTheme.background
+			backgroundColor: currentTheme.colors.background
 		},
 		giftsWrapper : {
 			flex: 1,

@@ -1,15 +1,14 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useContext} from 'react';
-import HomeNavigator from '../navigation/HomeNavigator';
-import SettingsNavigator from './SettingsNavigator';
 import {Context} from '../context/Context';
-import {IconSettings} from '../constants/IconSettings';
-import {TextSettings} from '../constants/TextSettings';
-import {Text} from 'react-native';
-import {StyleSettings} from '../constants/StyleSettings';
-import Feather from 'react-native-vector-icons/Feather';
-import ListsNavigator from "./ListsNavigator";
+import {CommonActions} from '@react-navigation/native';
+import {BottomNavigation} from 'react-native-paper';
 import GiftsNavigator from "./GiftsNavigator";
+import ListsNavigator from "./ListsNavigator";
+import HomeNavigator from "./HomeNavigator";
+import SettingsNavigator from "./SettingsNavigator";
+import Feather from "react-native-vector-icons/Feather";
+import {StyleSettings} from "../constants/StyleSettings";
 
 export default BottomTabNavigator = () => {
   const {theme, language, version} = useContext(Context);
@@ -21,128 +20,225 @@ export default BottomTabNavigator = () => {
 
   return (
       <Tab.Navigator
-          initialRouteName={'HomeNavigator'}
           screenOptions={{
             headerShown: false,
-            tabBarStyle: {
-              backgroundColor: currentTheme.primaryVariantColor,
-              height: StyleSettings.tabHeight
-            },
-            tabBarLabelStyle: {
-              fontSize: TextSettings.tabTextSize,
-              fontFamily: TextSettings.defaultFontLight,
-              color: currentTheme.secondaryColor
-            },
-            tabBarItemStyle: {
-              marginTop: 8,
-              marginBottom: 10
-            }
           }}
+          tabBar={({navigation, state, descriptors, insets}) => (
+              <BottomNavigation.Bar
+                  style={{
+                    borderColor: currentTheme.colors.primary,
+                    borderTopWidth: StyleSettings.defaultBorderWidth,
+                    backgroundColor: currentTheme.colors.onBackground
+                  }}
+                  shifting={false}
+                  tabBarColor={'red'}
+                  navigationState={state}
+                  safeAreaInsets={insets}
+                  theme={currentTheme}
+                  onTabPress={({route, preventDefault}) => {
+                    const event = navigation.emit({
+                      type: 'tabPress',
+                      target: route.key,
+                      canPreventDefault: true,
+                    });
+
+                    if (event.defaultPrevented) {
+                      preventDefault();
+                    } else {
+                      navigation.dispatch({
+                        ...CommonActions.navigate(route.name, route.params),
+                        target: state.key,
+                      });
+                    }
+                  }}
+                  renderIcon={({route, focused, color}) => {
+                    const {options} = descriptors[route.key];
+                    if (options.tabBarIcon) {
+                      return options.tabBarIcon({focused, color, size: 24});
+                    }
+
+                    return null;
+                  }}
+                  getLabelText={({route}) => {
+                    const {options} = descriptors[route.key];
+                    const label =
+                        options.tabBarLabel !== undefined
+                            ? options.tabBarLabel
+                            : options.title !== undefined
+                                ? options.title
+                                : route.title;
+
+                    return label;
+                  }}
+              />
+          )}
       >
         <Tab.Screen
-            name={'GiftsNavigator'}
+            name="Gifts"
             component={GiftsNavigator}
             options={{
-              tabBarIcon: ({focused, color}) => (
-                  <Feather
-                      name={'gift'}
-                      color={focused ? currentTheme.secondaryColor
-                          : currentTheme.secondaryVariantColor}
-                      size={IconSettings.tabNavigationIconSize}
-                  />
-              ),
-              tabBarLabel: ({focused, color}) => (
-                  <Text
-                      style={{
-                        color: focused ? currentTheme.secondaryColor
-                            : currentTheme.secondaryVariantColor,
-                        fontFamily: TextSettings.defaultFontLight,
-                        fontSize: TextSettings.tabTextSize
-                      }}
-                  >
-                    {currentLanguage.giftsScreenTitle}
-                  </Text>
-              )
+              tabBarLabel: currentLanguage.giftsScreenTitle,
+              tabBarIcon: ({color, size}) => {
+                return <Feather name="gift" size={size} color={color}/>;
+                ;
+              },
             }}
         />
         <Tab.Screen
-            name={'ListsNavigator'}
+            name="Lists"
             component={ListsNavigator}
             options={{
-              tabBarIcon: ({focused, color}) => (
-                  <Feather
-                      name={'list'}
-                      color={focused ? currentTheme.secondaryColor
-                          : currentTheme.secondaryVariantColor}
-                      size={IconSettings.tabNavigationIconSize}
-                  />
-              ),
-              tabBarLabel: ({focused, color}) => (
-                  <Text
-                      style={{
-                        color: focused ? currentTheme.secondaryColor
-                            : currentTheme.secondaryVariantColor,
-                        fontFamily: TextSettings.defaultFontLight,
-                        fontSize: TextSettings.tabTextSize
-                      }}
-                  >
-                    {currentLanguage.listsScreenTitle}
-                  </Text>
-              )
+              tabBarLabel: currentLanguage.listsScreenTitle,
+              tabBarIcon: ({color, size}) => {
+                return <Feather name="list" size={size} color={color}/>;
+              },
             }}
         />
         <Tab.Screen
-            name={'HomeNavigator'}
+            name="Home"
             component={HomeNavigator}
             options={{
-              tabBarIcon: ({focused, color}) => (
-                  <Feather
-                      name={'home'}
-                      color={focused ? currentTheme.secondaryColor
-                          : currentTheme.secondaryVariantColor}
-                      size={IconSettings.tabNavigationIconSize}
-                  />
-              ),
-              tabBarLabel: ({focused, color}) => (
-                  <Text
-                      style={{
-                        color: focused ? currentTheme.secondaryColor
-                            : currentTheme.secondaryVariantColor,
-                        fontFamily: TextSettings.defaultFontLight,
-                        fontSize: TextSettings.tabTextSize
-                      }}
-                  >
-                    {currentLanguage.homeScreenTitle}
-                  </Text>
-              )
+              tabBarLabel: currentLanguage.homeScreenTitle,
+              tabBarIcon: ({color, size}) => {
+                return <Feather name="home" size={size} color={color}/>;
+              },
             }}
         />
         <Tab.Screen
-            name={'SettingsNavigator'}
+            name="Settings"
             component={SettingsNavigator}
             options={{
-              tabBarIcon: ({focused, color}) => (
-                  <Feather
-                      name={'settings'}
-                      color={focused ? currentTheme.secondaryColor
-                          : currentTheme.secondaryVariantColor}
-                      size={IconSettings.tabNavigationIconSize}
-                  />
-              ),
-              tabBarLabel: ({focused, color}) => (
-                  <Text
-                      style={{
-                        color: focused ? currentTheme.secondaryColor
-                            : currentTheme.secondaryVariantColor,
-                        fontFamily: TextSettings.defaultFontLight,
-                        fontSize: TextSettings.tabTextSize
-                      }}
-                  >
-                    {currentLanguage.settingsScreenTitle}
-                  </Text>
-              )
+              tabBarLabel: currentLanguage.settingsScreenTitle,
+              tabBarIcon: ({color, size}) => {
+                return <Feather name="settings" size={size} color={color}/>;
+              },
             }}
         />
       </Tab.Navigator>
+
+      // <Tab.Navigator
+      //     initialRouteName={'HomeNavigator'}
+      //     screenOptions={{
+      //       headerShown: false,
+      //       tabBarStyle: {
+      //         backgroundColor: currentTheme.primaryVariantColor,
+      //         height: StyleSettings.tabHeight
+      //       },
+      //       tabBarLabelStyle: {
+      //         fontSize: TextSettings.tabTextSize,
+      //         fontFamily: TextSettings.defaultFontLight,
+      //         color: currentTheme.secondaryColor
+      //       },
+      //       tabBarItemStyle: {
+      //         marginTop: 8,
+      //         marginBottom: 10
+      //       }
+      //     }}
+      // >
+      //   <Tab.Screen
+      //       name={'GiftsNavigator'}
+      //       component={GiftsNavigator}
+      //       options={{
+      //         tabBarIcon: ({focused, color}) => (
+      //             <Feather
+      //                 name={'gift'}
+      //                 color={focused ? currentTheme.secondaryColor
+      //                     : currentTheme.secondaryVariantColor}
+      //                 size={IconSettings.tabNavigationIconSize}
+      //             />
+      //         ),
+      //         tabBarLabel: ({focused, color}) => (
+      //             <Text
+      //                 style={{
+      //                   color: focused ? currentTheme.secondaryColor
+      //                       : currentTheme.secondaryVariantColor,
+      //                   fontFamily: TextSettings.defaultFontLight,
+      //                   fontSize: TextSettings.tabTextSize
+      //                 }}
+      //             >
+      //               {currentLanguage.giftsScreenTitle}
+      //             </Text>
+      //         )
+      //       }}
+      //   />
+      //   <Tab.Screen
+      //       name={'ListsNavigator'}
+      //       component={ListsNavigator}
+      //       options={{
+      //         tabBarIcon: ({focused, color}) => (
+      //             <Feather
+      //                 name={'list'}
+      //                 color={focused ? currentTheme.secondaryColor
+      //                     : currentTheme.secondaryVariantColor}
+      //                 size={IconSettings.tabNavigationIconSize}
+      //             />
+      //         ),
+      //         tabBarLabel: ({focused, color}) => (
+      //             <Text
+      //                 style={{
+      //                   color: focused ? currentTheme.secondaryColor
+      //                       : currentTheme.secondaryVariantColor,
+      //                   fontFamily: TextSettings.defaultFontLight,
+      //                   fontSize: TextSettings.tabTextSize
+      //                 }}
+      //             >
+      //               {currentLanguage.listsScreenTitle}
+      //             </Text>
+      //         )
+      //       }}
+      //   />
+      //   <Tab.Screen
+      //       name={'HomeNavigator'}
+      //       component={HomeNavigator}
+      //       options={{
+      //         tabBarIcon: ({focused, color}) => (
+      //             <Feather
+      //                 name={'home'}
+      //                 color={focused ? currentTheme.secondaryColor
+      //                     : currentTheme.secondaryVariantColor}
+      //                 size={IconSettings.tabNavigationIconSize}
+      //             />
+      //         ),
+      //         tabBarLabel: ({focused, color}) => (
+      //             <Text
+      //                 style={{
+      //                   color: focused ? currentTheme.secondaryColor
+      //                       : currentTheme.secondaryVariantColor,
+      //                   fontFamily: TextSettings.defaultFontLight,
+      //                   fontSize: TextSettings.tabTextSize
+      //                 }}
+      //             >
+      //               {currentLanguage.homeScreenTitle}
+      //             </Text>
+      //         )
+      //       }}
+      //   />
+      //   <Tab.Screen
+      //       name={'SettingsNavigator'}
+      //       component={SettingsNavigator}
+      //       options={{
+      //         tabBarIcon: ({focused, color}) => (
+      //             <Feather
+      //                 name={'settings'}
+      //                 color={focused ? currentTheme.secondaryColor
+      //                     : currentTheme.secondaryVariantColor}
+      //                 size={IconSettings.tabNavigationIconSize}
+      //             />
+      //         ),
+      //         tabBarLabel: ({focused, color}) => (
+      //             <Text
+      //                 style={{
+      //                   color: focused ? currentTheme.secondaryColor
+      //                       : currentTheme.secondaryVariantColor,
+      //                   fontFamily: TextSettings.defaultFontLight,
+      //                   fontSize: TextSettings.tabTextSize
+      //                 }}
+      //             >
+      //               {currentLanguage.settingsScreenTitle}
+      //             </Text>
+      //         )
+      //       }}
+      //   />
+      // </Tab.Navigator>
   );
 };

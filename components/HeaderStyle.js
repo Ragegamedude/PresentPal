@@ -7,9 +7,9 @@ export const createHeaderStyle = (currentTheme) =>
 			flexDirection: 'row',
 			alignItems: 'center',
 			justifyContent: 'flex-start',
-			backgroundColor: currentTheme.backgroundColor,
-			borderBottomColor: currentTheme.transparentBackground,
-			borderBottomWidth: 1
+			backgroundColor: currentTheme.colors.onBackground,
+			borderBottomColor: currentTheme.colors.primary,
+			borderBottomWidth: StyleSettings.defaultBorderWidth
 		},
 		leftContainer: {},
 		leftIcon: {
@@ -20,7 +20,7 @@ export const createHeaderStyle = (currentTheme) =>
 			marginVertical: StyleSettings.defaultMargin
 		},
 		centerText: {
-			color: currentTheme.secondaryColor,
+			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontBold,
 			fontSize: TextSettings.textHeaderSize,
 			marginLeft: StyleSettings.defaultPadding

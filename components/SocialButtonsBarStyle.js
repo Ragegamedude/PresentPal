@@ -13,7 +13,7 @@ export const createSocialButtonsBarStyle = (currentTheme) =>
 		socialButton: {
 			flex: 1,
 			elevation: StyleSettings.defaultElevation,
-			backgroundColor: currentTheme.primaryColor,
+			backgroundColor: currentTheme.colors.onBackground,
 			borderRadius: StyleSettings.defaultBorderRadius,
 			marginHorizontal: StyleSettings.defaultPadding / 2,
 			paddingVertical: StyleSettings.defaultMargin,

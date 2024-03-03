@@ -16,7 +16,7 @@ export default HomeSection = (props) => {
 
 	return (
 		<TouchableRipple
-			rippleColor={currentTheme.rippleEffectColor}
+				theme={currentTheme}
 			borderless={true}
 			style={props.lastElement ? HomeSectionStyle.homeSectionContainer2 : HomeSectionStyle.homeSectionContainer}
 			onPress={() => setAccordionOpen(!accordionOpen)}

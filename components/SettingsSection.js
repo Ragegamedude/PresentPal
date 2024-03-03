@@ -5,7 +5,7 @@ import createSettingsSectionStyle from './SettingsSectionStyle';
 import { AvailableThemes, Theme, Themes } from '../themes/Themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IconSettings } from '../constants/IconSettings';
-import { TouchableRipple } from 'react-native-paper';
+import { TouchableRipple, Switch } from 'react-native-paper';
 import CountryFlag from 'react-native-country-flag';
 import { AvailableLanguages, TranslationManager } from '../translations/TranslationManager';
 import { StorageKeys } from '../constants/StorageKeys';
@@ -98,7 +98,7 @@ export default SettingsSection = (props) => {
 							<Feather
 								style={SettingsSectionStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
-								color={currentTheme.secondaryColor}
+								color={currentTheme.colors.primary}
 								size={IconSettings.modalHeadlineIconSize}
 							></Feather>
 							<Text style={SettingsSectionStyle.settingsSectionModalHeaderText}>
@@ -126,7 +126,7 @@ export default SettingsSection = (props) => {
 							</Text>
 							<View style={SettingsSectionStyle.settingsSectionModalButtonWrapper}>
 								<TouchableRipple
-									rippleColor={currentTheme.rippleEffectColor}
+									theme={currentTheme}
 									borderless={true}
 									style={SettingsSectionStyle.settingsSectionModalContentButton2}
 									onPress={() => executeAction(AvailableSettingsActions.OPEN_HOMEPAGE)}
@@ -136,7 +136,7 @@ export default SettingsSection = (props) => {
 									</Text>
 								</TouchableRipple>
 								<TouchableRipple
-									rippleColor={currentTheme.rippleEffectColor}
+										theme={currentTheme}
 									borderless={true}
 									style={SettingsSectionStyle.settingsSectionModalContentButton3}
 									onPress={() => setShowInformationModal(false)}
@@ -157,7 +157,7 @@ export default SettingsSection = (props) => {
 							<Feather
 								style={SettingsSectionStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
-								color={currentTheme.secondaryColor}
+								color={currentTheme.colors.primary}
 								size={IconSettings.modalHeadlineIconSize}
 							></Feather>
 							<Text style={SettingsSectionStyle.settingsSectionModalHeaderText}>
@@ -175,7 +175,7 @@ export default SettingsSection = (props) => {
 										/>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={SettingsSectionStyle.settingsSectionModalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.ENGLISH)}
@@ -201,7 +201,7 @@ export default SettingsSection = (props) => {
 										/>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={SettingsSectionStyle.settingsSectionModalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.GERMAN)}
@@ -227,7 +227,7 @@ export default SettingsSection = (props) => {
 										/>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={SettingsSectionStyle.settingsSectionModalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.SPANISH)}
@@ -253,7 +253,7 @@ export default SettingsSection = (props) => {
 										/>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={SettingsSectionStyle.settingsSectionModalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.PORTUGUESE)}
@@ -279,7 +279,7 @@ export default SettingsSection = (props) => {
 										/>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={SettingsSectionStyle.settingsSectionModalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.FRENCH)}
@@ -299,7 +299,7 @@ export default SettingsSection = (props) => {
 							</View>
 							<View style={SettingsSectionStyle.settingsSectionModalButtonWrapper}>
 								<TouchableRipple
-									rippleColor={currentTheme.rippleEffectColor}
+										theme={currentTheme}
 									borderless={true}
 									style={SettingsSectionStyle.settingsSectionModalContentButton}
 									onPress={() => setShowLanguageModal(false)}
@@ -314,7 +314,7 @@ export default SettingsSection = (props) => {
 				</View>
 			</Modal>
 			<TouchableRipple
-				rippleColor={currentTheme.rippleEffectColor}
+					theme={currentTheme}
 				borderless={true}
 				style={SettingsSectionStyle.settingsSectionContainer}
 				onPress={() => executeAction(props.action)}
@@ -331,13 +331,13 @@ export default SettingsSection = (props) => {
 							(currentTheme === Themes.light ? (
 								<Feather
 									name={'sun'}
-									color={currentTheme.secondaryColor}
+									color={currentTheme.colors.secondary}
 									size={IconSettings.settingsSectionIconSize}
 								></Feather>
 							) : (
 								<Feather
 									name={'moon'}
-									color={currentTheme.secondaryColor}
+									color={currentTheme.colors.secondary}
 									size={IconSettings.settingsSectionIconSize}
 								></Feather>
 							))}
@@ -350,19 +350,19 @@ export default SettingsSection = (props) => {
 							</View>
 						)}
 						{props.action === AvailableSettingsActions.SHOW_PERSONAL_ADS &&
-							(showPersonalAds ? (
-								<FontAwesome
-									name={'toggle-off'}
-									color={currentTheme.secondaryColor}
-									size={IconSettings.settingsSectionIconSize}
-								></FontAwesome>
-							) : (
-								<FontAwesome
-									name={'toggle-on'}
-									color={currentTheme.secondaryColor}
-									size={IconSettings.settingsSectionIconSize}
-								></FontAwesome>
-							))}
+								(showPersonalAds ? (
+										<FontAwesome
+												name={'toggle-off'}
+												color={currentTheme.colors.secondary}
+												size={IconSettings.settingsSectionIconSize}
+										></FontAwesome>
+								) : (
+										<FontAwesome
+												name={'toggle-on'}
+												color={currentTheme.colors.secondary}
+												size={IconSettings.settingsSectionIconSize}
+										></FontAwesome>
+								))}
 					</View>
 				</View>
 			</TouchableRipple>

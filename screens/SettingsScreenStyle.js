@@ -5,7 +5,7 @@ export const createSettingsScreenStyle = (currentTheme) =>
   StyleSheet.create({
     settings: {
       flex: 1,
-      backgroundColor: currentTheme.background,
+      backgroundColor: currentTheme.colors.background,
     },
     settingsWrapper: {
       marginVertical: StyleSettings.defaultPadding /2

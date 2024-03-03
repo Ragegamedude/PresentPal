@@ -28,36 +28,36 @@ export default SocialButtonBar = () => {
 	return (
 		<View style={SocialButtonsBarStyle.socialBarWrapper}>
 			<TouchableRipple
-				rippleColor={currentTheme.rippleEffectColor}
+					theme={currentTheme}
 				borderless={true}
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://www.facebook.com/profile.php?id=100095044938509')}
 			>
-				<Feather name={'facebook'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
+				<Feather name={'facebook'} color={currentTheme.colors.secondary} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 			<TouchableRipple
-				rippleColor={currentTheme.rippleEffectColor}
+					theme={currentTheme}
 				borderless={true}
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://twitter.com/ARGames15')}
 			>
-				<Feather name={'twitter'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
+				<Feather name={'twitter'} color={currentTheme.colors.secondary} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 			<TouchableRipple
-				rippleColor={currentTheme.rippleEffectColor}
+					theme={currentTheme}
 				borderless={true}
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://www.youtube.com/channel/UCFXWwzZr9rm29e4HxybSKZQ')}
 			>
-				<Feather name={'youtube'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
+				<Feather name={'youtube'} color={currentTheme.colors.secondary} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 			<TouchableRipple
-				rippleColor={currentTheme.rippleEffectColor}
+					theme={currentTheme}
 				borderless={true}
 				style={SocialButtonsBarStyle.socialButton}
 				onPress={() => openUrl('https://www.instagram.com/argames15/?hl=de')}
 			>
-				<Feather name={'instagram'} color={currentTheme.secondaryColor} size={IconSettings.socialIconSize}></Feather>
+				<Feather name={'instagram'} color={currentTheme.colors.secondary} size={IconSettings.socialIconSize}></Feather>
 			</TouchableRipple>
 		</View>
 	);

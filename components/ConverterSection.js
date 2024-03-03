@@ -913,7 +913,7 @@ export default ConverterSection = (props) => {
 										></SimpleLineIcon>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={ConverterSectionStyle.converterSectionModalInputField}
 										onPress={() => selectDirectory(1)}
@@ -946,7 +946,7 @@ export default ConverterSection = (props) => {
 										></SimpleLineIcon>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={ConverterSectionStyle.converterSectionModalInputField}
 										onPress={() => selectPDFFile(1)}
@@ -978,7 +978,7 @@ export default ConverterSection = (props) => {
 										></SimpleLineIcon>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={ConverterSectionStyle.converterSectionModalInputField}
 										onPress={() => selectPDFFile(2)}
@@ -1011,7 +1011,7 @@ export default ConverterSection = (props) => {
 										></SimpleLineIcon>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={ConverterSectionStyle.converterSectionModalInputField}
 										onPress={() => selectImageFile(1)}
@@ -1043,7 +1043,7 @@ export default ConverterSection = (props) => {
 										></SimpleLineIcon>
 									</View>
 									<TouchableRipple
-										rippleColor={currentTheme.rippleEffectColor}
+											theme={currentTheme}
 										borderless={true}
 										style={ConverterSectionStyle.converterSectionModalInputField}
 										onPress={() => selectImageFile(2)}
@@ -1196,7 +1196,7 @@ export default ConverterSection = (props) => {
 									</View>
 									<View style={ConverterSectionStyle.converterSectionModalInputField}>
 										<TouchableRipple
-											rippleColor={currentTheme.rippleEffectColor}
+												theme={currentTheme}
 											borderless={true}
 											style={ConverterSectionStyle.converterSectionModalImageFormatWrapper}
 											onPress={() => setFileImageFormat(currentLanguage.converterFormatJPG)}
@@ -1212,7 +1212,7 @@ export default ConverterSection = (props) => {
 											</Text>
 										</TouchableRipple>
 										<TouchableRipple
-											rippleColor={currentTheme.rippleEffectColor}
+												theme={currentTheme}
 											borderless={true}
 											style={ConverterSectionStyle.converterSectionModalImageFormatWrapper}
 											onPress={() => setFileImageFormat(currentLanguage.converterFormatPNG)}
@@ -1228,7 +1228,7 @@ export default ConverterSection = (props) => {
 											</Text>
 										</TouchableRipple>
 										<TouchableRipple
-											rippleColor={currentTheme.rippleEffectColor}
+												theme={currentTheme}
 											borderless={true}
 											style={ConverterSectionStyle.converterSectionModalImageFormatWrapper}
 											onPress={() => setFileImageFormat(currentLanguage.converterFormatTIF)}
@@ -1244,7 +1244,7 @@ export default ConverterSection = (props) => {
 											</Text>
 										</TouchableRipple>
 										<TouchableRipple
-											rippleColor={currentTheme.rippleEffectColor}
+												theme={currentTheme}
 											borderless={true}
 											style={ConverterSectionStyle.converterSectionModalImageFormatWrapper}
 											onPress={() => setFileImageFormat(currentLanguage.converterFormatBMP)}
@@ -1294,7 +1294,7 @@ export default ConverterSection = (props) => {
 							</View>
 							<View style={ConverterSectionStyle.converterSectionModalButtonWrapper}>
 								<TouchableRipple
-									rippleColor={currentTheme.rippleEffectColor}
+										theme={currentTheme}
 									borderless={true}
 									style={ConverterSectionStyle.converterSectionModalContentButton2}
 									onPress={() => (fileConvertInProgress ? abortProcess(1) : startProcess(props.action))}
@@ -1304,7 +1304,7 @@ export default ConverterSection = (props) => {
 									</Text>
 								</TouchableRipple>
 								<TouchableRipple
-									rippleColor={currentTheme.rippleEffectColor}
+										theme={currentTheme}
 									borderless={true}
 									style={ConverterSectionStyle.converterSectionModalContentButton3}
 									onPress={() => (fileConvertInProgress ? abortProcess(2) : setShowPDFModal(!showPDFModal))}
@@ -1319,7 +1319,7 @@ export default ConverterSection = (props) => {
 				</View>
 			</Modal>
 			<TouchableRipple
-				rippleColor={currentTheme.rippleEffectColor}
+					theme={currentTheme}
 				borderless={true}
 				style={ConverterSectionStyle.converterSectionContainer}
 				onPress={() => openModal()}

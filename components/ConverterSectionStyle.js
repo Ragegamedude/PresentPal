@@ -67,7 +67,7 @@ export default createConverterSectionStyle = (currentTheme) =>
 			flex: 1,
 			alignItems: 'center',
 			justifyContent: 'center',
-			backgroundColor: currentTheme.transparentBackground
+			backgroundColor: currentTheme.colors.transparentBackground
 		},
 		converterSectionModal: {
 			width: windowWidth - StyleSettings.defaultPaddingModal,

@@ -7,7 +7,7 @@ export default createAppStyle = (currentTheme) =>
 		introductionWrapper: {
 			width: '100%',
 			height: '100%',
-			backgroundColor: currentTheme.background
+			backgroundColor: currentTheme.colors.shadow
 		},
 		introductionLanguageWrapper: {
 			marginHorizontal: StyleSettings.defaultMargin,
