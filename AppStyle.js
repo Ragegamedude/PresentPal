@@ -7,7 +7,7 @@ export default createAppStyle = (currentTheme) =>
 		introductionWrapper: {
 			width: '100%',
 			height: '100%',
-			backgroundColor: currentTheme.colors.shadow
+			backgroundColor: currentTheme.colors.background
 		},
 		introductionLanguageWrapper: {
 			marginHorizontal: StyleSettings.defaultMargin,
@@ -25,12 +25,12 @@ export default createAppStyle = (currentTheme) =>
 			alignItems: 'center'
 		},
 		introductionHeadline: {
-			color: currentTheme.secondaryColor,
+			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontRegular,
 			fontSize: TextSettings.textIntroductionHeadlineSize
 		},
 		introductionIntroduction: {
-			color: currentTheme.secondaryColor,
+			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontRegular,
 			fontSize: TextSettings.textBigSize
 		},
@@ -47,20 +47,20 @@ export default createAppStyle = (currentTheme) =>
 			alignItems: 'center'
 		},
 		introductionDescription: {
-			color: currentTheme.secondaryColor,
+			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontRegular,
 			fontSize: TextSettings.textDefaultSize,
 			textAlign: 'center'
 		},
 		introductionText: {
-			color: currentTheme.secondaryColor,
+			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontRegular,
 			fontSize: TextSettings.textDefaultSize
 		},
 		activeDotStyle: {
-			backgroundColor: currentTheme.secondaryColor
+			backgroundColor: currentTheme.colors.secondary
 		},
 		inactiveDotStyle: {
-			backgroundColor: currentTheme.rippleEffectColor
+			backgroundColor: currentTheme.colors.primary
 		}
 	});

@@ -22,7 +22,7 @@ export const Themes = {
       onError: "rgb(255, 255, 255)",
       errorContainer: "rgb(255, 218, 214)",
       onErrorContainer: "rgb(65, 0, 2)",
-      background: "rgb(246, 246, 246)",
+      background: "rgb(250, 250, 250)",
       onBackground: "rgb(255,255,255)",
       surface: "rgb(255, 251, 255)",
       onSurface: "rgb(29, 27, 30)",

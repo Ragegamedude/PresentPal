@@ -161,8 +161,8 @@ export default function App() {
     return (
         <SafeAreaView>
           <StatusBar
-              backgroundColor={currentTheme.primaryVariantColor}
-              style={currentTheme.statusBarStyle}
+              backgroundColor={currentTheme.colors.onBackground}
+              style={currentTheme.colors.statusBarStyle}
               translucent={false}
           />
           <View style={AppStyle.introductionWrapper}>
@@ -242,7 +242,7 @@ export default function App() {
               <SimpleLineIcon
                   style={AppStyle.converterSectionModalHeaderIcon}
                   name={item.iconName}
-                  color={currentTheme.secondaryColor}
+                  color={currentTheme.colors.secondary}
                   size={IconSettings.introductionIconSize}
               ></SimpleLineIcon>
             </View>

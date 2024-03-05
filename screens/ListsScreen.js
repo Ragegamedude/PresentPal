@@ -46,24 +46,6 @@ export default ListsScreen = ({navigation, props}) => {
                   backdropColor={currentTheme.colors.backdrop}
                   actions={[
                     {icon: 'plus', onPress: () => console.log('Pressed add')},
-                    {
-                      icon: 'star',
-                      label: 'Star',
-                      labelStyle: ListsScreenStyle.fabActionLabel,
-                      onPress: () => console.log('Pressed star'),
-                    },
-                    {
-                      icon: 'email',
-                      label: 'Email',
-                      labelStyle: ListsScreenStyle.fabActionLabel,
-                      onPress: () => console.log('Pressed email'),
-                    },
-                    {
-                      icon: 'bell',
-                      label: 'Remind',
-                      labelStyle: ListsScreenStyle.fabActionLabel,
-                      onPress: () => console.log('Pressed notifications'),
-                    },
                   ]}
                   onStateChange={toggleFabOpen}
                   onPress={() => {
