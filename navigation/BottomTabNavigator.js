@@ -1,14 +1,16 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useContext} from 'react';
+import {BottomNavigation, Text} from "react-native-paper";
 import {Context} from '../context/Context';
 import {CommonActions} from '@react-navigation/native';
-import {BottomNavigation} from 'react-native-paper';
 import GiftsNavigator from "./GiftsNavigator";
 import ListsNavigator from "./ListsNavigator";
 import HomeNavigator from "./HomeNavigator";
 import SettingsNavigator from "./SettingsNavigator";
 import Feather from "react-native-vector-icons/Feather";
 import {StyleSettings} from "../constants/StyleSettings";
+import {TextSettings} from "../constants/TextSettings";
+import {View} from "react-native";
 
 export default BottomTabNavigator = () => {
   const {theme, language, version} = useContext(Context);
@@ -31,9 +33,7 @@ export default BottomTabNavigator = () => {
                     backgroundColor: currentTheme.colors.onBackground
                   }}
                   shifting={false}
-                  tabBarColor={'red'}
                   navigationState={state}
-                  safeAreaInsets={insets}
                   theme={currentTheme}
                   onTabPress={({route, preventDefault}) => {
                     const event = navigation.emit({
@@ -59,6 +59,24 @@ export default BottomTabNavigator = () => {
 
                     return null;
                   }}
+                  renderLabel={({route, focused, color}) => {
+                    const {options} = descriptors[route.key];
+                    if (options.tabBarIcon) {
+                      return <View style={{minHeight: 24}}>
+                        <Text style={{
+                        textAlign: 'center',
+                        fontSize: TextSettings.tabTextSize,
+                        fontFamily: TextSettings.defaultFontRegular,
+                          color: color,
+                      }
+                      }>
+                        {options.tabBarLabel}
+                      </Text>
+                      </View>
+                    }
+
+                    return null;
+                  }}
                   getLabelText={({route}) => {
                     const {options} = descriptors[route.key];
                     const label =
@@ -80,7 +98,6 @@ export default BottomTabNavigator = () => {
               tabBarLabel: currentLanguage.giftsScreenTitle,
               tabBarIcon: ({color, size}) => {
                 return <Feather name="gift" size={size} color={color}/>;
-                ;
               },
             }}
         />

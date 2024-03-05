@@ -8,8 +8,8 @@ export const Themes = {
     colors: {
       primary: "rgb(90,117,77)",
       onPrimary: "rgb(255,255,255)",
-      primaryContainer: "rgb(240, 219, 255)",
-      onPrimaryContainer: "rgb(44, 0, 81)",
+      primaryContainer: "rgb(90,117,77)", //FAB
+      onPrimaryContainer: "rgb(255,255,255)",
       secondary: "rgb(60,60,60)",
       onSecondary: "rgb(255, 255, 255)",
       secondaryContainer: "rgb(90,117,77)",
@@ -39,13 +39,13 @@ export const Themes = {
         level0: "transparent",
         level1: "rgb(248, 242, 251)",
         level2: "rgb(244, 236, 248)",
-        level3: "rgba(255,141,0,0.1)",
+        level3: "rgb(90,117,77)",
         level4: "rgb(239, 229, 245)",
         level5: "rgb(236, 226, 243)"
       },
       surfaceDisabled: "rgba(29, 27, 30, 0.12)",
       onSurfaceDisabled: "rgba(29, 27, 30, 0.38)",
-      backdrop: "rgba(51, 47, 55, 0.4)",
+      backdrop: "rgba(0,0,0,0.25)",
       statusBarStyle: 'dark',
     }
   },
@@ -53,8 +53,8 @@ export const Themes = {
     colors: {
       primary: "rgb(90,117,77)",
       onPrimary: "rgb(255,255,255)",
-      primaryContainer: "rgb(95, 43, 146)",
-      onPrimaryContainer: "rgb(240, 219, 255)",
+      primaryContainer: "rgb(90,117,77)",
+      onPrimaryContainer: "rgb(255,255,255)",
       secondary: "rgb(230,230,230)",
       onSecondary: "rgb(54, 44, 63)",
       secondaryContainer: "rgb(90,117,77)",
@@ -84,7 +84,7 @@ export const Themes = {
         level0: "transparent",
         level1: "rgb(39, 35, 41)",
         level2: "rgb(44, 40, 48)",
-        level3: "rgb(50, 44, 55)",
+        level3: "rgb(90,117,77)",
         level4: "rgb(52, 46, 57)",
         level5: "rgb(56, 49, 62)"
       },
