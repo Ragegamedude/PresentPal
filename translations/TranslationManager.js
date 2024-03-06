@@ -241,7 +241,7 @@ const English = {
 	languageFrench: 'French',
 	homeScreenTitle: 'Home',
 	listsScreenTitle: 'Lists',
-	listsAddList: 'Add list',
+	listsAddList: 'Add',
 	giftsScreenTitle: 'Gifts',
 	settingsScreenTitle: 'Settings',
 	settingsLanguageHeadline: 'Language',
