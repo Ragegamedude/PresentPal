@@ -2,6 +2,7 @@ import { Linking, Modal, Text, ToastAndroid, View } from 'react-native';
 import { Context } from '../context/Context';
 import { useContext, useState } from 'react';
 import createSettingsSectionStyle from './SettingsSectionStyle';
+import createModalStyle from './ModalStyle';
 import { AvailableThemes, Theme, Themes } from '../themes/Themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IconSettings } from '../constants/IconSettings';
@@ -22,6 +23,7 @@ export default SettingsSection = (props) => {
 	const [showLanguageModal, setShowLanguageModal] = useState(false);
 
 	const SettingsSectionStyle = createSettingsSectionStyle(currentTheme);
+	const ModalStyle = createModalStyle(currentTheme);
 
 	const GERMAN = TranslationManager.getLanguageObject(AvailableLanguages.GERMAN);
 	const ENGLISH = TranslationManager.getLanguageObject(AvailableLanguages.ENGLISH);
@@ -92,56 +94,56 @@ export default SettingsSection = (props) => {
 	return (
 		<View style={SettingsSectionStyle.settingsSectionWrapper}>
 			<Modal animationType={'fade'} transparent={true} visible={showInformationModal}>
-				<View style={SettingsSectionStyle.settingsSectionModalWrapper}>
-					<View style={SettingsSectionStyle.settingsSectionModal}>
-						<View style={SettingsSectionStyle.settingsSectionModalHeader}>
+				<View style={ModalStyle.modalWrapper}>
+					<View style={ModalStyle.modal}>
+						<View style={ModalStyle.modalHeader}>
 							<Feather
-								style={SettingsSectionStyle.converterSectionModalHeaderIcon}
+								style={ModalStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
 								color={currentTheme.colors.primary}
 								size={IconSettings.modalHeadlineIconSize}
 							></Feather>
-							<Text style={SettingsSectionStyle.settingsSectionModalHeaderText}>
+							<Text style={ModalStyle.modalHeaderText}>
 								{currentLanguage.settingsInformationHeadline}
 							</Text>
 						</View>
-						<View style={SettingsSectionStyle.settingsSectionModalContent}>
-							<Text style={SettingsSectionStyle.settingsSectionModalContentHeadline}>
+						<View style={ModalStyle.modalContent}>
+							<Text style={ModalStyle.modalContentHeadline}>
 								{currentLanguage.settingsInformationGeneral}
 							</Text>
-							<Text style={SettingsSectionStyle.settingsSectionModalContentText}>
+							<Text style={ModalStyle.modalContentText}>
 								{currentLanguage.settingsInformationGeneralContent}
 							</Text>
-							<Text style={SettingsSectionStyle.settingsSectionModalContentHeadline}>
+							<Text style={ModalStyle.modalContentHeadline}>
 								{currentLanguage.settingsInformationApplication}
 							</Text>
-							<Text style={SettingsSectionStyle.settingsSectionModalContentText}>
+							<Text style={ModalStyle.modalContentText}>
 								{currentLanguage.settingsInformationModalContent}
 							</Text>
-							<Text style={SettingsSectionStyle.settingsSectionModalContentHeadline}>
+							<Text style={ModalStyle.modalContentHeadline}>
 								{currentLanguage.settingsInformationWebsite}
 							</Text>
-							<Text style={SettingsSectionStyle.settingsSectionModalContentText}>
+							<Text style={ModalStyle.modalContentText}>
 								{currentLanguage.settingsInformationModalCreator}
 							</Text>
-							<View style={SettingsSectionStyle.settingsSectionModalButtonWrapper}>
+							<View style={ModalStyle.modalButtonWrapper}>
 								<TouchableRipple
 									theme={currentTheme}
 									borderless={true}
-									style={SettingsSectionStyle.settingsSectionModalContentButton2}
+									style={ModalStyle.modalContentButton2}
 									onPress={() => executeAction(AvailableSettingsActions.OPEN_HOMEPAGE)}
 								>
-									<Text style={SettingsSectionStyle.settingsSectionModalContentButtonText}>
+									<Text style={ModalStyle.modalContentButtonText}>
 										{currentLanguage.buttonVisitText}
 									</Text>
 								</TouchableRipple>
 								<TouchableRipple
 										theme={currentTheme}
 									borderless={true}
-									style={SettingsSectionStyle.settingsSectionModalContentButton3}
+									style={ModalStyle.modalContentButton3}
 									onPress={() => setShowInformationModal(false)}
 								>
-									<Text style={SettingsSectionStyle.settingsSectionModalContentButtonText}>
+									<Text style={ModalStyle.modalContentButtonText}>
 										{currentLanguage.buttonCloseText}
 									</Text>
 								</TouchableRipple>
@@ -151,25 +153,25 @@ export default SettingsSection = (props) => {
 				</View>
 			</Modal>
 			<Modal animationType={'fade'} transparent={true} visible={showLanguageModal}>
-				<View style={SettingsSectionStyle.settingsSectionModalWrapper}>
-					<View style={SettingsSectionStyle.settingsSectionModal}>
-						<View style={SettingsSectionStyle.settingsSectionModalHeader}>
+				<View style={ModalStyle.modalWrapper}>
+					<View style={ModalStyle.modal}>
+						<View style={ModalStyle.modalHeader}>
 							<Feather
-								style={SettingsSectionStyle.converterSectionModalHeaderIcon}
+								style={ModalStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
 								color={currentTheme.colors.primary}
 								size={IconSettings.modalHeadlineIconSize}
 							></Feather>
-							<Text style={SettingsSectionStyle.settingsSectionModalHeaderText}>
+							<Text style={ModalStyle.modalHeaderText}>
 								{currentLanguage.settingsLanguageHeadline}
 							</Text>
 						</View>
-						<View style={SettingsSectionStyle.settingsSectionModalContent}>
-							<View style={SettingsSectionStyle.settingsSectionLanguageWrapper}>
-								<View style={SettingsSectionStyle.settingsSectionModalInputWrapper}>
-									<View style={SettingsSectionStyle.settingsSectionModalInputButton}>
+						<View style={ModalStyle.modalContent}>
+							<View style={ModalStyle.settingsSectionLanguageWrapper}>
+								<View style={ModalStyle.modalInputWrapper}>
+									<View style={ModalStyle.modalInputButton}>
 										<CountryFlag
-											style={SettingsSectionStyle.settingsSectionModalInputButtonIcon}
+											style={ModalStyle.modalInputButtonIcon}
 											isoCode={TranslationManager.getCurrentLanguageAsIsoString(ENGLISH)}
 											size={IconSettings.settingsFlagSize}
 										/>
@@ -177,25 +179,25 @@ export default SettingsSection = (props) => {
 									<TouchableRipple
 											theme={currentTheme}
 										borderless={true}
-										style={SettingsSectionStyle.settingsSectionModalInputField}
+										style={ModalStyle.modalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.ENGLISH)}
 										disabled={currentLanguage === ENGLISH}
 									>
 										<Text
 											style={
 												currentLanguage === ENGLISH
-													? SettingsSectionStyle.settingsSectionModalInputFieldTextInactive
-													: SettingsSectionStyle.settingsSectionModalInputFieldTextActive
+													? ModalStyle.modalInputFieldTextInactive
+													: ModalStyle.modalInputFieldTextActive
 											}
 										>
 											{currentLanguage.languageEnglish}
 										</Text>
 									</TouchableRipple>
 								</View>
-								<View style={SettingsSectionStyle.settingsSectionModalInputWrapper}>
-									<View style={SettingsSectionStyle.settingsSectionModalInputButton}>
+								<View style={ModalStyle.modalInputWrapper}>
+									<View style={ModalStyle.modalInputButton}>
 										<CountryFlag
-											style={SettingsSectionStyle.settingsSectionModalInputButtonIcon}
+											style={ModalStyle.modalInputButtonIcon}
 											isoCode={TranslationManager.getCurrentLanguageAsIsoString(GERMAN)}
 											size={IconSettings.settingsFlagSize}
 										/>
@@ -203,25 +205,25 @@ export default SettingsSection = (props) => {
 									<TouchableRipple
 											theme={currentTheme}
 										borderless={true}
-										style={SettingsSectionStyle.settingsSectionModalInputField}
+										style={ModalStyle.modalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.GERMAN)}
 										disabled={currentLanguage === GERMAN}
 									>
 										<Text
 											style={
 												currentLanguage === GERMAN
-													? SettingsSectionStyle.settingsSectionModalInputFieldTextInactive
-													: SettingsSectionStyle.settingsSectionModalInputFieldTextActive
+													? ModalStyle.modalInputFieldTextInactive
+													: ModalStyle.modalInputFieldTextActive
 											}
 										>
 											{currentLanguage.languageGerman}
 										</Text>
 									</TouchableRipple>
 								</View>
-								<View style={SettingsSectionStyle.settingsSectionModalInputWrapper}>
-									<View style={SettingsSectionStyle.settingsSectionModalInputButton}>
+								<View style={ModalStyle.modalInputWrapper}>
+									<View style={ModalStyle.modalInputButton}>
 										<CountryFlag
-											style={SettingsSectionStyle.settingsSectionModalInputButtonIcon}
+											style={ModalStyle.modalInputButtonIcon}
 											isoCode={TranslationManager.getCurrentLanguageAsIsoString(SPANISH)}
 											size={IconSettings.settingsFlagSize}
 										/>
@@ -229,25 +231,25 @@ export default SettingsSection = (props) => {
 									<TouchableRipple
 											theme={currentTheme}
 										borderless={true}
-										style={SettingsSectionStyle.settingsSectionModalInputField}
+										style={ModalStyle.modalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.SPANISH)}
 										disabled={currentLanguage === SPANISH}
 									>
 										<Text
 											style={
 												currentLanguage === SPANISH
-													? SettingsSectionStyle.settingsSectionModalInputFieldTextInactive
-													: SettingsSectionStyle.settingsSectionModalInputFieldTextActive
+													? ModalStyle.modalInputFieldTextInactive
+													: ModalStyle.modalInputFieldTextActive
 											}
 										>
 											{currentLanguage.languageSpanish}
 										</Text>
 									</TouchableRipple>
 								</View>
-								<View style={SettingsSectionStyle.settingsSectionModalInputWrapper}>
-									<View style={SettingsSectionStyle.settingsSectionModalInputButton}>
+								<View style={ModalStyle.modalInputWrapper}>
+									<View style={ModalStyle.modalInputButton}>
 										<CountryFlag
-											style={SettingsSectionStyle.settingsSectionModalInputButtonIcon}
+											style={ModalStyle.modalInputButtonIcon}
 											isoCode={TranslationManager.getCurrentLanguageAsIsoString(PORTUGUESE)}
 											size={IconSettings.settingsFlagSize}
 										/>
@@ -255,25 +257,25 @@ export default SettingsSection = (props) => {
 									<TouchableRipple
 											theme={currentTheme}
 										borderless={true}
-										style={SettingsSectionStyle.settingsSectionModalInputField}
+										style={ModalStyle.modalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.PORTUGUESE)}
 										disabled={currentLanguage === PORTUGUESE}
 									>
 										<Text
 											style={
 												currentLanguage === PORTUGUESE
-													? SettingsSectionStyle.settingsSectionModalInputFieldTextInactive
-													: SettingsSectionStyle.settingsSectionModalInputFieldTextActive
+													? ModalStyle.modalInputFieldTextInactive
+													: ModalStyle.modalInputFieldTextActive
 											}
 										>
 											{currentLanguage.languagePortuguese}
 										</Text>
 									</TouchableRipple>
 								</View>
-								<View style={SettingsSectionStyle.settingsSectionModalInputWrapper}>
-									<View style={SettingsSectionStyle.settingsSectionModalInputButton}>
+								<View style={ModalStyle.modalInputWrapper}>
+									<View style={ModalStyle.modalInputButton}>
 										<CountryFlag
-											style={SettingsSectionStyle.settingsSectionModalInputButtonIcon}
+											style={ModalStyle.modalInputButtonIcon}
 											isoCode={TranslationManager.getCurrentLanguageAsIsoString(FRENCH)}
 											size={IconSettings.settingsFlagSize}
 										/>
@@ -281,15 +283,15 @@ export default SettingsSection = (props) => {
 									<TouchableRipple
 											theme={currentTheme}
 										borderless={true}
-										style={SettingsSectionStyle.settingsSectionModalInputField}
+										style={ModalStyle.modalInputField}
 										onPress={() => changeLanguage(AvailableLanguages.FRENCH)}
 										disabled={currentLanguage === FRENCH}
 									>
 										<Text
 											style={
 												currentLanguage === FRENCH
-													? SettingsSectionStyle.settingsSectionModalInputFieldTextInactive
-													: SettingsSectionStyle.settingsSectionModalInputFieldTextActive
+													? ModalStyle.modalInputFieldTextInactive
+													: ModalStyle.modalInputFieldTextActive
 											}
 										>
 											{currentLanguage.languageFrench}
@@ -297,14 +299,14 @@ export default SettingsSection = (props) => {
 									</TouchableRipple>
 								</View>
 							</View>
-							<View style={SettingsSectionStyle.settingsSectionModalButtonWrapper}>
+							<View style={ModalStyle.modalButtonWrapper}>
 								<TouchableRipple
 										theme={currentTheme}
 									borderless={true}
-									style={SettingsSectionStyle.settingsSectionModalContentButton}
+									style={ModalStyle.modalContentButton}
 									onPress={() => setShowLanguageModal(false)}
 								>
-									<Text style={SettingsSectionStyle.settingsSectionModalContentButtonText}>
+									<Text style={ModalStyle.modalContentButtonText}>
 										{currentLanguage.buttonCloseText}
 									</Text>
 								</TouchableRipple>

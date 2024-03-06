@@ -11,5 +11,6 @@ export const createListsScreenStyle = (currentTheme) =>
       fabActionLabel: {
         fontSize: TextSettings.textDefaultSize,
         fontFamily: TextSettings.defaultFontRegular,
+        color: currentTheme.colors.secondary
       }
     });

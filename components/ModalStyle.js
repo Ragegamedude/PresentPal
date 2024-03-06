@@ -1,0 +1,147 @@
+import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSettings} from "../constants/StyleSettings";
+import {TextSettings} from "../constants/TextSettings";
+
+const windowWidth = Dimensions.get('window').width;
+
+export default createModalStyle = (currentTheme) =>
+    StyleSheet.create({
+      modalWrapper: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: currentTheme.colors.backdrop
+      },
+     modal: {
+        width: windowWidth - StyleSettings.defaultPaddingModal,
+        borderRadius: StyleSettings.defaultBorderRadius,
+        backgroundColor: currentTheme.colors.onBackground
+      },
+     modalHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingVertical: StyleSettings.defaultMargin,
+        paddingHorizontal: StyleSettings.defaultMargin,
+        borderTopStartRadius: StyleSettings.defaultBorderRadius,
+        borderTopEndRadius: StyleSettings.defaultBorderRadius,
+        backgroundColor: currentTheme.colors.onBackground,
+        borderBottomWidth: StyleSettings.defaultBorderWidth,
+        borderBottomColor: currentTheme.colors.primary,
+        elevation: StyleSettings.defaultElevation
+      },
+      modalHeaderIcon: {
+        marginHorizontal: StyleSettings.defaultPadding
+      },
+      modalHeaderText: {
+        marginLeft: StyleSettings.defaultMargin,
+        fontSize: TextSettings.textDefaultSize,
+        fontFamily: TextSettings.defaultFontBold,
+        color: currentTheme.colors.primary
+      },
+      modalContent: {
+        borderBottomEndRadius: StyleSettings.defaultBorderRadius,
+        borderBottomStartRadius: StyleSettings.defaultBorderRadius,
+        backgroundColor: currentTheme.colors.background
+      },
+      modalContentHeadline: {
+        marginHorizontal: StyleSettings.defaultMargin,
+        marginTop: StyleSettings.defaultPadding,
+        fontSize: TextSettings.textDefaultSize,
+        fontFamily: TextSettings.defaultFontMedium,
+        color: currentTheme.colors.primary
+      },
+      modalContentText: {
+        marginHorizontal: StyleSettings.defaultMargin,
+        marginTop: StyleSettings.defaultPadding,
+        fontSize: TextSettings.textSmallSize,
+        fontFamily: TextSettings.defaultFontLight,
+        color: currentTheme.colors.secondary
+      },
+      modalButtonWrapper: {
+        flexDirection: 'row'
+      },
+      modalContentButton: {
+        flex: 1,
+        backgroundColor: currentTheme.colors.primary,
+        paddingVertical: StyleSettings.defaultPadding,
+        marginVertical: StyleSettings.defaultMargin,
+        marginHorizontal: StyleSettings.defaultMargin,
+        borderRadius: StyleSettings.defaultBorderRadius,
+        elevation: StyleSettings.defaultElevation
+      },
+      modalContentButton2: {
+        flex: 1,
+        backgroundColor: currentTheme.colors.primary,
+        paddingVertical: StyleSettings.defaultPadding,
+        marginVertical: StyleSettings.defaultMargin,
+        marginLeft: StyleSettings.defaultMargin,
+        marginRight: StyleSettings.defaultMargin / 2,
+        borderRadius: StyleSettings.defaultBorderRadius,
+        elevation: StyleSettings.defaultElevation
+      },
+      modalContentButton3: {
+        flex: 1,
+        backgroundColor: currentTheme.colors.primary,
+        paddingVertical: StyleSettings.defaultPadding,
+        marginVertical: StyleSettings.defaultMargin,
+        marginLeft: StyleSettings.defaultMargin / 2,
+        marginRight: StyleSettings.defaultMargin,
+        borderRadius: StyleSettings.defaultBorderRadius,
+        elevation: StyleSettings.defaultElevation
+      },
+      modalContentButtonText: {
+        fontSize: TextSettings.textDefaultSize,
+        fontFamily: TextSettings.defaultFontRegular,
+        textAlign: 'center',
+        color: currentTheme.colors.onPrimary
+      },
+      modalInputWrapper: {
+        flexDirection: 'row',
+        marginTop: StyleSettings.defaultPadding
+      },
+      modalInputButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: currentTheme.colors.onBackground,
+        marginLeft: StyleSettings.defaultMargin,
+        borderTopStartRadius: StyleSettings.defaultBorderRadius,
+        borderBottomStartRadius: StyleSettings.defaultBorderRadius,
+        elevation: StyleSettings.defaultElevation
+      },
+      modalInputButton2: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: currentTheme.colors.primary,
+        marginRight: StyleSettings.defaultMargin,
+        borderTopEndRadius: StyleSettings.defaultBorderRadius,
+        borderBottomEndRadius: StyleSettings.defaultBorderRadius,
+        elevation: StyleSettings.defaultElevation
+      },
+      modalInputButtonIcon: {
+        marginHorizontal: StyleSettings.defaultMargin
+      },
+      modalInputField: {
+        flexDirection: 'row',
+        flex: 1,
+        backgroundColor: currentTheme.colors.onBackground,
+        marginRight: StyleSettings.defaultMargin,
+        borderTopEndRadius: StyleSettings.defaultBorderRadius,
+        borderBottomEndRadius: StyleSettings.defaultBorderRadius,
+        elevation: StyleSettings.defaultElevation
+      },
+      modalInputFieldTextInactive: {
+        marginVertical: StyleSettings.defaultMargin / 2,
+        marginHorizontal: StyleSettings.defaultMargin / 2,
+        fontSize: TextSettings.textDefaultSize,
+        fontFamily: TextSettings.defaultFontBold,
+        color: currentTheme.colors.primary
+      },
+      modalInputFieldTextActive: {
+        marginVertical: StyleSettings.defaultMargin / 2,
+        marginHorizontal: StyleSettings.defaultMargin / 2,
+        fontSize: TextSettings.textDefaultSize,
+        fontFamily: TextSettings.defaultFontLight,
+        color: currentTheme.colors.secondary
+      }
+    });

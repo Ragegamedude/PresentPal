@@ -44,8 +44,11 @@ export default ListsScreen = ({navigation, props}) => {
                   visible={true}
                   icon={fabOpen ? 'close' : 'plus'}
                   backdropColor={currentTheme.colors.backdrop}
-                  actions={[
-                    {icon: 'plus', onPress: () => console.log('Pressed add')},
+                  actions={[{
+                    icon: 'plus', onPress: () => console.log('Pressed add'),
+                    label: currentLanguage.listsAddList,
+                    labelStyle: ListsScreenStyle.fabActionLabel
+                  },
                   ]}
                   onStateChange={toggleFabOpen}
                   onPress={() => {
