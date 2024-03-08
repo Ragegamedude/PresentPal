@@ -8,5 +8,6 @@ export const IconSettings = {
 	socialIconSize: 32,
 	converterSectionIconSize: 32,
 	modalHeadlineIconSize: 32,
-	introductionIconSize: 200
+	introductionIconSize: 200,
+	listsAvatarSize: 64,
 };

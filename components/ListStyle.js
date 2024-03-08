@@ -13,29 +13,45 @@ export const createListStyle = (currentTheme) =>
         borderRadius: StyleSettings.defaultBorderRadius,
       },
       imageWrapper: {
+        alignItems: 'center',
         marginLeft: StyleSettings.defaultMargin,
         marginVertical: StyleSettings.defaultMargin,
+      },
+      date: {
+        fontFamily: TextSettings.defaultFontMedium,
+        fontSize: TextSettings.textSmallestSize,
+        color: currentTheme.colors.primary,
+        marginTop: StyleSettings.defaultPadding,
       },
       contentWrapper: {
         flex: 1,
         marginLeft: StyleSettings.defaultMargin,
         marginVertical: StyleSettings.defaultMargin,
       },
-      contentHeadline:{
+      content: {
+        flex: 1,
+      },
+      contentHeadline: {
         fontFamily: TextSettings.defaultFontBold,
         fontSize: TextSettings.textDefaultSize,
         color: currentTheme.colors.primary
       },
-      contentDescription:{
+      contentDescription: {
+        color: currentTheme.colors.secondary,
+        fontFamily: TextSettings.defaultFontLight,
+        fontSize: TextSettings.textSmallSize
+      },
+      stat: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontLight,
         fontSize: TextSettings.textSmallSize
       },
       functionWrapper: {
+        marginVertical: StyleSettings.defaultPadding,
         justifyContent: 'center',
       },
-      function:{
-        backgroundColor: currentTheme.colors.primary,
+      function: {
+        backgroundColor: currentTheme.colors.background,
         elevation: StyleSettings.defaultElevation,
         borderRadius: StyleSettings.defaultBorderRadius,
         padding: StyleSettings.defaultPadding,
