@@ -7,7 +7,6 @@ export const createListsScreenStyle = (currentTheme) =>
         flex: 1,
         backgroundColor: currentTheme.colors.background
       },
-
       fabActionLabel: {
         fontSize: TextSettings.textDefaultSize,
         fontFamily: TextSettings.defaultFontRegular,

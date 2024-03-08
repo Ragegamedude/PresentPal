@@ -5,7 +5,8 @@ import {createListsScreenStyle} from './ListsScreenStyle';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
-import {FAB, PaperProvider, Portal} from "react-native-paper";
+import List from '../components/List';
+import {FAB,PaperProvider, Portal, Text} from "react-native-paper";
 import {useFocusEffect} from "@react-navigation/native";
 
 export default ListsScreen = ({navigation, props}) => {
@@ -38,6 +39,7 @@ export default ListsScreen = ({navigation, props}) => {
           <Header screen={'settings'} title={currentLanguage.listsScreenTitle}
                   currentTheme={currentTheme}></Header>
           <ScrollView>
+            <List currentTheme={currentTheme}></List>
             <Portal>
               <FAB.Group
                   open={fabOpen}

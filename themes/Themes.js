@@ -10,7 +10,7 @@ export const Themes = {
       onPrimary: "rgb(255,255,255)",
       primaryContainer: "rgb(90,117,77)", //FAB
       onPrimaryContainer: "rgb(255,255,255)",
-      secondary: "rgb(60,60,60)",
+      secondary: "rgb(90,90,90)",
       onSecondary: "rgb(255, 255, 255)",
       secondaryContainer: "rgb(90,117,77)",
       onSecondaryContainer: "rgb(255, 255, 255)",
