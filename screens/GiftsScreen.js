@@ -19,7 +19,7 @@ export default GiftsScreen = ({navigation, props}) => {
 
     return (
         <View style={GiftsScreenStyle.gifts}>
-            <Header screen={'settings'} title={currentLanguage.giftsScreenTitle} currentTheme={currentTheme}></Header>
+            <Header screen={'gifts'} title={currentLanguage.giftsScreenTitle} currentTheme={currentTheme}></Header>
             <ScrollView style={GiftsScreenStyle.giftsWrapper}>
             </ScrollView>
             {currentVersion === AppVersions.LIGHT && (

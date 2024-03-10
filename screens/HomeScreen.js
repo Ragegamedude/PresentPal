@@ -19,7 +19,7 @@ export default HomeScreen = ({ navigation, props }) => {
 
 	return (
 		<View style={HomeScreenStyle.home}>
-			<Header title={currentLanguage.homeScreenTitle} currentTheme={currentTheme}></Header>
+			<Header screen={'home'} title={currentLanguage.homeScreenTitle} currentTheme={currentTheme}></Header>
 			<ScrollView>
 			</ScrollView>
 			{currentVersion === AppVersions.LIGHT && (

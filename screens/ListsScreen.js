@@ -120,7 +120,7 @@ export default ListsScreen = ({navigation, props}) => {
   return (
       <PaperProvider theme={currentTheme}>
         <View style={ListsScreenStyle.lists}>
-          <Header screen={'settings'} title={currentLanguage.listsScreenTitle}
+          <Header screen={'lists'} title={currentLanguage.listsScreenTitle}
                   currentTheme={currentTheme}></Header>
           <ScrollView>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
