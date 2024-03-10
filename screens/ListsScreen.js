@@ -6,7 +6,7 @@ import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
 import List from '../components/List';
-import {FAB, PaperProvider, Portal} from "react-native-paper";
+import {PaperProvider} from "react-native-paper";
 import {useFocusEffect} from "@react-navigation/native";
 import {GIFT_STATUS} from "../constants/GiftsEnums";
 
@@ -133,26 +133,6 @@ export default ListsScreen = ({navigation, props}) => {
                   data={testData.lists[3]} lastElement={false}></List>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
                   data={testData.lists[4]} lastElement={true}></List>
-            <Portal>
-              <FAB.Group
-                  open={fabOpen}
-                  visible={true}
-                  icon={fabOpen ? 'close' : 'plus'}
-                  backdropColor={currentTheme.colors.backdrop}
-                  actions={[{
-                    icon: 'plus', onPress: () => console.log('Pressed add'),
-                    label: currentLanguage.listsAddList,
-                    labelStyle: ListsScreenStyle.fabActionLabel
-                  },
-                  ]}
-                  onStateChange={toggleFabOpen}
-                  onPress={() => {
-                    if (fabOpen) {
-                      // do something if the speed dial is open
-                    }
-                  }}
-              />
-            </Portal>
           </ScrollView>
           {currentVersion === AppVersions.LIGHT && (
               <BannerAd
