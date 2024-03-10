@@ -29,19 +29,85 @@ export default ListsScreen = ({navigation, props}) => {
   );
 
   const testData = {
-    id: '1',
-    favorite: false,
-    headline: 'Headline',
-    description: 'Lorem ipsum dolor sit amet, '
-        + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
-        + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
-        + 'eos et accusam et',
-    image: require('../assets/avatars/2.png'),
-    date: '02.01.2023',
-    gifts: [
-      {name: 'test1', value: 25.0, status: GIFT_STATUS.COMPLETED},
-      {name: 'test2', value: 30.0, status: GIFT_STATUS.COMPLETED},
-      {name: 'test2', value: 40.0, status: GIFT_STATUS.COMPLETED}
+    lists: [
+      {
+        id: '1',
+        favorite: false,
+        headline: 'Headline #1',
+        description: '#1 Lorem ipsum dolor sit amet, '
+            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
+            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
+            + 'eos et accusam et',
+        image: require('../assets/avatars/2.png'),
+        date: '02.01.2023',
+        gifts: [
+          {name: 'test1', value: 25.01, status: GIFT_STATUS.COMPLETED},
+          {name: 'test2', value: 30.03, status: GIFT_STATUS.UNCOMPLETED},
+          {name: 'test2', value: 40.04, status: GIFT_STATUS.COMPLETED}
+        ]
+      },
+      {
+        id: '2',
+        favorite: false,
+        headline: 'Headline #2',
+        description: '#2 Lorem ipsum dolor sit amet, '
+            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
+            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
+            + 'eos et accusam et',
+        image: require('../assets/avatars/4.png'),
+        date: '12.01.2023',
+        gifts: [
+          {name: 'test1', value: 15.01, status: GIFT_STATUS.COMPLETED},
+        ]
+      },
+      {
+        id: '3',
+        favorite: false,
+        headline: 'Headline #3',
+        description: '#2 Lorem ipsum dolor sit amet, '
+            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
+            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
+            + 'eos et accusam et',
+        image: require('../assets/avatars/5.png'),
+        date: '15.01.2023',
+        gifts: [
+          {name: 'test1', value: 15.01, status: GIFT_STATUS.COMPLETED},
+          {name: 'test2', value: 10.03, status: GIFT_STATUS.UNCOMPLETED},
+        ]
+      },
+      {
+        id: '4',
+        favorite: false,
+        headline: 'Headline #4',
+        description: '#2 Lorem ipsum dolor sit amet, '
+            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
+            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
+            + 'eos et accusam et',
+        image: require('../assets/avatars/6.png'),
+        date: '19.01.2023',
+        gifts: [
+          {name: 'test1', value: 12.01, status: GIFT_STATUS.COMPLETED},
+          {name: 'test2', value: 11.06, status: GIFT_STATUS.UNCOMPLETED},
+          {name: 'test3', value: 29.07, status: GIFT_STATUS.COMPLETED}
+        ]
+      },
+      {
+        id: '5',
+        favorite: false,
+        headline: 'Headline #5',
+        description: '#5 Lorem ipsum dolor sit amet, '
+            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
+            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
+            + 'eos et accusam et',
+        image: require('../assets/avatars/6.png'),
+        date: '23.06.2023',
+        gifts: [
+          {name: 'test1', value: 18.01, status: GIFT_STATUS.COMPLETED},
+          {name: 'test2', value: 11.05, status: GIFT_STATUS.UNCOMPLETED},
+          {name: 'test1', value: 18.01, status: GIFT_STATUS.COMPLETED},
+          {name: 'test2', value: 11.05, status: GIFT_STATUS.UNCOMPLETED}
+        ]
+      }
     ]
   }
 
@@ -58,7 +124,15 @@ export default ListsScreen = ({navigation, props}) => {
                   currentTheme={currentTheme}></Header>
           <ScrollView>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData}></List>
+                  data={testData.lists[0]}></List>
+            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
+                  data={testData.lists[1]}></List>
+            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
+                  data={testData.lists[2]}></List>
+            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
+                  data={testData.lists[3]}></List>
+            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
+                  data={testData.lists[4]}></List>
             <Portal>
               <FAB.Group
                   open={fabOpen}

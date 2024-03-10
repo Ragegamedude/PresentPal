@@ -47,22 +47,15 @@ export const createListStyle = (currentTheme) =>
       statsFirst: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: currentTheme.colors.background,
         borderRadius: StyleSettings.defaultBorderRadius,
-        padding: StyleSettings.defaultPadding,
       },
       statsSecond: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: currentTheme.colors.background,
         borderRadius: StyleSettings.defaultBorderRadius,
-        padding: StyleSettings.defaultPadding,
-        marginLeft: StyleSettings.defaultPadding
+        marginLeft: StyleSettings.defaultMargin
       },
       statKey: {
-        color: currentTheme.colors.primary,
-        fontFamily: TextSettings.defaultFontMedium,
-        fontSize: TextSettings.textSmallSize
       },
       statValue: {
         color: currentTheme.colors.secondary,
@@ -76,7 +69,6 @@ export const createListStyle = (currentTheme) =>
       },
       function: {
         backgroundColor: currentTheme.colors.background,
-        elevation: StyleSettings.defaultElevation,
         borderRadius: StyleSettings.defaultBorderRadius,
         padding: StyleSettings.defaultPadding,
         marginHorizontal: StyleSettings.defaultMargin,

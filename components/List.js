@@ -5,13 +5,17 @@ import Feather from "react-native-vector-icons/Feather";
 import {IconSettings} from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import {GIFT_STATUS} from "../constants/GiftsEnums";
 
 export default List = (props) => {
   const ListStyle = createListStyle(props.currentTheme);
   const giftsAmount = props.data.gifts.length;
   const giftsTotal = ' ' + props.data.gifts.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.value, 0);
-  const giftsFinished = props.data.gifts.length + '/' + props.data.gifts
+      (accumulator, currentValue) => accumulator + currentValue.value,
+      0).toFixed(2);
+  const giftsFinished = props.data.gifts.filter(
+          (gift) => gift.status === GIFT_STATUS.COMPLETED).length + '/'
+      + props.data.gifts.length;
   return (
       <View style={ListStyle.listWrapper}>
         <View style={ListStyle.imageWrapper}>
@@ -29,34 +33,41 @@ export default List = (props) => {
           </View>
           <View style={ListStyle.statsWrapper}>
             <View style={ListStyle.statsFirst}>
-              <Feather name="gift" size={IconSettings.listIconSize}
+              <Feather style={ListStyle.statKey} name="gift" size={IconSettings.listIconSize}
                        color={props.currentTheme.colors.secondary}/>
               <Text
                   style={ListStyle.statValue}>{' ' + giftsAmount}
               </Text>
             </View>
             <View style={ListStyle.statsSecond}>
-              <Ionicons name="pricetag-outline" size={IconSettings.listIconSize}
+              <Ionicons style={ListStyle.statKey} name="pricetag-outline" size={IconSettings.listIconSize}
                         color={props.currentTheme.colors.secondary}/>
               <Text
                   style={ListStyle.statValue}>{giftsTotal}
               </Text>
             </View>
+            <View style={ListStyle.statsSecond}>
+              <MaterialIcons style={ListStyle.statKey} name="done" size={IconSettings.listIconSize}
+                             color={props.currentTheme.colors.secondary}/>
+              <Text
+                  style={ListStyle.statValue}>{giftsFinished}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={ListStyle.functionWrapper}>
-          <TouchableRipple style={ListStyle.function}
+          <TouchableRipple borderless={true} style={ListStyle.function}
                            onPress={() => console.log()}>
             <MaterialIcons name="favorite-outline"
                            size={IconSettings.buttonIconSize}
                            color={props.currentTheme.colors.secondary}/>
           </TouchableRipple>
-          <TouchableRipple style={ListStyle.function}
+          <TouchableRipple borderless={true} style={ListStyle.function}
                            onPress={() => console.log()}>
             <Feather name="edit" size={IconSettings.buttonIconSize}
                      color={props.currentTheme.colors.secondary}/>
           </TouchableRipple>
-          <TouchableRipple theme={props.currentTheme} style={ListStyle.function}
+          <TouchableRipple borderless={true} style={ListStyle.function}
                            onPress={() => console.log()}>
             <MaterialIcons name="delete-outline"
                            size={IconSettings.buttonIconSize}
