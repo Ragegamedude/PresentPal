@@ -5,9 +5,10 @@ import {createListsScreenStyle} from './ListsScreenStyle';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
-import List, {GIFT_STATUS} from '../components/List';
+import List from '../components/List';
 import {FAB, PaperProvider, Portal} from "react-native-paper";
 import {useFocusEffect} from "@react-navigation/native";
+import {GIFT_STATUS} from "../constants/GiftsEnums";
 
 export default ListsScreen = ({navigation, props}) => {
   const {theme, language, version, personalAds} = useContext(Context);
@@ -40,7 +41,7 @@ export default ListsScreen = ({navigation, props}) => {
     gifts: [
       {name: 'test1', value: 25.0, status: GIFT_STATUS.COMPLETED},
       {name: 'test2', value: 30.0, status: GIFT_STATUS.COMPLETED},
-      {name: 'test2', value: 40.0, status: GIFT_STATUS.UNCOMPLETED}
+      {name: 'test2', value: 40.0, status: GIFT_STATUS.COMPLETED}
     ]
   }
 
