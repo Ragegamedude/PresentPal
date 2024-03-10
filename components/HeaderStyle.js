@@ -25,7 +25,9 @@ export const createHeaderStyle = (currentTheme) =>
 			fontSize: TextSettings.textHeaderSize,
 			marginLeft: StyleSettings.defaultPadding
 		},
-		rightContainer: {},
+		rightContainer: {
+			backgroundColor: 'red',
+		},
 		rightIcon: {
 			marginRight: StyleSettings.defaultMargin
 		}
