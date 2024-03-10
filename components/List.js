@@ -17,7 +17,8 @@ export default List = (props) => {
           (gift) => gift.status === GIFT_STATUS.COMPLETED).length + '/'
       + props.data.gifts.length;
   return (
-      <View style={ListStyle.listWrapper}>
+      <View style={props.lastElement ? ListStyle.listWrapper2
+          : ListStyle.listWrapper}>
         <View style={ListStyle.imageWrapper}>
           <Avatar.Image size={IconSettings.listsAvatarSize}
                         source={props.data.image ? props.data.image : require(
@@ -33,21 +34,24 @@ export default List = (props) => {
           </View>
           <View style={ListStyle.statsWrapper}>
             <View style={ListStyle.statsFirst}>
-              <Feather style={ListStyle.statKey} name="gift" size={IconSettings.listIconSize}
+              <Feather style={ListStyle.statKey} name="gift"
+                       size={IconSettings.listIconSize}
                        color={props.currentTheme.colors.secondary}/>
               <Text
                   style={ListStyle.statValue}>{' ' + giftsAmount}
               </Text>
             </View>
             <View style={ListStyle.statsSecond}>
-              <Ionicons style={ListStyle.statKey} name="pricetag-outline" size={IconSettings.listIconSize}
+              <Ionicons style={ListStyle.statKey} name="pricetag-outline"
+                        size={IconSettings.listIconSize}
                         color={props.currentTheme.colors.secondary}/>
               <Text
                   style={ListStyle.statValue}>{giftsTotal}
               </Text>
             </View>
             <View style={ListStyle.statsSecond}>
-              <MaterialIcons style={ListStyle.statKey} name="done" size={IconSettings.listIconSize}
+              <MaterialIcons style={ListStyle.statKey} name="done"
+                             size={IconSettings.listIconSize}
                              color={props.currentTheme.colors.secondary}/>
               <Text
                   style={ListStyle.statValue}>{giftsFinished}
@@ -58,7 +62,7 @@ export default List = (props) => {
         <View style={ListStyle.functionWrapper}>
           <TouchableRipple borderless={true} style={ListStyle.function}
                            onPress={() => console.log()}>
-            <MaterialIcons name="favorite-outline"
+            <MaterialIcons name={props.data.favorite ? "favorite" : "favorite-outline"}
                            size={IconSettings.buttonIconSize}
                            color={props.currentTheme.colors.secondary}/>
           </TouchableRipple>

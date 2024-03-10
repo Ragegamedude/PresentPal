@@ -48,7 +48,7 @@ export default ListsScreen = ({navigation, props}) => {
       },
       {
         id: '2',
-        favorite: false,
+        favorite: true,
         headline: 'Headline #2',
         description: '#2 Lorem ipsum dolor sit amet, '
             + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
@@ -62,7 +62,7 @@ export default ListsScreen = ({navigation, props}) => {
       },
       {
         id: '3',
-        favorite: false,
+        favorite: true,
         headline: 'Headline #3',
         description: '#2 Lorem ipsum dolor sit amet, '
             + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
@@ -99,7 +99,7 @@ export default ListsScreen = ({navigation, props}) => {
             + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
             + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
             + 'eos et accusam et',
-        image: require('../assets/avatars/6.png'),
+        image: require('../assets/avatars/7.png'),
         date: '23.06.2023',
         gifts: [
           {name: 'test1', value: 18.01, status: GIFT_STATUS.COMPLETED},
@@ -124,15 +124,15 @@ export default ListsScreen = ({navigation, props}) => {
                   currentTheme={currentTheme}></Header>
           <ScrollView>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[0]}></List>
+                  data={testData.lists[0]} lastElement={false}></List>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[1]}></List>
+                  data={testData.lists[1]} lastElement={false}></List>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[2]}></List>
+                  data={testData.lists[2]} lastElement={false}></List>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[3]}></List>
+                  data={testData.lists[3]} lastElement={false}></List>
             <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[4]}></List>
+                  data={testData.lists[4]} lastElement={true}></List>
             <Portal>
               <FAB.Group
                   open={fabOpen}
