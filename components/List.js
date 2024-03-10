@@ -4,9 +4,14 @@ import {Avatar, TouchableRipple} from 'react-native-paper';
 import Feather from "react-native-vector-icons/Feather";
 import {IconSettings} from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default List = (props) => {
   const ListStyle = createListStyle(props.currentTheme);
+  const giftsAmount = props.data.gifts.length;
+  const giftsTotal = ' ' + props.data.gifts.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.value, 0);
+  const giftsFinished = props.data.gifts.length + '/' + props.data.gifts
   return (
       <View style={ListStyle.listWrapper}>
         <View style={ListStyle.imageWrapper}>
@@ -22,9 +27,21 @@ export default List = (props) => {
                 numberOfLines={3}
                 style={ListStyle.contentDescription}>{props.data.description}</Text>
           </View>
-          <View style={ListStyle.stats}>
-            <Text
-                style={ListStyle.stat}>{props.currentLanguage.listGiftAmount}: {props.data.gifts.length}</Text>
+          <View style={ListStyle.statsWrapper}>
+            <View style={ListStyle.statsFirst}>
+              <Feather name="gift" size={IconSettings.listIconSize}
+                       color={props.currentTheme.colors.secondary}/>
+              <Text
+                  style={ListStyle.statValue}>{' ' + giftsAmount}
+              </Text>
+            </View>
+            <View style={ListStyle.statsSecond}>
+              <Ionicons name="pricetag-outline" size={IconSettings.listIconSize}
+                        color={props.currentTheme.colors.secondary}/>
+              <Text
+                  style={ListStyle.statValue}>{giftsTotal}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={ListStyle.functionWrapper}>
@@ -48,4 +65,9 @@ export default List = (props) => {
         </View>
       </View>
   )
+}
+
+export const GIFT_STATUS = {
+  COMPLETED: 'Completed',
+  UNCOMPLETED: 'Uncompleted',
 }

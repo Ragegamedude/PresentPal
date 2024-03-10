@@ -5,7 +5,7 @@ import {createListsScreenStyle} from './ListsScreenStyle';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
-import List from '../components/List';
+import List, {GIFT_STATUS} from '../components/List';
 import {FAB, PaperProvider, Portal} from "react-native-paper";
 import {useFocusEffect} from "@react-navigation/native";
 
@@ -31,15 +31,16 @@ export default ListsScreen = ({navigation, props}) => {
     id: '1',
     favorite: false,
     headline: 'Headline',
-    description: 'Lorem ipsum dolor sit amet,'
-        + '            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt'
-        + '            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
-        + '            eos et accusam et',
+    description: 'Lorem ipsum dolor sit amet, '
+        + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
+        + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
+        + 'eos et accusam et',
     image: require('../assets/avatars/2.png'),
     date: '02.01.2023',
     gifts: [
-      {name: 'test1'},
-      {name: 'test2'}
+      {name: 'test1', value: 25.0, status: GIFT_STATUS.COMPLETED},
+      {name: 'test2', value: 30.0, status: GIFT_STATUS.COMPLETED},
+      {name: 'test2', value: 40.0, status: GIFT_STATUS.UNCOMPLETED}
     ]
   }
 
@@ -55,7 +56,8 @@ export default ListsScreen = ({navigation, props}) => {
           <Header screen={'settings'} title={currentLanguage.listsScreenTitle}
                   currentTheme={currentTheme}></Header>
           <ScrollView>
-            <List currentTheme={currentTheme} currentLanguage={currentLanguage} data={testData}></List>
+            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
+                  data={testData}></List>
             <Portal>
               <FAB.Group
                   open={fabOpen}

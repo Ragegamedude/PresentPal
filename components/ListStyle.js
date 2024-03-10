@@ -41,10 +41,34 @@ export const createListStyle = (currentTheme) =>
         fontFamily: TextSettings.defaultFontLight,
         fontSize: TextSettings.textSmallSize
       },
-      stat: {
+      statsWrapper: {
+        flexDirection: 'row',
+      },
+      statsFirst: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: currentTheme.colors.background,
+        borderRadius: StyleSettings.defaultBorderRadius,
+        padding: StyleSettings.defaultPadding,
+      },
+      statsSecond: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: currentTheme.colors.background,
+        borderRadius: StyleSettings.defaultBorderRadius,
+        padding: StyleSettings.defaultPadding,
+        marginLeft: StyleSettings.defaultPadding
+      },
+      statKey: {
+        color: currentTheme.colors.primary,
+        fontFamily: TextSettings.defaultFontMedium,
+        fontSize: TextSettings.textSmallSize
+      },
+      statValue: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontLight,
-        fontSize: TextSettings.textSmallSize
+        fontSize: TextSettings.textSmallSize,
+        marginLeft: StyleSettings.defaultPadding
       },
       functionWrapper: {
         marginVertical: StyleSettings.defaultPadding,
