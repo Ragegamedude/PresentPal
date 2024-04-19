@@ -72,7 +72,10 @@ export default ListsScreen = ({navigation, props}) => {
         date: '15.01.2023',
         gifts: [
           {name: 'test1', value: 15.01, status: GIFT_STATUS.COMPLETED},
-          {name: 'test2', value: 10.03, status: GIFT_STATUS.UNCOMPLETED},
+          {name: 'test2', value: 10.08, status: GIFT_STATUS.UNCOMPLETED},
+          {name: 'test3', value: 10.08, status: GIFT_STATUS.UNCOMPLETED},
+          {name: 'test4', value: 10.08, status: GIFT_STATUS.UNCOMPLETED},
+          {name: 'test5', value: 1000.08, status: GIFT_STATUS.UNCOMPLETED},
         ]
       },
       {
@@ -120,19 +123,13 @@ export default ListsScreen = ({navigation, props}) => {
   return (
       <PaperProvider theme={currentTheme}>
         <View style={ListsScreenStyle.lists}>
-          <Header screen={'lists'} title={currentLanguage.listsScreenTitle}
-                  currentTheme={currentTheme}></Header>
+          <Header screen={'lists'} title={currentLanguage.listsScreenTitle} modalIconAdd={'add-to-list'}></Header>
           <ScrollView>
-            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[0]} lastElement={false}></List>
-            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[1]} lastElement={false}></List>
-            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[2]} lastElement={false}></List>
-            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[3]} lastElement={false}></List>
-            <List currentTheme={currentTheme} currentLanguage={currentLanguage}
-                  data={testData.lists[4]} lastElement={true}></List>
+            <List data={testData.lists[0]} lastElement={false}></List>
+            <List data={testData.lists[1]} lastElement={false}></List>
+            <List data={testData.lists[2]} lastElement={false}></List>
+            <List data={testData.lists[3]} lastElement={false}></List>
+            <List data={testData.lists[4]} lastElement={true}></List>
           </ScrollView>
           {currentVersion === AppVersions.LIGHT && (
               <BannerAd

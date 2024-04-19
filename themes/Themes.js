@@ -6,13 +6,13 @@ export const AvailableThemes = {
 export const Themes = {
   light: {
     colors: {
-      primary: "rgb(90,117,77)",
+      primary: "rgb(236,135,24)",
       onPrimary: "rgb(255,255,255)",
-      primaryContainer: "rgb(90,117,77)", //FAB
+      primaryContainer: "rgb(236,135,24)", //FAB
       onPrimaryContainer: "rgb(255,255,255)",
       secondary: "rgb(90,90,90)",
       onSecondary: "rgb(255, 255, 255)",
-      secondaryContainer: "rgb(90,117,77)",
+      secondaryContainer: "rgb(236,135,24)",
       onSecondaryContainer: "rgb(255, 255, 255)",
       tertiary: "rgb(128, 81, 88)",
       onTertiary: "rgb(255, 255, 255)",

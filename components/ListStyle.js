@@ -28,7 +28,7 @@ export const createListStyle = (currentTheme) =>
       date: {
         fontFamily: TextSettings.defaultFontMedium,
         fontSize: TextSettings.textSmallestSize,
-        color: currentTheme.colors.primary,
+        color: currentTheme.colors.secondary,
         marginTop: StyleSettings.defaultPadding,
       },
       contentWrapper: {
@@ -51,25 +51,31 @@ export const createListStyle = (currentTheme) =>
       },
       statsWrapper: {
         flexDirection: 'row',
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderStyle: 'dashed',
+        borderColor: currentTheme.colors.onSurfaceVariant,
+        marginTop: StyleSettings.defaultPadding,
       },
       statsFirst: {
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: StyleSettings.defaultBorderRadius,
+        marginVertical: StyleSettings.defaultPadding,
       },
       statsSecond: {
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: StyleSettings.defaultBorderRadius,
-        marginLeft: StyleSettings.defaultMargin
+        marginLeft: StyleSettings.defaultMargin,
+        marginVertical: StyleSettings.defaultPadding,
       },
       statKey: {
       },
       statValue: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontLight,
-        fontSize: TextSettings.textSmallSize,
-        marginLeft: StyleSettings.defaultPadding
+        fontSize: TextSettings.textSmallestSize,
       },
       functionWrapper: {
         marginVertical: StyleSettings.defaultPadding,

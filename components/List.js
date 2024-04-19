@@ -6,9 +6,14 @@ import {IconSettings} from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {GIFT_STATUS} from "../constants/GiftsEnums";
+import {Context} from "../context/Context";
+import {useContext} from "react";
 
 export default List = (props) => {
-  const ListStyle = createListStyle(props.currentTheme);
+  const {theme, language, version, personalAds} = useContext(Context);
+  const [currentTheme, setCurrentTheme] = theme;
+
+  const ListStyle = createListStyle(currentTheme);
   const giftsAmount = props.data.gifts.length;
   const giftsTotal = ' ' + props.data.gifts.reduce(
       (accumulator, currentValue) => accumulator + currentValue.value,
@@ -36,25 +41,25 @@ export default List = (props) => {
             <View style={ListStyle.statsFirst}>
               <Feather style={ListStyle.statKey} name="gift"
                        size={IconSettings.listIconSize}
-                       color={props.currentTheme.colors.secondary}/>
+                       color={currentTheme.colors.secondary}/>
               <Text
                   style={ListStyle.statValue}>{' ' + giftsAmount}
               </Text>
             </View>
             <View style={ListStyle.statsSecond}>
-              <Ionicons style={ListStyle.statKey} name="pricetag-outline"
-                        size={IconSettings.listIconSize}
-                        color={props.currentTheme.colors.secondary}/>
+              <MaterialIcons style={ListStyle.statKey} name="done"
+                             size={IconSettings.listIconSize}
+                             color={currentTheme.colors.secondary}/>
               <Text
-                  style={ListStyle.statValue}>{giftsTotal}
+                  style={ListStyle.statValue}>{giftsFinished}
               </Text>
             </View>
             <View style={ListStyle.statsSecond}>
-              <MaterialIcons style={ListStyle.statKey} name="done"
-                             size={IconSettings.listIconSize}
-                             color={props.currentTheme.colors.secondary}/>
+              <Ionicons style={ListStyle.statKey} name="pricetag-outline"
+                        size={IconSettings.listIconSize}
+                        color={currentTheme.colors.secondary}/>
               <Text
-                  style={ListStyle.statValue}>{giftsFinished}
+                  style={ListStyle.statValue}>{giftsTotal}
               </Text>
             </View>
           </View>
@@ -62,20 +67,22 @@ export default List = (props) => {
         <View style={ListStyle.functionWrapper}>
           <TouchableRipple borderless={true} style={ListStyle.function}
                            onPress={() => console.log()}>
-            <MaterialIcons name={props.data.favorite ? "favorite" : "favorite-outline"}
-                           size={IconSettings.buttonIconSize}
-                           color={props.currentTheme.colors.secondary}/>
+            <MaterialIcons
+                name={props.data.favorite ? "favorite" : "favorite-outline"}
+                size={IconSettings.buttonIconSize}
+                color={props.data.favorite ? currentTheme.colors.primary
+                    : currentTheme.colors.secondary}/>
           </TouchableRipple>
           <TouchableRipple borderless={true} style={ListStyle.function}
                            onPress={() => console.log()}>
             <Feather name="edit" size={IconSettings.buttonIconSize}
-                     color={props.currentTheme.colors.secondary}/>
+                     color={currentTheme.colors.secondary}/>
           </TouchableRipple>
           <TouchableRipple borderless={true} style={ListStyle.function}
                            onPress={() => console.log()}>
             <MaterialIcons name="delete-outline"
                            size={IconSettings.buttonIconSize}
-                           color={props.currentTheme.colors.secondary}/>
+                           color={currentTheme.colors.secondary}/>
           </TouchableRipple>
         </View>
       </View>

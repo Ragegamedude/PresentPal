@@ -26,9 +26,10 @@ export const createHeaderStyle = (currentTheme) =>
 			marginLeft: StyleSettings.defaultPadding
 		},
 		rightContainer: {
-			backgroundColor: 'red',
 		},
 		rightIcon: {
-			marginRight: StyleSettings.defaultMargin
+			borderRadius: StyleSettings.defaultBorderRadius,
+			padding: StyleSettings.defaultPadding,
+			marginHorizontal: StyleSettings.defaultMargin,
 		}
 	});
