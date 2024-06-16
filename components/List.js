@@ -25,6 +25,7 @@ export default List = (props) => {
       <View style={props.lastElement ? ListStyle.listWrapper2
           : ListStyle.listWrapper}>
         <View style={ListStyle.imageWrapper}>
+          <Text style={ListStyle.birthday}>{props.data.event}</Text>
           <Avatar.Image size={IconSettings.listsAvatarSize}
                         source={props.data.image ? props.data.image : require(
                             '../assets/avatars/0.png')}/>

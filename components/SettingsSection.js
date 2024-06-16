@@ -100,7 +100,7 @@ export default SettingsSection = (props) => {
 							<Feather
 								style={ModalStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
-								color={currentTheme.colors.primary}
+								color={currentTheme.colors.secondary}
 								size={IconSettings.modalHeadlineIconSize}
 							></Feather>
 							<Text style={ModalStyle.modalHeaderText}>
@@ -159,7 +159,7 @@ export default SettingsSection = (props) => {
 							<Feather
 								style={ModalStyle.converterSectionModalHeaderIcon}
 								name={props.iconName}
-								color={currentTheme.colors.primary}
+								color={currentTheme.colors.secondary}
 								size={IconSettings.modalHeadlineIconSize}
 							></Feather>
 							<Text style={ModalStyle.modalHeaderText}>

@@ -31,6 +31,12 @@ export const createListStyle = (currentTheme) =>
         color: currentTheme.colors.secondary,
         marginTop: StyleSettings.defaultPadding,
       },
+      birthday: {
+        fontFamily: TextSettings.defaultFontMedium,
+        fontSize: TextSettings.textSmallestSize,
+        color: currentTheme.colors.secondary,
+        marginBottom: StyleSettings.defaultPadding,
+      },
       contentWrapper: {
         flex: 1,
         marginLeft: StyleSettings.defaultMargin,
@@ -70,8 +76,7 @@ export const createListStyle = (currentTheme) =>
         marginLeft: StyleSettings.defaultMargin,
         marginVertical: StyleSettings.defaultPadding,
       },
-      statKey: {
-      },
+      statKey: {},
       statValue: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontLight,

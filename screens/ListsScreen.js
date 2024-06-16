@@ -40,6 +40,7 @@ export default ListsScreen = ({navigation, props}) => {
             + 'eos et accusam et',
         image: require('../assets/avatars/2.png'),
         date: '02.01.2023',
+        event: 'Birthday',
         gifts: [
           {name: 'test1', value: 25.01, status: GIFT_STATUS.COMPLETED},
           {name: 'test2', value: 30.03, status: GIFT_STATUS.UNCOMPLETED},
@@ -56,6 +57,7 @@ export default ListsScreen = ({navigation, props}) => {
             + 'eos et accusam et',
         image: require('../assets/avatars/4.png'),
         date: '12.01.2023',
+        event: 'Birthday',
         gifts: [
           {name: 'test1', value: 15.01, status: GIFT_STATUS.COMPLETED},
         ]
@@ -70,6 +72,7 @@ export default ListsScreen = ({navigation, props}) => {
             + 'eos et accusam et',
         image: require('../assets/avatars/5.png'),
         date: '15.01.2023',
+        event: 'Birthday',
         gifts: [
           {name: 'test1', value: 15.01, status: GIFT_STATUS.COMPLETED},
           {name: 'test2', value: 10.08, status: GIFT_STATUS.UNCOMPLETED},
@@ -88,6 +91,7 @@ export default ListsScreen = ({navigation, props}) => {
             + 'eos et accusam et',
         image: require('../assets/avatars/6.png'),
         date: '19.01.2023',
+        event: 'Birthday',
         gifts: [
           {name: 'test1', value: 12.01, status: GIFT_STATUS.COMPLETED},
           {name: 'test2', value: 11.06, status: GIFT_STATUS.UNCOMPLETED},
@@ -104,6 +108,7 @@ export default ListsScreen = ({navigation, props}) => {
             + 'eos et accusam et',
         image: require('../assets/avatars/7.png'),
         date: '23.06.2023',
+        event: 'Birthday',
         gifts: [
           {name: 'test1', value: 18.01, status: GIFT_STATUS.COMPLETED},
           {name: 'test2', value: 11.05, status: GIFT_STATUS.UNCOMPLETED},
@@ -123,7 +128,7 @@ export default ListsScreen = ({navigation, props}) => {
   return (
       <PaperProvider theme={currentTheme}>
         <View style={ListsScreenStyle.lists}>
-          <Header screen={'lists'} title={currentLanguage.listsScreenTitle} modalIconAdd={'add-to-list'}></Header>
+          <Header screen={'lists'} title={currentLanguage.listsScreenTitle} modalIconAdd={'card-plus-outline'}></Header>
           <ScrollView>
             <List data={testData.lists[0]} lastElement={false}></List>
             <List data={testData.lists[1]} lastElement={false}></List>

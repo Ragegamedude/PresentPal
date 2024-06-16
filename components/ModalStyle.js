@@ -12,12 +12,12 @@ export default createModalStyle = (currentTheme) =>
         justifyContent: 'center',
         backgroundColor: currentTheme.colors.backdrop
       },
-     modal: {
+      modal: {
         width: windowWidth - StyleSettings.defaultPaddingModal,
         borderRadius: StyleSettings.defaultBorderRadius,
         backgroundColor: currentTheme.colors.onBackground
       },
-     modalHeader: {
+      modalHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -37,7 +37,7 @@ export default createModalStyle = (currentTheme) =>
         marginLeft: StyleSettings.defaultMargin,
         fontSize: TextSettings.textDefaultSize,
         fontFamily: TextSettings.defaultFontBold,
-        color: currentTheme.colors.primary
+        color: currentTheme.colors.secondary
       },
       modalContent: {
         borderBottomEndRadius: StyleSettings.defaultBorderRadius,
@@ -58,13 +58,22 @@ export default createModalStyle = (currentTheme) =>
         fontFamily: TextSettings.defaultFontLight,
         color: currentTheme.colors.secondary
       },
+      modalContentInputField: {
+        marginHorizontal: StyleSettings.defaultMargin,
+        marginTop: StyleSettings.defaultPadding,
+        fontSize: TextSettings.textSmallSize,
+        fontFamily: TextSettings.defaultFontLight,
+      },
+      modalContentInputHelperText: {
+        marginHorizontal: StyleSettings.defaultMargin,
+      },
       modalButtonWrapper: {
         flexDirection: 'row'
       },
       modalContentButton: {
         flex: 1,
         backgroundColor: currentTheme.colors.primary,
-        paddingVertical: StyleSettings.defaultPadding,
+        paddingVertical: StyleSettings.defaultPaddingButton,
         marginVertical: StyleSettings.defaultMargin,
         marginHorizontal: StyleSettings.defaultMargin,
         borderRadius: StyleSettings.defaultBorderRadius,
@@ -73,7 +82,7 @@ export default createModalStyle = (currentTheme) =>
       modalContentButton2: {
         flex: 1,
         backgroundColor: currentTheme.colors.primary,
-        paddingVertical: StyleSettings.defaultPadding,
+        paddingVertical: StyleSettings.defaultPaddingButton,
         marginVertical: StyleSettings.defaultMargin,
         marginLeft: StyleSettings.defaultMargin,
         marginRight: StyleSettings.defaultMargin / 2,
@@ -83,7 +92,7 @@ export default createModalStyle = (currentTheme) =>
       modalContentButton3: {
         flex: 1,
         backgroundColor: currentTheme.colors.primary,
-        paddingVertical: StyleSettings.defaultPadding,
+        paddingVertical: StyleSettings.defaultPaddingButton,
         marginVertical: StyleSettings.defaultMargin,
         marginLeft: StyleSettings.defaultMargin / 2,
         marginRight: StyleSettings.defaultMargin,

@@ -2,21 +2,58 @@ import {Modal, Text, View} from 'react-native';
 import React, {useContext, useState} from 'react';
 import {createHeaderStyle} from './HeaderStyle';
 import {IconSettings} from "../constants/IconSettings";
-import {TouchableRipple} from "react-native-paper";
-import Entypo from "react-native-vector-icons/Entypo";
+import {HelperText, TextInput, TouchableRipple} from "react-native-paper";
 import createModalStyle from "./ModalStyle";
-import Feather from "react-native-vector-icons/Feather";
 import {AvailableSettingsActions} from "./SettingsSection";
 import {Context} from "../context/Context";
+import MaterialCommunityIcon
+  from "react-native-paper/src/components/MaterialCommunityIcon";
+import {InputSettings} from "../constants/InputSettings";
 
 export default Header = (props) => {
   const {theme, language, version, personalAds} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
 
-  const [showAddListModal, setShowListModal] = useState(false)
+  const [showAddListModal, setShowListModal] = useState(false);
+
+  const [headlineText, setHeadlineText] = useState('');
+  const [headlineError, setHeadlineError] = useState(false);
+  const [descriptionText, setDescriptionText] = useState('');
+  const [descriptionError, setDescriptionError] = useState(false);
+  const [eventText, setEventText] = useState('');
+  const [eventError, setEventError] = useState(false);
+  const [dateText, setDateText] = useState('');
+  const [dateError, setDateError] = useState(false);
+
   const HeaderStyle = createHeaderStyle(currentTheme);
   const ModalStyle = createModalStyle(currentTheme);
+
+  const resetForm = () => {
+    setHeadlineText('');
+    setHeadlineError(false);
+    setDescriptionText('');
+    setDescriptionError(false);
+    setEventText('');
+    setEventError(false);
+    setDateText('');
+    setDateError(false);
+  }
+
+  const validateForm = (field) => {
+    let error = false;
+    if (field === 'headline') {
+      error = headlineText.length >= InputSettings.inputMax1;
+      setHeadlineError(error);
+    } else if (field === 'description') {
+      setDescriptionError(false);
+    } else if (field === 'event') {
+      setEventError(false);
+    } else if (field === 'date') {
+      setDateError(false);
+    }
+  }
+
   return (
       <View style={HeaderStyle.headerWrapper}>
         <Modal animationType={'fade'} transparent={true}
@@ -24,35 +61,94 @@ export default Header = (props) => {
           <View style={ModalStyle.modalWrapper}>
             <View style={ModalStyle.modal}>
               <View style={ModalStyle.modalHeader}>
-                <Entypo
+                <MaterialCommunityIcon
                     style={ModalStyle.converterSectionModalHeaderIcon}
                     name={props.modalIconAdd}
-                    color={currentTheme.colors.primary}
+                    color={currentTheme.colors.secondary}
                     size={IconSettings.modalHeadlineIconSize}
-                ></Entypo>
+                    direction={'ltr'}
+                ></MaterialCommunityIcon>
                 <Text style={ModalStyle.modalHeaderText}>
                   {currentLanguage.listsAddList}
                 </Text>
               </View>
               <View style={ModalStyle.modalContent}>
-                <Text style={ModalStyle.modalContentHeadline}>
-                  {currentLanguage.settingsInformationGeneral}
-                </Text>
-                <Text style={ModalStyle.modalContentText}>
-                  {currentLanguage.settingsInformationGeneralContent}
-                </Text>
-                <Text style={ModalStyle.modalContentHeadline}>
-                  {currentLanguage.settingsInformationApplication}
-                </Text>
-                <Text style={ModalStyle.modalContentText}>
-                  {currentLanguage.settingsInformationModalContent}
-                </Text>
-                <Text style={ModalStyle.modalContentHeadline}>
-                  {currentLanguage.settingsInformationWebsite}
-                </Text>
-                <Text style={ModalStyle.modalContentText}>
-                  {currentLanguage.settingsInformationModalCreator}
-                </Text>
+                <TextInput
+                    style={ModalStyle.modalContentInputField}
+                    label={currentLanguage.inputFieldHeadline}
+                    mode={"outlined"}
+                    value={headlineText}
+                    error={headlineError}
+                    dense={true}
+                    left={<TextInput.Icon icon="view-headline"
+                                          disabled={true}/>}
+                    onChangeText={input => {
+                      setHeadlineText(input);
+                      validateForm('headline');
+                    }}
+                />
+                {headlineError && (
+                    <HelperText style={ModalStyle.modalContentInputHelperText}
+                                type="error" visible={headlineError}>
+                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                    </HelperText>)}
+                <TextInput
+                    style={ModalStyle.modalContentInputField}
+                    label={currentLanguage.inputFieldDescription}
+                    mode={"outlined"}
+                    value={descriptionText}
+                    error={descriptionError}
+                    dense={true}
+                    left={<TextInput.Icon icon="card-text-outline"
+                                          disabled={true}/>}
+                    onChangeText={input => {
+                      setDescriptionText(input);
+                      validateForm('description');
+                    }}
+                />
+                {descriptionError && (
+                    <HelperText style={ModalStyle.modalContentInputHelperText}
+                                type="error" visible={descriptionError}>
+                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                    </HelperText>)}
+                <TextInput
+                    style={ModalStyle.modalContentInputField}
+                    label={currentLanguage.inputFieldEvent}
+                    mode={"outlined"}
+                    value={eventText}
+                    error={eventError}
+                    dense={true}
+                    left={<TextInput.Icon icon="crosshairs-gps"
+                                          disabled={true}/>}
+                    onChangeText={input => {
+                      setEventText(input);
+                      validateForm('event');
+                    }}
+                />
+                {eventError && (
+                    <HelperText style={ModalStyle.modalContentInputHelperText}
+                                type="error" visible={eventError}>
+                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                    </HelperText>)}
+                <TextInput
+                    style={ModalStyle.modalContentInputField}
+                    label={currentLanguage.inputFieldDate}
+                    mode={"outlined"}
+                    value={dateText}
+                    error={dateError}
+                    dense={true}
+                    left={<TextInput.Icon icon="clock-check-outline"
+                                          disabled={true}/>}
+                    onChangeText={input => {
+                      setDateText(input);
+                      validateForm('date');
+                    }}
+                />
+                {dateError && (
+                    <HelperText style={ModalStyle.modalContentInputHelperText}
+                                type="error" visible={dateError}>
+                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                    </HelperText>)}
                 <View style={ModalStyle.modalButtonWrapper}>
                   <TouchableRipple
                       theme={currentTheme}
@@ -69,7 +165,10 @@ export default Header = (props) => {
                       theme={currentTheme}
                       borderless={true}
                       style={ModalStyle.modalContentButton3}
-                      onPress={() => setShowListModal(false)}
+                      onPress={() => {
+                        setShowListModal(false);
+                        resetForm();
+                      }}
                   >
                     <Text style={ModalStyle.modalContentButtonText}>
                       {currentLanguage.buttonCloseText}
@@ -91,8 +190,10 @@ export default Header = (props) => {
               <TouchableRipple theme={currentTheme} borderless={true}
                                onPress={() => setShowListModal(true)}
                                style={HeaderStyle.rightIcon}>
-                <Entypo name={props.modalIconAdd} size={IconSettings.buttonIconSize}
-                        color={currentTheme.colors.secondary}/>
+                <MaterialCommunityIcon name={props.modalIconAdd}
+                                       size={IconSettings.buttonIconSize}
+                                       color={currentTheme.colors.secondary}
+                                       direction={'rtl'}/>
               </TouchableRipple>
           )}
         </View>
