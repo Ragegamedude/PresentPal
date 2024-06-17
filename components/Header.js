@@ -1,14 +1,13 @@
-import {Modal, Text, View} from 'react-native';
+import {Modal, Text, ToastAndroid, View} from 'react-native';
 import React, {useContext, useState} from 'react';
 import {createHeaderStyle} from './HeaderStyle';
 import {IconSettings} from "../constants/IconSettings";
 import {HelperText, TextInput, TouchableRipple} from "react-native-paper";
 import createModalStyle from "./ModalStyle";
-import {AvailableSettingsActions} from "./SettingsSection";
 import {Context} from "../context/Context";
 import MaterialCommunityIcon
   from "react-native-paper/src/components/MaterialCommunityIcon";
-import {InputSettings} from "../constants/InputSettings";
+import {dateRegex, ValidationSettings} from "../constants/ValidationSettings";
 
 export default Header = (props) => {
   const {theme, language, version, personalAds} = useContext(Context);
@@ -40,17 +39,23 @@ export default Header = (props) => {
     setDateError(false);
   }
 
-  const validateForm = (field) => {
-    let error = false;
-    if (field === 'headline') {
-      error = headlineText.length >= InputSettings.inputMax1;
-      setHeadlineError(error);
-    } else if (field === 'description') {
-      setDescriptionError(false);
-    } else if (field === 'event') {
-      setEventError(false);
-    } else if (field === 'date') {
-      setDateError(false);
+  const validateForm = () => {
+    const headlineValidationResult = headlineText.length > 0;
+    const descriptionValidationResult = descriptionText.length > 0;
+    const eventValidationResult = eventText.length > 0;
+    const dateValidationResult = dateRegex.test(dateText);
+    setHeadlineError(!headlineValidationResult);
+    setDescriptionError(!descriptionValidationResult);
+    setEventError(!eventValidationResult);
+    setDateError(!dateValidationResult);
+    return headlineValidationResult && descriptionValidationResult
+        && eventValidationResult && dateValidationResult;
+  }
+
+  const processForm = () => {
+    const validationResult = validateForm();
+    if (validationResult) {
+      ToastAndroid.show(currentLanguage.toastAddList, ToastAndroid.LONG);
     }
   }
 
@@ -76,86 +81,89 @@ export default Header = (props) => {
                 <TextInput
                     style={ModalStyle.modalContentInputField}
                     label={currentLanguage.inputFieldHeadline}
+                    placeholder={currentLanguage.inputFieldHeadlinePlaceholder}
                     mode={"outlined"}
                     value={headlineText}
                     error={headlineError}
                     dense={true}
+                    maxLength={ValidationSettings.inputMaxHeadline}
                     left={<TextInput.Icon icon="view-headline"
                                           disabled={true}/>}
                     onChangeText={input => {
                       setHeadlineText(input);
-                      validateForm('headline');
                     }}
                 />
                 {headlineError && (
                     <HelperText style={ModalStyle.modalContentInputHelperText}
                                 type="error" visible={headlineError}>
-                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                      {currentLanguage.inputFieldErrorMandatory}
                     </HelperText>)}
                 <TextInput
                     style={ModalStyle.modalContentInputField}
                     label={currentLanguage.inputFieldDescription}
+                    placeholder={currentLanguage.inputFieldDescriptionPlaceholder}
                     mode={"outlined"}
                     value={descriptionText}
                     error={descriptionError}
                     dense={true}
+                    maxLength={ValidationSettings.inputMaxDescription}
                     left={<TextInput.Icon icon="card-text-outline"
                                           disabled={true}/>}
                     onChangeText={input => {
                       setDescriptionText(input);
-                      validateForm('description');
                     }}
                 />
                 {descriptionError && (
                     <HelperText style={ModalStyle.modalContentInputHelperText}
                                 type="error" visible={descriptionError}>
-                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                      {currentLanguage.inputFieldErrorMandatory}
                     </HelperText>)}
                 <TextInput
                     style={ModalStyle.modalContentInputField}
                     label={currentLanguage.inputFieldEvent}
+                    placeholder={currentLanguage.inputFieldEventPlaceholder}
                     mode={"outlined"}
                     value={eventText}
                     error={eventError}
                     dense={true}
+                    maxLength={ValidationSettings.inputMaxEvent}
                     left={<TextInput.Icon icon="crosshairs-gps"
                                           disabled={true}/>}
                     onChangeText={input => {
                       setEventText(input);
-                      validateForm('event');
                     }}
                 />
                 {eventError && (
                     <HelperText style={ModalStyle.modalContentInputHelperText}
                                 type="error" visible={eventError}>
-                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                      {currentLanguage.inputFieldErrorMandatory}
                     </HelperText>)}
                 <TextInput
                     style={ModalStyle.modalContentInputField}
                     label={currentLanguage.inputFieldDate}
+                    placeholder={currentLanguage.inputFieldDatePlaceholder}
                     mode={"outlined"}
                     value={dateText}
                     error={dateError}
                     dense={true}
+                    maxLength={ValidationSettings.inputMaxDate}
                     left={<TextInput.Icon icon="clock-check-outline"
                                           disabled={true}/>}
                     onChangeText={input => {
                       setDateText(input);
-                      validateForm('date');
                     }}
                 />
                 {dateError && (
                     <HelperText style={ModalStyle.modalContentInputHelperText}
                                 type="error" visible={dateError}>
-                      {currentLanguage.inputFieldErrorMax}{InputSettings.inputMax1}
+                      {currentLanguage.inputFieldDateError}
                     </HelperText>)}
                 <View style={ModalStyle.modalButtonWrapper}>
                   <TouchableRipple
                       theme={currentTheme}
                       borderless={true}
                       style={ModalStyle.modalContentButton2}
-                      onPress={() => executeAction(
-                          AvailableSettingsActions.OPEN_HOMEPAGE)}
+                      onPress={() => processForm()}
                   >
                     <Text style={ModalStyle.modalContentButtonText}>
                       {currentLanguage.listsAdd}
