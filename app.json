@@ -1,11 +1,10 @@
 {
-  "expo": {
     "name": "Present Pal Premium",
     "slug": "PresentPalPremium",
     "platforms": [
       "android"
     ],
-    "version": "1.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon_premium.png",
     "userInterfaceStyle": "light",
@@ -24,7 +23,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.argames15.presentpalpremium",
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "com.argames15.presentpalpremium",
@@ -42,7 +41,6 @@
       "eas": {
         "projectId": "47778c81-3109-4352-8027-2e7c3bb0a83e"
       }
-    }
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-9694787014775307~4065245853"

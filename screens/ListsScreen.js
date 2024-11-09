@@ -5,7 +5,6 @@ import {createListsScreenStyle} from './ListsScreenStyle';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
-import List from '../components/List';
 import {PaperProvider} from "react-native-paper";
 import {useFocusEffect} from "@react-navigation/native";
 import {GIFT_STATUS} from "../constants/GiftsEnums";
@@ -124,17 +123,12 @@ export default ListsScreen = ({navigation, props}) => {
 
   const ListsScreenStyle = createListsScreenStyle(currentTheme);
 
-  const toggleFabOpen = () => setFabOpen(!fabOpen);
   return (
       <PaperProvider theme={currentTheme}>
         <View style={ListsScreenStyle.lists}>
-          <Header screen={'lists'} title={currentLanguage.listsScreenTitle} modalIconAdd={'card-plus-outline'}></Header>
+          <Header screen={'lists'} title={currentLanguage.listsScreenTitle}
+                  modalIconAdd={'card-plus-outline'}></Header>
           <ScrollView>
-            <List data={testData.lists[0]} lastElement={false}></List>
-            <List data={testData.lists[1]} lastElement={false}></List>
-            <List data={testData.lists[2]} lastElement={false}></List>
-            <List data={testData.lists[3]} lastElement={false}></List>
-            <List data={testData.lists[4]} lastElement={true}></List>
           </ScrollView>
           {currentVersion === AppVersions.LIGHT && (
               <BannerAd
