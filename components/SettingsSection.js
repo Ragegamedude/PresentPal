@@ -348,6 +348,7 @@ export default SettingsSection = (props) => {
 								<CountryFlag
 									isoCode={TranslationManager.getCurrentLanguageAsIsoString(currentLanguage)}
 									size={IconSettings.settingsFlagSize}
+									style={ModalStyle.modalInputButtonIcon}
 								/>
 							</View>
 						)}

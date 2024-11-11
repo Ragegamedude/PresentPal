@@ -1,6 +1,7 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {StyleSettings} from "../constants/StyleSettings";
 import {TextSettings} from "../constants/TextSettings";
+import {IconSettings} from "../constants/IconSettings";
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -49,7 +50,7 @@ export default createModalStyle = (currentTheme) =>
         marginTop: StyleSettings.defaultPadding,
         fontSize: TextSettings.textDefaultSize,
         fontFamily: TextSettings.defaultFontMedium,
-        color: currentTheme.colors.primary
+        color: currentTheme.colors.secondary
       },
       modalContentText: {
         marginHorizontal: StyleSettings.defaultMargin,
@@ -128,7 +129,8 @@ export default createModalStyle = (currentTheme) =>
         elevation: StyleSettings.defaultElevation
       },
       modalInputButtonIcon: {
-        marginHorizontal: StyleSettings.defaultMargin
+        marginHorizontal: IconSettings.countryFlagMargin ,
+        borderRadius: IconSettings.countryFlagBorderRadius
       },
       modalInputField: {
         flexDirection: 'row',

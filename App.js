@@ -27,7 +27,7 @@ import {StorageKeys} from './constants/StorageKeys';
 
 export default function App() {
   //Select version of app. Light = with Ads, Premium = no ads and more functions
-  const [currentVersion, setCurrentVersion] = useState(AppVersions.LIGHT);
+  const [currentVersion, setCurrentVersion] = useState(AppVersions.PREMIUM);
   const [currentTheme, setCurrentTheme] = useState(
       Theme.selectTheme(AvailableThemes.LIGHT));
   const [currentLanguage, setCurrentLanguage] = useState(

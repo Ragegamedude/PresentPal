@@ -11,4 +11,6 @@ export const IconSettings = {
   modalHeadlineIconSize: 32,
   introductionIconSize: 200,
   listsAvatarSize: 64,
+  countryFlagBorderRadius: 3,
+  countryFlagMargin: 8
 };

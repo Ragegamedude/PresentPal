@@ -35,7 +35,7 @@
     "react-native": "0.74.5",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-async-storage": "^0.0.1",
-    "react-native-country-flag": "^1.1.9",
+    "react-native-country-flag": "^1.2.1",
     "react-native-google-mobile-ads": "^14.2.5",
     "react-native-paper": "^5.12.3",
     "react-native-paper-dates": "^0.22.11",

@@ -52,7 +52,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
         marginHorizontal: StyleSettings.defaultMargin
       },
       settingsHeadline: {
-        color: currentTheme.colors.primary,
+        color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontBold,
         fontSize: TextSettings.textDefaultSize
       },
