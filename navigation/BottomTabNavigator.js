@@ -22,6 +22,7 @@ export default BottomTabNavigator = () => {
 
   return (
       <Tab.Navigator
+          initialRouteName={"Home"}
           screenOptions={{
             headerShown: false,
           }}

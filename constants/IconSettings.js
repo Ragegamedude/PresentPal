@@ -10,6 +10,7 @@ export const IconSettings = {
   converterSectionIconSize: 32,
   modalHeadlineIconSize: 32,
   introductionIconSize: 200,
+  introductionMiniIconSize: 32,
   listsAvatarSize: 64,
   countryFlagBorderRadius: 3,
   countryFlagMargin: 8

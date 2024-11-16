@@ -1,6 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import {NavigationContainer} from '@react-navigation/native';
-import {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useFonts} from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'expo-dev-client';
@@ -24,6 +24,7 @@ import {IconSettings} from './constants/IconSettings';
 import CountryFlag from 'react-native-country-flag';
 import {TouchableRipple} from 'react-native-paper';
 import {StorageKeys} from './constants/StorageKeys';
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function App() {
   //Select version of app. Light = with Ads, Premium = no ads and more functions
@@ -118,42 +119,16 @@ export default function App() {
       introduction: currentLanguage.introductionIntroduction,
       title: currentLanguage.introductionSlideHeadline1,
       iconName: 'refresh',
-      description: currentLanguage.introductionSlideDescription1
+      description: currentLanguage.introductionSlideDescription1,
+      languageDescription: currentLanguage.introductionChangeLanguageDescription,
     },
     {
       key: 's2',
       introduction: currentLanguage.introductionIntroduction,
       title: currentLanguage.introductionSlideHeadline2,
       iconName: 'organization',
-      description: currentLanguage.introductionSlideDescription2
-    },
-    {
-      key: 's3',
-      introduction: currentLanguage.introductionIntroduction,
-      title: currentLanguage.introductionSlideHeadline3,
-      iconName: 'vector',
-      description: currentLanguage.introductionSlideDescription3
-    },
-    {
-      key: 's4',
-      introduction: currentLanguage.introductionIntroduction,
-      title: currentLanguage.introductionSlideHeadline4,
-      iconName: 'lock',
-      description: currentLanguage.introductionSlideDescription4
-    },
-    {
-      key: 's5',
-      introduction: currentLanguage.introductionIntroduction,
-      title: currentLanguage.introductionSlideHeadline5,
-      iconName: 'speech',
-      description: currentLanguage.introductionSlideDescription5
-    },
-    {
-      key: 's6',
-      introduction: currentLanguage.introductionIntroduction,
-      title: currentLanguage.introductionSlideHeadline6,
-      iconName: 'rocket',
-      description: currentLanguage.introductionSlideDescription6
+      description: currentLanguage.introductionSlideDescription2,
+      languageDescription: currentLanguage.introductionChangeLanguageDescription,
     }
   ];
 
@@ -166,6 +141,10 @@ export default function App() {
               translucent={false}
           />
           <View style={AppStyle.introductionWrapper}>
+            <View style={AppStyle.introductionLanguageDescriptionWrapper}>
+              <Text
+                  style={AppStyle.introductionLanguageDescriptionText}>{item.languageDescription}</Text>
+            </View>
             <View style={AppStyle.introductionLanguageWrapper}>
               <TouchableRipple
                   theme={currentTheme}
@@ -257,7 +236,13 @@ export default function App() {
 
   const RenderNextButton = () => {
     return (
-        <View>
+        <View style={AppStyle.introductionButton}>
+          <AntDesign
+              style={AppStyle.converterSectionModalHeaderIcon}
+              name={"rightcircleo"}
+              color={currentTheme.colors.secondary}
+              size={IconSettings.introductionMiniIconSize}
+          ></AntDesign>
           <Text
               style={AppStyle.introductionText}>{currentLanguage.introductionNext}</Text>
         </View>
@@ -266,7 +251,13 @@ export default function App() {
 
   const RenderFinishButton = () => {
     return (
-        <View>
+        <View style={AppStyle.introductionButton}>
+          <AntDesign
+              style={AppStyle.converterSectionModalHeaderIcon}
+              name={"checkcircleo"}
+              color={currentTheme.colors.secondary}
+              size={IconSettings.introductionMiniIconSize}
+          ></AntDesign>
           <Text
               style={AppStyle.introductionText}>{currentLanguage.introductionDone}</Text>
         </View>
@@ -275,7 +266,13 @@ export default function App() {
 
   const RenderSkipButton = () => {
     return (
-        <View>
+        <View style={AppStyle.introductionButton}>
+          <AntDesign
+              style={AppStyle.converterSectionModalHeaderIcon}
+              name={"closecircleo"}
+              color={currentTheme.colors.secondary}
+              size={IconSettings.introductionMiniIconSize}
+          ></AntDesign>
           <Text
               style={AppStyle.introductionText}>{currentLanguage.introductionSkip}</Text>
         </View>
@@ -324,6 +321,7 @@ export default function App() {
             renderDoneButton={RenderFinishButton}
             renderNextButton={RenderNextButton}
             renderSkipButton={RenderSkipButton}
+            dotClickEnabled={false}
             activeDotStyle={AppStyle.activeDotStyle}
             dotStyle={AppStyle.inactiveDotStyle}
         />

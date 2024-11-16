@@ -129,7 +129,7 @@ export default createModalStyle = (currentTheme) =>
         elevation: StyleSettings.defaultElevation
       },
       modalInputButtonIcon: {
-        marginHorizontal: IconSettings.countryFlagMargin ,
+        marginHorizontal: IconSettings.countryFlagMargin,
         borderRadius: IconSettings.countryFlagBorderRadius
       },
       modalInputField: {
@@ -154,5 +154,8 @@ export default createModalStyle = (currentTheme) =>
         fontSize: TextSettings.textDefaultSize,
         fontFamily: TextSettings.defaultFontLight,
         color: currentTheme.colors.secondary
+      },
+      settingsSectionLanguageWrapper: {
+        marginTop: StyleSettings.defaultMargin / 2,
       }
     });

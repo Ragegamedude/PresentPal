@@ -10,9 +10,22 @@ export default createAppStyle = (currentTheme) =>
         height: '100%',
         backgroundColor: currentTheme.colors.background
       },
-      introductionLanguageWrapper: {
+      introductionLanguageDescriptionWrapper: {
         marginHorizontal: StyleSettings.defaultMargin,
         marginTop: StyleSettings.defaultMargin * 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
+      },
+      introductionLanguageDescriptionText: {
+        color: currentTheme.colors.secondary,
+        fontFamily: TextSettings.defaultFontRegular,
+        fontSize: TextSettings.textBigSize,
+        textAlign: "center"
+      },
+      introductionLanguageWrapper: {
+        marginHorizontal: StyleSettings.defaultMargin,
+        marginTop: StyleSettings.defaultMargin,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row'
@@ -22,7 +35,7 @@ export default createAppStyle = (currentTheme) =>
       },
       introductionHeadlineWrapper: {
         marginHorizontal: StyleSettings.defaultMargin,
-        marginTop: StyleSettings.defaultMargin * 2,
+        marginTop: StyleSettings.defaultMargin * 3,
         alignItems: 'center'
       },
       introductionHeadline: {
@@ -36,8 +49,8 @@ export default createAppStyle = (currentTheme) =>
         fontSize: TextSettings.textBigSize
       },
       introductionContentWrapper: {
-        height: '60%',
         marginHorizontal: StyleSettings.defaultMargin,
+        marginVertical: 60,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -46,7 +59,6 @@ export default createAppStyle = (currentTheme) =>
       },
       introductionDescriptionWrapper: {
         marginHorizontal: StyleSettings.defaultMargin,
-        marginBottom: 100,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -59,12 +71,17 @@ export default createAppStyle = (currentTheme) =>
       introductionText: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontRegular,
-        fontSize: TextSettings.textDefaultSize
+        fontSize: TextSettings.textSmallestSize,
+        marginTop: 2,
       },
       activeDotStyle: {
         backgroundColor: currentTheme.colors.secondary
       },
       inactiveDotStyle: {
         backgroundColor: currentTheme.colors.primary
+      },
+      introductionButton:{
+        justifyContent: "center",
+        alignItems: "center"
       }
     });
