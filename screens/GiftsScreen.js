@@ -5,32 +5,36 @@ import {createGiftsScreenStyle} from './GiftsScreenStyle';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
+import GiftsInformation from "../components/GiftsInformation";
 
 export default GiftsScreen = ({navigation, props}) => {
-    const {theme, language, version, personalAds} = useContext(Context);
-    const [currentTheme, setCurrentTheme] = theme;
-    const [currentLanguage, setCurrentLanguage] = language;
-    const [currentVersion, setCurrentVersion] = version;
-    const [showPersonalAds, setShowPersonalAds] = personalAds;
+  const {theme, language, version, personalAds} = useContext(Context);
+  const [currentTheme, setCurrentTheme] = theme;
+  const [currentLanguage, setCurrentLanguage] = language;
+  const [currentVersion, setCurrentVersion] = version;
+  const [showPersonalAds, setShowPersonalAds] = personalAds;
 
-    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9694787014775307/4284015587';
+  const adUnitId = __DEV__ ? TestIds.BANNER
+      : 'ca-app-pub-9694787014775307/4284015587';
 
-    const GiftsScreenStyle = createGiftsScreenStyle(currentTheme);
+  const GiftsScreenStyle = createGiftsScreenStyle(currentTheme);
 
-    return (
-        <View style={GiftsScreenStyle.gifts}>
-            <Header screen={'gifts'} title={currentLanguage.giftsScreenTitle} currentTheme={currentTheme}></Header>
-            <ScrollView style={GiftsScreenStyle.giftsWrapper}>
-            </ScrollView>
-            {currentVersion === AppVersions.LIGHT && (
-                <BannerAd
-                    unitId={adUnitId}
-                    size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-                    requestOptions={{
-                        requestNonPersonalizedAdsOnly: showPersonalAds
-                    }}
-                ></BannerAd>
-            )}
-        </View>
-    );
+  return (
+      <View style={GiftsScreenStyle.gifts}>
+        <Header screen={'gifts'} title={currentLanguage.giftsScreenTitle}
+                currentTheme={currentTheme}></Header>
+        <ScrollView style={GiftsScreenStyle.giftsWrapper}>
+        </ScrollView>
+        <GiftsInformation></GiftsInformation>
+        {currentVersion === AppVersions.LIGHT && (
+            <BannerAd
+                unitId={adUnitId}
+                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                requestOptions={{
+                  requestNonPersonalizedAdsOnly: showPersonalAds
+                }}
+            ></BannerAd>
+        )}
+      </View>
+  );
 };
