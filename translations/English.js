@@ -25,6 +25,7 @@ export const English = {
   languageSpanish: 'Spanish',
   languagePortuguese: 'Portuguese',
   languageFrench: 'French',
+  loading: 'Loading',
   homeScreenTitle: 'Home',
   listsScreenTitle: 'Lists',
   listsAddList: 'Add list',
@@ -32,6 +33,9 @@ export const English = {
   listGiftAmount: 'Gifts: ',
   listGiftTotal: ' Total: ',
   giftsScreenTitle: 'Gifts',
+  giftsInformationHeadline: 'Information',
+  giftsInformationText: 'Welcome to the best gift ideas for every occasion!'
+      + ' If you can’t find a gift in our categories, try our Gift Finder.',
   settingsScreenTitle: 'Settings',
   settingsLanguageHeadline: 'Language',
   settingsLanguageDescription: 'Change the app language',

@@ -87,10 +87,9 @@ export const createListStyle = (currentTheme) =>
         justifyContent: 'center',
       },
       function: {
-        backgroundColor: currentTheme.colors.background,
         borderRadius: StyleSettings.defaultBorderRadius,
         padding: StyleSettings.defaultPadding,
-        marginHorizontal: StyleSettings.defaultMargin,
+        marginHorizontal: StyleSettings.defaultPadding,
         marginVertical: StyleSettings.defaultPadding,
       }
 

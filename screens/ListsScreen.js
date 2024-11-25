@@ -1,5 +1,5 @@
 import {ScrollView, View} from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Context} from '../context/Context';
 import {createListsScreenStyle} from './ListsScreenStyle';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
@@ -7,8 +7,8 @@ import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
 import List from '../components/List';
 import {PaperProvider} from "react-native-paper";
-import {useFocusEffect} from "@react-navigation/native";
 import {GIFT_STATUS} from "../constants/GiftsEnums";
+import LoadingContent from "../components/LoadingContent";
 
 export default ListsScreen = ({navigation, props}) => {
   const {theme, language, version, personalAds} = useContext(Context);
@@ -16,17 +16,8 @@ export default ListsScreen = ({navigation, props}) => {
   const [currentLanguage, setCurrentLanguage] = language;
   const [currentVersion, setCurrentVersion] = version;
   const [showPersonalAds, setShowPersonalAds] = personalAds;
-  const [fabOpen, setFabOpen] = useState(false);
 
-  useFocusEffect(
-      React.useCallback(() => {
-        // Do something when the screen is focused
-        return () => {
-          //Close the fab if change screen
-          setFabOpen(false)
-        };
-      }, [])
-  );
+  const loading = false;
 
   const testData = {
     lists: [
@@ -129,13 +120,18 @@ export default ListsScreen = ({navigation, props}) => {
         <View style={ListsScreenStyle.lists}>
           <Header screen={'lists'} title={currentLanguage.listsScreenTitle}
                   modalIconAdd={'card-plus-outline'}></Header>
-          <ScrollView>
-            <List data={testData.lists[0]} lastElement={false}></List>
-            <List data={testData.lists[1]} lastElement={false}></List>
-            <List data={testData.lists[2]} lastElement={false}></List>
-            <List data={testData.lists[3]} lastElement={false}></List>
-            <List data={testData.lists[4]} lastElement={true}></List>
-          </ScrollView>
+          {loading && (
+              <LoadingContent loading={loading}></LoadingContent>
+          )}
+          {!loading && (
+              <ScrollView>
+                <List data={testData.lists[0]} lastElement={false}></List>
+                <List data={testData.lists[1]} lastElement={false}></List>
+                <List data={testData.lists[2]} lastElement={false}></List>
+                <List data={testData.lists[3]} lastElement={false}></List>
+                <List data={testData.lists[4]} lastElement={true}></List>
+              </ScrollView>
+          )}
           {currentVersion === AppVersions.LIGHT && (
               <BannerAd
                   unitId={adUnitId}

@@ -5,7 +5,8 @@ import {createGiftsScreenStyle} from './GiftsScreenStyle';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
-import GiftsInformation from "../components/GiftsInformation";
+import GiftsInformation from "../components/Information";
+import Information from "../components/Information";
 
 export default GiftsScreen = ({navigation, props}) => {
   const {theme, language, version, personalAds} = useContext(Context);
@@ -24,8 +25,8 @@ export default GiftsScreen = ({navigation, props}) => {
         <Header screen={'gifts'} title={currentLanguage.giftsScreenTitle}
                 currentTheme={currentTheme}></Header>
         <ScrollView style={GiftsScreenStyle.giftsWrapper}>
+          <Information headline={currentLanguage.giftsInformationHeadline} text={currentLanguage.giftsInformationText}></Information>
         </ScrollView>
-        <GiftsInformation></GiftsInformation>
         {currentVersion === AppVersions.LIGHT && (
             <BannerAd
                 unitId={adUnitId}
