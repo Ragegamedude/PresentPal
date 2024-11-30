@@ -12,10 +12,10 @@ import LoadingContent from "../components/LoadingContent";
 
 export default ListsScreen = ({navigation, props}) => {
   const {theme, language, version, personalAds} = useContext(Context);
-  const [currentTheme, setCurrentTheme] = theme;
-  const [currentLanguage, setCurrentLanguage] = language;
-  const [currentVersion, setCurrentVersion] = version;
-  const [showPersonalAds, setShowPersonalAds] = personalAds;
+  const [currentTheme] = theme;
+  const [currentLanguage] = language;
+  const [currentVersion] = version;
+  const [showPersonalAds] = personalAds;
 
   const loading = false;
 

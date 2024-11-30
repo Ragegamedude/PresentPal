@@ -36,6 +36,12 @@ export const English = {
   giftsInformationHeadline: 'Information',
   giftsInformationText: 'Welcome to the best gift ideas for every occasion!'
       + ' If you can’t find a gift in our categories, try our Gift Finder.',
+  giftsChip1: 'Category 1',
+  giftsChip2: 'Category 2',
+  giftsChip3: 'Category 3',
+  giftsChip4: 'Category 4',
+  giftsChip5: 'Category 5',
+  giftsChip6: 'Category 6',
   settingsScreenTitle: 'Settings',
   settingsLanguageHeadline: 'Language',
   settingsLanguageDescription: 'Change the app language',

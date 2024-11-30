@@ -10,7 +10,7 @@ export const createInformationStyle = (currentTheme) =>
         marginHorizontal: StyleSettings.defaultPadding,
         borderRadius: StyleSettings.defaultBorderRadius,
         elevation: StyleSettings.defaultElevation,
-        marginBottom: StyleSettings.defaultMargin
+        marginTop: StyleSettings.defaultPadding
       },
       informationImageWrapper: {
         justifyContent: 'center',
@@ -29,9 +29,9 @@ export const createInformationStyle = (currentTheme) =>
         marginVertical: StyleSettings.defaultMargin,
       },
       informationHeadline: {
-        color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontBold,
-        fontSize: TextSettings.textSmallSize
+        fontSize: TextSettings.textDefaultSize,
+        color: currentTheme.colors.primary
       },
       informationText: {
         color: currentTheme.colors.secondary,

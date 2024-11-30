@@ -75,10 +75,10 @@ export default createAppStyle = (currentTheme) =>
         marginTop: 2,
       },
       activeDotStyle: {
-        backgroundColor: currentTheme.colors.secondary
+        backgroundColor: currentTheme.colors.primary
       },
       inactiveDotStyle: {
-        backgroundColor: currentTheme.colors.primary
+        backgroundColor: currentTheme.colors.secondary
       },
       introductionButton:{
         justifyContent: "center",

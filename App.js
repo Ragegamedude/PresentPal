@@ -36,6 +36,7 @@ export default function App() {
   );
   const [showPersonalAds, setShowPersonalAds] = useState(true);
   const [showIntroduction, setShowIntroduction] = useState(true);
+  const [hiddenGiftInformation, setHiddenGiftInformation] = useState(false)
 
   const splashScreenDuration = 2000; //ms
 
@@ -101,6 +102,14 @@ export default function App() {
         (storedValue) => {
           if (storedValue != null) {
             setShowPersonalAds(JSON.parse(storedValue));
+          }
+        });
+
+    AsyncStorage.getItem(StorageKeys.GIFT_INFORMATION_HIDDEN_KEY).then(
+        (storedValue) => {
+          console.log(storedValue)
+          if (storedValue != null) {
+            setHiddenGiftInformation(JSON.parse(storedValue));
           }
         });
   });
@@ -334,7 +343,9 @@ export default function App() {
               language: [currentLanguage, setCurrentLanguage],
               version: [currentVersion, setCurrentVersion],
               personalAds: [showPersonalAds, setShowPersonalAds],
-              introduction: [showIntroduction, setShowIntroduction]
+              introduction: [showIntroduction, setShowIntroduction],
+              hiddenGiftInformationValue: [hiddenGiftInformation,
+                setHiddenGiftInformation]
             }}
         >
           <NavigationContainer>

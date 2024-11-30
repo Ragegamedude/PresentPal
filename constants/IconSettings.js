@@ -10,6 +10,7 @@ export const IconSettings = {
   listIconSize: 16,
   listsAvatarSize: 64,
   giftsInformationSize: 64,
+  giftsChipSize: 38,
   modalHeadlineIconSize: 32,
   settingsFlagSize: 20,
   settingsSectionIconSize: 32,

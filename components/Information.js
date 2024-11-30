@@ -7,12 +7,18 @@ import {Themes} from "../themes/Themes";
 import {Image} from 'expo-image';
 import {IconSettings} from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default Information = (props) => {
-  const {theme, language} = useContext(Context);
-  const [currentTheme, setCurrentTheme] = theme;
+  const {theme} = useContext(Context);
+  const [currentTheme] = theme;
 
   const InformationStyle = createInformationStyle(currentTheme)
+
+  const hideInformation = () => {
+    AsyncStorage.setItem(props.informationKey, JSON.stringify(true)).then(
+        props.hide(true))
+  }
 
   return (
       <View style={InformationStyle.informationWrapper}>
@@ -32,7 +38,7 @@ export default Information = (props) => {
         </View>
         <View style={InformationStyle.informationIconWrapper}>
           <TouchableRipple borderless={true} style={InformationStyle.function}
-                           onPress={() => console.log()}>
+                           onPress={() => hideInformation()}>
             <MaterialIcons
                 name={"close"}
                 size={IconSettings.buttonIconSize}
