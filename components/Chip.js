@@ -4,6 +4,7 @@ import {Image} from "expo-image";
 import {Context} from "../context/Context";
 import {useContext} from "react";
 import {View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 
 export default Chip = (props) => {
 
@@ -11,12 +12,13 @@ export default Chip = (props) => {
   const [currentTheme] = theme;
 
   const ChipStyle = createChipStyle(currentTheme)
+  const Navigation = useNavigation()
 
   return (
       <TouchableRipple
           theme={currentTheme}
           borderless={true}
-          onPress={() => console.log("Test")}
+          onPress={props.action}
           style={ChipStyle.chipWrapper}>
         <View style={ChipStyle.chip}>
           <Image

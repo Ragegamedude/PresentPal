@@ -25,9 +25,7 @@ export default Information = (props) => {
         <View style={InformationStyle.informationImageWrapper}>
           <Image
               style={InformationStyle.informationImage}
-              source={currentTheme === Themes.light ? require(
-                  '../assets/images/light/info.png') : require(
-                  '../assets/images/dark/info.png')}
+              source={require('../assets/images/information.png')}
           />
         </View>
         <View style={InformationStyle.informationTextWrapper}>

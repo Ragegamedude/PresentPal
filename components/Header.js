@@ -14,6 +14,8 @@ import {
   Validation
 } from "../validation/Validation";
 import * as SQLite from "expo-sqlite";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import {useNavigation} from "@react-navigation/native";
 
 export default Header = (props) => {
   const {theme, language, version, personalAds} = useContext(Context);
@@ -34,6 +36,8 @@ export default Header = (props) => {
   const HeaderStyle = createHeaderStyle(currentTheme);
   const ModalStyle = createModalStyle(currentTheme);
   const database = SQLite.openDatabaseAsync("lists.db");
+
+  const navigation = useNavigation()
 
   const resetForm = () => {
     setHeadlineText('');
@@ -225,7 +229,19 @@ export default Header = (props) => {
           </View>
         </Modal>
         <View style={HeaderStyle.leftContainer}>
-          <View style={HeaderStyle.leftIcon}></View>
+          <View style={HeaderStyle.leftIcon}>
+            {props.screen === 'category' && (
+                <TouchableRipple theme={currentTheme} borderless={true}
+                                 onPress={() => navigation.goBack()}
+                                 style={HeaderStyle.leftIcon}>
+                  <Ionicons name={'arrow-back'}
+                            size={IconSettings.buttonIconSize}
+                            color={currentTheme.colors.secondary}>
+
+                  </Ionicons>
+                </TouchableRipple>
+            )}
+          </View>
         </View>
         <View style={HeaderStyle.centerContainer}>
           <Text style={HeaderStyle.centerText}>{props.title}</Text>

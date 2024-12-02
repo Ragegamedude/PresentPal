@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Context } from '../context/Context';
 import ConverterScreen from '../screens/ListsScreen';
 import { TextSettings } from '../constants/TextSettings';
+import {Screens} from "../constants/Screens";
 
 export default ListsNavigator = ({ navigation }) => {
 	const { theme, language, version } = useContext(Context);
@@ -15,7 +16,7 @@ export default ListsNavigator = ({ navigation }) => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name={'ListsScreen'}
+				name={Screens.LISTS}
 				component={ListsScreen}
 				options={{
 					title: currentLanguage.listsScreenTitle,

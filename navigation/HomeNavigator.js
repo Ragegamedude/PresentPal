@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Context } from '../context/Context';
 import HomeScreen from '../screens/HomeScreen';
 import { TextSettings } from '../constants/TextSettings';
+import {Screens} from "../constants/Screens";
 
 export default HomeNavigator = ({ navigation }) => {
 	const { theme, language, version } = useContext(Context);
@@ -15,7 +16,7 @@ export default HomeNavigator = ({ navigation }) => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name={'HomeScreen'}
+				name={Screens.HOME}
 				component={HomeScreen}
 				options={{
 					title: currentLanguage.homeScreenTitle,

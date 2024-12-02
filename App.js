@@ -107,7 +107,6 @@ export default function App() {
 
     AsyncStorage.getItem(StorageKeys.GIFT_INFORMATION_HIDDEN_KEY).then(
         (storedValue) => {
-          console.log(storedValue)
           if (storedValue != null) {
             setHiddenGiftInformation(JSON.parse(storedValue));
           }

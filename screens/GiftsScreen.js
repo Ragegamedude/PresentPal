@@ -8,7 +8,7 @@ import Header from '../components/Header';
 import Information from "../components/Information";
 import {StorageKeys} from "../constants/StorageKeys";
 import Chip from "../components/Chip";
-import {TouchableRipple} from "react-native-paper";
+import {Categories} from "../constants/Categories";
 
 export default GiftsScreen = ({navigation, props}) => {
   const {
@@ -27,6 +27,12 @@ export default GiftsScreen = ({navigation, props}) => {
   const adUnitId = __DEV__ ? TestIds.BANNER
       : 'ca-app-pub-9694787014775307/4284015587';
 
+  const openGiftCategory = (category, title) => {
+    navigation.navigate("CategoryScreen",{
+      title,
+    })
+  }
+
   const GiftsScreenStyle = createGiftsScreenStyle(currentTheme);
   return (
       <View style={GiftsScreenStyle.gifts}>
@@ -41,12 +47,23 @@ export default GiftsScreen = ({navigation, props}) => {
           ></Information>)}
           <View style={GiftsScreenStyle.chipWrapper}>
             <View style={GiftsScreenStyle.chips1}>
-                <Chip image={require('../assets/avatars/1.png')} text={currentLanguage.giftsChip1}></Chip>
-                <Chip image={require('../assets/avatars/3.png')} text={currentLanguage.giftsChip3}></Chip>
+              <Chip image={require('../assets/categories/birthday.png')}
+                    text={currentLanguage.giftsCategoryBirthday}
+                    action={() => openGiftCategory(Categories.BIRTHDAY,currentLanguage.giftsCategoryBirthday)}></Chip>
+              <Chip image={require('../assets/categories/valentine.png')}
+                    text={currentLanguage.giftsCategoryValentine}
+                    action={() => openGiftCategory(
+                        Categories.VALENTINE)}></Chip>
             </View>
             <View style={GiftsScreenStyle.chips2}>
-              <Chip image={require('../assets/avatars/1.png')} text={currentLanguage.giftsChip2}></Chip>
-              <Chip image={require('../assets/avatars/2.png')} text={currentLanguage.giftsChip4}></Chip>
+              <Chip image={require('../assets/categories/christmas.png')}
+                    text={currentLanguage.giftsCategoryChristmas}
+                    action={() => openGiftCategory(
+                        Categories.CHRISTMAS)}></Chip>
+              <Chip image={require('../assets/categories/wedding.png')}
+                    text={currentLanguage.giftsCategoryWedding}
+                    action={() => openGiftCategory(
+                        Categories.WEDDING)}></Chip>
             </View>
           </View>
           <View style={GiftsScreenStyle.chipWrapper}>

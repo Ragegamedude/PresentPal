@@ -16,8 +16,8 @@ export const createChipStyle = (currentTheme) => StyleSheet.create({
     alignItems: 'center',
   },
   chipImage: {
-    marginVertical: StyleSettings.defaultPadding,
-    marginLeft: StyleSettings.defaultPadding,
+    marginVertical: StyleSettings.defaultMargin,
+    marginLeft: StyleSettings.defaultMargin,
     width: IconSettings.giftsChipSize,
     height: IconSettings.giftsChipSize
   },
