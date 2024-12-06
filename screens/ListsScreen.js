@@ -124,7 +124,7 @@ export default ListsScreen = ({navigation, props}) => {
               <LoadingContent loading={loading}></LoadingContent>
           )}
           {!loading && (
-              <ScrollView>
+              <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
                 <List data={testData.lists[0]} lastElement={false}></List>
                 <List data={testData.lists[1]} lastElement={false}></List>
                 <List data={testData.lists[2]} lastElement={false}></List>
