@@ -28,7 +28,7 @@ export default GiftsScreen = ({navigation, props}) => {
       : 'ca-app-pub-9694787014775307/4284015587';
 
   const openGiftCategory = (category, title) => {
-    navigation.navigate("CategoryScreen",{
+    navigation.navigate("CategoryScreen", {
       title,
     })
   }
@@ -49,21 +49,25 @@ export default GiftsScreen = ({navigation, props}) => {
             <View style={GiftsScreenStyle.chips1}>
               <Chip image={require('../assets/categories/birthday.png')}
                     text={currentLanguage.giftsCategoryBirthday}
-                    action={() => openGiftCategory(Categories.BIRTHDAY,currentLanguage.giftsCategoryBirthday)}></Chip>
+                    action={() => openGiftCategory(Categories.BIRTHDAY,
+                        currentLanguage.giftsCategoryBirthday)}></Chip>
               <Chip image={require('../assets/categories/valentine.png')}
                     text={currentLanguage.giftsCategoryValentine}
                     action={() => openGiftCategory(
-                        Categories.VALENTINE)}></Chip>
+                        Categories.VALENTINE,
+                        currentLanguage.giftsCategoryValentine)}></Chip>
             </View>
             <View style={GiftsScreenStyle.chips2}>
               <Chip image={require('../assets/categories/christmas.png')}
                     text={currentLanguage.giftsCategoryChristmas}
                     action={() => openGiftCategory(
-                        Categories.CHRISTMAS)}></Chip>
+                        Categories.CHRISTMAS,
+                        currentLanguage.giftsCategoryChristmas)}></Chip>
               <Chip image={require('../assets/categories/wedding.png')}
                     text={currentLanguage.giftsCategoryWedding}
                     action={() => openGiftCategory(
-                        Categories.WEDDING)}></Chip>
+                        Categories.WEDDING,
+                        currentLanguage.giftsCategoryWedding)}></Chip>
             </View>
           </View>
           <View style={GiftsScreenStyle.chipWrapper}>

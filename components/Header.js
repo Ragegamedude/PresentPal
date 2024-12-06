@@ -229,19 +229,17 @@ export default Header = (props) => {
           </View>
         </Modal>
         <View style={HeaderStyle.leftContainer}>
-          <View style={HeaderStyle.leftIcon}>
-            {props.screen === 'category' && (
-                <TouchableRipple theme={currentTheme} borderless={true}
-                                 onPress={() => navigation.goBack()}
-                                 style={HeaderStyle.leftIcon}>
-                  <Ionicons name={'arrow-back'}
-                            size={IconSettings.buttonIconSize}
-                            color={currentTheme.colors.secondary}>
+          {props.screen === 'category' && (
+              <TouchableRipple theme={currentTheme} borderless={true}
+                               onPress={() => navigation.goBack()}
+                               style={HeaderStyle.leftIcon}>
+                <Ionicons name={'arrow-back'}
+                          size={IconSettings.buttonIconSize}
+                          color={currentTheme.colors.secondary}>
 
-                  </Ionicons>
-                </TouchableRipple>
-            )}
-          </View>
+                </Ionicons>
+              </TouchableRipple>
+          )}
         </View>
         <View style={HeaderStyle.centerContainer}>
           <Text style={HeaderStyle.centerText}>{props.title}</Text>

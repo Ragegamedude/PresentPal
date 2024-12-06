@@ -11,9 +11,12 @@ export const createHeaderStyle = (currentTheme) =>
 			borderBottomColor: currentTheme.colors.primary,
 			borderBottomWidth: StyleSettings.defaultBorderWidth
 		},
-		leftContainer: {},
+		leftContainer: {
+		},
 		leftIcon: {
-			marginLeft: StyleSettings.defaultMargin
+			borderRadius: StyleSettings.defaultBorderRadius,
+			padding: StyleSettings.defaultMargin/2,
+			marginLeft: StyleSettings.defaultPadding
 		},
 		centerContainer: {
 			flex: 1,
@@ -23,13 +26,13 @@ export const createHeaderStyle = (currentTheme) =>
 			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontBold,
 			fontSize: TextSettings.textHeaderSize,
-			marginLeft: StyleSettings.defaultPadding
+			marginLeft: StyleSettings.defaultMargin
 		},
 		rightContainer: {
 		},
 		rightIcon: {
 			borderRadius: StyleSettings.defaultBorderRadius,
-			padding: StyleSettings.defaultPadding,
-			marginHorizontal: StyleSettings.defaultMargin,
+			padding: StyleSettings.defaultMargin/2,
+			marginRight: StyleSettings.defaultPadding
 		}
 	});

@@ -1,6 +1,6 @@
-import {View} from "react-native";
+import {ScrollView, View} from "react-native";
 import Header from "../components/Header";
-import {useContext} from "react";
+import React, {useContext} from "react";
 import {Context} from "../context/Context";
 
 export default CategoryScreen = ({route, navigation}) => {
@@ -13,10 +13,13 @@ export default CategoryScreen = ({route, navigation}) => {
 
   return (
 
-      <View>
+      <View style={}>
         <Header screen={'category'}
                 title={title}
                 currentTheme={currentTheme}></Header>
+        <ScrollView>
+
+        </ScrollView>
       </View>
   )
 

@@ -100,6 +100,7 @@ export default BottomTabNavigator = () => {
               tabBarIcon: ({color, size}) => {
                 return <Feather name="gift" size={size} color={color}/>;
               },
+              unmountOnBlur: true
             }}
         />
         <Tab.Screen
@@ -110,6 +111,7 @@ export default BottomTabNavigator = () => {
               tabBarIcon: ({color, size}) => {
                 return <Feather name="list" size={size} color={color}/>;
               },
+              unmountOnBlur: true
             }}
         />
         <Tab.Screen
@@ -120,6 +122,7 @@ export default BottomTabNavigator = () => {
               tabBarIcon: ({color, size}) => {
                 return <Feather name="home" size={size} color={color}/>;
               },
+              unmountOnBlur: true
             }}
         />
         <Tab.Screen
@@ -130,6 +133,7 @@ export default BottomTabNavigator = () => {
               tabBarIcon: ({color, size}) => {
                 return <Feather name="settings" size={size} color={color}/>;
               },
+              unmountOnBlur: true
             }}
         />
       </Tab.Navigator>
