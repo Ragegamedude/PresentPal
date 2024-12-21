@@ -29,6 +29,7 @@ export default GiftsScreen = ({navigation, props}) => {
 
   const openGiftCategory = (category, title) => {
     navigation.navigate("CategoryScreen", {
+      category,
       title,
     })
   }

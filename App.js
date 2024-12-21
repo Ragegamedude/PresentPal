@@ -1,7 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useCallback, useEffect, useState} from 'react';
-import {useFonts} from 'expo-font';
+import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'expo-dev-client';
 import mobileAds from 'react-native-google-mobile-ads';
@@ -25,6 +24,7 @@ import CountryFlag from 'react-native-country-flag';
 import {TouchableRipple} from 'react-native-paper';
 import {StorageKeys} from './constants/StorageKeys';
 import AntDesign from "react-native-vector-icons/AntDesign";
+import {useFonts} from "@use-expo/font";
 
 export default function App() {
   //Select version of app. Light = with Ads, Premium = no ads and more functions
@@ -38,11 +38,15 @@ export default function App() {
   const [showIntroduction, setShowIntroduction] = useState(true);
   const [hiddenGiftInformation, setHiddenGiftInformation] = useState(false)
 
-  const splashScreenDuration = 2000; //ms
+  // Readiness variables for splashscreen
+  const [themeLoaded, setThemeLoaded] = useState(false)
+  const [languageLoaded, setLanguageLoaded] = useState(false)
+  const [splashTimerDone, setSplashTimerDone] = useState(false)
+  const [databaseCreated, setDatabaseCreated] = useState(false)
+  const [isAppReady, setIsAppReady] = useState(false)
+  const [test, setTest] = useState(false)
 
-  let themeLoaded = false;
-  let languageLoaded = false;
-  let splashTimerDone = false;
+  SplashScreen.preventAutoHideAsync();
 
   const GERMAN = TranslationManager.getLanguageObject(
       AvailableLanguages.GERMAN);
@@ -56,6 +60,14 @@ export default function App() {
       AvailableLanguages.FRENCH);
 
   const AppStyle = createAppStyle(currentTheme);
+
+  // Load custom fonts
+  let [fontsLoaded] = useFonts({
+    'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
+    'Roboto-Light': require('./assets/fonts/Roboto-Light.ttf'),
+    'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf')
+  });
 
   //load data at app start from storage or external sources like mount
   useEffect(() => {
@@ -73,7 +85,7 @@ export default function App() {
           setCurrentTheme(Theme.selectTheme(AvailableThemes.LIGHT));
         });
       }
-      themeLoaded = true;
+      setThemeLoaded(true);
     });
 
     AsyncStorage.getItem(StorageKeys.LANGUAGE_STORAGE_KEY).then(
@@ -88,7 +100,7 @@ export default function App() {
                   AvailableLanguages.ENGLISH));
             });
           }
-          languageLoaded = true;
+          setLanguageLoaded(true);
         });
 
     AsyncStorage.getItem(StorageKeys.SHOW_INTRODUCTION_KEY).then(
@@ -111,7 +123,25 @@ export default function App() {
             setHiddenGiftInformation(JSON.parse(storedValue));
           }
         });
-  });
+
+    AsyncStorage.getItem(StorageKeys.DATABASE_CREATED_KEY).then(
+        (storedValue) => {
+          if (storedValue == null) {
+            AsyncStorage.setItem(StorageKeys.DATABASE_CREATED_KEY, 'true').then(
+                () => {
+                  setDatabaseCreated(true)
+                })
+          }
+          setDatabaseCreated(true)
+
+        });
+
+    // APP readiness check
+    if (fontsLoaded && languageLoaded && themeLoaded && databaseCreated) {
+      setIsAppReady(true);
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
 
   const changeLanguage = (selectedLanguage) => {
     AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
@@ -294,31 +324,10 @@ export default function App() {
     });
   };
 
-  let [fontsLoaded] = useFonts({
-    'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
-    'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
-    'Roboto-Light': require('./assets/fonts/Roboto-Light.ttf'),
-    'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf')
-  });
-
-  setTimeout(function callback() {
-    splashTimerDone = true;
-  }, splashScreenDuration);
-
-  //load fonts async and set ressources loaded
-  const loadRessources = useCallback(async () => {
-    //show splashscreen while not complete loaded
-    await SplashScreen.preventAutoHideAsync();
-    //fonts loaded, hide splashscreen
-    if (themeLoaded && languageLoaded && fontsLoaded && splashTimerDone) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
   //Render nothing till fonts loaded
-  if (!fontsLoaded) {
+  if (!isAppReady) {
     return null;
-  } else if (fontsLoaded && showIntroduction) {
+  } else if (isAppReady && showIntroduction) {
     return (
         <AppIntroSlider
             data={slides}

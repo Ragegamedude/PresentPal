@@ -11,7 +11,7 @@ export default CategoryScreen = ({route, navigation}) => {
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = theme;
 
-  const {title} = route.params;
+  const {title, category} = route.params;
 
   const CategoryStyle = createCategoryScreenStyle(currentTheme);
 
@@ -22,14 +22,6 @@ export default CategoryScreen = ({route, navigation}) => {
                 title={title}
                 currentTheme={currentTheme}></Header>
         <ScrollView>
-          <Gift lastElement={false}
-                image={require('../assets/avatars/0.png')}></Gift>
-          <Gift lastElement={false}
-                image={require('../assets/avatars/0.png')}></Gift>
-          <Gift lastElement={false}
-                image={require('../assets/avatars/0.png')}></Gift>
-          <Gift lastElement={false}
-                image={require('../assets/avatars/0.png')}></Gift>
           <Gift lastElement={true}
                 image={require('../assets/avatars/0.png')}></Gift>
         </ScrollView>

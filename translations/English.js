@@ -34,8 +34,7 @@ export const English = {
   listGiftTotal: ' Total: ',
   giftsScreenTitle: 'Gifts',
   giftsInformationHeadline: 'Information',
-  giftsInformationText: 'Welcome to the best gift ideas for every occasion!'
-      + ' If you can’t find a gift in our categories, try our new Gift Finder.',
+  giftsInformationText: 'Welcome to the best gift ideas for every occasion!',
   giftsCategoryBirthday: 'Birthday',
   giftsCategoryValentine: 'Valentine',
   giftsCategoryChristmas: 'Christmas',
