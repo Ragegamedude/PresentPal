@@ -1,6 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'expo-dev-client';
 import mobileAds from 'react-native-google-mobile-ads';
@@ -25,6 +25,8 @@ import {TouchableRipple} from 'react-native-paper';
 import {StorageKeys} from './constants/StorageKeys';
 import AntDesign from "react-native-vector-icons/AntDesign";
 import {useFonts} from "@use-expo/font";
+import * as DatabaseAdapter from "./database/DatabaseAdapter";
+import {DatabaseSettings} from "./constants/DatabaseSettings";
 
 export default function App() {
   //Select version of app. Light = with Ads, Premium = no ads and more functions
@@ -41,11 +43,10 @@ export default function App() {
   // Readiness variables for splashscreen
   const [themeLoaded, setThemeLoaded] = useState(false)
   const [languageLoaded, setLanguageLoaded] = useState(false)
-  const [splashTimerDone, setSplashTimerDone] = useState(false)
   const [databaseCreated, setDatabaseCreated] = useState(false)
   const [isAppReady, setIsAppReady] = useState(false)
-  const [test, setTest] = useState(false)
 
+  // Prevent Autohide of Splash
   SplashScreen.preventAutoHideAsync();
 
   const GERMAN = TranslationManager.getLanguageObject(
@@ -127,21 +128,35 @@ export default function App() {
     AsyncStorage.getItem(StorageKeys.DATABASE_CREATED_KEY).then(
         (storedValue) => {
           if (storedValue == null) {
-            AsyncStorage.setItem(StorageKeys.DATABASE_CREATED_KEY, 'true').then(
-                () => {
-                  setDatabaseCreated(true)
-                })
+            const initDatabase = async () => {
+              const database = await DatabaseAdapter.createOrOpenDatabase(
+                  DatabaseSettings.DEFAULT_DATABASE_NAME);
+              return await DatabaseAdapter.initTables(database);
+            }
+            initDatabase().then(databaseCreated => {
+              if (databaseCreated) {
+                AsyncStorage.setItem(StorageKeys.DATABASE_CREATED_KEY,
+                    'true').then(
+                    () => {
+                      setDatabaseCreated(true);
+                    })
+              } else {
+                setDatabaseCreated(false)
+              }
+            })
+          } else {
+            setDatabaseCreated(true)
           }
-          setDatabaseCreated(true)
-
         });
+  });
 
-    // APP readiness check
+  // READINESS Check on state change like fonts loading, database create
+  useMemo(() => {
     if (fontsLoaded && languageLoaded && themeLoaded && databaseCreated) {
       setIsAppReady(true);
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, languageLoaded, themeLoaded, databaseCreated])
 
   const changeLanguage = (selectedLanguage) => {
     AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
