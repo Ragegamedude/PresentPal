@@ -28,6 +28,7 @@ export const English = {
   loading: 'Loading',
   homeScreenTitle: 'Home',
   listsScreenTitle: 'Lists',
+  listsScreenEmptyText: "Currently no lists, please add a list.",
   listsAddList: 'Add list',
   listsAdd: 'Add',
   listGiftAmount: 'Gifts: ',
@@ -52,12 +53,15 @@ export const English = {
   settingsInformationDescription: 'General app information',
   settingsInformationModalHeadline: 'Information',
   settingsInformationModalContent:
-      'Current Version: ' + Constants.expoConfig.version + '\n'
-      + Constants.expoConfig.name,
+      Constants.expoConfig.name + '\n' +
+      'Current Version: ' + Constants.expoConfig.version,
   settingsStatusHeadlineVersion: 'Version',
   settingsStatusHeadlineFreeVersion: 'Free',
   settingsStatusHeadlinePremiumVersion: 'Premium',
   settingsStatusHeadlineLimit: 'File Limit',
+  settingsTermsConditionsHeadline: 'Terms and Conditions',
+  settingsTermsConditionsDescription: 'Terms and conditions'
+      + ' us!',
   settingsPrivacyPolicyHeadline: 'Privacy Policy',
   settingsPrivacyPolicyDescription: 'Privacy is important to us!',
   settingsDisclaimerHeadline: 'Disclaimer',
@@ -66,10 +70,11 @@ export const English = {
   settingsPersonalAdsDescription: 'Display personalized advertising',
   settingsThemeLight: 'Light',
   settingsThemeDark: 'Dark',
-  settingsContactURL: 'https://argames15.com/contact/',
-  settingsPrivacyPolicyURL: 'https://argames15.com/privacy-policy-apps/',
-  settingsDisclaimerURL: 'https://argames15.com/disclaimer-apps/',
-  settingsHomepageURL: 'https://argames15.com',
+  settingsContactURL: 'https://www.argames15.eu/contact',
+  settingsTermsConditionsURL: 'https://www.argames15.eu/terms-conditions',
+  settingsPrivacyPolicyURL: 'https://www.argames15.eu/privacy-policy',
+  settingsDisclaimerURL: 'https://www.argames15.eu/disclaimer',
+  settingsHomepageURL: 'https://www.argames15.eu',
   settingsContactCantOpenUrlError: 'The webpage cannot be opened. Please try again later.',
   homeSectionUser: 'Argames15',
   inputFieldHeadline: 'Headline',
@@ -129,9 +134,13 @@ export const English = {
   successConvertHeadline: 'Processing Successful!',
   successMessageInProgress: 'Your file/files are currently being processed. Please be patient.',
   successMessageInProgressDone: 'Your file/files have been saved to the selected location.',
-  settingsInformationModalCreator: 'Feel free to visit us at the following URL: https://www.argames15.com',
-  settingsInformationGeneral: 'General',
-  settingsInformationGeneralContent: 'General Content',
+  settingsInformationModalCreator: 'We’d love for you to stop by!\n' +
+      'Visit us at www.argames15.eu, or simply click the “Visit” button below to'
+      + ' jump right in.',
+  settingsInformationGeneral: 'Description',
+  settingsInformationGeneralContent: Constants.expoConfig.name
+      + ' makes gift-giving'
+      + ' effortless. Browse endless gift ideas, create personalized lists for each person on your list, and keep everything organized in one place.',
   settingsInformationApplication: 'Application',
   settingsInformationWebsite: 'Website',
   homeReadMore: 'Read more..',

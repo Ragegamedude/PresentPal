@@ -1,6 +1,6 @@
 export const Categories =
     {
-       BIRTHDAY: 'Birthday',
+      BIRTHDAY: 'Birthday',
       VALENTINE: 'Valentine',
       CHRISTMAS: 'Christmas',
       WEDDING: 'Wedding'

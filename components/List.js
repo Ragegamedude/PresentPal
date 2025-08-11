@@ -29,7 +29,7 @@ export default List = (props) => {
           <Avatar.Image size={IconSettings.listsAvatarSize}
                         source={props.data.image ? props.data.image : require(
                             '../assets/avatars/0.png')}/>
-          <Text style={ListStyle.date}>{props.data.date}</Text>
+          <Text style={ListStyle.date}>{props.data.event_date}</Text>
         </View>
         <View style={ListStyle.contentWrapper}>
           <View style={ListStyle.content}>

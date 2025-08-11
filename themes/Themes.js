@@ -6,13 +6,13 @@ export const AvailableThemes = {
 export const Themes = {
   light: {
     colors: {
-      primary: "rgb(236,135,24)",
+      primary: "rgb(246,161,5)",
       onPrimary: "rgb(255,255,255)",
-      primaryContainer: "rgb(236,135,24)", //FAB
+      primaryContainer: "rgb(246,161,5)", //FAB
       onPrimaryContainer: "rgb(255,255,255)",
       secondary: "rgb(90,90,90)",
       onSecondary: "rgb(255, 255, 255)",
-      secondaryContainer: "rgb(236,135,24)",
+      secondaryContainer: "rgb(246,161,5)",
       onSecondaryContainer: "rgb(255, 255, 255)",
       tertiary: "rgb(128, 81, 88)",
       onTertiary: "rgb(255, 255, 255)",
@@ -37,8 +37,8 @@ export const Themes = {
       elevation: {
         level0: "transparent",
         level1: "rgb(248, 242, 251)",
-        level2: "rgb(244, 236, 248)",
-        level3: "rgb(90,117,77)",
+        level2: "rgb(246,161,5)",
+        level3: "rgb(218,149,18)",
         level4: "rgb(239, 229, 245)",
         level5: "rgb(236, 226, 243)"
       },
@@ -50,14 +50,14 @@ export const Themes = {
   },
   dark: {
     colors: {
-      primary: "rgb(90,117,77)",
+      primary: "rgb(246,161,5)",
       onPrimary: "rgb(255,255,255)",
-      primaryContainer: "rgb(90,117,77)",
+      primaryContainer: "rgb(246,161,5)",
       onPrimaryContainer: "rgb(255,255,255)",
       secondary: "rgb(230,230,230)",
       onSecondary: "rgb(54, 44, 63)",
-      secondaryContainer: "rgb(90,117,77)",
-      onSecondaryContainer: "rgb(230,230,230)",
+      secondaryContainer: "rgb(246,161,5)",
+      onSecondaryContainer: "rgb(255,255,255)",
       tertiary: "rgb(243, 183, 190)",
       onTertiary: "rgb(75, 37, 43)",
       tertiaryContainer: "rgb(101, 58, 65)",
@@ -66,8 +66,8 @@ export const Themes = {
       onError: "rgb(105, 0, 5)",
       errorContainer: "rgb(147, 0, 10)",
       onErrorContainer: "rgb(255, 180, 171)",
-      background: "rgb(25,25,25)",
-      onBackground: "rgb(30,30,30)",
+      background: "rgb(16,16,16)",
+      onBackground: "rgb(24,24,24)",
       surface: "rgb(155,5,243)",
       onSurface: "rgb(234,234,234)",
       surfaceVariant: "rgb(74, 69, 78)",
@@ -83,7 +83,7 @@ export const Themes = {
         level0: "transparent",
         level1: "rgb(39, 35, 41)",
         level2: "rgb(44, 40, 48)",
-        level3: "rgb(90,117,77)",
+        level3: "rgb(246,161,5)",
         level4: "rgb(52, 46, 57)",
         level5: "rgb(56, 49, 62)"
       },

@@ -1,20 +1,20 @@
-import {Linking, Modal, Text, ToastAndroid, View} from 'react-native';
-import {Context} from '../context/Context';
-import {useContext, useState} from 'react';
-import createSettingsSectionStyle from './SettingsSectionStyle';
-import createModalStyle from './ModalStyle';
-import {AvailableThemes, Theme, Themes} from '../themes/Themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {IconSettings} from '../constants/IconSettings';
-import {TouchableRipple} from 'react-native-paper';
+import {useContext, useState} from 'react';
+import {Linking, Modal, Text, ToastAndroid, View} from 'react-native';
 import CountryFlag from 'react-native-country-flag';
+import {TouchableRipple} from 'react-native-paper';
+import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {IconSettings} from '../constants/IconSettings';
+import {StorageKeys} from '../constants/StorageKeys';
+import {Context} from '../context/Context';
+import {AvailableThemes, Theme, Themes} from '../themes/Themes';
 import {
   AvailableLanguages,
   TranslationManager
 } from '../translations/TranslationManager';
-import {StorageKeys} from '../constants/StorageKeys';
-import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import createModalStyle from './ModalStyle';
+import createSettingsSectionStyle from './SettingsSectionStyle';
 
 export default SettingsSection = (props) => {
   const {theme, language, personalAds} = useContext(Context);
@@ -48,6 +48,8 @@ export default SettingsSection = (props) => {
       openUrl(currentLanguage.settingsContactURL);
     } else if (action === AvailableSettingsActions.INFORMATION) {
       toggleInformationModal();
+    } else if (action === AvailableSettingsActions.OPEN_TERMS_CONDITION) {
+      openUrl(currentLanguage.settingsTermsConditionsURL);
     } else if (action === AvailableSettingsActions.OPEN_PRIVACY_POLICY) {
       openUrl(currentLanguage.settingsPrivacyPolicyURL);
     } else if (action === AvailableSettingsActions.OPEN_DISCLAIMER) {
@@ -186,14 +188,6 @@ export default SettingsSection = (props) => {
               <View style={ModalStyle.modalContent}>
                 <View style={ModalStyle.settingsSectionLanguageWrapper}>
                   <View style={ModalStyle.modalInputWrapper}>
-                    <View style={ModalStyle.modalInputButton}>
-                      <CountryFlag
-                          style={ModalStyle.modalInputButtonIcon}
-                          isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                              ENGLISH)}
-                          size={IconSettings.settingsFlagSize}
-                      />
-                    </View>
                     <TouchableRipple
                         theme={currentTheme}
                         borderless={true}
@@ -202,26 +196,26 @@ export default SettingsSection = (props) => {
                             AvailableLanguages.ENGLISH)}
                         disabled={currentLanguage === ENGLISH}
                     >
-                      <Text
-                          style={
-                            currentLanguage === ENGLISH
-                                ? ModalStyle.modalInputFieldTextInactive
-                                : ModalStyle.modalInputFieldTextActive
-                          }
-                      >
-                        {currentLanguage.languageEnglish}
-                      </Text>
+                      <View style={ModalStyle.modalInputButton}>
+                        <CountryFlag
+                            style={ModalStyle.modalInputButtonIcon}
+                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                                ENGLISH)}
+                            size={IconSettings.settingsFlagSize}
+                        />
+                        <Text
+                            style={
+                              currentLanguage === ENGLISH
+                                  ? ModalStyle.modalInputFieldTextInactive
+                                  : ModalStyle.modalInputFieldTextActive
+                            }
+                        >
+                          {currentLanguage.languageEnglish}
+                        </Text>
+                      </View>
                     </TouchableRipple>
                   </View>
                   <View style={ModalStyle.modalInputWrapper}>
-                    <View style={ModalStyle.modalInputButton}>
-                      <CountryFlag
-                          style={ModalStyle.modalInputButtonIcon}
-                          isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                              GERMAN)}
-                          size={IconSettings.settingsFlagSize}
-                      />
-                    </View>
                     <TouchableRipple
                         theme={currentTheme}
                         borderless={true}
@@ -230,26 +224,26 @@ export default SettingsSection = (props) => {
                             AvailableLanguages.GERMAN)}
                         disabled={currentLanguage === GERMAN}
                     >
-                      <Text
-                          style={
-                            currentLanguage === GERMAN
-                                ? ModalStyle.modalInputFieldTextInactive
-                                : ModalStyle.modalInputFieldTextActive
-                          }
-                      >
-                        {currentLanguage.languageGerman}
-                      </Text>
+                      <View style={ModalStyle.modalInputButton}>
+                        <CountryFlag
+                            style={ModalStyle.modalInputButtonIcon}
+                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                                GERMAN)}
+                            size={IconSettings.settingsFlagSize}
+                        />
+                        <Text
+                            style={
+                              currentLanguage === GERMAN
+                                  ? ModalStyle.modalInputFieldTextInactive
+                                  : ModalStyle.modalInputFieldTextActive
+                            }
+                        >
+                          {currentLanguage.languageGerman}
+                        </Text>
+                      </View>
                     </TouchableRipple>
                   </View>
                   <View style={ModalStyle.modalInputWrapper}>
-                    <View style={ModalStyle.modalInputButton}>
-                      <CountryFlag
-                          style={ModalStyle.modalInputButtonIcon}
-                          isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                              SPANISH)}
-                          size={IconSettings.settingsFlagSize}
-                      />
-                    </View>
                     <TouchableRipple
                         theme={currentTheme}
                         borderless={true}
@@ -258,26 +252,26 @@ export default SettingsSection = (props) => {
                             AvailableLanguages.SPANISH)}
                         disabled={currentLanguage === SPANISH}
                     >
-                      <Text
-                          style={
-                            currentLanguage === SPANISH
-                                ? ModalStyle.modalInputFieldTextInactive
-                                : ModalStyle.modalInputFieldTextActive
-                          }
-                      >
-                        {currentLanguage.languageSpanish}
-                      </Text>
+                      <View style={ModalStyle.modalInputButton}>
+                        <CountryFlag
+                            style={ModalStyle.modalInputButtonIcon}
+                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                                SPANISH)}
+                            size={IconSettings.settingsFlagSize}
+                        />
+                        <Text
+                            style={
+                              currentLanguage === SPANISH
+                                  ? ModalStyle.modalInputFieldTextInactive
+                                  : ModalStyle.modalInputFieldTextActive
+                            }
+                        >
+                          {currentLanguage.languageSpanish}
+                        </Text>
+                      </View>
                     </TouchableRipple>
                   </View>
                   <View style={ModalStyle.modalInputWrapper}>
-                    <View style={ModalStyle.modalInputButton}>
-                      <CountryFlag
-                          style={ModalStyle.modalInputButtonIcon}
-                          isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                              PORTUGUESE)}
-                          size={IconSettings.settingsFlagSize}
-                      />
-                    </View>
                     <TouchableRipple
                         theme={currentTheme}
                         borderless={true}
@@ -286,26 +280,26 @@ export default SettingsSection = (props) => {
                             AvailableLanguages.PORTUGUESE)}
                         disabled={currentLanguage === PORTUGUESE}
                     >
-                      <Text
-                          style={
-                            currentLanguage === PORTUGUESE
-                                ? ModalStyle.modalInputFieldTextInactive
-                                : ModalStyle.modalInputFieldTextActive
-                          }
-                      >
-                        {currentLanguage.languagePortuguese}
-                      </Text>
+                      <View style={ModalStyle.modalInputButton}>
+                        <CountryFlag
+                            style={ModalStyle.modalInputButtonIcon}
+                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                                PORTUGUESE)}
+                            size={IconSettings.settingsFlagSize}
+                        />
+                        <Text
+                            style={
+                              currentLanguage === PORTUGUESE
+                                  ? ModalStyle.modalInputFieldTextInactive
+                                  : ModalStyle.modalInputFieldTextActive
+                            }
+                        >
+                          {currentLanguage.languagePortuguese}
+                        </Text>
+                      </View>
                     </TouchableRipple>
                   </View>
                   <View style={ModalStyle.modalInputWrapper}>
-                    <View style={ModalStyle.modalInputButton}>
-                      <CountryFlag
-                          style={ModalStyle.modalInputButtonIcon}
-                          isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                              FRENCH)}
-                          size={IconSettings.settingsFlagSize}
-                      />
-                    </View>
                     <TouchableRipple
                         theme={currentTheme}
                         borderless={true}
@@ -314,15 +308,23 @@ export default SettingsSection = (props) => {
                             AvailableLanguages.FRENCH)}
                         disabled={currentLanguage === FRENCH}
                     >
-                      <Text
-                          style={
-                            currentLanguage === FRENCH
-                                ? ModalStyle.modalInputFieldTextInactive
-                                : ModalStyle.modalInputFieldTextActive
-                          }
-                      >
-                        {currentLanguage.languageFrench}
-                      </Text>
+                      <View style={ModalStyle.modalInputButton}>
+                        <CountryFlag
+                            style={ModalStyle.modalInputButtonIcon}
+                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                                FRENCH)}
+                            size={IconSettings.settingsFlagSize}
+                        />
+                        <Text
+                            style={
+                              currentLanguage === FRENCH
+                                  ? ModalStyle.modalInputFieldTextInactive
+                                  : ModalStyle.modalInputFieldTextActive
+                            }
+                        >
+                          {currentLanguage.languageFrench}
+                        </Text>
+                      </View>
                     </TouchableRipple>
                   </View>
                 </View>
@@ -409,7 +411,8 @@ export const AvailableSettingsActions = {
   CONTACT: 'contact',
   INFORMATION: 'information',
   OPEN_PRIVACY_POLICY: 'open-privacy-policy',
+  OPEN_TERMS_CONDITION: 'open-terms-condition',
   OPEN_DISCLAIMER: 'open-disclaimer',
+  OPEN_HOMEPAGE: 'open-homepage',
   SHOW_PERSONAL_ADS: 'show-personal-ads',
-  OPEN_HOMEPAGE: 'open-homepage'
 };

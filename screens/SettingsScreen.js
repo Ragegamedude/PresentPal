@@ -47,6 +47,12 @@ export default SettingsScreen = ({navigation, props}) => {
               ></SettingsSection>
           )}
           <SettingsSection
+              action={AvailableSettingsActions.OPEN_TERMS_CONDITION}
+              iconName={'lock'}
+              headline={currentLanguage.settingsTermsConditionsHeadline}
+              description={currentLanguage.settingsTermsConditionsDescription}
+          ></SettingsSection>
+          <SettingsSection
               action={AvailableSettingsActions.OPEN_PRIVACY_POLICY}
               iconName={'lock'}
               headline={currentLanguage.settingsPrivacyPolicyHeadline}

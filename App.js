@@ -1,32 +1,32 @@
-import {StatusBar} from 'expo-status-bar';
-import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect, useMemo, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'expo-dev-client';
-import mobileAds from 'react-native-google-mobile-ads';
+import {NavigationContainer} from '@react-navigation/native';
+import {useFonts} from "@use-expo/font";
+import * as SplashScreen from 'expo-splash-screen';
+import {StatusBar} from 'expo-status-bar';
+import React, {useEffect, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
+import AppIntroSlider from 'react-native-app-intro-slider';
+import CountryFlag from 'react-native-country-flag';
+import mobileAds from 'react-native-google-mobile-ads';
+import {TouchableRipple} from 'react-native-paper';
+import AntDesign from "react-native-vector-icons/AntDesign";
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
+import createAppStyle from './AppStyle';
+import {AppVersions} from './constants/AppVersions';
+import {DatabaseSettings} from "./constants/DatabaseSettings";
+import {IconSettings} from './constants/IconSettings';
+import {StorageKeys} from './constants/StorageKeys';
+import {Context} from './context/Context';
+import * as DatabaseAdapter from "./database/DatabaseAdapter";
+import BottomTabNavigator from './navigation/BottomTabNavigator';
 
 //own imports of constants and components
 import {AvailableThemes, Theme} from './themes/Themes';
-import {AppVersions} from './constants/AppVersions';
 import {
   AvailableLanguages,
   TranslationManager
 } from './translations/TranslationManager';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import {Context} from './context/Context';
-import * as SplashScreen from 'expo-splash-screen';
-import AppIntroSlider from 'react-native-app-intro-slider';
-import createAppStyle from './AppStyle';
-import {IconSettings} from './constants/IconSettings';
-import CountryFlag from 'react-native-country-flag';
-import {TouchableRipple} from 'react-native-paper';
-import {StorageKeys} from './constants/StorageKeys';
-import AntDesign from "react-native-vector-icons/AntDesign";
-import {useFonts} from "@use-expo/font";
-import * as DatabaseAdapter from "./database/DatabaseAdapter";
-import {DatabaseSettings} from "./constants/DatabaseSettings";
 
 export default function App() {
   //Select version of app. Light = with Ads, Premium = no ads and more functions
@@ -47,7 +47,7 @@ export default function App() {
   const [isAppReady, setIsAppReady] = useState(false)
 
   // Prevent Autohide of Splash
-  SplashScreen.preventAutoHideAsync();
+  const ignored = SplashScreen.preventAutoHideAsync();
 
   const GERMAN = TranslationManager.getLanguageObject(
       AvailableLanguages.GERMAN);
@@ -73,7 +73,7 @@ export default function App() {
   //load data at app start from storage or external sources like mount
   useEffect(() => {
     if (currentVersion === AppVersions.LIGHT) {
-      mobileAds().initialize();
+      const ignored = mobileAds().initialize();
     }
 
     //get the persistent theme from asyncstorage
@@ -131,7 +131,9 @@ export default function App() {
             const initDatabase = async () => {
               const database = await DatabaseAdapter.createOrOpenDatabase(
                   DatabaseSettings.DEFAULT_DATABASE_NAME);
-              return await DatabaseAdapter.initTables(database);
+
+              await SplashScreen.hideAsync();
+              return DatabaseAdapter.initTables(database);
             }
             initDatabase().then(databaseCreated => {
               if (databaseCreated) {
@@ -154,7 +156,7 @@ export default function App() {
   useMemo(() => {
     if (fontsLoaded && languageLoaded && themeLoaded && databaseCreated) {
       setIsAppReady(true);
-      SplashScreen.hideAsync();
+      const ignored = SplashScreen.hideAsync();
     }
   }, [fontsLoaded, languageLoaded, themeLoaded, databaseCreated])
 

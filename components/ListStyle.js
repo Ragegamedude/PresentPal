@@ -59,8 +59,8 @@ export const createListStyle = (currentTheme) =>
         flexDirection: 'row',
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        borderStyle: 'dashed',
-        borderColor: currentTheme.colors.onSurfaceVariant,
+        borderStyle: 'solid',
+        borderColor: currentTheme.colors.primary,
         marginTop: StyleSettings.defaultPadding,
       },
       statsFirst: {

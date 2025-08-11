@@ -1,14 +1,14 @@
-import {ScrollView, View} from 'react-native';
 import React, {useContext} from 'react';
-import {Context} from '../context/Context';
-import {createListsScreenStyle} from './ListsScreenStyle';
+import {ScrollView, Text, View} from 'react-native';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
-import {AppVersions} from '../constants/AppVersions';
+import {PaperProvider} from "react-native-paper";
 import Header from '../components/Header';
 import List from '../components/List';
-import {PaperProvider} from "react-native-paper";
-import {GIFT_STATUS} from "../constants/GiftsEnums";
 import LoadingContent from "../components/LoadingContent";
+import {AppVersions} from '../constants/AppVersions';
+import {GIFT_STATUS} from "../constants/GiftsEnums";
+import {Context} from '../context/Context';
+import {createListsScreenStyle} from './ListsScreenStyle';
 
 export default ListsScreen = ({navigation, props}) => {
   const {theme, language, version, personalAds} = useContext(Context);
@@ -19,7 +19,7 @@ export default ListsScreen = ({navigation, props}) => {
 
   const loading = false;
 
-  const testData = {
+  const listData = {
     lists: [
       {
         id: '1',
@@ -30,7 +30,7 @@ export default ListsScreen = ({navigation, props}) => {
             + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
             + 'eos et accusam et',
         image: require('../assets/avatars/2.png'),
-        date: '02.01.2023',
+        event_date: '02.01.2023',
         event: 'Birthday',
         gifts: [
           {name: 'test1', value: 25.01, status: GIFT_STATUS.COMPLETED},
@@ -38,75 +38,6 @@ export default ListsScreen = ({navigation, props}) => {
           {name: 'test2', value: 40.04, status: GIFT_STATUS.COMPLETED}
         ]
       },
-      {
-        id: '2',
-        favorite: true,
-        headline: 'Headline #2',
-        description: '#2 Lorem ipsum dolor sit amet, '
-            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
-            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
-            + 'eos et accusam et',
-        image: require('../assets/avatars/4.png'),
-        date: '12.01.2023',
-        event: 'Birthday',
-        gifts: [
-          {name: 'test1', value: 15.01, status: GIFT_STATUS.COMPLETED},
-        ]
-      },
-      {
-        id: '3',
-        favorite: true,
-        headline: 'Headline #3',
-        description: '#2 Lorem ipsum dolor sit amet, '
-            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
-            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
-            + 'eos et accusam et',
-        image: require('../assets/avatars/5.png'),
-        date: '15.01.2023',
-        event: 'Birthday',
-        gifts: [
-          {name: 'test1', value: 15.01, status: GIFT_STATUS.COMPLETED},
-          {name: 'test2', value: 10.08, status: GIFT_STATUS.UNCOMPLETED},
-          {name: 'test3', value: 10.08, status: GIFT_STATUS.UNCOMPLETED},
-          {name: 'test4', value: 10.08, status: GIFT_STATUS.UNCOMPLETED},
-          {name: 'test5', value: 1000.08, status: GIFT_STATUS.UNCOMPLETED},
-        ]
-      },
-      {
-        id: '4',
-        favorite: false,
-        headline: 'Headline #4',
-        description: '#2 Lorem ipsum dolor sit amet, '
-            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
-            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
-            + 'eos et accusam et',
-        image: require('../assets/avatars/6.png'),
-        date: '19.01.2023',
-        event: 'Birthday',
-        gifts: [
-          {name: 'test1', value: 12.01, status: GIFT_STATUS.COMPLETED},
-          {name: 'test2', value: 11.06, status: GIFT_STATUS.UNCOMPLETED},
-          {name: 'test3', value: 29.07, status: GIFT_STATUS.COMPLETED}
-        ]
-      },
-      {
-        id: '5',
-        favorite: false,
-        headline: 'Headline #5',
-        description: '#5 Lorem ipsum dolor sit amet, '
-            + 'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt '
-            + 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero'
-            + 'eos et accusam et',
-        image: require('../assets/avatars/7.png'),
-        date: '23.06.2023',
-        event: 'Birthday',
-        gifts: [
-          {name: 'test1', value: 18.01, status: GIFT_STATUS.COMPLETED},
-          {name: 'test2', value: 11.05, status: GIFT_STATUS.UNCOMPLETED},
-          {name: 'test1', value: 18.01, status: GIFT_STATUS.COMPLETED},
-          {name: 'test2', value: 11.05, status: GIFT_STATUS.UNCOMPLETED}
-        ]
-      }
     ]
   }
 
@@ -123,13 +54,22 @@ export default ListsScreen = ({navigation, props}) => {
           {loading && (
               <LoadingContent loading={loading}></LoadingContent>
           )}
-          {!loading && (
-              <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-                <List data={testData.lists[0]} lastElement={false}></List>
-                <List data={testData.lists[1]} lastElement={false}></List>
-                <List data={testData.lists[2]} lastElement={false}></List>
-                <List data={testData.lists[3]} lastElement={false}></List>
-                <List data={testData.lists[4]} lastElement={true}></List>
+          {!loading && listData.lists.length === 0 && (
+              <View style={ListsScreenStyle.contentEmpty}>
+                <Text
+                    style={ListsScreenStyle.contentEmptyText}>{currentLanguage.listsScreenEmptyText}</Text>
+              </View>
+          )}
+          {!loading && listData.lists.length > 0 && (
+              <ScrollView showsHorizontalScrollIndicator={false}
+                          showsVerticalScrollIndicator={false}>
+                {listData.lists.map((item, index) => (
+                    <List
+                        key={item.id}
+                        data={item}
+                        lastElement={index === (listData.lists.length - 1)}>
+                    </List>
+                ))}
               </ScrollView>
           )}
           {currentVersion === AppVersions.LIGHT && (

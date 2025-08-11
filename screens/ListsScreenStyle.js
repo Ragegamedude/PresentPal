@@ -5,9 +5,19 @@ export const createListsScreenStyle = (currentTheme) =>
     StyleSheet.create({
       lists: {
         flex: 1,
-        backgroundColor: currentTheme.colors.background
       },
       fabActionLabel: {
+        fontSize: TextSettings.textDefaultSize,
+        fontFamily: TextSettings.defaultFontRegular,
+        color: currentTheme.colors.secondary
+      },
+      contentEmpty: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      contentEmptyText:{
         fontSize: TextSettings.textDefaultSize,
         fontFamily: TextSettings.defaultFontRegular,
         color: currentTheme.colors.secondary

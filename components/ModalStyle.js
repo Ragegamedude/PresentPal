@@ -36,18 +36,18 @@ export default createModalStyle = (currentTheme) =>
       },
       modalHeaderText: {
         marginLeft: StyleSettings.defaultMargin,
-        fontSize: TextSettings.textDefaultSize,
+        fontSize: TextSettings.textBigSize,
         fontFamily: TextSettings.defaultFontBold,
         color: currentTheme.colors.secondary
       },
       modalContent: {
         borderBottomEndRadius: StyleSettings.defaultBorderRadius,
         borderBottomStartRadius: StyleSettings.defaultBorderRadius,
-        backgroundColor: currentTheme.colors.background
+        backgroundColor: currentTheme.colors.background,
       },
       modalContentHeadline: {
         marginHorizontal: StyleSettings.defaultMargin,
-        marginTop: StyleSettings.defaultPadding,
+        marginTop: StyleSettings.defaultMargin,
         fontSize: TextSettings.textDefaultSize,
         fontFamily: TextSettings.defaultFontMedium,
         color: currentTheme.colors.secondary
@@ -111,13 +111,10 @@ export default createModalStyle = (currentTheme) =>
         marginTop: StyleSettings.defaultPadding
       },
       modalInputButton: {
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: currentTheme.colors.onBackground,
-        marginLeft: StyleSettings.defaultMargin,
-        borderTopStartRadius: StyleSettings.defaultBorderRadius,
-        borderBottomStartRadius: StyleSettings.defaultBorderRadius,
-        elevation: StyleSettings.defaultElevation
       },
       modalInputButton2: {
         justifyContent: 'center',
@@ -136,8 +133,10 @@ export default createModalStyle = (currentTheme) =>
         flexDirection: 'row',
         flex: 1,
         backgroundColor: currentTheme.colors.onBackground,
-        marginRight: StyleSettings.defaultMargin,
+        marginHorizontal: StyleSettings.defaultMargin,
         borderTopEndRadius: StyleSettings.defaultBorderRadius,
+        borderTopStartRadius: StyleSettings.defaultBorderRadius,
+        borderBottomStartRadius: StyleSettings.defaultBorderRadius,
         borderBottomEndRadius: StyleSettings.defaultBorderRadius,
         elevation: StyleSettings.defaultElevation
       },

@@ -4,6 +4,5 @@ export const createHomeScreenStyle = (currentTheme) =>
 	StyleSheet.create({
 		home: {
 			flex: 1,
-			backgroundColor: currentTheme.colors.background
 		}
 	});
