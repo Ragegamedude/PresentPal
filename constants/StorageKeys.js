@@ -4,5 +4,4 @@ export const StorageKeys = {
   SHOW_PERSONAL_ADS_KEY: 'ShowPersonalAds',
   LANGUAGE_STORAGE_KEY: 'CurrentLanguage',
   GIFT_INFORMATION_HIDDEN_KEY: 'GiftInformationHidden',
-  DATABASE_CREATED_KEY: 'DatabaseCreated',
 };

@@ -3,6 +3,7 @@ import 'expo-dev-client';
 import {NavigationContainer} from '@react-navigation/native';
 import {useFonts} from "@use-expo/font";
 import * as SplashScreen from 'expo-splash-screen';
+import {SQLiteProvider} from "expo-sqlite";
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
@@ -36,6 +37,7 @@ export default function App() {
   const [currentLanguage, setCurrentLanguage] = useState(
       TranslationManager.getLanguageObject(AvailableLanguages.ENGLISH)
   );
+  const [currentLists, setCurrentLists] = useState([]);
   const [showPersonalAds, setShowPersonalAds] = useState(true);
   const [showIntroduction, setShowIntroduction] = useState(true);
   const [hiddenGiftInformation, setHiddenGiftInformation] = useState(false)
@@ -43,7 +45,6 @@ export default function App() {
   // Readiness variables for splashscreen
   const [themeLoaded, setThemeLoaded] = useState(false)
   const [languageLoaded, setLanguageLoaded] = useState(false)
-  const [databaseCreated, setDatabaseCreated] = useState(false)
   const [isAppReady, setIsAppReady] = useState(false)
 
   // Prevent Autohide of Splash
@@ -124,41 +125,14 @@ export default function App() {
             setHiddenGiftInformation(JSON.parse(storedValue));
           }
         });
-
-    AsyncStorage.getItem(StorageKeys.DATABASE_CREATED_KEY).then(
-        (storedValue) => {
-          if (storedValue == null) {
-            const initDatabase = async () => {
-              const database = await DatabaseAdapter.createOrOpenDatabase(
-                  DatabaseSettings.DEFAULT_DATABASE_NAME);
-
-              await SplashScreen.hideAsync();
-              return DatabaseAdapter.initTables(database);
-            }
-            initDatabase().then(databaseCreated => {
-              if (databaseCreated) {
-                AsyncStorage.setItem(StorageKeys.DATABASE_CREATED_KEY,
-                    'true').then(
-                    () => {
-                      setDatabaseCreated(true);
-                    })
-              } else {
-                setDatabaseCreated(false)
-              }
-            })
-          } else {
-            setDatabaseCreated(true)
-          }
-        });
   });
 
-  // READINESS Check on state change like fonts loading, database create
   useMemo(() => {
-    if (fontsLoaded && languageLoaded && themeLoaded && databaseCreated) {
+    if (fontsLoaded && languageLoaded && themeLoaded) {
       setIsAppReady(true);
       const ignored = SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, languageLoaded, themeLoaded, databaseCreated])
+  }, [fontsLoaded, languageLoaded, themeLoaded])
 
   const changeLanguage = (selectedLanguage) => {
     AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
@@ -370,17 +344,21 @@ export default function App() {
               personalAds: [showPersonalAds, setShowPersonalAds],
               introduction: [showIntroduction, setShowIntroduction],
               hiddenGiftInformationValue: [hiddenGiftInformation,
-                setHiddenGiftInformation]
+                setHiddenGiftInformation],
+              lists: [currentLists, setCurrentLists]
             }}
         >
-          <NavigationContainer>
-            <StatusBar
-                backgroundColor={currentTheme.colors.onBackground}
-                style={currentTheme.colors.statusBarStyle}
-                translucent={false}
-            />
-            <BottomTabNavigator></BottomTabNavigator>
-          </NavigationContainer>
+          <SQLiteProvider databaseName={DatabaseSettings.DEFAULT_DATABASE_NAME}
+                          onInit={DatabaseAdapter.initTables}>
+            <NavigationContainer>
+              <StatusBar
+                  backgroundColor={currentTheme.colors.onBackground}
+                  style={currentTheme.colors.statusBarStyle}
+                  translucent={false}
+              />
+              <BottomTabNavigator></BottomTabNavigator>
+            </NavigationContainer>
+          </SQLiteProvider>
         </Context.Provider>
     );
   }
