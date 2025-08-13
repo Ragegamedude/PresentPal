@@ -43,7 +43,7 @@ export default createModalStyle = (currentTheme) =>
       modalContent: {
         borderBottomEndRadius: StyleSettings.defaultBorderRadius,
         borderBottomStartRadius: StyleSettings.defaultBorderRadius,
-        backgroundColor: currentTheme.colors.background,
+        backgroundColor: currentTheme.colors.onbackground,
       },
       modalContentHeadline: {
         marginHorizontal: StyleSettings.defaultMargin,

@@ -1,46 +1,49 @@
 {
-    "name": "Present Pal Premium",
-    "slug": "PresentPalPremium",
-    "platforms": [
-      "android"
+  "name": "Present Pal Premium",
+  "slug": "PresentPalPremium",
+  "platforms": [
+    "android"
+  ],
+  "experimental": {
+    "newArchitecture": false
+  },
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./assets/icon_premium.png",
+  "userInterfaceStyle": "light",
+  "splash": {
+    "image": "./assets/splash_premium.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "updates": {
+    "enabled": false,
+    "fallbackToCacheTimeout": 0
+  },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.argames15.presentpalpremium",
+    "buildNumber": "1.0.0"
+  },
+  "android": {
+    "package": "com.argames15.presentpalpremium",
+    "versionCode": 1,
+    "permissions": [
+      "WRITE_EXTERNAL_STORAGE",
+      "READ_EXTERNAL_STORAGE"
     ],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon_premium.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash_premium.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "enabled": false,
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.argames15.presentpalpremium",
-      "buildNumber": "1.0.0"
-    },
-    "android": {
-      "package": "com.argames15.presentpalpremium",
-      "versionCode": 1,
-      "permissions": [
-        "WRITE_EXTERNAL_STORAGE",
-        "READ_EXTERNAL_STORAGE"
-      ],
-      "adaptiveIcon": {
-        "backgroundColor": "#FFFFFF",
-        "foregroundImage": "./assets/icon_premium.png"
-      }
-    },
-    "extra": {
-      "eas": {
-        "projectId": "47778c81-3109-4352-8027-2e7c3bb0a83e"
-      }
+    "adaptiveIcon": {
+      "backgroundColor": "#FFFFFF",
+      "foregroundImage": "./assets/icon_premium.png"
+    }
+  },
+  "extra": {
+    "eas": {
+      "projectId": "47778c81-3109-4352-8027-2e7c3bb0a83e"
+    }
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-9694787014775307~4065245853"

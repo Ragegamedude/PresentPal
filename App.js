@@ -1,74 +1,71 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import 'expo-dev-client';
-import {NavigationContainer} from '@react-navigation/native';
-import {useFonts} from "@use-expo/font";
-import * as SplashScreen from 'expo-splash-screen';
-import {SQLiteProvider} from "expo-sqlite";
-import {StatusBar} from 'expo-status-bar';
-import React, {useEffect, useMemo, useState} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
-import AppIntroSlider from 'react-native-app-intro-slider';
-import CountryFlag from 'react-native-country-flag';
-import mobileAds from 'react-native-google-mobile-ads';
-import {TouchableRipple} from 'react-native-paper';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import "expo-dev-client";
+import { NavigationContainer } from "@react-navigation/native";
+import { useFonts } from "@use-expo/font";
+import * as SplashScreen from "expo-splash-screen";
+import { SQLiteProvider } from "expo-sqlite";
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useMemo, useState } from "react";
+import { SafeAreaView, Text, View } from "react-native";
+import AppIntroSlider from "react-native-app-intro-slider";
+import CountryFlag from "react-native-country-flag";
+import mobileAds from "react-native-google-mobile-ads";
+import { TouchableRipple } from "react-native-paper";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
-import createAppStyle from './AppStyle';
-import {AppVersions} from './constants/AppVersions';
-import {DatabaseSettings} from "./constants/DatabaseSettings";
-import {IconSettings} from './constants/IconSettings';
-import {StorageKeys} from './constants/StorageKeys';
-import {Context} from './context/Context';
+import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons";
+import createAppStyle from "./AppStyle";
+import { AppVersions } from "./constants/AppVersions";
+import { DatabaseSettings } from "./constants/DatabaseSettings";
+import { IconSettings } from "./constants/IconSettings";
+import { StorageKeys } from "./constants/StorageKeys";
+import { Context } from "./context/Context";
 import * as DatabaseAdapter from "./database/DatabaseAdapter";
-import BottomTabNavigator from './navigation/BottomTabNavigator';
+import BottomTabNavigator from "./navigation/BottomTabNavigator";
 
 //own imports of constants and components
-import {AvailableThemes, Theme} from './themes/Themes';
-import {
-  AvailableLanguages,
-  TranslationManager
-} from './translations/TranslationManager';
+import { AvailableThemes, Theme } from "./themes/Themes";
+import { AvailableLanguages, TranslationManager } from "./translations/TranslationManager";
 
 export default function App() {
   //Select version of app. Light = with Ads, Premium = no ads and more functions
   const [currentVersion, setCurrentVersion] = useState(AppVersions.PREMIUM);
   const [currentTheme, setCurrentTheme] = useState(
-      Theme.selectTheme(AvailableThemes.LIGHT));
+    Theme.selectTheme(AvailableThemes.LIGHT));
   const [currentLanguage, setCurrentLanguage] = useState(
-      TranslationManager.getLanguageObject(AvailableLanguages.ENGLISH)
+    TranslationManager.getLanguageObject(AvailableLanguages.ENGLISH)
   );
   const [currentLists, setCurrentLists] = useState([]);
   const [showPersonalAds, setShowPersonalAds] = useState(true);
   const [showIntroduction, setShowIntroduction] = useState(true);
-  const [hiddenGiftInformation, setHiddenGiftInformation] = useState(false)
+  const [hiddenGiftInformation, setHiddenGiftInformation] = useState(false);
 
   // Readiness variables for splashscreen
-  const [themeLoaded, setThemeLoaded] = useState(false)
-  const [languageLoaded, setLanguageLoaded] = useState(false)
-  const [isAppReady, setIsAppReady] = useState(false)
+  const [themeLoaded, setThemeLoaded] = useState(false);
+  const [languageLoaded, setLanguageLoaded] = useState(false);
+  const [isAppReady, setIsAppReady] = useState(false);
 
   // Prevent Autohide of Splash
   const ignored = SplashScreen.preventAutoHideAsync();
 
   const GERMAN = TranslationManager.getLanguageObject(
-      AvailableLanguages.GERMAN);
+    AvailableLanguages.GERMAN);
   const ENGLISH = TranslationManager.getLanguageObject(
-      AvailableLanguages.ENGLISH);
+    AvailableLanguages.ENGLISH);
   const SPANISH = TranslationManager.getLanguageObject(
-      AvailableLanguages.SPANISH);
+    AvailableLanguages.SPANISH);
   const PORTUGUESE = TranslationManager.getLanguageObject(
-      AvailableLanguages.PORTUGUESE);
+    AvailableLanguages.PORTUGUESE);
   const FRENCH = TranslationManager.getLanguageObject(
-      AvailableLanguages.FRENCH);
+    AvailableLanguages.FRENCH);
 
   const AppStyle = createAppStyle(currentTheme);
 
   // Load custom fonts
   let [fontsLoaded] = useFonts({
-    'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
-    'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
-    'Roboto-Light': require('./assets/fonts/Roboto-Light.ttf'),
-    'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf')
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf")
   });
 
   //load data at app start from storage or external sources like mount
@@ -83,7 +80,7 @@ export default function App() {
         setCurrentTheme(Theme.selectTheme(storedValue));
       } else {
         AsyncStorage.setItem(StorageKeys.THEME_STORAGE_KEY,
-            AvailableThemes.LIGHT).then(() => {
+          AvailableThemes.LIGHT).then(() => {
           setCurrentTheme(Theme.selectTheme(AvailableThemes.LIGHT));
         });
       }
@@ -91,40 +88,40 @@ export default function App() {
     });
 
     AsyncStorage.getItem(StorageKeys.LANGUAGE_STORAGE_KEY).then(
-        (storedValue) => {
-          if (storedValue != null) {
-            setCurrentLanguage(
-                TranslationManager.getLanguageObject(storedValue));
-          } else {
-            AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
-                AvailableLanguages.ENGLISH).then(() => {
-              setCurrentLanguage(TranslationManager.getLanguageObject(
-                  AvailableLanguages.ENGLISH));
-            });
-          }
-          setLanguageLoaded(true);
-        });
+      (storedValue) => {
+        if (storedValue != null) {
+          setCurrentLanguage(
+            TranslationManager.getLanguageObject(storedValue));
+        } else {
+          AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
+            AvailableLanguages.ENGLISH).then(() => {
+            setCurrentLanguage(TranslationManager.getLanguageObject(
+              AvailableLanguages.ENGLISH));
+          });
+        }
+        setLanguageLoaded(true);
+      });
 
     AsyncStorage.getItem(StorageKeys.SHOW_INTRODUCTION_KEY).then(
-        (storedValue) => {
-          if (storedValue != null) {
-            setShowIntroduction(JSON.parse(storedValue));
-          }
-        });
+      (storedValue) => {
+        if (storedValue != null) {
+          setShowIntroduction(JSON.parse(storedValue));
+        }
+      });
 
     AsyncStorage.getItem(StorageKeys.SHOW_PERSONAL_ADS_KEY).then(
-        (storedValue) => {
-          if (storedValue != null) {
-            setShowPersonalAds(JSON.parse(storedValue));
-          }
-        });
+      (storedValue) => {
+        if (storedValue != null) {
+          setShowPersonalAds(JSON.parse(storedValue));
+        }
+      });
 
     AsyncStorage.getItem(StorageKeys.GIFT_INFORMATION_HIDDEN_KEY).then(
-        (storedValue) => {
-          if (storedValue != null) {
-            setHiddenGiftInformation(JSON.parse(storedValue));
-          }
-        });
+      (storedValue) => {
+        if (storedValue != null) {
+          setHiddenGiftInformation(JSON.parse(storedValue));
+        }
+      });
   });
 
   useMemo(() => {
@@ -132,185 +129,185 @@ export default function App() {
       setIsAppReady(true);
       const ignored = SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, languageLoaded, themeLoaded])
+  }, [fontsLoaded, languageLoaded, themeLoaded]);
 
   const changeLanguage = (selectedLanguage) => {
     AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
-        selectedLanguage).then(() => {
+      selectedLanguage).then(() => {
       setCurrentLanguage(
-          TranslationManager.getLanguageObject(selectedLanguage));
+        TranslationManager.getLanguageObject(selectedLanguage));
     });
   };
 
   const slides = [
     {
-      key: 's1',
+      key: "s1",
       introduction: currentLanguage.introductionIntroduction,
       title: currentLanguage.introductionSlideHeadline1,
-      iconName: 'refresh',
+      iconName: "refresh",
       description: currentLanguage.introductionSlideDescription1,
-      languageDescription: currentLanguage.introductionChangeLanguageDescription,
+      languageDescription: currentLanguage.introductionChangeLanguageDescription
     },
     {
-      key: 's2',
+      key: "s2",
       introduction: currentLanguage.introductionIntroduction,
       title: currentLanguage.introductionSlideHeadline2,
-      iconName: 'organization',
+      iconName: "organization",
       description: currentLanguage.introductionSlideDescription2,
-      languageDescription: currentLanguage.introductionChangeLanguageDescription,
+      languageDescription: currentLanguage.introductionChangeLanguageDescription
     }
   ];
 
-  const RenderItem = ({item}) => {
+  const RenderItem = ({ item }) => {
     return (
-        <SafeAreaView>
-          <StatusBar
-              backgroundColor={currentTheme.colors.onBackground}
-              style={currentTheme.colors.statusBarStyle}
-              translucent={false}
-          />
-          <View style={AppStyle.introductionWrapper}>
-            <View style={AppStyle.introductionLanguageDescriptionWrapper}>
-              <Text
-                  style={AppStyle.introductionLanguageDescriptionText}>{item.languageDescription}</Text>
-            </View>
-            <View style={AppStyle.introductionLanguageWrapper}>
-              <TouchableRipple
-                  theme={currentTheme}
-                  borderless={true}
-                  style={AppStyle.introductionLanguage}
-                  onPress={() => changeLanguage(AvailableLanguages.ENGLISH)}
-              >
-                <CountryFlag
-                    style={AppStyle.introductionLanguageFlag}
-                    isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                        ENGLISH)}
-                    size={IconSettings.appFlagSize}
-                />
-              </TouchableRipple>
-              <TouchableRipple
-                  theme={currentTheme}
-                  borderless={true}
-                  style={AppStyle.introductionLanguage}
-                  onPress={() => changeLanguage(AvailableLanguages.GERMAN)}
-              >
-                <CountryFlag
-                    style={AppStyle.introductionLanguageFlag}
-                    isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                        GERMAN)}
-                    size={IconSettings.appFlagSize}
-                />
-              </TouchableRipple>
-              <TouchableRipple
-                  theme={currentTheme}
-                  borderless={true}
-                  style={AppStyle.introductionLanguage}
-                  onPress={() => changeLanguage(AvailableLanguages.SPANISH)}
-              >
-                <CountryFlag
-                    style={AppStyle.introductionLanguageFlag}
-                    isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                        SPANISH)}
-                    size={IconSettings.appFlagSize}
-                />
-              </TouchableRipple>
-              <TouchableRipple
-                  theme={currentTheme}
-                  borderless={true}
-                  style={AppStyle.introductionLanguage}
-                  onPress={() => changeLanguage(AvailableLanguages.PORTUGUESE)}
-              >
-                <CountryFlag
-                    style={AppStyle.introductionLanguageFlag}
-                    isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                        PORTUGUESE)}
-                    size={IconSettings.appFlagSize}
-                />
-              </TouchableRipple>
-              <TouchableRipple
-                  theme={currentTheme}
-                  borderless={true}
-                  style={AppStyle.introductionLanguage}
-                  onPress={() => changeLanguage(AvailableLanguages.FRENCH)}
-              >
-                <CountryFlag
-                    style={AppStyle.introductionLanguageFlag}
-                    isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                        FRENCH)}
-                    size={IconSettings.appFlagSize}
-                />
-              </TouchableRipple>
-            </View>
-            <View style={AppStyle.introductionHeadlineWrapper}>
-              <Text
-                  style={AppStyle.introductionIntroduction}>{item.introduction}</Text>
-              <Text style={AppStyle.introductionHeadline}>{item.title}</Text>
-            </View>
-            <View style={AppStyle.introductionContentWrapper}>
-              <SimpleLineIcon
-                  style={AppStyle.converterSectionModalHeaderIcon}
-                  name={item.iconName}
-                  color={currentTheme.colors.secondary}
-                  size={IconSettings.introductionIconSize}
-              ></SimpleLineIcon>
-            </View>
-            <View style={AppStyle.introductionDescriptionWrapper}>
-              <Text
-                  style={AppStyle.introductionDescription}>{item.description}</Text>
-            </View>
+      <SafeAreaView>
+        <StatusBar
+          backgroundColor={currentTheme.colors.onBackground}
+          style={currentTheme.colors.statusBarStyle}
+          translucent={false}
+        />
+        <View style={AppStyle.introductionWrapper}>
+          <View style={AppStyle.introductionLanguageDescriptionWrapper}>
+            <Text
+              style={AppStyle.introductionLanguageDescriptionText}>{item.languageDescription}</Text>
           </View>
-        </SafeAreaView>
+          <View style={AppStyle.introductionLanguageWrapper}>
+            <TouchableRipple
+              theme={currentTheme}
+              borderless={true}
+              style={AppStyle.introductionLanguage}
+              onPress={() => changeLanguage(AvailableLanguages.ENGLISH)}
+            >
+              <CountryFlag
+                style={AppStyle.introductionLanguageFlag}
+                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                  ENGLISH)}
+                size={IconSettings.appFlagSize}
+              />
+            </TouchableRipple>
+            <TouchableRipple
+              theme={currentTheme}
+              borderless={true}
+              style={AppStyle.introductionLanguage}
+              onPress={() => changeLanguage(AvailableLanguages.GERMAN)}
+            >
+              <CountryFlag
+                style={AppStyle.introductionLanguageFlag}
+                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                  GERMAN)}
+                size={IconSettings.appFlagSize}
+              />
+            </TouchableRipple>
+            <TouchableRipple
+              theme={currentTheme}
+              borderless={true}
+              style={AppStyle.introductionLanguage}
+              onPress={() => changeLanguage(AvailableLanguages.SPANISH)}
+            >
+              <CountryFlag
+                style={AppStyle.introductionLanguageFlag}
+                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                  SPANISH)}
+                size={IconSettings.appFlagSize}
+              />
+            </TouchableRipple>
+            <TouchableRipple
+              theme={currentTheme}
+              borderless={true}
+              style={AppStyle.introductionLanguage}
+              onPress={() => changeLanguage(AvailableLanguages.PORTUGUESE)}
+            >
+              <CountryFlag
+                style={AppStyle.introductionLanguageFlag}
+                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                  PORTUGUESE)}
+                size={IconSettings.appFlagSize}
+              />
+            </TouchableRipple>
+            <TouchableRipple
+              theme={currentTheme}
+              borderless={true}
+              style={AppStyle.introductionLanguage}
+              onPress={() => changeLanguage(AvailableLanguages.FRENCH)}
+            >
+              <CountryFlag
+                style={AppStyle.introductionLanguageFlag}
+                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                  FRENCH)}
+                size={IconSettings.appFlagSize}
+              />
+            </TouchableRipple>
+          </View>
+          <View style={AppStyle.introductionHeadlineWrapper}>
+            <Text
+              style={AppStyle.introductionIntroduction}>{item.introduction}</Text>
+            <Text style={AppStyle.introductionHeadline}>{item.title}</Text>
+          </View>
+          <View style={AppStyle.introductionContentWrapper}>
+            <SimpleLineIcon
+              style={AppStyle.converterSectionModalHeaderIcon}
+              name={item.iconName}
+              color={currentTheme.colors.secondary}
+              size={IconSettings.introductionIconSize}
+            ></SimpleLineIcon>
+          </View>
+          <View style={AppStyle.introductionDescriptionWrapper}>
+            <Text
+              style={AppStyle.introductionDescription}>{item.description}</Text>
+          </View>
+        </View>
+      </SafeAreaView>
     );
   };
 
   const RenderNextButton = () => {
     return (
-        <View style={AppStyle.introductionButton}>
-          <AntDesign
-              style={AppStyle.converterSectionModalHeaderIcon}
-              name={"rightcircleo"}
-              color={currentTheme.colors.secondary}
-              size={IconSettings.introductionMiniIconSize}
-          ></AntDesign>
-          <Text
-              style={AppStyle.introductionText}>{currentLanguage.introductionNext}</Text>
-        </View>
+      <View style={AppStyle.introductionButton}>
+        <AntDesign
+          style={AppStyle.converterSectionModalHeaderIcon}
+          name={"rightcircleo"}
+          color={currentTheme.colors.secondary}
+          size={IconSettings.introductionMiniIconSize}
+        ></AntDesign>
+        <Text
+          style={AppStyle.introductionText}>{currentLanguage.introductionNext}</Text>
+      </View>
     );
   };
 
   const RenderFinishButton = () => {
     return (
-        <View style={AppStyle.introductionButton}>
-          <AntDesign
-              style={AppStyle.converterSectionModalHeaderIcon}
-              name={"checkcircleo"}
-              color={currentTheme.colors.secondary}
-              size={IconSettings.introductionMiniIconSize}
-          ></AntDesign>
-          <Text
-              style={AppStyle.introductionText}>{currentLanguage.introductionDone}</Text>
-        </View>
+      <View style={AppStyle.introductionButton}>
+        <AntDesign
+          style={AppStyle.converterSectionModalHeaderIcon}
+          name={"checkcircleo"}
+          color={currentTheme.colors.secondary}
+          size={IconSettings.introductionMiniIconSize}
+        ></AntDesign>
+        <Text
+          style={AppStyle.introductionText}>{currentLanguage.introductionDone}</Text>
+      </View>
     );
   };
 
   const RenderSkipButton = () => {
     return (
-        <View style={AppStyle.introductionButton}>
-          <AntDesign
-              style={AppStyle.converterSectionModalHeaderIcon}
-              name={"closecircleo"}
-              color={currentTheme.colors.secondary}
-              size={IconSettings.introductionMiniIconSize}
-          ></AntDesign>
-          <Text
-              style={AppStyle.introductionText}>{currentLanguage.introductionSkip}</Text>
-        </View>
+      <View style={AppStyle.introductionButton}>
+        <AntDesign
+          style={AppStyle.converterSectionModalHeaderIcon}
+          name={"closecircleo"}
+          color={currentTheme.colors.secondary}
+          size={IconSettings.introductionMiniIconSize}
+        ></AntDesign>
+        <Text
+          style={AppStyle.introductionText}>{currentLanguage.introductionSkip}</Text>
+      </View>
     );
   };
 
   const introFinished = () => {
     AsyncStorage.setItem(StorageKeys.SHOW_INTRODUCTION_KEY,
-        JSON.stringify(false)).then(() => {
+      JSON.stringify(false)).then(() => {
       setShowIntroduction(false);
     });
   };
@@ -320,46 +317,46 @@ export default function App() {
     return null;
   } else if (isAppReady && showIntroduction) {
     return (
-        <AppIntroSlider
-            data={slides}
-            renderItem={RenderItem}
-            onDone={introFinished}
-            showSkipButton={true}
-            onSkip={introFinished}
-            renderDoneButton={RenderFinishButton}
-            renderNextButton={RenderNextButton}
-            renderSkipButton={RenderSkipButton}
-            dotClickEnabled={false}
-            activeDotStyle={AppStyle.activeDotStyle}
-            dotStyle={AppStyle.inactiveDotStyle}
-        />
+      <AppIntroSlider
+        data={slides}
+        renderItem={RenderItem}
+        onDone={introFinished}
+        showSkipButton={true}
+        onSkip={introFinished}
+        renderDoneButton={RenderFinishButton}
+        renderNextButton={RenderNextButton}
+        renderSkipButton={RenderSkipButton}
+        dotClickEnabled={false}
+        activeDotStyle={AppStyle.activeDotStyle}
+        dotStyle={AppStyle.inactiveDotStyle}
+      />
     );
   } else {
     return (
-        <Context.Provider
-            value={{
-              theme: [currentTheme, setCurrentTheme],
-              language: [currentLanguage, setCurrentLanguage],
-              version: [currentVersion, setCurrentVersion],
-              personalAds: [showPersonalAds, setShowPersonalAds],
-              introduction: [showIntroduction, setShowIntroduction],
-              hiddenGiftInformationValue: [hiddenGiftInformation,
-                setHiddenGiftInformation],
-              lists: [currentLists, setCurrentLists]
-            }}
-        >
+      <Context.Provider
+        value={{
+          theme: [currentTheme, setCurrentTheme],
+          language: [currentLanguage, setCurrentLanguage],
+          version: [currentVersion, setCurrentVersion],
+          personalAds: [showPersonalAds, setShowPersonalAds],
+          introduction: [showIntroduction, setShowIntroduction],
+          hiddenGiftInformationValue: [hiddenGiftInformation,
+            setHiddenGiftInformation],
+          lists: [currentLists, setCurrentLists]
+        }}
+      >
+        <NavigationContainer>
+          <StatusBar
+            backgroundColor={currentTheme.colors.onBackground}
+            style={currentTheme.colors.statusBarStyle}
+            translucent={false}
+          />
           <SQLiteProvider databaseName={DatabaseSettings.DEFAULT_DATABASE_NAME}
                           onInit={DatabaseAdapter.initTables}>
-            <NavigationContainer>
-              <StatusBar
-                  backgroundColor={currentTheme.colors.onBackground}
-                  style={currentTheme.colors.statusBarStyle}
-                  translucent={false}
-              />
-              <BottomTabNavigator></BottomTabNavigator>
-            </NavigationContainer>
+            <BottomTabNavigator></BottomTabNavigator>
           </SQLiteProvider>
-        </Context.Provider>
+        </NavigationContainer>
+      </Context.Provider>
     );
   }
 }

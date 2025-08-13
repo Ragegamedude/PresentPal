@@ -42,7 +42,8 @@
     "react-native-paper-dates": "^0.22.11",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "expo-system-ui": "~5.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

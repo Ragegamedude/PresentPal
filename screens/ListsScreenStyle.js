@@ -4,6 +4,7 @@ import {TextSettings} from "../constants/TextSettings";
 export const createListsScreenStyle = (currentTheme) =>
     StyleSheet.create({
       lists: {
+        backgroundColor: currentTheme.colors.background,
         flex: 1,
       },
       fabActionLabel: {

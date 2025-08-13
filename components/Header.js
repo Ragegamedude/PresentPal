@@ -1,19 +1,19 @@
-import {useNavigation} from "@react-navigation/native";
-import {useSQLiteContext} from "expo-sqlite";
-import React, {useContext, useEffect, useState} from 'react';
-import {Modal, Text, ToastAndroid, View} from 'react-native';
-import {HelperText, TextInput, TouchableRipple} from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { useSQLiteContext } from "expo-sqlite";
+import React, { useContext, useEffect, useState } from "react";
+import { Modal, Text, ToastAndroid, View } from "react-native";
+import { HelperText, TextInput, TouchableRipple } from "react-native-paper";
 import MaterialCommunityIcon from "react-native-paper/src/components/MaterialCommunityIcon";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {IconSettings} from "../constants/IconSettings";
-import {Context} from "../context/Context";
+import { IconSettings } from "../constants/IconSettings";
+import { Context } from "../context/Context";
 import * as DatabaseAdapter from "../database/DatabaseAdapter";
-import {dateRegex, validateDate, validateRequired, Validation} from "../validation/Validation";
-import {createHeaderStyle} from './HeaderStyle';
+import { dateRegex, validateDate, validateRequired, Validation } from "../validation/Validation";
+import { createHeaderStyle } from "./HeaderStyle";
 import createModalStyle from "./ModalStyle";
 
 export default Header = (props) => {
-  const {theme, language, version, personalAds, lists} = useContext(Context);
+  const { theme, language, version, personalAds, lists } = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [currentLists, setCurrentLists] = lists;
@@ -22,13 +22,13 @@ export default Header = (props) => {
 
   const [showAddListModal, setShowListModal] = useState(false);
 
-  const [headlineText, setHeadlineText] = useState('');
+  const [headlineText, setHeadlineText] = useState("");
   const [headlineError, setHeadlineError] = useState(false);
-  const [descriptionText, setDescriptionText] = useState('');
+  const [descriptionText, setDescriptionText] = useState("");
   const [descriptionError, setDescriptionError] = useState(false);
-  const [eventText, setEventText] = useState('');
+  const [eventText, setEventText] = useState("");
   const [eventError, setEventError] = useState(false);
-  const [dateText, setDateText] = useState('');
+  const [dateText, setDateText] = useState("");
   const [dateError, setDateError] = useState(false);
 
   const HeaderStyle = createHeaderStyle(currentTheme);
@@ -36,43 +36,45 @@ export default Header = (props) => {
 
   useEffect(() => {
     const loadLists = async () => {
-    }
+      const lists = await DatabaseAdapter.getLists(db);
+      setCurrentLists(lists);
+    };
     const ignored = loadLists();
   }, []);
 
   const addList = async () => {
-    const gifts = {gifts: []}
+    const gifts = { gifts: [] };
     await DatabaseAdapter.addList(db, 0,
-      "df", "fgf", "fgfg", "fgfg", "fgfg", JSON.stringify(gifts));
+      headlineText, descriptionText, "", dateText, eventText, JSON.stringify(gifts));
     const list = await DatabaseAdapter.getLists(db);
     setCurrentLists(list);
-  }
+  };
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const resetForm = () => {
-    setHeadlineText('');
+    setHeadlineText("");
     setHeadlineError(false);
-    setDescriptionText('');
+    setDescriptionText("");
     setDescriptionError(false);
-    setEventText('');
+    setEventText("");
     setEventError(false);
-    setDateText('');
+    setDateText("");
     setDateError(false);
-  }
+  };
 
   const validateForm = () => {
     const headlineValidationResult = validateRequired(headlineText);
     const descriptionValidationResult = validateRequired(descriptionText);
     const eventValidationResult = validateRequired(eventText);
-    const dateValidationResult = validateDate(dateText)
+    const dateValidationResult = validateDate(dateText);
     setHeadlineError(!headlineValidationResult);
     setDescriptionError(!descriptionValidationResult);
     setEventError(!eventValidationResult);
     setDateError(!dateValidationResult);
     return headlineValidationResult && descriptionValidationResult
       && eventValidationResult && dateValidationResult;
-  }
+  };
 
   const processForm = async () => {
     const validationResult = validateForm();
@@ -84,11 +86,11 @@ export default Header = (props) => {
         setShowListModal(false);
       }
     }
-  }
+  };
 
   return (
     <View style={HeaderStyle.headerWrapper}>
-      <Modal animationType={'fade'} transparent={true}
+      <Modal animationType={"fade"} transparent={true}
              visible={showAddListModal}>
         <View style={ModalStyle.modalWrapper}>
           <View style={ModalStyle.modal}>
@@ -98,7 +100,7 @@ export default Header = (props) => {
                 name={props.modalIconAdd}
                 color={currentTheme.colors.secondary}
                 size={IconSettings.modalHeadlineIconSize}
-                direction={'ltr'}
+                direction={"ltr"}
               ></MaterialCommunityIcon>
               <Text style={ModalStyle.modalHeaderText}>
                 {currentLanguage.listsAddList}
@@ -115,7 +117,7 @@ export default Header = (props) => {
                 dense={true}
                 maxLength={Validation.inputMaxHeadline}
                 left={<TextInput.Icon icon="view-headline"
-                                      disabled={true}/>}
+                                      disabled={true} />}
                 onChangeText={input => {
                   setHeadlineText(input);
                 }}
@@ -135,7 +137,7 @@ export default Header = (props) => {
                 dense={true}
                 maxLength={Validation.inputMaxDescription}
                 left={<TextInput.Icon icon="card-text-outline"
-                                      disabled={true}/>}
+                                      disabled={true} />}
                 onChangeText={input => {
                   setDescriptionText(input);
                 }}
@@ -155,7 +157,7 @@ export default Header = (props) => {
                 dense={true}
                 maxLength={Validation.inputMaxEvent}
                 left={<TextInput.Icon icon="crosshairs-gps"
-                                      disabled={true}/>}
+                                      disabled={true} />}
                 onChangeText={input => {
                   setEventText(input);
                 }}
@@ -175,7 +177,7 @@ export default Header = (props) => {
                 dense={true}
                 maxLength={Validation.inputMaxDate}
                 left={<TextInput.Icon icon="clock-check-outline"
-                                      disabled={true}/>}
+                                      disabled={true} />}
                 onChangeText={input => {
                   setDateText(input);
                 }}
@@ -215,11 +217,11 @@ export default Header = (props) => {
         </View>
       </Modal>
       <View style={HeaderStyle.leftContainer}>
-        {props.screen === 'category' && (
+        {props.screen === "category" && (
           <TouchableRipple theme={currentTheme} borderless={true}
                            onPress={() => navigation.goBack()}
                            style={HeaderStyle.leftIcon}>
-            <Ionicons name={'arrow-back'}
+            <Ionicons name={"arrow-back"}
                       size={IconSettings.buttonIconSize}
                       color={currentTheme.colors.secondary}>
 
@@ -231,14 +233,14 @@ export default Header = (props) => {
         <Text style={HeaderStyle.centerText}>{props.title}</Text>
       </View>
       <View style={HeaderStyle.rightContainer}>
-        {props.screen === 'lists' && (
+        {props.screen === "lists" && (
           <TouchableRipple theme={currentTheme} borderless={true}
                            onPress={() => setShowListModal(true)}
                            style={HeaderStyle.rightIcon}>
             <MaterialCommunityIcon name={props.modalIconAdd}
                                    size={IconSettings.buttonIconSize}
                                    color={currentTheme.colors.secondary}
-                                   direction={'rtl'}/>
+                                   direction={"rtl"} />
           </TouchableRipple>
         )}
       </View>
