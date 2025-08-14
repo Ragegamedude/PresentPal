@@ -345,17 +345,17 @@ export default function App() {
           lists: [currentLists, setCurrentLists]
         }}
       >
-        <NavigationContainer>
-          <StatusBar
-            backgroundColor={currentTheme.colors.onBackground}
-            style={currentTheme.colors.statusBarStyle}
-            translucent={false}
-          />
-          <SQLiteProvider databaseName={DatabaseSettings.DEFAULT_DATABASE_NAME}
-                          onInit={DatabaseAdapter.initTables}>
-            <BottomTabNavigator></BottomTabNavigator>
-          </SQLiteProvider>
-        </NavigationContainer>
+          <NavigationContainer>
+            <StatusBar
+              backgroundColor={currentTheme.colors.onBackground}
+              style={currentTheme.colors.statusBarStyle}
+              translucent={false}
+            />
+            <SQLiteProvider databaseName={DatabaseSettings.DEFAULT_DATABASE_NAME}
+                            onInit={DatabaseAdapter.initTables}>
+              <BottomTabNavigator></BottomTabNavigator>
+            </SQLiteProvider>
+          </NavigationContainer>
       </Context.Provider>
     );
   }

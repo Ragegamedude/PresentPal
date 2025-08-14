@@ -4,18 +4,19 @@
   "platforms": [
     "android"
   ],
-  "experimental": {
-    "newArchitecture": false
-  },
   "version": "1.0.0",
   "orientation": "portrait",
   "icon": "./assets/icon_premium.png",
   "userInterfaceStyle": "light",
   "splash": {
     "image": "./assets/splash_premium.png",
-    "resizeMode": "contain",
+    "resizeMode": "cover",
     "backgroundColor": "#ffffff",
-    "imageWidth": 600
+    "imageWidth": 320,
+    "android": {
+      "resizeMode": "cover",
+      "imageWidth": 320
+    }
   },
   "updates": {
     "enabled": false,
