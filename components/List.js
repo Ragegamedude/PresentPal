@@ -9,7 +9,6 @@ import { Context } from "../context/Context";
 import React, { useContext, useState } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 import * as DatabaseAdapter from "../database/DatabaseAdapter";
-import MaterialCommunityIcon from "react-native-paper/src/components/MaterialCommunityIcon";
 import createModalStyle from "./ModalStyle";
 
 export default List = (props) => {
@@ -33,6 +32,13 @@ export default List = (props) => {
     const lists = await DatabaseAdapter.getLists(database);
     setCurrentLists(lists);
     ToastAndroid.show(currentLanguage.listsDeleteList, ToastAndroid.SHORT);
+  };
+
+  const toggleFavoriteItem = async () => {
+    console.log("favorite in list:", props.data.favorite);
+    await DatabaseAdapter.toggleFavorite(database, props.data.id, props.data.favorite);
+    const lists = await DatabaseAdapter.getLists(database);
+    setCurrentLists(lists);
   };
 
   return (
@@ -137,7 +143,7 @@ export default List = (props) => {
         <TouchableRipple
           borderless={true}
           style={ListStyle.function}
-          onPress={() => console.log()}
+          onPress={() => toggleFavoriteItem()}
         >
           <MaterialIcons
             name={props.data.favorite ? "favorite" : "favorite-outline"}

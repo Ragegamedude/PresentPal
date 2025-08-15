@@ -18,7 +18,13 @@ export const addList = async (database, favorite, headline, description, image, 
 };
 
 export const deleteList = async (database, id) => {
-await database.runAsync('DELETE FROM lists WHERE id = ?', id);
+  await database.runAsync("DELETE FROM lists WHERE id = ?", id);
+};
+
+export const toggleFavorite = async (database, id, favorite) => {
+  console.log(favorite);
+  console.log(!favorite);
+  await database.runAsync("UPDATE lists SET favorite = ? WHERE id = ?", !favorite, id);
 };
 
 export const getLists = async (database) => {
@@ -26,7 +32,7 @@ export const getLists = async (database) => {
   let lists = [];
   rows.map(item => (lists.push({
     ...item,
-    favorite: Boolean(item.favorite), // convert 0/1 to true/false
+    favorite: item.favorite === 1, // convert 0/1 to true/false
     gifts: item.gifts ? JSON.parse(item.gifts) : [] // parse JSON string to array
   })));
   return lists;

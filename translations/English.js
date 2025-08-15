@@ -157,5 +157,5 @@ export const English = {
     ", which has been developed with a lot of love, care, and dedication.\n\nOur goal is to solve common problems we all face in dealing with PDF files in our daily lives without much effort.",
   homeSectionDate1: "15.05.2023",
   modalDeleteHeadline: "Delete",
-  modalDeleteWarning: "Do you really want to delete these list? This process cannot be undone.",
+  modalDeleteWarning: "Do you really want to delete these list?\nThis process cannot be undone.",
 };
