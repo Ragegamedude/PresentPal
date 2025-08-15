@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext, useEffect } from "react";
 import {ScrollView, Text, View} from 'react-native';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {PaperProvider} from "react-native-paper";
@@ -8,8 +8,11 @@ import LoadingContent from "../components/LoadingContent";
 import {AppVersions} from '../constants/AppVersions';
 import {Context} from '../context/Context';
 import {createListsScreenStyle} from './ListsScreenStyle';
+import * as DatabaseAdapter from "../database/DatabaseAdapter";
+import { useSQLiteContext } from "expo-sqlite";
 
 export default ListsScreen = ({navigation, props}) => {
+  const database = useSQLiteContext();
   const {theme, language, version, personalAds, lists} = useContext(Context);
   const [currentTheme] = theme;
   const [currentLanguage] = language;
@@ -21,6 +24,14 @@ export default ListsScreen = ({navigation, props}) => {
   const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9694787014775307/4284015587';
 
   const ListsScreenStyle = createListsScreenStyle(currentTheme);
+
+  useEffect(() => {
+    const loadLists = async () => {
+      const lists = await DatabaseAdapter.getLists(database);
+      setCurrentLists(lists);
+    };
+    const ignored = loadLists();
+  }, []);
 
   return (
     <PaperProvider theme={currentTheme}>

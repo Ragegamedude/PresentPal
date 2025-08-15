@@ -6,7 +6,7 @@ export const Validation = {
   inputMaxDate: 10,
 }
 
-const dateRegex = new RegExp(
+export const dateRegex = new RegExp(
     '(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0,1,2])\.(19|20)\\d{2}');
 
 export const validateDate = (date) => {

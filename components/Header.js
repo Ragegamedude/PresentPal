@@ -13,12 +13,11 @@ import { createHeaderStyle } from "./HeaderStyle";
 import createModalStyle from "./ModalStyle";
 
 export default Header = (props) => {
+  const database = useSQLiteContext();
   const { theme, language, version, personalAds, lists } = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [currentLists, setCurrentLists] = lists;
-
-  const db = useSQLiteContext();
 
   const [showAddListModal, setShowListModal] = useState(false);
 
@@ -34,20 +33,12 @@ export default Header = (props) => {
   const HeaderStyle = createHeaderStyle(currentTheme);
   const ModalStyle = createModalStyle(currentTheme);
 
-  useEffect(() => {
-    const loadLists = async () => {
-      const lists = await DatabaseAdapter.getLists(db);
-      setCurrentLists(lists);
-    };
-    const ignored = loadLists();
-  }, []);
-
   const addList = async () => {
     const gifts = { gifts: [] };
-    await DatabaseAdapter.addList(db, 0,
+    await DatabaseAdapter.addList(database, 0,
       headlineText, descriptionText, "", dateText, eventText, JSON.stringify(gifts));
-    const list = await DatabaseAdapter.getLists(db);
-    setCurrentLists(list);
+    const lists = await DatabaseAdapter.getLists(database);
+    setCurrentLists(lists);
   };
 
   const navigation = useNavigation();
