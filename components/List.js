@@ -1,4 +1,4 @@
-import { Text, ToastAndroid, View } from "react-native";
+import { Modal, Text, ToastAndroid, View } from "react-native";
 import { createListStyle } from "./ListStyle";
 import { Avatar, TouchableRipple } from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather";
@@ -6,9 +6,11 @@ import { IconSettings } from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Context } from "../context/Context";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 import * as DatabaseAdapter from "../database/DatabaseAdapter";
+import MaterialCommunityIcon from "react-native-paper/src/components/MaterialCommunityIcon";
+import createModalStyle from "./ModalStyle";
 
 export default List = (props) => {
   const database = useSQLiteContext();
@@ -17,21 +19,71 @@ export default List = (props) => {
   const [currentLanguage, setCurrentLanguage] = language;
   const [currentLists, setCurrentLists] = lists;
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const ListStyle = createListStyle(currentTheme);
+  const ModalStyle = createModalStyle(currentTheme);
+
   const giftsAmount = 0;
   const giftsTotal = 0;
   const giftsFinished = 0;
 
-  const deleteListItem = async (id) => {
-    await DatabaseAdapter.deleteList(database, id);
+  const deleteListItem = async () => {
+    await DatabaseAdapter.deleteList(database, props.data.id);
     const lists = await DatabaseAdapter.getLists(database);
     setCurrentLists(lists);
-    ToastAndroid.show(currentLanguage.listsDeleteList, ToastAndroid.LONG);
+    ToastAndroid.show(currentLanguage.listsDeleteList, ToastAndroid.SHORT);
   };
+
   return (
     <View
       style={props.lastElement ? ListStyle.listWrapper2 : ListStyle.listWrapper}
     >
+      <Modal animationType={"fade"} transparent={true}
+             visible={showDeleteModal}>
+        <View style={ModalStyle.modalWrapper}>
+          <View style={ModalStyle.modal}>
+            <View style={ModalStyle.modalHeader}>
+              <Feather
+                style={ModalStyle.converterSectionModalHeaderIcon}
+                name={"alert-triangle"}
+                color={currentTheme.colors.secondary}
+                size={IconSettings.modalHeadlineIconSize}
+              ></Feather>
+              <Text style={ModalStyle.modalHeaderText}>
+                {currentLanguage.modalDeleteHeadline}
+              </Text>
+            </View>
+            <View style={ModalStyle.modalContent}>
+              <Text style={ModalStyle.modalContentWarningText}>
+                {currentLanguage.modalDeleteWarning}
+              </Text>
+              <View style={ModalStyle.modalButtonWrapper}>
+                <TouchableRipple
+                  theme={currentTheme}
+                  borderless={true}
+                  style={ModalStyle.modalContentButton2}
+                  onPress={() => deleteListItem()}
+                >
+                  <Text style={ModalStyle.modalContentButtonText}>
+                    {currentLanguage.buttonConfirmText}
+                  </Text>
+                </TouchableRipple>
+                <TouchableRipple
+                  theme={currentTheme}
+                  borderless={true}
+                  style={ModalStyle.modalContentButton3}
+                  onPress={() => setShowDeleteModal(false)}
+                >
+                  <Text style={ModalStyle.modalContentButtonText}>
+                    {currentLanguage.buttonDeclineText}
+                  </Text>
+                </TouchableRipple>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <View style={ListStyle.imageWrapper}>
         <Text style={ListStyle.birthday}>{props.data.event}</Text>
         <Avatar.Image
@@ -111,7 +163,7 @@ export default List = (props) => {
         <TouchableRipple
           borderless={true}
           style={ListStyle.function}
-          onPress={() => deleteListItem(props.data.id)}
+          onPress={() => setShowDeleteModal(true)}
         >
           <MaterialIcons
             name="delete-outline"

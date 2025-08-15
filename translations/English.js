@@ -29,7 +29,7 @@ export const English = {
   homeScreenTitle: "Home",
   listsScreenTitle: "Lists",
   listsScreenEmptyText: "Currently no lists, please add a list.",
-  listsAddList: "A new list has been created",
+  listsAddList: "Add",
   listsAdd: "Add",
   listsDeleteList: "List has been deleted",
   listGiftAmount: "Gifts: ",
@@ -88,8 +88,10 @@ export const English = {
   inputFieldDateError: "Wrong Format (DD.MM.YYYY)",
   inputFieldErrorMax: "Maximum Characters: ",
   inputFieldErrorMandatory: "Field can\"t\" be empty",
-  toastAddList: "Add new List",
+  toastAddList: "New list has been added",
   buttonCloseText: "Close",
+  buttonConfirmText: "Yes",
+  buttonDeclineText: "No",
   buttonStartText: "Start",
   buttonAbortText: "Abort",
   buttonSaveText: "Save",
@@ -153,5 +155,7 @@ export const English = {
     Constants.expoConfig.name +
     "\"" +
     ", which has been developed with a lot of love, care, and dedication.\n\nOur goal is to solve common problems we all face in dealing with PDF files in our daily lives without much effort.",
-  homeSectionDate1: "15.05.2023"
+  homeSectionDate1: "15.05.2023",
+  modalDeleteHeadline: "Delete",
+  modalDeleteWarning: "Do you really want to delete these list? This process cannot be undone.",
 };

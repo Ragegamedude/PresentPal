@@ -59,6 +59,13 @@ export default createModalStyle = (currentTheme) =>
         fontFamily: TextSettings.defaultFontLight,
         color: currentTheme.colors.secondary
       },
+      modalContentWarningText: {
+        marginHorizontal: StyleSettings.defaultMargin,
+        marginTop: StyleSettings.defaultMargin,
+        fontSize: TextSettings.textSmallSize,
+        fontFamily: TextSettings.defaultFontLight,
+        color: currentTheme.colors.secondary
+      },
       modalContentInputField: {
         marginHorizontal: StyleSettings.defaultMargin,
         marginTop: StyleSettings.defaultPadding,
