@@ -50,12 +50,6 @@ export default List = (props) => {
         <View style={ModalStyle.modalWrapper}>
           <View style={ModalStyle.modal}>
             <View style={ModalStyle.modalHeader}>
-              <Feather
-                style={ModalStyle.converterSectionModalHeaderIcon}
-                name={"alert-triangle"}
-                color={currentTheme.colors.secondary}
-                size={IconSettings.modalHeadlineIconSize}
-              ></Feather>
               <Text style={ModalStyle.modalHeaderText}>
                 {currentLanguage.modalDeleteHeadline}
               </Text>

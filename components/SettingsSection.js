@@ -114,12 +114,6 @@ export default SettingsSection = (props) => {
           <View style={ModalStyle.modalWrapper}>
             <View style={ModalStyle.modal}>
               <View style={ModalStyle.modalHeader}>
-                <Feather
-                    style={ModalStyle.converterSectionModalHeaderIcon}
-                    name={props.iconName}
-                    color={currentTheme.colors.secondary}
-                    size={IconSettings.modalHeadlineIconSize}
-                ></Feather>
                 <Text style={ModalStyle.modalHeaderText}>
                   {currentLanguage.settingsInformationHeadline}
                 </Text>
@@ -175,12 +169,6 @@ export default SettingsSection = (props) => {
           <View style={ModalStyle.modalWrapper}>
             <View style={ModalStyle.modal}>
               <View style={ModalStyle.modalHeader}>
-                <Feather
-                    style={ModalStyle.converterSectionModalHeaderIcon}
-                    name={props.iconName}
-                    color={currentTheme.colors.secondary}
-                    size={IconSettings.modalHeadlineIconSize}
-                ></Feather>
                 <Text style={ModalStyle.modalHeaderText}>
                   {currentLanguage.settingsLanguageHeadline}
                 </Text>
@@ -206,8 +194,8 @@ export default SettingsSection = (props) => {
                         <Text
                             style={
                               currentLanguage === ENGLISH
-                                  ? ModalStyle.modalInputFieldTextInactive
-                                  : ModalStyle.modalInputFieldTextActive
+                                  ? ModalStyle.modalInputFieldTextActive
+                                  : ModalStyle.modalInputFieldTextInactive
                             }
                         >
                           {currentLanguage.languageEnglish}
@@ -234,8 +222,8 @@ export default SettingsSection = (props) => {
                         <Text
                             style={
                               currentLanguage === GERMAN
-                                  ? ModalStyle.modalInputFieldTextInactive
-                                  : ModalStyle.modalInputFieldTextActive
+                                  ? ModalStyle.modalInputFieldTextActive
+                                  : ModalStyle.modalInputFieldTextInactive
                             }
                         >
                           {currentLanguage.languageGerman}
@@ -262,8 +250,8 @@ export default SettingsSection = (props) => {
                         <Text
                             style={
                               currentLanguage === SPANISH
-                                  ? ModalStyle.modalInputFieldTextInactive
-                                  : ModalStyle.modalInputFieldTextActive
+                                  ? ModalStyle.modalInputFieldTextActive
+                                  : ModalStyle.modalInputFieldTextInactive
                             }
                         >
                           {currentLanguage.languageSpanish}
@@ -290,8 +278,8 @@ export default SettingsSection = (props) => {
                         <Text
                             style={
                               currentLanguage === PORTUGUESE
-                                  ? ModalStyle.modalInputFieldTextInactive
-                                  : ModalStyle.modalInputFieldTextActive
+                                  ? ModalStyle.modalInputFieldTextActive
+                                  : ModalStyle.modalInputFieldTextInactive
                             }
                         >
                           {currentLanguage.languagePortuguese}
@@ -318,8 +306,8 @@ export default SettingsSection = (props) => {
                         <Text
                             style={
                               currentLanguage === FRENCH
-                                  ? ModalStyle.modalInputFieldTextInactive
-                                  : ModalStyle.modalInputFieldTextActive
+                                  ? ModalStyle.modalInputFieldTextActive
+                                  : ModalStyle.modalInputFieldTextInactive
                             }
                         >
                           {currentLanguage.languageFrench}

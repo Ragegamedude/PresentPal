@@ -29,7 +29,7 @@ export const English = {
   homeScreenTitle: "Home",
   listsScreenTitle: "Lists",
   listsScreenEmptyText: "Currently no lists, please add a list.",
-  listsAddList: "Add",
+  listsAddList: "Create a new list",
   listsAdd: "Add",
   listsDeleteList: "List has been deleted",
   listGiftAmount: "Gifts: ",
@@ -79,6 +79,7 @@ export const English = {
   settingsContactCantOpenUrlError: "The webpage cannot be opened. Please try again later.",
   homeSectionUser: "Argames15",
   inputFieldHeadline: "Headline",
+  inputFieldHeadlinePlaceholder: "Headline",
   inputFieldDescription: "Description",
   inputFieldDescriptionPlaceholder: "Enter description",
   inputFieldEvent: "Event",
@@ -138,12 +139,11 @@ export const English = {
   successMessageInProgress: "Your file/files are currently being processed. Please be patient.",
   successMessageInProgressDone: "Your file/files have been saved to the selected location.",
   settingsInformationModalCreator: "We’d love for you to stop by!\n" +
-    "Visit us at www.argames15.eu, or simply click the “Visit” button below to"
-    + " jump right in.",
+    "Visit us at www.argames15.eu, or simply click the “Visit” button below.",
   settingsInformationGeneral: "Description",
   settingsInformationGeneralContent: Constants.expoConfig.name
     + " makes gift-giving"
-    + " effortless. Browse endless gift ideas, create personalized lists for each person on your list, and keep everything organized in one place.",
+    + " effortless. Browse endless gift ideas, create personalized lists for each person on your list, and keep everything organized.",
   settingsInformationApplication: "Application",
   settingsInformationWebsite: "Website",
   homeReadMore: "Read more..",
