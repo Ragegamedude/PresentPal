@@ -11,6 +11,9 @@ import * as DatabaseAdapter from "../database/DatabaseAdapter";
 import {validateDate, validateRequired, Validation} from "../validation/Validation";
 import {createHeaderStyle} from "./HeaderStyle";
 import createModalStyle from "./ModalStyle";
+import {DatePickerModal} from "react-native-paper-dates";
+import {format} from "date-fns";
+import {TranslationManager} from "../translations/TranslationManager";
 
 export default Header = (props) => {
   const database = useSQLiteContext();
@@ -20,6 +23,7 @@ export default Header = (props) => {
   const [currentLists, setCurrentLists] = lists;
 
   const [showAddListModal, setShowListModal] = useState(false);
+  const [showDateModal, setShowDateModal] = useState(false);
 
   const [headlineText, setHeadlineText] = useState("");
   const [headlineError, setHeadlineError] = useState(false);
@@ -28,6 +32,7 @@ export default Header = (props) => {
   const [eventText, setEventText] = useState("");
   const [eventError, setEventError] = useState(false);
   const [dateText, setDateText] = useState("");
+  const [dateTextUnformatted, setDateTextUnformatted] = useState(new Date());
   const [dateError, setDateError] = useState(false);
 
   const HeaderStyle = createHeaderStyle(currentTheme);
@@ -42,6 +47,14 @@ export default Header = (props) => {
   };
 
   const navigation = useNavigation();
+
+  const startDate = new Date();
+  const endDate = new Date(startDate.getFullYear() + 100, startDate.getMonth(), startDate.getDate());
+
+  const validRange = {
+    startDate,
+    endDate,
+  }
 
   const resetForm = () => {
     setHeadlineText("");
@@ -80,8 +93,26 @@ export default Header = (props) => {
     }
   };
 
+  const setDateTextFormatted = (input) => {
+    const formatted = format(input.date, 'dd.MM.yyyy');
+    setDateText(formatted);
+    setDateTextUnformatted(input.date);
+    setShowDateModal(false);
+  }
+
   return (
     <View style={HeaderStyle.headerWrapper}>
+      <DatePickerModal
+        locale={TranslationManager.getCurrentLanguageAsIsoString(currentLanguage) + "-custom"}
+        startDate={startDate}
+        endDate={endDate}
+        validRange={validRange}
+        mode="single"
+        visible={showDateModal}
+        onDismiss={() => setShowDateModal(false)}
+        date={dateTextUnformatted}
+        onConfirm={(date) => setDateTextFormatted(date)}
+      />
       <Modal animationType={"fade"} transparent={true}
              visible={showAddListModal}>
         <View style={ModalStyle.modalWrapper}>
@@ -190,7 +221,10 @@ export default Header = (props) => {
                     onChangeText={input => {
                       setDateText(input);
                     }}
-                    onFocus={() => setDateError(false)}
+                    onFocus={() => {
+                      setDateError(false);
+                      setShowDateModal(true)
+                    }}
                   />
                 </View>
                 {dateError && (

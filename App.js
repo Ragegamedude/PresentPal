@@ -58,6 +58,8 @@ export default function App() {
   const FRENCH = TranslationManager.getLanguageObject(
     AvailableLanguages.FRENCH);
 
+  TranslationManager.registerDatePickerTranslations();
+
   const AppStyle = createAppStyle(currentTheme);
 
   // Load custom fonts
