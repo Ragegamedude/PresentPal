@@ -23,6 +23,7 @@ export const createListsScreenStyle = (currentTheme) =>
       marginHorizontal: StyleSettings.defaultMargin,
       fontSize: TextSettings.textDefaultSize,
       fontFamily: TextSettings.defaultFontRegular,
-      color: currentTheme.colors.secondary
+      color: currentTheme.colors.secondary,
+      textAlign: 'center'
     }
   });

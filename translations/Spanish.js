@@ -7,24 +7,19 @@ export const Spanish = {
   introductionNext: "Siguiente",
   introductionIntroduction1: "Bienvenida",
   introductionSlideHeadline1: "¡Estamos felices de tenerte!",
-  introductionSlideDescription1:
-    "Gracias por elegir nuestra app. Estamos aquí para ayudarte a encontrar y organizar los regalos perfectos. Selecciona tu idioma, que podrás cambiar más tarde en los ajustes.",
+  introductionSlideDescription1: "Gracias por elegir nuestra app para encontrar y organizar los regalos perfectos. Selecciona tu idioma, que podrás cambiar más tarde en los ajustes.",
   introductionIntroduction2: "Inspiración",
   introductionSlideHeadline2: "Descubre ideas de regalos increíbles",
-  introductionSlideDescription2:
-    "Explora una cuidada selección de regalos únicos de nuestros socios. Ya sea para un cumpleaños o Navidad, encontrarás el detalle perfecto para cada ocasión especial.",
+  introductionSlideDescription2: "Explora una cuidada selección de regalos únicos de nuestros socios. Ya sea para un cumpleaños o Navidad, encontrarás el detalle perfecto para cada ocasión especial.",
   introductionIntroduction3: "Organización",
   introductionSlideHeadline3: "Crea y gestiona tus listas",
-  introductionSlideDescription3:
-    "Mantente organizado creando listas de regalos personalizadas para tus amigos y familiares. Añade ideas, sigue tus compras y marca artículos para no olvidar nada importante.",
+  introductionSlideDescription3: "Mantente organizado creando listas de regalos personalizadas para tus amigos y familiares. Añade ideas, sigue tus compras y marca artículos para no olvidar ningún evento.",
   introductionIntroduction4: "Experiencia",
   introductionSlideHeadline4: "Tu experiencia con anuncios",
-  introductionSlideDescription4:
-    "Para mantener la app gratuita, mostramos un número mínimo de anuncios. Para una experiencia sin anuncios, puedes pasarte a la versión Pro en cualquier momento en los ajustes.",
+  introductionSlideDescription4: "Para mantener la app gratuita, mostramos un número mínimo de anuncios. Para una experiencia sin anuncios, puedes pasarte a la versión Pro en cualquier momento.",
   introductionIntroduction5: "Comenzar",
   introductionSlideHeadline5: "Configuración completada",
-  introductionSlideDescription5:
-    "¡Todo listo para empezar! Para más opciones de personalización, visita el menú principal de Ajustes. Explora todas las opciones disponibles para hacer tuya esta aplicación.",
+  introductionSlideDescription5: "¡Todo listo para empezar! Para más opciones de personalización, visita el menú principal de Ajustes. Explora todas las opciones disponibles para hacer tuya esta aplicación.",
 
   // --- Language Selection ---
   introductionChangeLanguageDescription: "Selecciona el idioma de la aplicación",
@@ -51,11 +46,7 @@ export const Spanish = {
   homeSectionTopic1: "Novedades",
   homeSectionTitle1: "¡Te damos la bienvenida a la app!",
   homeSectionMessage1:
-    "Estamos encantados de presentar nuestra nueva aplicación, " +
-    "\"" +
-    Constants.expoConfig.name +
-    "\"" +
-    ", diseñada para que hacer regalos sea fácil y agradable.\n\nNuestro objetivo es ayudarte a organizarte y a encontrar el regalo perfecto para cada ocasión.",
+    "Estamos encantados de presentar nuestra nueva aplicación, " + Constants.expoConfig.name + ", diseñada para que hacer regalos sea fácil y agradable.\n\nNuestro objetivo es ayudarte a organizarte y a encontrar el regalo perfecto para cada ocasión.",
   homeSectionDate1: "19.08.2025",
 
   // --- Lists Screen ---
@@ -89,9 +80,7 @@ export const Spanish = {
   settingsInformationHeadline: "Acerca de",
   settingsInformationDescription: "Ver detalles de la versión e información de la app.",
   settingsInformationModalHeadline: "Información de la aplicación",
-  settingsInformationModalContent:
-    Constants.expoConfig.name + "\n" +
-    "Versión: " + Constants.expoConfig.version,
+  settingsInformationModalContent: Constants.expoConfig.name + "\nVersión: " + Constants.expoConfig.version,
   settingsStatusHeadlineVersion: "Versión",
   settingsStatusHeadlineFreeVersion: "Gratuita",
   settingsStatusHeadlinePremiumVersion: "Premium",
@@ -106,6 +95,17 @@ export const Spanish = {
   settingsPersonalAdsDescription: "Permitir publicidad personalizada.",
   settingsThemeLight: "Claro",
   settingsThemeDark: "Oscuro",
+  settingsContactURL: "https://www.argames15.eu/contact",
+  settingsTermsConditionsURL: "https://www.argames15.eu/terms-conditions",
+  settingsPrivacyPolicyURL: "https://www.argames15.eu/privacy-policy",
+  settingsDisclaimerURL: "https://www.argames15.eu/disclaimer",
+  settingsHomepageURL: "https://www.argames15.eu",
+  settingsContactCantOpenUrlError: "No se pudo abrir la página. Comprueba tu conexión a internet.",
+  settingsInformationModalCreator: "¡Nos encantaría que nos visitaras! Entra en nuestra web o haz clic en el botón de abajo.",
+  settingsInformationGeneral: "Descripción",
+  settingsInformationGeneralContent: Constants.expoConfig.name + " hace que regalar sea fácil. Explora ideas de regalos y crea listas personalizadas.",
+  settingsInformationApplication: "Aplicación",
+  settingsInformationWebsite: "Sitio web",
 
   // --- Input Fields & Forms ---
   inputFieldHeadline: "Título",
@@ -117,16 +117,37 @@ export const Spanish = {
   inputFieldDate: "Fecha",
   inputFieldDatePlaceholder: "DD.MM.AAAA",
   inputFieldDateError: "Formato de fecha no válido. Usa DD.MM.AAAA.",
+  inputFieldDatePickerSelectSingle: "Selecciona una fecha",
+  inputFieldDatePickerSelectMultiple: "Selecciona varias fechas",
+  inputFieldDatePickerSelectRange: "Selecciona un rango de fechas",
+  inputFieldDatePickerWrongFormat: "Formato de fecha no válido, esperado: ",
+  inputFieldDatePickerMustBeHigher: "La fecha debe ser posterior a: ",
+  inputFieldDatePickerMustBeLower: "La fecha debe ser anterior a: ",
+  inputFieldDatePickerMustBeBetween: "La fecha debe estar dentro del rango seleccionado.",
+  inputFieldDatePickerDisabledDate: "Esta fecha está deshabilitada y no se puede seleccionar.",
+  inputFieldDatePickerPrevious: "Anterior",
+  inputFieldDatePickerNext: "Siguiente",
+  inputFieldDatePickerTypeInDate: "Escribir fecha",
+  inputFieldDatePickerPickFromCalender: "Elegir del calendario",
+  inputFieldDatePickerClose: "Cerrar",
+  inputFieldDatePickerHour: "Hora",
+  inputFieldDatePickerMinute: "Minuto",
+  inputFieldDatePickerSave: "Guardar",
+  inputFieldErrorMax: "Caracteres máximos: ",
   inputFieldErrorMandatory: "Este campo es obligatorio.",
 
   // --- Toasts & Modals ---
   toastAddList: "Lista añadida correctamente.",
   modalDeleteHeadline: "Eliminar lista",
-  modalDeleteWarning: "¿Seguro que quieres eliminar esta lista?\nEsta acción no se puede deshacer.",
+  modalDeleteWarning: "¿Seguro que quieres eliminar esta lista? Esta acción no se puede deshacer.",
 
   // --- Error Messages ---
   errorHeadline: "Ha ocurrido un error",
-  errorMessageNotReachable: "No se pudo conectar. Comprueba tu conexión a Internet.",
-  errorMessagePermissionDenied: "Permiso denegado. Concédelo en los ajustes.",
-  errorMessageUnknown: "Ha ocurrido un error inesperado. Inténtalo de nuevo más tarde."
+  errorMessageNotReachable: "No se pudo conectar. Comprueba tu conexión a Internet y vuelve a intentarlo.",
+  errorMessageUploadError: "La operación no se pudo completar. Por favor, inténtalo de nuevo.",
+  errorMessagePermissionDenied: "Permiso denegado. Por favor, concédelo en los ajustes de tu dispositivo.",
+  errorMessageAbortRequest: "La solicitud ha sido cancelada.",
+  errorMessageTimeout: "La solicitud ha tardado demasiado. Por favor, inténtalo de nuevo.",
+  errorMessageUnknown: "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo más tarde.",
+  errorMessageAdNotLoaded: "No se ha podido cargar un anuncio en este momento. Por favor, inténtalo de nuevo."
 };

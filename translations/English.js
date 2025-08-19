@@ -7,24 +7,19 @@ export const English = {
   introductionNext: "Next",
   introductionIntroduction1: "Welcome",
   introductionSlideHeadline1: "We're Happy to Have You!",
-  introductionSlideDescription1:
-    "Thank you for choosing our app. We're excited to help you find and organize the perfect gifts. Select your preferred language below, which can be changed later in the settings menu.",
+  introductionSlideDescription1: "Thank you for choosing our app. We're excited to help you find and organize the perfect gifts. Select your preferred language below, which can be changed later in the settings menu.",
   introductionIntroduction2: "Inspiration",
   introductionSlideHeadline2: "Discover Amazing Gift Ideas",
-  introductionSlideDescription2:
-    "Explore a curated selection of unique gifts from our trusted partners. Whether it's a birthday or holiday, you'll find the perfect present for any special occasion or person.",
+  introductionSlideDescription2: "Explore a curated selection of unique gifts from our trusted partners. Whether it's a birthday or holiday, you'll find the perfect present for any special occasion or person.",
   introductionIntroduction3: "Organization",
   introductionSlideHeadline3: "Create and Manage Lists",
-  introductionSlideDescription3:
-    "Stay perfectly organized by creating personalized gift lists for friends and family. Add ideas, track purchases, and check off items so you never miss a single event.",
+  introductionSlideDescription3: "Stay perfectly organized by creating personalized gift lists for friends and family. Add ideas, track purchases, and check off items so you never miss a single event.",
   introductionIntroduction4: "Experience",
   introductionSlideHeadline4: "Your Ad Experience",
-  introductionSlideDescription4:
-    "To keep this app free, we run a minimal number of ads. For a focused, ad-free experience, you can unlock all features by upgrading to the Pro version at any time.",
+  introductionSlideDescription4: "To keep this app free, we run a minimal number of ads. For a focused, ad-free experience, you can unlock all features by upgrading to the Pro version at any time.",
   introductionIntroduction5: "Get Started",
   introductionSlideHeadline5: "Setup Complete",
-  introductionSlideDescription5:
-    "You're all set and ready to go! For more ways to personalize the app, you can visit the main Settings area. Feel free to explore all the options available to make this app truly yours.",
+  introductionSlideDescription5: "You're all set and ready to go! For more ways to personalize the app, you can visit the main Settings area. Feel free to explore all the options available to make this app truly yours.",
 
   // --- Language Selection ---
   introductionChangeLanguageDescription: "Select the app's language",
@@ -51,11 +46,7 @@ export const English = {
   homeSectionTopic1: "News",
   homeSectionTitle1: "Welcome to the App!",
   homeSectionMessage1:
-    "We are excited to introduce our new app, " +
-    "\"" +
-    Constants.expoConfig.name +
-    "\"" +
-    ", designed to make gift-giving effortless and enjoyable.\n\nOur goal is to help you stay organized and find the perfect gift for every occasion, all in one place.",
+    "We are excited to introduce our new app, "+ Constants.expoConfig.name + ", designed to make gift-giving effortless and enjoyable.\n\nOur goal is to help you stay organized and find the perfect gift for every occasion, all in one place.",
   homeSectionDate1: "19.08.2025",
 
   // --- Lists Screen ---
@@ -89,9 +80,7 @@ export const English = {
   settingsInformationHeadline: "About",
   settingsInformationDescription: "View version details and app information.",
   settingsInformationModalHeadline: "App Information",
-  settingsInformationModalContent:
-    Constants.expoConfig.name + "\n" +
-    "Version: " + Constants.expoConfig.version,
+  settingsInformationModalContent: Constants.expoConfig.name + "Version: " + Constants.expoConfig.version,
   settingsStatusHeadlineVersion: "Version",
   settingsStatusHeadlineFreeVersion: "Free",
   settingsStatusHeadlinePremiumVersion: "Premium",
@@ -112,11 +101,9 @@ export const English = {
   settingsDisclaimerURL: "https://www.argames15.eu/disclaimer",
   settingsHomepageURL: "https://www.argames15.eu",
   settingsContactCantOpenUrlError: "Could not open the page. Please check your internet connection.",
-  settingsInformationModalCreator: "We’d love for you to stop by!\n" +
-    "Visit us at our website or simply click the button below.",
+  settingsInformationModalCreator: "We’d love for you to stop by! Visit us at our website or simply click the button below.",
   settingsInformationGeneral: "Description",
-  settingsInformationGeneralContent: Constants.expoConfig.name
-    + " makes gift-giving effortless. Browse endless gift ideas and create personalized lists to keep everything organized.",
+  settingsInformationGeneralContent: Constants.expoConfig.name + " makes gift-giving effortless. Browse endless gift ideas and create personalized lists to keep everything organized.",
   settingsInformationApplication: "Application",
   settingsInformationWebsite: "Website",
 
@@ -152,7 +139,7 @@ export const English = {
   // --- Toasts & Modals ---
   toastAddList: "List added successfully.",
   modalDeleteHeadline: "Delete List",
-  modalDeleteWarning: "Are you sure you want to delete this list?\nThis action cannot be undone.",
+  modalDeleteWarning: "Are you sure you want to delete this list? This action cannot be undone.",
 
   // --- Error Messages ---
   errorHeadline: "An Error Occurred",

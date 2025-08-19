@@ -6,25 +6,20 @@ export const French = {
   introductionSkip: "Ignorer",
   introductionNext: "Suivant",
   introductionIntroduction1: "Bienvenue",
-  introductionSlideHeadline1: "Heureux de vous accueillir!",
-  introductionSlideDescription1:
-    "Merci d'avoir choisi notre application. Nous sommes là pour vous aider à trouver et organiser les cadeaux parfaits. Sélectionnez votre langue, modifiable plus tard dans les paramètres.",
+  introductionSlideHeadline1: "Nous sommes ravis de vous accueillir !",
+  introductionSlideDescription1: "Merci d'avoir choisi notre application pour trouver et organiser les cadeaux parfaits. Sélectionnez votre langue, que vous pourrez modifier plus tard dans les paramètres.",
   introductionIntroduction2: "Inspiration",
-  introductionSlideHeadline2: "Nos meilleures idées cadeaux",
-  introductionSlideDescription2:
-    "Explorez une sélection de cadeaux uniques de nos partenaires. Que ce soit pour un anniversaire ou les fêtes, vous trouverez le présent idéal pour chaque occasion spéciale.",
+  introductionSlideHeadline2: "Découvrez des idées cadeaux incroyables",
+  introductionSlideDescription2: "Explorez une sélection de cadeaux uniques de nos partenaires. Que ce soit pour un anniversaire ou les fêtes, vous trouverez le présent idéal pour chaque occasion spéciale.",
   introductionIntroduction3: "Organisation",
   introductionSlideHeadline3: "Créez et gérez vos listes",
-  introductionSlideDescription3:
-    "Restez parfaitement organisé en créant des listes de cadeaux personnalisées. Ajoutez des idées, suivez vos achats et cochez les articles pour ne jamais rien oublier d'important.",
+  introductionSlideDescription3: "Restez organisé en créant des listes de cadeaux personnalisées. Ajoutez des idées, suivez vos achats et cochez les articles pour ne jamais manquer un seul événement.",
   introductionIntroduction4: "Expérience",
   introductionSlideHeadline4: "Votre expérience publicitaire",
-  introductionSlideDescription4:
-    "Pour garder l'application gratuite, nous affichons quelques publicités. Pour une expérience sans publicité, vous pouvez passer à la version Pro à tout moment dans les paramètres.",
+  introductionSlideDescription4: "Pour garder l'application gratuite, nous affichons quelques publicités. Pour une expérience sans publicité, vous pouvez passer à la version Pro à tout moment dans les paramètres.",
   introductionIntroduction5: "Démarrage",
   introductionSlideHeadline5: "Configuration terminée",
-  introductionSlideDescription5:
-    "Vous êtes prêt à commencer ! Pour plus d'options de personnalisation, visitez le menu principal des Paramètres. Explorez toutes les options pour vous approprier l'application.",
+  introductionSlideDescription5: "Vous êtes prêt à commencer ! Pour plus d'options de personnalisation, visitez le menu principal des Paramètres. Explorez toutes les options pour vous approprier l'application.",
 
   // --- Language Selection ---
   introductionChangeLanguageDescription: "Sélectionnez la langue de l'application",
@@ -51,11 +46,7 @@ export const French = {
   homeSectionTopic1: "Nouveautés",
   homeSectionTitle1: "Bienvenue sur l'application !",
   homeSectionMessage1:
-    "Nous sommes heureux de vous présenter notre nouvelle application, " +
-    "\"" +
-    Constants.expoConfig.name +
-    "\"" +
-    ", conçue pour rendre l'offre de cadeaux simple et agréable.\n\nNotre objectif est de vous aider à rester organisé et à trouver le cadeau parfait pour chaque occasion.",
+    "Nous sommes heureux de vous présenter notre nouvelle application, " + Constants.expoConfig.name + ", conçue pour rendre l'offre de cadeaux simple et agréable.\n\nNotre objectif est de vous aider à rester organisé et à trouver le cadeau parfait.",
   homeSectionDate1: "19.08.2025",
 
   // --- Lists Screen ---
@@ -87,11 +78,9 @@ export const French = {
   settingsContactHeadline: "Nous contacter",
   settingsContactDescription: "Envoyez-nous vos questions ou commentaires.",
   settingsInformationHeadline: "À propos",
-  settingsInformationDescription: "Voir les détails de la version et les informations sur l'application.",
+  settingsInformationDescription: "Voir les détails de la version et les infos de l'app.",
   settingsInformationModalHeadline: "Informations sur l'application",
-  settingsInformationModalContent:
-    Constants.expoConfig.name + "\n" +
-    "Version : " + Constants.expoConfig.version,
+  settingsInformationModalContent: Constants.expoConfig.name + "\nVersion : " + Constants.expoConfig.version,
   settingsStatusHeadlineVersion: "Version",
   settingsStatusHeadlineFreeVersion: "Gratuite",
   settingsStatusHeadlinePremiumVersion: "Premium",
@@ -106,6 +95,17 @@ export const French = {
   settingsPersonalAdsDescription: "Autoriser la publicité personnalisée.",
   settingsThemeLight: "Clair",
   settingsThemeDark: "Sombre",
+  settingsContactURL: "https://www.argames15.eu/contact",
+  settingsTermsConditionsURL: "https://www.argames15.eu/terms-conditions",
+  settingsPrivacyPolicyURL: "https://www.argames15.eu/privacy-policy",
+  settingsDisclaimerURL: "https://www.argames15.eu/disclaimer",
+  settingsHomepageURL: "https://www.argames15.eu",
+  settingsContactCantOpenUrlError: "Impossible d'ouvrir la page. Veuillez vérifier votre connexion Internet.",
+  settingsInformationModalCreator: "N'hésitez pas à nous rendre visite ! Consultez notre site web ou cliquez sur le bouton ci-dessous.",
+  settingsInformationGeneral: "Description",
+  settingsInformationGeneralContent: Constants.expoConfig.name + " rend l'offre de cadeaux simple. Parcourez des idées cadeaux et créez des listes personnalisées.",
+  settingsInformationApplication: "Application",
+  settingsInformationWebsite: "Site web",
 
   // --- Input Fields & Forms ---
   inputFieldHeadline: "Titre",
@@ -117,16 +117,37 @@ export const French = {
   inputFieldDate: "Date",
   inputFieldDatePlaceholder: "JJ.MM.AAAA",
   inputFieldDateError: "Format de date invalide. Veuillez utiliser JJ.MM.AAAA.",
+  inputFieldDatePickerSelectSingle: "Sélectionnez une date",
+  inputFieldDatePickerSelectMultiple: "Sélectionnez des dates",
+  inputFieldDatePickerSelectRange: "Sélectionnez une plage de dates",
+  inputFieldDatePickerWrongFormat: "Format de date invalide, attendu : ",
+  inputFieldDatePickerMustBeHigher: "La date doit être postérieure au : ",
+  inputFieldDatePickerMustBeLower: "La date doit être antérieure au : ",
+  inputFieldDatePickerMustBeBetween: "La date doit être dans la plage sélectionnée.",
+  inputFieldDatePickerDisabledDate: "Cette date est désactivée et ne peut pas être sélectionnée.",
+  inputFieldDatePickerPrevious: "Précédent",
+  inputFieldDatePickerNext: "Suivant",
+  inputFieldDatePickerTypeInDate: "Saisir la date",
+  inputFieldDatePickerPickFromCalender: "Choisir sur le calendrier",
+  inputFieldDatePickerClose: "Fermer",
+  inputFieldDatePickerHour: "Heure",
+  inputFieldDatePickerMinute: "Minute",
+  inputFieldDatePickerSave: "Enregistrer",
+  inputFieldErrorMax: "Caractères maximum : ",
   inputFieldErrorMandatory: "Ce champ est obligatoire.",
 
   // --- Toasts & Modals ---
   toastAddList: "Liste ajoutée avec succès.",
   modalDeleteHeadline: "Supprimer la liste",
-  modalDeleteWarning: "Êtes-vous sûr de vouloir supprimer cette liste ?\nCette action est irréversible.",
+  modalDeleteWarning: "Êtes-vous sûr de vouloir supprimer cette liste ? Cette action est irréversible.",
 
   // --- Error Messages ---
   errorHeadline: "Une erreur est survenue",
-  errorMessageNotReachable: "Connexion impossible. Veuillez vérifier votre connexion Internet.",
-  errorMessagePermissionDenied: "Autorisation refusée. Veuillez l'accorder dans les paramètres.",
-  errorMessageUnknown: "Une erreur inattendue est survenue. Veuillez réessayer plus tard."
+  errorMessageNotReachable: "Connexion impossible. Veuillez vérifier votre connexion Internet et réessayer.",
+  errorMessageUploadError: "L'opération n'a pas pu être terminée. Veuillez réessayer.",
+  errorMessagePermissionDenied: "Autorisation refusée. Veuillez l'accorder dans les paramètres de votre appareil.",
+  errorMessageAbortRequest: "La requête a été annulée.",
+  errorMessageTimeout: "Le délai de la requête a expiré. Veuillez réessayer.",
+  errorMessageUnknown: "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
+  errorMessageAdNotLoaded: "Impossible de charger une publicité pour le moment. Veuillez réessayer."
 };
