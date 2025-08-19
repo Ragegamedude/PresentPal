@@ -3,6 +3,7 @@ export const StyleSettings = {
   defaultPadding: 5,
   defaultPaddingButton: 7.5,
   defaultMargin: 15,
+  introductionMargin: 30,
   defaultBorderRadius: 5,
   defaultPaddingModal: 50,
   defaultDividerWidth: 1,

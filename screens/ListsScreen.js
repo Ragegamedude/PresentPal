@@ -1,15 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect} from "react";
 import {ScrollView, Text, View} from 'react-native';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {PaperProvider} from "react-native-paper";
 import Header from '../components/Header';
 import List from '../components/List';
-import LoadingContent from "../components/LoadingContent";
 import {AppVersions} from '../constants/AppVersions';
 import {Context} from '../context/Context';
 import {createListsScreenStyle} from './ListsScreenStyle';
 import * as DatabaseAdapter from "../database/DatabaseAdapter";
-import { useSQLiteContext } from "expo-sqlite";
+import {useSQLiteContext} from "expo-sqlite";
 
 export default ListsScreen = ({navigation, props}) => {
   const database = useSQLiteContext();
@@ -20,7 +19,6 @@ export default ListsScreen = ({navigation, props}) => {
   const [showPersonalAds] = personalAds;
   const [currentLists, setCurrentLists] = lists;
 
-  const loading = false;
   const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9694787014775307/4284015587';
 
   const ListsScreenStyle = createListsScreenStyle(currentTheme);
@@ -38,16 +36,13 @@ export default ListsScreen = ({navigation, props}) => {
       <View style={ListsScreenStyle.lists}>
         <Header screen={'lists'} title={currentLanguage.listsScreenTitle}
                 modalIconAdd={'card-plus-outline'}></Header>
-        {loading && (
-          <LoadingContent loading={loading}></LoadingContent>
-        )}
-        {!loading && currentLists.length === 0 && (
+        {currentLists.length === 0 && (
           <View style={ListsScreenStyle.contentEmpty}>
             <Text
               style={ListsScreenStyle.contentEmptyText}>{currentLanguage.listsScreenEmptyText}</Text>
           </View>
         )}
-        {!loading && currentLists.length > 0 && (
+        {currentLists.length > 0 && (
           <ScrollView showsHorizontalScrollIndicator={false}
                       showsVerticalScrollIndicator={false}>
             {currentLists.map((item, index) => (

@@ -1,30 +1,30 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import "expo-dev-client";
-import { NavigationContainer } from "@react-navigation/native";
-import { useFonts } from "@use-expo/font";
+import {NavigationContainer} from "@react-navigation/native";
+import {useFonts} from "@use-expo/font";
 import * as SplashScreen from "expo-splash-screen";
-import { SQLiteProvider } from "expo-sqlite";
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useMemo, useState } from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import {SQLiteProvider} from "expo-sqlite";
+import {StatusBar} from "expo-status-bar";
+import React, {useEffect, useMemo, useState} from "react";
+import {SafeAreaView, Text, View} from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import CountryFlag from "react-native-country-flag";
 import mobileAds from "react-native-google-mobile-ads";
-import { TouchableRipple } from "react-native-paper";
+import {TouchableRipple} from "react-native-paper";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons";
 import createAppStyle from "./AppStyle";
-import { AppVersions } from "./constants/AppVersions";
-import { DatabaseSettings } from "./constants/DatabaseSettings";
-import { IconSettings } from "./constants/IconSettings";
-import { StorageKeys } from "./constants/StorageKeys";
-import { Context } from "./context/Context";
+import {AppVersions} from "./constants/AppVersions";
+import {DatabaseSettings} from "./constants/DatabaseSettings";
+import {IconSettings} from "./constants/IconSettings";
+import {StorageKeys} from "./constants/StorageKeys";
+import {Context} from "./context/Context";
 import * as DatabaseAdapter from "./database/DatabaseAdapter";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 
 //own imports of constants and components
-import { AvailableThemes, Theme } from "./themes/Themes";
-import { AvailableLanguages, TranslationManager } from "./translations/TranslationManager";
+import {AvailableThemes, Theme} from "./themes/Themes";
+import {AvailableLanguages, TranslationManager} from "./translations/TranslationManager";
 
 export default function App() {
   //Select version of app. Light = with Ads, Premium = no ads and more functions
@@ -144,23 +144,47 @@ export default function App() {
   const slides = [
     {
       key: "s1",
-      introduction: currentLanguage.introductionIntroduction,
+      introduction: currentLanguage.introductionIntroduction1,
       title: currentLanguage.introductionSlideHeadline1,
-      iconName: "refresh",
+      iconName: "globe",
       description: currentLanguage.introductionSlideDescription1,
       languageDescription: currentLanguage.introductionChangeLanguageDescription
     },
     {
       key: "s2",
-      introduction: currentLanguage.introductionIntroduction,
+      introduction: currentLanguage.introductionIntroduction2,
       title: currentLanguage.introductionSlideHeadline2,
-      iconName: "organization",
+      iconName: "bulb",
       description: currentLanguage.introductionSlideDescription2,
+      languageDescription: currentLanguage.introductionChangeLanguageDescription
+    },
+    {
+      key: "s3",
+      introduction: currentLanguage.introductionIntroduction3,
+      title: currentLanguage.introductionSlideHeadline3,
+      iconName: "layers",
+      description: currentLanguage.introductionSlideDescription3,
+      languageDescription: currentLanguage.introductionChangeLanguageDescription
+    },
+    {
+      key: "s4",
+      introduction: currentLanguage.introductionIntroduction4,
+      title: currentLanguage.introductionSlideHeadline4,
+      iconName: "wallet",
+      description: currentLanguage.introductionSlideDescription4,
+      languageDescription: currentLanguage.introductionChangeLanguageDescription
+    },
+    {
+      key: "s5",
+      introduction: currentLanguage.introductionIntroduction5,
+      title: currentLanguage.introductionSlideHeadline5,
+      iconName: "settings",
+      description: currentLanguage.introductionSlideDescription5,
       languageDescription: currentLanguage.introductionChangeLanguageDescription
     }
   ];
 
-  const RenderItem = ({ item }) => {
+  const RenderItem = ({item}) => {
     return (
       <SafeAreaView>
         <StatusBar
@@ -169,80 +193,8 @@ export default function App() {
           translucent={false}
         />
         <View style={AppStyle.introductionWrapper}>
-          <View style={AppStyle.introductionLanguageDescriptionWrapper}>
-            <Text
-              style={AppStyle.introductionLanguageDescriptionText}>{item.languageDescription}</Text>
-          </View>
-          <View style={AppStyle.introductionLanguageWrapper}>
-            <TouchableRipple
-              theme={currentTheme}
-              borderless={true}
-              style={AppStyle.introductionLanguage}
-              onPress={() => changeLanguage(AvailableLanguages.ENGLISH)}
-            >
-              <CountryFlag
-                style={AppStyle.introductionLanguageFlag}
-                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                  ENGLISH)}
-                size={IconSettings.appFlagSize}
-              />
-            </TouchableRipple>
-            <TouchableRipple
-              theme={currentTheme}
-              borderless={true}
-              style={AppStyle.introductionLanguage}
-              onPress={() => changeLanguage(AvailableLanguages.GERMAN)}
-            >
-              <CountryFlag
-                style={AppStyle.introductionLanguageFlag}
-                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                  GERMAN)}
-                size={IconSettings.appFlagSize}
-              />
-            </TouchableRipple>
-            <TouchableRipple
-              theme={currentTheme}
-              borderless={true}
-              style={AppStyle.introductionLanguage}
-              onPress={() => changeLanguage(AvailableLanguages.SPANISH)}
-            >
-              <CountryFlag
-                style={AppStyle.introductionLanguageFlag}
-                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                  SPANISH)}
-                size={IconSettings.appFlagSize}
-              />
-            </TouchableRipple>
-            <TouchableRipple
-              theme={currentTheme}
-              borderless={true}
-              style={AppStyle.introductionLanguage}
-              onPress={() => changeLanguage(AvailableLanguages.PORTUGUESE)}
-            >
-              <CountryFlag
-                style={AppStyle.introductionLanguageFlag}
-                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                  PORTUGUESE)}
-                size={IconSettings.appFlagSize}
-              />
-            </TouchableRipple>
-            <TouchableRipple
-              theme={currentTheme}
-              borderless={true}
-              style={AppStyle.introductionLanguage}
-              onPress={() => changeLanguage(AvailableLanguages.FRENCH)}
-            >
-              <CountryFlag
-                style={AppStyle.introductionLanguageFlag}
-                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                  FRENCH)}
-                size={IconSettings.appFlagSize}
-              />
-            </TouchableRipple>
-          </View>
           <View style={AppStyle.introductionHeadlineWrapper}>
-            <Text
-              style={AppStyle.introductionIntroduction}>{item.introduction}</Text>
+            <Text style={AppStyle.introductionIntroduction}>{item.introduction}</Text>
             <Text style={AppStyle.introductionHeadline}>{item.title}</Text>
           </View>
           <View style={AppStyle.introductionContentWrapper}>
@@ -257,6 +209,79 @@ export default function App() {
             <Text
               style={AppStyle.introductionDescription}>{item.description}</Text>
           </View>
+          {item.key === 's1' && (<View>
+            <View style={AppStyle.introductionLanguageDescriptionWrapper}>
+              <Text
+                style={AppStyle.introductionLanguageDescriptionText}>{item.languageDescription}</Text>
+            </View>
+            <View style={AppStyle.introductionLanguageWrapper}>
+              <TouchableRipple
+                theme={currentTheme}
+                borderless={true}
+                style={AppStyle.introductionLanguage}
+                onPress={() => changeLanguage(AvailableLanguages.ENGLISH)}
+              >
+                <CountryFlag
+                  style={AppStyle.introductionLanguageFlag}
+                  isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                    ENGLISH)}
+                  size={IconSettings.appFlagSize}
+                />
+              </TouchableRipple>
+              <TouchableRipple
+                theme={currentTheme}
+                borderless={true}
+                style={AppStyle.introductionLanguage}
+                onPress={() => changeLanguage(AvailableLanguages.GERMAN)}
+              >
+                <CountryFlag
+                  style={AppStyle.introductionLanguageFlag}
+                  isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                    GERMAN)}
+                  size={IconSettings.appFlagSize}
+                />
+              </TouchableRipple>
+              <TouchableRipple
+                theme={currentTheme}
+                borderless={true}
+                style={AppStyle.introductionLanguage}
+                onPress={() => changeLanguage(AvailableLanguages.SPANISH)}
+              >
+                <CountryFlag
+                  style={AppStyle.introductionLanguageFlag}
+                  isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                    SPANISH)}
+                  size={IconSettings.appFlagSize}
+                />
+              </TouchableRipple>
+              <TouchableRipple
+                theme={currentTheme}
+                borderless={true}
+                style={AppStyle.introductionLanguage}
+                onPress={() => changeLanguage(AvailableLanguages.PORTUGUESE)}
+              >
+                <CountryFlag
+                  style={AppStyle.introductionLanguageFlag}
+                  isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                    PORTUGUESE)}
+                  size={IconSettings.appFlagSize}
+                />
+              </TouchableRipple>
+              <TouchableRipple
+                theme={currentTheme}
+                borderless={true}
+                style={AppStyle.introductionLanguage}
+                onPress={() => changeLanguage(AvailableLanguages.FRENCH)}
+              >
+                <CountryFlag
+                  style={AppStyle.introductionLanguageFlag}
+                  isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                    FRENCH)}
+                  size={IconSettings.appFlagSize}
+                />
+              </TouchableRipple>
+            </View>
+          </View>)}
         </View>
       </SafeAreaView>
     );

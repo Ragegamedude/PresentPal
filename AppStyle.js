@@ -12,7 +12,7 @@ export default createAppStyle = (currentTheme) =>
       },
       introductionLanguageDescriptionWrapper: {
         marginHorizontal: StyleSettings.defaultMargin,
-        marginTop: StyleSettings.defaultMargin * 2,
+        marginTop: StyleSettings.introductionMargin,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row'
@@ -20,7 +20,7 @@ export default createAppStyle = (currentTheme) =>
       introductionLanguageDescriptionText: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontRegular,
-        fontSize: TextSettings.textBigSize,
+        fontSize: TextSettings.textBiggestSize,
         textAlign: "center"
       },
       introductionLanguageWrapper: {
@@ -46,7 +46,7 @@ export default createAppStyle = (currentTheme) =>
       introductionIntroduction: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontRegular,
-        fontSize: TextSettings.textBigSize
+        fontSize: TextSettings.textIntroductionIntroductionSize
       },
       introductionContentWrapper: {
         marginHorizontal: StyleSettings.defaultMargin,
