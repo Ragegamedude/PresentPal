@@ -8,15 +8,10 @@
   "orientation": "portrait",
   "icon": "./assets/icon_premium.png",
   "userInterfaceStyle": "light",
-  "splash": {
+  "expo-splash-screen": {
     "image": "./assets/splash_premium.png",
-    "resizeMode": "cover",
-    "backgroundColor": "#ffffff",
-    "imageWidth": 320,
-    "android": {
-      "resizeMode": "cover",
-      "imageWidth": 320
-    }
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
   },
   "updates": {
     "enabled": false,
