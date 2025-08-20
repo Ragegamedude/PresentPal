@@ -38,6 +38,12 @@ export default SettingsScreen = ({navigation, props}) => {
               headline={currentLanguage.settingsThemeHeadline}
               description={currentLanguage.settingsThemeDescription}
           ></SettingsSection>
+          <SettingsSection
+            action={AvailableSettingsActions.TOGGLE_PASSCODE}
+            iconName={'grid'}
+            headline={currentLanguage.settingsTogglePasscodeHeadline}
+            description={currentLanguage.settingsTogglePasscodeDescription}
+          ></SettingsSection>
           {currentVersion === AppVersions.LIGHT && (
               <SettingsSection
                   action={AvailableSettingsActions.SHOW_PERSONAL_ADS}

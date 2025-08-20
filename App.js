@@ -37,6 +37,7 @@ export default function App() {
   const [currentLists, setCurrentLists] = useState([]);
   const [showPersonalAds, setShowPersonalAds] = useState(true);
   const [showIntroduction, setShowIntroduction] = useState(true);
+  const [usePasscode, setUsePasscode] = useState(false);
   const [hiddenGiftInformation, setHiddenGiftInformation] = useState(false);
 
   // Readiness variables for splashscreen
@@ -122,6 +123,13 @@ export default function App() {
       (storedValue) => {
         if (storedValue != null) {
           setHiddenGiftInformation(JSON.parse(storedValue));
+        }
+      });
+
+    AsyncStorage.getItem(StorageKeys.USE_PASSCODE_STORAGE_KEY).then(
+      (storedValue) => {
+        if (storedValue != null) {
+          setUsePasscode(JSON.parse(storedValue));
         }
       });
   });
@@ -367,9 +375,9 @@ export default function App() {
           version: [currentVersion, setCurrentVersion],
           personalAds: [showPersonalAds, setShowPersonalAds],
           introduction: [showIntroduction, setShowIntroduction],
-          hiddenGiftInformationValue: [hiddenGiftInformation,
-            setHiddenGiftInformation],
-          lists: [currentLists, setCurrentLists]
+          hiddenGiftInformationValue: [hiddenGiftInformation, setHiddenGiftInformation],
+          lists: [currentLists, setCurrentLists],
+          passcode: [usePasscode, setUsePasscode]
         }}
       >
         <NavigationContainer>

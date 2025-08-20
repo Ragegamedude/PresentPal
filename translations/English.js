@@ -93,6 +93,8 @@ export const English = {
   settingsDisclaimerDescription: "View the app's disclaimer.",
   settingsPersonalAdsHeadline: "Personalized Ads",
   settingsPersonalAdsDescription: "Allow personalized advertising.",
+  settingsTogglePasscodeHeadline: "Passcode",
+  settingsTogglePasscodeDescription: "Secure your app with a passcode",
   settingsThemeLight: "Light",
   settingsThemeDark: "Dark",
   settingsContactURL: "https://www.argames15.eu/contact",

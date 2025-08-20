@@ -9,18 +9,16 @@ import {IconSettings} from '../constants/IconSettings';
 import {StorageKeys} from '../constants/StorageKeys';
 import {Context} from '../context/Context';
 import {AvailableThemes, Theme, Themes} from '../themes/Themes';
-import {
-  AvailableLanguages,
-  TranslationManager
-} from '../translations/TranslationManager';
+import {AvailableLanguages, TranslationManager} from '../translations/TranslationManager';
 import createModalStyle from './ModalStyle';
 import createSettingsSectionStyle from './SettingsSectionStyle';
 
 export default SettingsSection = (props) => {
-  const {theme, language, personalAds} = useContext(Context);
+  const {theme, language, personalAds, passcode} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [showPersonalAds, setShowPersonalAds] = personalAds;
+  const [usePasscode, setUsePasscode] = passcode;
 
   const [showInformationModal, setShowInformationModal] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
@@ -29,15 +27,15 @@ export default SettingsSection = (props) => {
   const ModalStyle = createModalStyle(currentTheme);
 
   const GERMAN = TranslationManager.getLanguageObject(
-      AvailableLanguages.GERMAN);
+    AvailableLanguages.GERMAN);
   const ENGLISH = TranslationManager.getLanguageObject(
-      AvailableLanguages.ENGLISH);
+    AvailableLanguages.ENGLISH);
   const SPANISH = TranslationManager.getLanguageObject(
-      AvailableLanguages.SPANISH);
+    AvailableLanguages.SPANISH);
   const PORTUGUESE = TranslationManager.getLanguageObject(
-      AvailableLanguages.PORTUGUESE);
+    AvailableLanguages.PORTUGUESE);
   const FRENCH = TranslationManager.getLanguageObject(
-      AvailableLanguages.FRENCH);
+    AvailableLanguages.FRENCH);
 
   const executeAction = (action) => {
     if (action === AvailableSettingsActions.TOGGLE_THEME) {
@@ -58,14 +56,16 @@ export default SettingsSection = (props) => {
       toggleShowPersonalAds();
     } else if (action === AvailableSettingsActions.OPEN_HOMEPAGE) {
       openUrl(currentLanguage.settingsHomepageURL);
+    } else if (action === AvailableSettingsActions.TOGGLE_PASSCODE) {
+      togglePasscode();
     }
   };
 
   const changeLanguage = (selectedLanguage) => {
     AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
-        selectedLanguage).then(() => {
+      selectedLanguage).then(() => {
       setCurrentLanguage(
-          TranslationManager.getLanguageObject(selectedLanguage));
+        TranslationManager.getLanguageObject(selectedLanguage));
     });
   };
 
@@ -73,16 +73,31 @@ export default SettingsSection = (props) => {
     AsyncStorage.getItem(StorageKeys.THEME_STORAGE_KEY).then((storedValue) => {
       if (storedValue === AvailableThemes.LIGHT) {
         AsyncStorage.setItem(StorageKeys.THEME_STORAGE_KEY,
-            AvailableThemes.DARK).then(() =>
-            setCurrentTheme(Theme.selectTheme(AvailableThemes.DARK))
+          AvailableThemes.DARK).then(() =>
+          setCurrentTheme(Theme.selectTheme(AvailableThemes.DARK))
         );
       } else {
         AsyncStorage.setItem(StorageKeys.THEME_STORAGE_KEY,
-            AvailableThemes.LIGHT).then(() =>
-            setCurrentTheme(Theme.selectTheme(AvailableThemes.LIGHT))
+          AvailableThemes.LIGHT).then(() =>
+          setCurrentTheme(Theme.selectTheme(AvailableThemes.LIGHT))
         );
       }
     });
+  };
+
+  const togglePasscode = () => {
+    AsyncStorage.getItem(StorageKeys.USE_PASSCODE_STORAGE_KEY).then((storedValue) => {
+      if (storedValue !== null) {
+        const passcode = JSON.parse(storedValue);
+        AsyncStorage.setItem(StorageKeys.USE_PASSCODE_STORAGE_KEY, JSON.stringify(!passcode)).then(() => {
+          setUsePasscode(!passcode);
+        });
+      } else {
+        AsyncStorage.setItem(StorageKeys.USE_PASSCODE_STORAGE_KEY, JSON.stringify(true)).then(() => {
+          setUsePasscode(true);
+        });
+      }
+    })
   };
 
   const openUrl = async (url) => {
@@ -92,7 +107,7 @@ export default SettingsSection = (props) => {
       await Linking.openURL(url);
     } else {
       ToastAndroid.show(currentLanguage.settingsContactCantOpenUrlError,
-          ToastAndroid.SHORT);
+        ToastAndroid.SHORT);
     }
   };
 
@@ -102,299 +117,314 @@ export default SettingsSection = (props) => {
 
   const toggleShowPersonalAds = () => {
     AsyncStorage.setItem(StorageKeys.SHOW_PERSONAL_ADS_KEY,
-        JSON.stringify(!showPersonalAds)).then(() =>
-        setShowPersonalAds(!showPersonalAds)
+      JSON.stringify(!showPersonalAds)).then(() =>
+      setShowPersonalAds(!showPersonalAds)
     );
   };
 
   return (
-      <View style={SettingsSectionStyle.settingsSectionWrapper}>
-        <Modal animationType={'fade'} transparent={true}
-               visible={showInformationModal}>
-          <View style={ModalStyle.modalWrapper}>
-            <View style={ModalStyle.modal}>
-              <View style={ModalStyle.modalHeader}>
-                <Text style={ModalStyle.modalHeaderText}>
-                  {currentLanguage.settingsInformationHeadline}
-                </Text>
-              </View>
-              <View style={ModalStyle.modalContent}>
-                <Text style={ModalStyle.modalContentHeadline}>
-                  {currentLanguage.settingsInformationGeneral}
-                </Text>
-                <Text style={ModalStyle.modalContentText}>
-                  {currentLanguage.settingsInformationGeneralContent}
-                </Text>
-                <Text style={ModalStyle.modalContentHeadline}>
-                  {currentLanguage.settingsInformationApplication}
-                </Text>
-                <Text style={ModalStyle.modalContentText}>
-                  {currentLanguage.settingsInformationModalContent}
-                </Text>
-                <Text style={ModalStyle.modalContentHeadline}>
-                  {currentLanguage.settingsInformationWebsite}
-                </Text>
-                <Text style={ModalStyle.modalContentText}>
-                  {currentLanguage.settingsInformationModalCreator}
-                </Text>
-                <View style={ModalStyle.modalButtonWrapper}>
-                  <TouchableRipple
-                      theme={currentTheme}
-                      borderless={true}
-                      style={ModalStyle.modalContentButton2}
-                      onPress={() => executeAction(
-                          AvailableSettingsActions.OPEN_HOMEPAGE)}
-                  >
-                    <Text style={ModalStyle.modalContentButtonText}>
-                      {currentLanguage.buttonVisitText}
-                    </Text>
-                  </TouchableRipple>
-                  <TouchableRipple
-                      theme={currentTheme}
-                      borderless={true}
-                      style={ModalStyle.modalContentButton3}
-                      onPress={() => setShowInformationModal(false)}
-                  >
-                    <Text style={ModalStyle.modalContentButtonText}>
-                      {currentLanguage.buttonCloseText}
-                    </Text>
-                  </TouchableRipple>
-                </View>
-              </View>
-            </View>
-          </View>
-        </Modal>
-        <Modal animationType={'fade'} transparent={true}
-               visible={showLanguageModal}>
-          <View style={ModalStyle.modalWrapper}>
-            <View style={ModalStyle.modal}>
-              <View style={ModalStyle.modalHeader}>
-                <Text style={ModalStyle.modalHeaderText}>
-                  {currentLanguage.settingsLanguageHeadline}
-                </Text>
-              </View>
-              <View style={ModalStyle.modalContent}>
-                <View style={ModalStyle.settingsSectionLanguageWrapper}>
-                  <View style={ModalStyle.modalInputWrapper}>
-                    <TouchableRipple
-                        theme={currentTheme}
-                        borderless={true}
-                        style={ModalStyle.modalInputField}
-                        onPress={() => changeLanguage(
-                            AvailableLanguages.ENGLISH)}
-                        disabled={currentLanguage === ENGLISH}
-                    >
-                      <View style={ModalStyle.modalInputButton}>
-                        <CountryFlag
-                            style={ModalStyle.modalInputButtonIcon}
-                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                                ENGLISH)}
-                            size={IconSettings.settingsFlagSize}
-                        />
-                        <Text
-                            style={
-                              currentLanguage === ENGLISH
-                                  ? ModalStyle.modalInputFieldTextActive
-                                  : ModalStyle.modalInputFieldTextInactive
-                            }
-                        >
-                          {currentLanguage.languageEnglish}
-                        </Text>
-                      </View>
-                    </TouchableRipple>
-                  </View>
-                  <View style={ModalStyle.modalInputWrapper}>
-                    <TouchableRipple
-                        theme={currentTheme}
-                        borderless={true}
-                        style={ModalStyle.modalInputField}
-                        onPress={() => changeLanguage(
-                            AvailableLanguages.GERMAN)}
-                        disabled={currentLanguage === GERMAN}
-                    >
-                      <View style={ModalStyle.modalInputButton}>
-                        <CountryFlag
-                            style={ModalStyle.modalInputButtonIcon}
-                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                                GERMAN)}
-                            size={IconSettings.settingsFlagSize}
-                        />
-                        <Text
-                            style={
-                              currentLanguage === GERMAN
-                                  ? ModalStyle.modalInputFieldTextActive
-                                  : ModalStyle.modalInputFieldTextInactive
-                            }
-                        >
-                          {currentLanguage.languageGerman}
-                        </Text>
-                      </View>
-                    </TouchableRipple>
-                  </View>
-                  <View style={ModalStyle.modalInputWrapper}>
-                    <TouchableRipple
-                        theme={currentTheme}
-                        borderless={true}
-                        style={ModalStyle.modalInputField}
-                        onPress={() => changeLanguage(
-                            AvailableLanguages.SPANISH)}
-                        disabled={currentLanguage === SPANISH}
-                    >
-                      <View style={ModalStyle.modalInputButton}>
-                        <CountryFlag
-                            style={ModalStyle.modalInputButtonIcon}
-                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                                SPANISH)}
-                            size={IconSettings.settingsFlagSize}
-                        />
-                        <Text
-                            style={
-                              currentLanguage === SPANISH
-                                  ? ModalStyle.modalInputFieldTextActive
-                                  : ModalStyle.modalInputFieldTextInactive
-                            }
-                        >
-                          {currentLanguage.languageSpanish}
-                        </Text>
-                      </View>
-                    </TouchableRipple>
-                  </View>
-                  <View style={ModalStyle.modalInputWrapper}>
-                    <TouchableRipple
-                        theme={currentTheme}
-                        borderless={true}
-                        style={ModalStyle.modalInputField}
-                        onPress={() => changeLanguage(
-                            AvailableLanguages.PORTUGUESE)}
-                        disabled={currentLanguage === PORTUGUESE}
-                    >
-                      <View style={ModalStyle.modalInputButton}>
-                        <CountryFlag
-                            style={ModalStyle.modalInputButtonIcon}
-                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                                PORTUGUESE)}
-                            size={IconSettings.settingsFlagSize}
-                        />
-                        <Text
-                            style={
-                              currentLanguage === PORTUGUESE
-                                  ? ModalStyle.modalInputFieldTextActive
-                                  : ModalStyle.modalInputFieldTextInactive
-                            }
-                        >
-                          {currentLanguage.languagePortuguese}
-                        </Text>
-                      </View>
-                    </TouchableRipple>
-                  </View>
-                  <View style={ModalStyle.modalInputWrapper}>
-                    <TouchableRipple
-                        theme={currentTheme}
-                        borderless={true}
-                        style={ModalStyle.modalInputField}
-                        onPress={() => changeLanguage(
-                            AvailableLanguages.FRENCH)}
-                        disabled={currentLanguage === FRENCH}
-                    >
-                      <View style={ModalStyle.modalInputButton}>
-                        <CountryFlag
-                            style={ModalStyle.modalInputButtonIcon}
-                            isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                                FRENCH)}
-                            size={IconSettings.settingsFlagSize}
-                        />
-                        <Text
-                            style={
-                              currentLanguage === FRENCH
-                                  ? ModalStyle.modalInputFieldTextActive
-                                  : ModalStyle.modalInputFieldTextInactive
-                            }
-                        >
-                          {currentLanguage.languageFrench}
-                        </Text>
-                      </View>
-                    </TouchableRipple>
-                  </View>
-                </View>
-                <View style={ModalStyle.modalButtonWrapper}>
-                  <TouchableRipple
-                      theme={currentTheme}
-                      borderless={true}
-                      style={ModalStyle.modalContentButton}
-                      onPress={() => setShowLanguageModal(false)}
-                  >
-                    <Text style={ModalStyle.modalContentButtonText}>
-                      {currentLanguage.buttonCloseText}
-                    </Text>
-                  </TouchableRipple>
-                </View>
-              </View>
-            </View>
-          </View>
-        </Modal>
-        <TouchableRipple
-            theme={currentTheme}
-            borderless={true}
-            style={SettingsSectionStyle.settingsSectionContainer}
-            onPress={() => executeAction(props.action)}
-        >
-          <View style={SettingsSectionStyle.settingsSection}>
-            <View style={SettingsSectionStyle.settingsDescriptionSection}>
-              <Text
-                  style={SettingsSectionStyle.settingsHeadline}>{props.headline}</Text>
-              <Text style={SettingsSectionStyle.settingsDescription}
-                    numberOfLines={2}>
-                {props.description}
+    <View style={SettingsSectionStyle.settingsSectionWrapper}>
+      <Modal animationType={'fade'} transparent={true}
+             visible={showInformationModal}>
+        <View style={ModalStyle.modalWrapper}>
+          <View style={ModalStyle.modal}>
+            <View style={ModalStyle.modalHeader}>
+              <Text style={ModalStyle.modalHeaderText}>
+                {currentLanguage.settingsInformationHeadline}
               </Text>
             </View>
-            <View style={SettingsSectionStyle.settingsFunctionSection}>
-              {props.action === AvailableSettingsActions.TOGGLE_THEME &&
-                  (currentTheme === Themes.light ? (
-                      <Feather
-                          name={'sun'}
-                          color={currentTheme.colors.secondary}
-                          size={IconSettings.settingsSectionIconSize}
-                      ></Feather>
-                  ) : (
-                      <Feather
-                          name={'moon'}
-                          color={currentTheme.colors.secondary}
-                          size={IconSettings.settingsSectionIconSize}
-                      ></Feather>
-                  ))}
-              {props.action === AvailableSettingsActions.CHANGE_LANGUAGE && (
-                  <View style={SettingsSectionStyle.settingsFunctionLanguage}>
-                    <CountryFlag
-                        isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                            currentLanguage)}
-                        size={IconSettings.settingsFlagSize}
-                        style={ModalStyle.modalInputButtonIcon}
-                    />
-                  </View>
-              )}
-              {props.action === AvailableSettingsActions.SHOW_PERSONAL_ADS &&
-                  (showPersonalAds ? (
-                      <FontAwesome
-                          name={'toggle-off'}
-                          color={currentTheme.colors.secondary}
-                          size={IconSettings.settingsSectionIconSize}
-                      ></FontAwesome>
-                  ) : (
-                      <FontAwesome
-                          name={'toggle-on'}
-                          color={currentTheme.colors.secondary}
-                          size={IconSettings.settingsSectionIconSize}
-                      ></FontAwesome>
-                  ))}
+            <View style={ModalStyle.modalContent}>
+              <Text style={ModalStyle.modalContentHeadline}>
+                {currentLanguage.settingsInformationGeneral}
+              </Text>
+              <Text style={ModalStyle.modalContentText}>
+                {currentLanguage.settingsInformationGeneralContent}
+              </Text>
+              <Text style={ModalStyle.modalContentHeadline}>
+                {currentLanguage.settingsInformationApplication}
+              </Text>
+              <Text style={ModalStyle.modalContentText}>
+                {currentLanguage.settingsInformationModalContent}
+              </Text>
+              <Text style={ModalStyle.modalContentHeadline}>
+                {currentLanguage.settingsInformationWebsite}
+              </Text>
+              <Text style={ModalStyle.modalContentText}>
+                {currentLanguage.settingsInformationModalCreator}
+              </Text>
+              <View style={ModalStyle.modalButtonWrapper}>
+                <TouchableRipple
+                  theme={currentTheme}
+                  borderless={true}
+                  style={ModalStyle.modalContentButton2}
+                  onPress={() => executeAction(
+                    AvailableSettingsActions.OPEN_HOMEPAGE)}
+                >
+                  <Text style={ModalStyle.modalContentButtonText}>
+                    {currentLanguage.buttonVisitText}
+                  </Text>
+                </TouchableRipple>
+                <TouchableRipple
+                  theme={currentTheme}
+                  borderless={true}
+                  style={ModalStyle.modalContentButton3}
+                  onPress={() => setShowInformationModal(false)}
+                >
+                  <Text style={ModalStyle.modalContentButtonText}>
+                    {currentLanguage.buttonCloseText}
+                  </Text>
+                </TouchableRipple>
+              </View>
             </View>
           </View>
-        </TouchableRipple>
-      </View>
+        </View>
+      </Modal>
+      <Modal animationType={'fade'} transparent={true}
+             visible={showLanguageModal}>
+        <View style={ModalStyle.modalWrapper}>
+          <View style={ModalStyle.modal}>
+            <View style={ModalStyle.modalHeader}>
+              <Text style={ModalStyle.modalHeaderText}>
+                {currentLanguage.settingsLanguageHeadline}
+              </Text>
+            </View>
+            <View style={ModalStyle.modalContent}>
+              <View style={ModalStyle.settingsSectionLanguageWrapper}>
+                <View style={ModalStyle.modalInputWrapper}>
+                  <TouchableRipple
+                    theme={currentTheme}
+                    borderless={true}
+                    style={ModalStyle.modalInputField}
+                    onPress={() => changeLanguage(
+                      AvailableLanguages.ENGLISH)}
+                    disabled={currentLanguage === ENGLISH}
+                  >
+                    <View style={ModalStyle.modalInputButton}>
+                      <CountryFlag
+                        style={ModalStyle.modalInputButtonIcon}
+                        isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                          ENGLISH)}
+                        size={IconSettings.settingsFlagSize}
+                      />
+                      <Text
+                        style={
+                          currentLanguage === ENGLISH
+                            ? ModalStyle.modalInputFieldTextActive
+                            : ModalStyle.modalInputFieldTextInactive
+                        }
+                      >
+                        {currentLanguage.languageEnglish}
+                      </Text>
+                    </View>
+                  </TouchableRipple>
+                </View>
+                <View style={ModalStyle.modalInputWrapper}>
+                  <TouchableRipple
+                    theme={currentTheme}
+                    borderless={true}
+                    style={ModalStyle.modalInputField}
+                    onPress={() => changeLanguage(
+                      AvailableLanguages.GERMAN)}
+                    disabled={currentLanguage === GERMAN}
+                  >
+                    <View style={ModalStyle.modalInputButton}>
+                      <CountryFlag
+                        style={ModalStyle.modalInputButtonIcon}
+                        isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                          GERMAN)}
+                        size={IconSettings.settingsFlagSize}
+                      />
+                      <Text
+                        style={
+                          currentLanguage === GERMAN
+                            ? ModalStyle.modalInputFieldTextActive
+                            : ModalStyle.modalInputFieldTextInactive
+                        }
+                      >
+                        {currentLanguage.languageGerman}
+                      </Text>
+                    </View>
+                  </TouchableRipple>
+                </View>
+                <View style={ModalStyle.modalInputWrapper}>
+                  <TouchableRipple
+                    theme={currentTheme}
+                    borderless={true}
+                    style={ModalStyle.modalInputField}
+                    onPress={() => changeLanguage(
+                      AvailableLanguages.SPANISH)}
+                    disabled={currentLanguage === SPANISH}
+                  >
+                    <View style={ModalStyle.modalInputButton}>
+                      <CountryFlag
+                        style={ModalStyle.modalInputButtonIcon}
+                        isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                          SPANISH)}
+                        size={IconSettings.settingsFlagSize}
+                      />
+                      <Text
+                        style={
+                          currentLanguage === SPANISH
+                            ? ModalStyle.modalInputFieldTextActive
+                            : ModalStyle.modalInputFieldTextInactive
+                        }
+                      >
+                        {currentLanguage.languageSpanish}
+                      </Text>
+                    </View>
+                  </TouchableRipple>
+                </View>
+                <View style={ModalStyle.modalInputWrapper}>
+                  <TouchableRipple
+                    theme={currentTheme}
+                    borderless={true}
+                    style={ModalStyle.modalInputField}
+                    onPress={() => changeLanguage(
+                      AvailableLanguages.PORTUGUESE)}
+                    disabled={currentLanguage === PORTUGUESE}
+                  >
+                    <View style={ModalStyle.modalInputButton}>
+                      <CountryFlag
+                        style={ModalStyle.modalInputButtonIcon}
+                        isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                          PORTUGUESE)}
+                        size={IconSettings.settingsFlagSize}
+                      />
+                      <Text
+                        style={
+                          currentLanguage === PORTUGUESE
+                            ? ModalStyle.modalInputFieldTextActive
+                            : ModalStyle.modalInputFieldTextInactive
+                        }
+                      >
+                        {currentLanguage.languagePortuguese}
+                      </Text>
+                    </View>
+                  </TouchableRipple>
+                </View>
+                <View style={ModalStyle.modalInputWrapper}>
+                  <TouchableRipple
+                    theme={currentTheme}
+                    borderless={true}
+                    style={ModalStyle.modalInputField}
+                    onPress={() => changeLanguage(
+                      AvailableLanguages.FRENCH)}
+                    disabled={currentLanguage === FRENCH}
+                  >
+                    <View style={ModalStyle.modalInputButton}>
+                      <CountryFlag
+                        style={ModalStyle.modalInputButtonIcon}
+                        isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                          FRENCH)}
+                        size={IconSettings.settingsFlagSize}
+                      />
+                      <Text
+                        style={
+                          currentLanguage === FRENCH
+                            ? ModalStyle.modalInputFieldTextActive
+                            : ModalStyle.modalInputFieldTextInactive
+                        }
+                      >
+                        {currentLanguage.languageFrench}
+                      </Text>
+                    </View>
+                  </TouchableRipple>
+                </View>
+              </View>
+              <View style={ModalStyle.modalButtonWrapper}>
+                <TouchableRipple
+                  theme={currentTheme}
+                  borderless={true}
+                  style={ModalStyle.modalContentButton}
+                  onPress={() => setShowLanguageModal(false)}
+                >
+                  <Text style={ModalStyle.modalContentButtonText}>
+                    {currentLanguage.buttonCloseText}
+                  </Text>
+                </TouchableRipple>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <TouchableRipple
+        theme={currentTheme}
+        borderless={true}
+        style={SettingsSectionStyle.settingsSectionContainer}
+        onPress={() => executeAction(props.action)}
+      >
+        <View style={SettingsSectionStyle.settingsSection}>
+          <View style={SettingsSectionStyle.settingsDescriptionSection}>
+            <Text
+              style={SettingsSectionStyle.settingsHeadline}>{props.headline}</Text>
+            <Text style={SettingsSectionStyle.settingsDescription}
+                  numberOfLines={2}>
+              {props.description}
+            </Text>
+          </View>
+          <View style={SettingsSectionStyle.settingsFunctionSection}>
+            {props.action === AvailableSettingsActions.TOGGLE_THEME &&
+              (currentTheme === Themes.light ? (
+                <Feather
+                  name={'sun'}
+                  color={currentTheme.colors.secondary}
+                  size={IconSettings.settingsSectionIconSize}
+                ></Feather>
+              ) : (
+                <Feather
+                  name={'moon'}
+                  color={currentTheme.colors.secondary}
+                  size={IconSettings.settingsSectionIconSize}
+                ></Feather>
+              ))}
+            {props.action === AvailableSettingsActions.CHANGE_LANGUAGE && (
+              <View style={SettingsSectionStyle.settingsFunctionLanguage}>
+                <CountryFlag
+                  isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                    currentLanguage)}
+                  size={IconSettings.settingsFlagSize}
+                  style={ModalStyle.modalInputButtonIcon}
+                />
+              </View>
+            )}
+            {props.action === AvailableSettingsActions.SHOW_PERSONAL_ADS &&
+              (showPersonalAds ? (
+                <FontAwesome
+                  name={'toggle-off'}
+                  color={currentTheme.colors.secondary}
+                  size={IconSettings.settingsSectionIconSize}
+                ></FontAwesome>
+              ) : (
+                <FontAwesome
+                  name={'toggle-on'}
+                  color={currentTheme.colors.secondary}
+                  size={IconSettings.settingsSectionIconSize}
+                ></FontAwesome>
+              ))}
+            {props.action === AvailableSettingsActions.TOGGLE_PASSCODE &&
+              (usePasscode ? (
+                <FontAwesome
+                  name={'toggle-on'}
+                  color={currentTheme.colors.secondary}
+                  size={IconSettings.settingsSectionIconSize}
+                ></FontAwesome>
+              ) : (
+                <FontAwesome
+                  name={'toggle-off'}
+                  color={currentTheme.colors.secondary}
+                  size={IconSettings.settingsSectionIconSize}
+                ></FontAwesome>
+              ))}
+          </View>
+        </View>
+      </TouchableRipple>
+    </View>
   );
 };
 
 export const AvailableSettingsActions = {
   TOGGLE_THEME: 'toggle-theme',
+  TOGGLE_PASSCODE: 'toggle-passcode',
   CHANGE_LANGUAGE: 'change-language',
   CONTACT: 'contact',
   INFORMATION: 'information',
