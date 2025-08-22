@@ -386,7 +386,7 @@ export default function App() {
         dotStyle={AppStyle.inactiveDotStyle}
       />
     );
-  } else if (isAppReady && !showIntroduction && !isAuthenticated) {
+  } else if (isAppReady && !showIntroduction && useAuthentication && !isAuthenticated) {
     return (
       <View style={AppStyle.introductionWrapper}>
         <View style={AppStyle.introductionHeadlineWrapper}>
@@ -433,6 +433,7 @@ export default function App() {
           hiddenGiftInformationValue: [hiddenGiftInformation, setHiddenGiftInformation],
           lists: [currentLists, setCurrentLists],
           authentication: [useAuthentication, setUseAuthentication],
+          authenticated: [isAuthenticated, setIsAuthenticated],
         }}
       >
         <NavigationContainer>

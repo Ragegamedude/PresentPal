@@ -15,11 +15,12 @@ import createSettingsSectionStyle from './SettingsSectionStyle';
 import * as LocalAuthentication from 'expo-local-authentication';
 
 export default SettingsSection = (props) => {
-  const {theme, language, personalAds, authentication, authenticationValue} = useContext(Context);
+  const {theme, language, personalAds, authentication, authenticated} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [showPersonalAds, setShowPersonalAds] = personalAds;
   const [useAuthentication, setUseAuthentication] = authentication;
+  const [isAuthenticated, setIsAuthenticated] = authenticated;
 
   const [showInformationModal, setShowInformationModal] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
@@ -87,7 +88,6 @@ export default SettingsSection = (props) => {
   };
 
   const toggleAuthentication = async () => {
-    console.log("currentValue", useAuthentication)
     const hasHardwareAuthentication = await LocalAuthentication.hasHardwareAsync();
     if (hasHardwareAuthentication) {
       const isEnrolled = await LocalAuthentication.isEnrolledAsync();
@@ -96,6 +96,7 @@ export default SettingsSection = (props) => {
           const result = !JSON.parse(storedValue);
           AsyncStorage.setItem(StorageKeys.USE_AUTHENTICATION_STORAGE_KEY, JSON.stringify(result)).then(() => {
             setUseAuthentication(result);
+            setIsAuthenticated(result);
           });
         })
       } else {
