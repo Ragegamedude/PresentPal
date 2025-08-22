@@ -23,7 +23,7 @@ export const English = {
 
   authenticationIntroduction: "Unlock",
   authenticationHeadline: "App Locked",
-  authenticationDescription: "For your security, access to the app is protected. Please use your biometric authentication to verify your identity. This ensures that your information remains private and secure every time you open the app.",
+  authenticationDescription: "For your security, access to the app is secured. Please use authentication to verify your identity. This ensures that your information remains secure every time you open the app.",
   authenticationPromptMessage: "Biometrical authentication",
   authenticationCancelButton: "Cancel",
   authenticationCancelError: "You or system canceled authorization, please try again.",

@@ -86,7 +86,6 @@ export default Header = (props) => {
       const result = true;
       if (result) {
         await addList();
-        ToastAndroid.show(currentLanguage.toastAddList, ToastAndroid.SHORT);
         setShowListModal(false);
         resetForm();
       }
