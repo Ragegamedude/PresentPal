@@ -1,19 +1,19 @@
-import { Modal, Text, ToastAndroid, View } from "react-native";
-import { createListStyle } from "./ListStyle";
-import { Avatar, TouchableRipple } from "react-native-paper";
+import {Modal, Text, View} from "react-native";
+import {createListStyle} from "./ListStyle";
+import {Avatar, TouchableRipple} from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather";
-import { IconSettings } from "../constants/IconSettings";
+import {IconSettings} from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Context } from "../context/Context";
-import React, { useContext, useState } from "react";
-import { useSQLiteContext } from "expo-sqlite";
+import {Context} from "../context/Context";
+import React, {useContext, useState} from "react";
+import {useSQLiteContext} from "expo-sqlite";
 import * as DatabaseAdapter from "../database/DatabaseAdapter";
 import createModalStyle from "./ModalStyle";
 
 export default List = (props) => {
   const database = useSQLiteContext();
-  const { theme, lists, language } = useContext(Context);
+  const {theme, lists, language} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [currentLists, setCurrentLists] = lists;
@@ -31,7 +31,6 @@ export default List = (props) => {
     await DatabaseAdapter.deleteList(database, props.data.id);
     const lists = await DatabaseAdapter.getLists(database);
     setCurrentLists(lists);
-    ToastAndroid.show(currentLanguage.listsDeleteList, ToastAndroid.SHORT);
   };
 
   const toggleFavoriteItem = async () => {
