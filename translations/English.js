@@ -21,6 +21,13 @@ export const English = {
   introductionSlideHeadline5: "Setup Complete",
   introductionSlideDescription5: "You're all set and ready to go! For more ways to personalize the app, you can visit the main Settings area. Feel free to explore all the options available to make this app truly yours.",
 
+  authenticationIntroduction: "Unlock",
+  authenticationHeadline: "App Locked",
+  authenticationDescription: "For your security, access to the app is protected. Please use your biometric authentication to verify your identity. This ensures that your information remains private and secure every time you open the app.",
+  authenticationPromptMessage: "Biometrical authentication",
+  authenticationCancelButton: "Cancel",
+  authenticationCancelError: "You or system canceled authorization, please try again.",
+  authenticationError: "Authentication failed, please try again later.",
   // --- Language Selection ---
   introductionChangeLanguageDescription: "Select the app's language",
   languageGerman: "German",
@@ -46,7 +53,7 @@ export const English = {
   homeSectionTopic1: "News",
   homeSectionTitle1: "Welcome to the App!",
   homeSectionMessage1:
-    "We are excited to introduce our new app, "+ Constants.expoConfig.name + ", designed to make gift-giving effortless and enjoyable.\n\nOur goal is to help you stay organized and find the perfect gift for every occasion, all in one place.",
+    "We are excited to introduce our new app, " + Constants.expoConfig.name + ", designed to make gift-giving effortless and enjoyable.\n\nOur goal is to help you stay organized and find the perfect gift for every occasion, all in one place.",
   homeSectionDate1: "19.08.2025",
 
   // --- Lists Screen ---
@@ -72,13 +79,13 @@ export const English = {
   // --- Settings Screen ---
   settingsScreenTitle: "Settings",
   settingsLanguageHeadline: "Language",
-  settingsLanguageDescription: "Change the app's display language.",
+  settingsLanguageDescription: "Configure the display language for all text and notifications within this app.",
   settingsThemeHeadline: "Theme",
-  settingsThemeDescription: "Choose between light and dark themes.",
+  settingsThemeDescription: "Select a light or dark theme for a more comfortable experience, day or night.",
   settingsContactHeadline: "Contact Us",
-  settingsContactDescription: "Send us your questions or feedback.",
+  settingsContactDescription: "Have questions or need help? Find our contact details and get in touch.",
   settingsInformationHeadline: "About",
-  settingsInformationDescription: "View version details and app information.",
+  settingsInformationDescription: "Learn about our app, our mission, and check the current version number.",
   settingsInformationModalHeadline: "App Information",
   settingsInformationModalContent: Constants.expoConfig.name + "Version: " + Constants.expoConfig.version,
   settingsStatusHeadlineVersion: "Version",
@@ -86,15 +93,15 @@ export const English = {
   settingsStatusHeadlinePremiumVersion: "Premium",
   settingsStatusHeadlineLimit: "List Limit",
   settingsTermsConditionsHeadline: "Terms & Conditions",
-  settingsTermsConditionsDescription: "Review our terms and conditions.",
+  settingsTermsConditionsDescription: "Read the rules, your rights, and our responsibilities for this application.",
   settingsPrivacyPolicyHeadline: "Privacy Policy",
-  settingsPrivacyPolicyDescription: "Learn how we protect your data.",
+  settingsPrivacyPolicyDescription: "Learn how we collect, use, and protect your data. Your privacy is important.",
   settingsDisclaimerHeadline: "Disclaimer",
-  settingsDisclaimerDescription: "View the app's disclaimer.",
+  settingsDisclaimerDescription: "Important notices on the use of our app and the limitations of our liability.",
   settingsPersonalAdsHeadline: "Personalized Ads",
   settingsPersonalAdsDescription: "Allow personalized advertising.",
-  settingsTogglePasscodeHeadline: "Passcode",
-  settingsTogglePasscodeDescription: "Secure your app with a passcode",
+  settingsToggleAuthenticationHeadline: "Biometrics & Passcode",
+  settingsToggleAuthenticationDescription: "Use your device's screen lock to protect your app from unauthorized access.",
   settingsThemeLight: "Light",
   settingsThemeDark: "Dark",
   settingsContactURL: "https://www.argames15.eu/contact",
@@ -108,6 +115,10 @@ export const English = {
   settingsInformationGeneralContent: Constants.expoConfig.name + " makes gift-giving effortless. Browse endless gift ideas and create personalized lists to keep everything organized.",
   settingsInformationApplication: "Application",
   settingsInformationWebsite: "Website",
+  settingsAuthorizationInputFingerprint: "Fingerprint",
+  settingsAuthorizationInputFacial: "Facial",
+  settingsAuthorizationInputIris: "Iris",
+  settingsAuthorizationInputNone: "None",
 
   // --- Input Fields & Forms ---
   inputFieldHeadline: "Title",
@@ -151,5 +162,7 @@ export const English = {
   errorMessageAbortRequest: "The request was canceled.",
   errorMessageTimeout: "The request timed out. Please try again.",
   errorMessageUnknown: "An unexpected error occurred. Please try again later.",
-  errorMessageAdNotLoaded: "An ad could not be loaded at this time. Please try again."
+  errorMessageAdNotLoaded: "An ad could not be loaded at this time. Please try again.",
+  errorMessageNoAuthenticationHardware: "Your phone dont have compatible hardware.",
+  errorMessageNoAuthenticationEnrollment: "Biometric/Passcode not configured on your phone.",
 };

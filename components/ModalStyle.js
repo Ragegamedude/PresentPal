@@ -147,6 +147,10 @@ export default createModalStyle = (currentTheme) =>
       borderBottomEndRadius: StyleSettings.defaultBorderRadius,
       elevation: StyleSettings.defaultElevation
     },
+    modalInputButtonWrapperIcon: {
+      marginHorizontal: StyleSettings.defaultMargin,
+      borderRadius: IconSettings.countryFlagBorderRadius
+    },
     modalInputButtonIcon: {
       marginHorizontal: StyleSettings.defaultMargin,
       borderRadius: IconSettings.countryFlagBorderRadius

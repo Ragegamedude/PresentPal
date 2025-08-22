@@ -12,13 +12,14 @@ import {AvailableThemes, Theme, Themes} from '../themes/Themes';
 import {AvailableLanguages, TranslationManager} from '../translations/TranslationManager';
 import createModalStyle from './ModalStyle';
 import createSettingsSectionStyle from './SettingsSectionStyle';
+import * as LocalAuthentication from 'expo-local-authentication';
 
 export default SettingsSection = (props) => {
-  const {theme, language, personalAds, passcode} = useContext(Context);
+  const {theme, language, personalAds, authentication, authenticationValue} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [showPersonalAds, setShowPersonalAds] = personalAds;
-  const [usePasscode, setUsePasscode] = passcode;
+  const [useAuthentication, setUseAuthentication] = authentication;
 
   const [showInformationModal, setShowInformationModal] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
@@ -56,8 +57,8 @@ export default SettingsSection = (props) => {
       toggleShowPersonalAds();
     } else if (action === AvailableSettingsActions.OPEN_HOMEPAGE) {
       openUrl(currentLanguage.settingsHomepageURL);
-    } else if (action === AvailableSettingsActions.TOGGLE_PASSCODE) {
-      togglePasscode();
+    } else if (action === AvailableSettingsActions.TOGGLE_AUTHENTICATION) {
+      toggleAuthentication();
     }
   };
 
@@ -85,19 +86,24 @@ export default SettingsSection = (props) => {
     });
   };
 
-  const togglePasscode = () => {
-    AsyncStorage.getItem(StorageKeys.USE_PASSCODE_STORAGE_KEY).then((storedValue) => {
-      if (storedValue !== null) {
-        const passcode = JSON.parse(storedValue);
-        AsyncStorage.setItem(StorageKeys.USE_PASSCODE_STORAGE_KEY, JSON.stringify(!passcode)).then(() => {
-          setUsePasscode(!passcode);
-        });
+  const toggleAuthentication = async () => {
+    console.log("currentValue", useAuthentication)
+    const hasHardwareAuthentication = await LocalAuthentication.hasHardwareAsync();
+    if (hasHardwareAuthentication) {
+      const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+      if (isEnrolled) {
+        AsyncStorage.getItem(StorageKeys.USE_AUTHENTICATION_STORAGE_KEY).then((storedValue) => {
+          const result = !JSON.parse(storedValue);
+          AsyncStorage.setItem(StorageKeys.USE_AUTHENTICATION_STORAGE_KEY, JSON.stringify(result)).then(() => {
+            setUseAuthentication(result);
+          });
+        })
       } else {
-        AsyncStorage.setItem(StorageKeys.USE_PASSCODE_STORAGE_KEY, JSON.stringify(true)).then(() => {
-          setUsePasscode(true);
-        });
+        ToastAndroid.show(currentLanguage.errorMessageNoAuthenticationEnrollment, ToastAndroid.LONG)
       }
-    })
+    } else {
+      ToastAndroid.show(currentLanguage.errorMessageNoAuthenticationHardware, ToastAndroid.LONG)
+    }
   };
 
   const openUrl = async (url) => {
@@ -357,8 +363,7 @@ export default SettingsSection = (props) => {
           <View style={SettingsSectionStyle.settingsDescriptionSection}>
             <Text
               style={SettingsSectionStyle.settingsHeadline}>{props.headline}</Text>
-            <Text style={SettingsSectionStyle.settingsDescription}
-                  numberOfLines={2}>
+            <Text style={SettingsSectionStyle.settingsDescription}>
               {props.description}
             </Text>
           </View>
@@ -378,14 +383,12 @@ export default SettingsSection = (props) => {
                 ></Feather>
               ))}
             {props.action === AvailableSettingsActions.CHANGE_LANGUAGE && (
-              <View style={SettingsSectionStyle.settingsFunctionLanguage}>
-                <CountryFlag
-                  isoCode={TranslationManager.getCurrentLanguageAsIsoString(
-                    currentLanguage)}
-                  size={IconSettings.settingsFlagSize}
-                  style={ModalStyle.modalInputButtonIcon}
-                />
-              </View>
+              <CountryFlag
+                isoCode={TranslationManager.getCurrentLanguageAsIsoString(
+                  currentLanguage)}
+                size={IconSettings.settingsFlagSize}
+                style={SettingsSectionStyle.settingsSectionFlag}
+              />
             )}
             {props.action === AvailableSettingsActions.SHOW_PERSONAL_ADS &&
               (showPersonalAds ? (
@@ -401,8 +404,8 @@ export default SettingsSection = (props) => {
                   size={IconSettings.settingsSectionIconSize}
                 ></FontAwesome>
               ))}
-            {props.action === AvailableSettingsActions.TOGGLE_PASSCODE &&
-              (usePasscode ? (
+            {props.action === AvailableSettingsActions.TOGGLE_AUTHENTICATION &&
+              (useAuthentication ? (
                 <FontAwesome
                   name={'toggle-on'}
                   color={currentTheme.colors.secondary}
@@ -420,11 +423,12 @@ export default SettingsSection = (props) => {
       </TouchableRipple>
     </View>
   );
-};
+}
+;
 
 export const AvailableSettingsActions = {
   TOGGLE_THEME: 'toggle-theme',
-  TOGGLE_PASSCODE: 'toggle-passcode',
+  TOGGLE_AUTHENTICATION: 'toggle-authentication',
   CHANGE_LANGUAGE: 'change-language',
   CONTACT: 'contact',
   INFORMATION: 'information',

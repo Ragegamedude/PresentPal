@@ -13,6 +13,7 @@ export const IconSettings = {
   giftsChipSize: 38,
   giftImage: 38,
   modalHeadlineIconSize: 32,
+  modalInputIconSize: 32,
   settingsFlagSize: 20,
   settingsSectionIconSize: 32,
   socialIconSize: 32,

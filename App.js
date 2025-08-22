@@ -6,7 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import {SQLiteProvider} from "expo-sqlite";
 import {StatusBar} from "expo-status-bar";
 import React, {useEffect, useMemo, useState} from "react";
-import {SafeAreaView, Text, View} from "react-native";
+import {SafeAreaView, Text, ToastAndroid, View} from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import CountryFlag from "react-native-country-flag";
 import mobileAds from "react-native-google-mobile-ads";
@@ -21,6 +21,7 @@ import {StorageKeys} from "./constants/StorageKeys";
 import {Context} from "./context/Context";
 import * as DatabaseAdapter from "./database/DatabaseAdapter";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
+import * as LocalAuthentication from 'expo-local-authentication';
 
 //own imports of constants and components
 import {AvailableThemes, Theme} from "./themes/Themes";
@@ -37,7 +38,8 @@ export default function App() {
   const [currentLists, setCurrentLists] = useState([]);
   const [showPersonalAds, setShowPersonalAds] = useState(true);
   const [showIntroduction, setShowIntroduction] = useState(true);
-  const [usePasscode, setUsePasscode] = useState(false);
+  const [useAuthentication, setUseAuthentication] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [hiddenGiftInformation, setHiddenGiftInformation] = useState(false);
 
   // Readiness variables for splashscreen
@@ -126,10 +128,10 @@ export default function App() {
         }
       });
 
-    AsyncStorage.getItem(StorageKeys.USE_PASSCODE_STORAGE_KEY).then(
+    AsyncStorage.getItem(StorageKeys.USE_AUTHENTICATION_STORAGE_KEY).then(
       (storedValue) => {
         if (storedValue != null) {
-          setUsePasscode(JSON.parse(storedValue));
+          setUseAuthentication(JSON.parse(storedValue));
         }
       });
   });
@@ -141,6 +143,7 @@ export default function App() {
     }
   }, [fontsLoaded, languageLoaded, themeLoaded]);
 
+
   const changeLanguage = (selectedLanguage) => {
     AsyncStorage.setItem(StorageKeys.LANGUAGE_STORAGE_KEY,
       selectedLanguage).then(() => {
@@ -148,6 +151,23 @@ export default function App() {
         TranslationManager.getLanguageObject(selectedLanguage));
     });
   };
+
+  const authenticateApp = async () => {
+    const authenticationResult = await LocalAuthentication.authenticateAsync({
+      promptMessage: currentLanguage.authenticationPromptMessage,
+      cancelLabel: currentLanguage.authenticationCancelButton,
+      disableDeviceFallback: false
+    })
+    if (authenticationResult.success) {
+      setIsAuthenticated(true);
+    } else {
+      if (authenticationResult.error === "user_cancel" || authenticationResult.error === "system_cancel") {
+        ToastAndroid.show(currentLanguage.authenticationCancelError, ToastAndroid.SHORT);
+      } else {
+        ToastAndroid.show(currentLanguage.authenticationError, ToastAndroid.SHORT);
+      }
+    }
+  }
 
   const slides = [
     {
@@ -366,6 +386,41 @@ export default function App() {
         dotStyle={AppStyle.inactiveDotStyle}
       />
     );
+  } else if (isAppReady && !showIntroduction && !isAuthenticated) {
+    return (
+      <View style={AppStyle.introductionWrapper}>
+        <View style={AppStyle.introductionHeadlineWrapper}>
+          <Text style={AppStyle.introductionIntroduction}>{currentLanguage.authenticationIntroduction}</Text>
+          <Text style={AppStyle.introductionHeadline}>{currentLanguage.authenticationHeadline}</Text>
+        </View>
+        <View style={AppStyle.introductionContentWrapper}>
+          <SimpleLineIcon
+            style={AppStyle.converterSectionModalHeaderIcon}
+            name={'lock'}
+            color={currentTheme.colors.secondary}
+            size={IconSettings.introductionIconSize}
+          ></SimpleLineIcon>
+        </View>
+        <View style={AppStyle.introductionDescriptionWrapper}>
+          <Text style={AppStyle.introductionDescription}>{currentLanguage.authenticationDescription}</Text>
+        </View>
+        <View>
+          <View style={AppStyle.introductionLanguageWrapper}>
+            <TouchableRipple
+              theme={currentTheme}
+              borderless={true}
+              style={AppStyle.authenticationButton}
+              onPress={() => authenticateApp()}
+            >
+              <Text style={AppStyle.authenticationButtonText}>Press to Unlock</Text>
+            </TouchableRipple>
+          </View>
+        </View>
+        <View style>
+
+        </View>
+      </View>
+    );
   } else {
     return (
       <Context.Provider
@@ -377,7 +432,7 @@ export default function App() {
           introduction: [showIntroduction, setShowIntroduction],
           hiddenGiftInformationValue: [hiddenGiftInformation, setHiddenGiftInformation],
           lists: [currentLists, setCurrentLists],
-          passcode: [usePasscode, setUsePasscode]
+          authentication: [useAuthentication, setUseAuthentication],
         }}
       >
         <NavigationContainer>

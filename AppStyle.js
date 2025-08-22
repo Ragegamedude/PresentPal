@@ -33,6 +33,18 @@ export default createAppStyle = (currentTheme) =>
       introductionLanguage: {
         marginHorizontal: StyleSettings.defaultPadding
       },
+      authenticationButton: {
+        backgroundColor: currentTheme.colors.primary,
+        marginVertical: StyleSettings.defaultMargin,
+        marginHorizontal: StyleSettings.defaultPadding,
+        borderRadius: StyleSettings.defaultBorderRadius
+      },
+      authenticationButtonText: {
+        fontFamily: TextSettings.defaultFontRegular,
+        fontSize: TextSettings.textDefaultSize,
+        marginVertical: StyleSettings.defaultMargin,
+        marginHorizontal: StyleSettings.defaultMargin
+      },
       introductionHeadlineWrapper: {
         marginHorizontal: StyleSettings.defaultMargin,
         marginTop: StyleSettings.defaultMargin * 3,
