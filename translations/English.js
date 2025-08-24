@@ -58,7 +58,7 @@ export const English = {
 
   // --- Lists Screen ---
   listsScreenTitle: "Lists",
-  listsScreenEmptyText: "You have no lists yet. Tap below to create one!",
+  listsScreenEmptyText: "You have no lists yet.\nClick the add list button at the top right corner.",
   listsAddList: "Create New List",
   listsAdd: "Add",
   listsDeleteList: "List successfully deleted.",
