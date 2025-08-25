@@ -8,6 +8,9 @@ export const createListsScreenStyle = (currentTheme) =>
       backgroundColor: currentTheme.colors.background,
       flex: 1,
     },
+    listsWrapper: {
+      marginVertical: StyleSettings.defaultPadding /2
+    },
     fabActionLabel: {
       fontSize: TextSettings.textDefaultSize,
       fontFamily: TextSettings.defaultFontRegular,

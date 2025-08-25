@@ -22,8 +22,6 @@ export const deleteList = async (database, id) => {
 };
 
 export const toggleFavorite = async (database, id, favorite) => {
-  console.log(favorite);
-  console.log(!favorite);
   await database.runAsync("UPDATE lists SET favorite = ? WHERE id = ?", !favorite, id);
 };
 

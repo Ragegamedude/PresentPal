@@ -9,6 +9,7 @@ import {Context} from '../context/Context';
 import {createListsScreenStyle} from './ListsScreenStyle';
 import * as DatabaseAdapter from "../database/DatabaseAdapter";
 import {useSQLiteContext} from "expo-sqlite";
+import {StyleSettings} from "../constants/StyleSettings";
 
 export default ListsScreen = ({navigation, props}) => {
   const database = useSQLiteContext();
@@ -44,7 +45,9 @@ export default ListsScreen = ({navigation, props}) => {
         )}
         {currentLists.length > 0 && (
           <ScrollView showsHorizontalScrollIndicator={false}
-                      showsVerticalScrollIndicator={false}>
+                      showsVerticalScrollIndicator={false}
+                      style={ListsScreenStyle.listsWrapper}
+          >
             {currentLists.map((item, index) => (
               <List
                 key={item.id}

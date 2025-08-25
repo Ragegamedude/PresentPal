@@ -389,6 +389,11 @@ export default function App() {
   } else if (isAppReady && !showIntroduction && useAuthentication && !isAuthenticated) {
     return (
       <View style={AppStyle.introductionWrapper}>
+        <StatusBar
+          backgroundColor={currentTheme.colors.onBackground}
+          style={currentTheme.colors.statusBarStyle}
+          translucent={false}
+        />
         <View style={AppStyle.introductionHeadlineWrapper}>
           <Text style={AppStyle.introductionIntroduction}>{currentLanguage.authenticationIntroduction}</Text>
           <Text style={AppStyle.introductionHeadline}>{currentLanguage.authenticationHeadline}</Text>

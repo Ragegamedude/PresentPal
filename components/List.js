@@ -34,7 +34,6 @@ export default List = (props) => {
   };
 
   const toggleFavoriteItem = async () => {
-    console.log("favorite in list:", props.data.favorite);
     await DatabaseAdapter.toggleFavorite(database, props.data.id, props.data.favorite);
     const lists = await DatabaseAdapter.getLists(database);
     setCurrentLists(lists);
@@ -42,7 +41,7 @@ export default List = (props) => {
 
   return (
     <View
-      style={props.lastElement ? ListStyle.listWrapper2 : ListStyle.listWrapper}
+      style={ListStyle.listWrapper}
     >
       <Modal animationType={"fade"} transparent={true}
              visible={showDeleteModal}>
@@ -83,94 +82,102 @@ export default List = (props) => {
           </View>
         </View>
       </Modal>
-      <View style={ListStyle.imageWrapper}>
-        <Text style={ListStyle.birthday}>{props.data.event}</Text>
-        <Avatar.Image
-          size={IconSettings.listsAvatarSize}
-          source={
-            props.data.image
-              ? props.data.image
-              : require("../assets/avatars/0.png")
-          }
-        />
-        <Text style={ListStyle.date}>{props.data.event_date}</Text>
-      </View>
-      <View style={ListStyle.contentWrapper}>
-        <View style={ListStyle.content}>
-          <Text style={ListStyle.contentHeadline}>{props.data.headline}</Text>
-          <Text numberOfLines={3} style={ListStyle.contentDescription}>
-            {props.data.description}
-          </Text>
-        </View>
-        <View style={ListStyle.statsWrapper}>
-          <View style={ListStyle.statsFirst}>
-            <Feather
-              style={ListStyle.statKey}
-              name="gift"
-              size={IconSettings.listIconSize}
-              color={currentTheme.colors.secondary}
-            />
-            <Text style={ListStyle.statValue}>{" " + giftsAmount}</Text>
-          </View>
-          <View style={ListStyle.statsSecond}>
-            <MaterialIcons
-              style={ListStyle.statKey}
-              name="done"
-              size={IconSettings.listIconSize}
-              color={currentTheme.colors.secondary}
-            />
-            <Text style={ListStyle.statValue}>{giftsFinished}</Text>
-          </View>
-          <View style={ListStyle.statsSecond}>
-            <Ionicons
-              style={ListStyle.statKey}
-              name="pricetag-outline"
-              size={IconSettings.listIconSize}
-              color={currentTheme.colors.secondary}
-            />
-            <Text style={ListStyle.statValue}>{giftsTotal}</Text>
-          </View>
-        </View>
-      </View>
-      <View style={ListStyle.functionWrapper}>
-        <TouchableRipple
-          borderless={true}
-          style={ListStyle.function}
-          onPress={() => toggleFavoriteItem()}
-        >
-          <MaterialIcons
-            name={props.data.favorite ? "favorite" : "favorite-outline"}
-            size={IconSettings.buttonIconSize}
-            color={
-              props.data.favorite
-                ? currentTheme.colors.primary
-                : currentTheme.colors.secondary
+      <TouchableRipple
+        theme={currentTheme}
+        borderless={true}
+        style={ListStyle.listContainer}
+        onPress={() => executeAction(props.action)}
+      ><View style={ListStyle.list}>
+        <View style={ListStyle.imageWrapper}>
+          <Text style={ListStyle.birthday}>{props.data.event}</Text>
+          <Avatar.Image
+            size={IconSettings.listsAvatarSize}
+            source={
+              props.data.image
+                ? props.data.image
+                : require("../assets/avatars/0.png")
             }
           />
-        </TouchableRipple>
-        <TouchableRipple
-          borderless={true}
-          style={ListStyle.function}
-          onPress={() => console.log()}
-        >
-          <Feather
-            name="edit"
-            size={IconSettings.buttonIconSize}
-            color={currentTheme.colors.secondary}
-          />
-        </TouchableRipple>
-        <TouchableRipple
-          borderless={true}
-          style={ListStyle.function}
-          onPress={() => setShowDeleteModal(true)}
-        >
-          <MaterialIcons
-            name="delete-outline"
-            size={IconSettings.buttonIconSize}
-            color={currentTheme.colors.secondary}
-          />
-        </TouchableRipple>
+          <Text style={ListStyle.date}>{props.data.event_date}</Text>
+        </View>
+        <View style={ListStyle.contentWrapper}>
+          <View style={ListStyle.content}>
+            <Text style={ListStyle.contentHeadline}>{props.data.headline}</Text>
+            <Text numberOfLines={3} style={ListStyle.contentDescription}>
+              {props.data.description}
+            </Text>
+          </View>
+          <View style={ListStyle.statsWrapper}>
+            <View style={ListStyle.statsFirst}>
+              <Feather
+                style={ListStyle.statKey}
+                name="gift"
+                size={IconSettings.listIconSize}
+                color={currentTheme.colors.secondary}
+              />
+              <Text style={ListStyle.statValue}>{" " + giftsAmount}</Text>
+            </View>
+            <View style={ListStyle.statsSecond}>
+              <MaterialIcons
+                style={ListStyle.statKey}
+                name="done"
+                size={IconSettings.listIconSize}
+                color={currentTheme.colors.secondary}
+              />
+              <Text style={ListStyle.statValue}>{giftsFinished}</Text>
+            </View>
+            <View style={ListStyle.statsSecond}>
+              <Ionicons
+                style={ListStyle.statKey}
+                name="pricetag-outline"
+                size={IconSettings.listIconSize}
+                color={currentTheme.colors.secondary}
+              />
+              <Text style={ListStyle.statValue}>{giftsTotal}</Text>
+            </View>
+          </View>
+        </View>
+        <View style={ListStyle.functionWrapper}>
+          <TouchableRipple
+            borderless={true}
+            style={ListStyle.function}
+            onPress={() => toggleFavoriteItem()}
+          >
+            <MaterialIcons
+              name={props.data.favorite ? "favorite" : "favorite-outline"}
+              size={IconSettings.buttonIconSize}
+              color={
+                props.data.favorite
+                  ? currentTheme.colors.primary
+                  : currentTheme.colors.secondary
+              }
+            />
+          </TouchableRipple>
+          <TouchableRipple
+            borderless={true}
+            style={ListStyle.function}
+            onPress={() => console.log()}
+          >
+            <Feather
+              name="edit"
+              size={IconSettings.buttonIconSize}
+              color={currentTheme.colors.secondary}
+            />
+          </TouchableRipple>
+          <TouchableRipple
+            borderless={true}
+            style={ListStyle.function}
+            onPress={() => setShowDeleteModal(true)}
+          >
+            <MaterialIcons
+              name="delete-outline"
+              size={IconSettings.buttonIconSize}
+              color={currentTheme.colors.secondary}
+            />
+          </TouchableRipple>
+        </View>
       </View>
+      </TouchableRipple>
     </View>
   );
 };

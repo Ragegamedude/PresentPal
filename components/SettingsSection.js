@@ -13,6 +13,7 @@ import {AvailableLanguages, TranslationManager} from '../translations/Translatio
 import createModalStyle from './ModalStyle';
 import createSettingsSectionStyle from './SettingsSectionStyle';
 import * as LocalAuthentication from 'expo-local-authentication';
+import * as StoreReview from 'expo-store-review';
 
 export default SettingsSection = (props) => {
   const {theme, language, personalAds, authentication, authenticated} = useContext(Context);
@@ -60,6 +61,8 @@ export default SettingsSection = (props) => {
       openUrl(currentLanguage.settingsHomepageURL);
     } else if (action === AvailableSettingsActions.TOGGLE_AUTHENTICATION) {
       toggleAuthentication();
+    } else if (action === AvailableSettingsActions.RATE_APP) {
+      openReviews();
     }
   };
 
@@ -107,17 +110,6 @@ export default SettingsSection = (props) => {
     }
   };
 
-  const openUrl = async (url) => {
-    const supported = await Linking.canOpenURL(url);
-
-    if (supported) {
-      await Linking.openURL(url);
-    } else {
-      ToastAndroid.show(currentLanguage.settingsContactCantOpenUrlError,
-        ToastAndroid.SHORT);
-    }
-  };
-
   const toggleInformationModal = () => {
     setShowInformationModal(!showInformationModal);
   };
@@ -127,6 +119,32 @@ export default SettingsSection = (props) => {
       JSON.stringify(!showPersonalAds)).then(() =>
       setShowPersonalAds(!showPersonalAds)
     );
+  };
+
+  const openReviews = async () => {
+    const isAvailable = await StoreReview.isAvailableAsync();
+    if (isAvailable) {
+      try {
+        await StoreReview.requestReview();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      ToastAndroid.show(currentLanguage.settingsContactCantOpenUrlError,
+        ToastAndroid.SHORT);
+    }
+
+  }
+
+  const openUrl = async (url) => {
+    const isSupported = await Linking.canOpenURL(url);
+
+    if (isSupported) {
+      await Linking.openURL(url);
+    } else {
+      ToastAndroid.show(currentLanguage.settingsContactCantOpenUrlError,
+        ToastAndroid.SHORT);
+    }
   };
 
   return (
@@ -438,4 +456,5 @@ export const AvailableSettingsActions = {
   OPEN_DISCLAIMER: 'open-disclaimer',
   OPEN_HOMEPAGE: 'open-homepage',
   SHOW_PERSONAL_ADS: 'show-personal-ads',
+  RATE_APP: 'rate-app',
 };

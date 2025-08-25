@@ -215,8 +215,9 @@ export default Header = (props) => {
                     error={dateError}
                     dense={true}
                     maxLength={Validation.inputMaxDate}
-                    left={<TextInput.Icon icon="clock-check-outline"
-                                          disabled={true}/>}
+                    left={<TextInput.Icon
+                      color={() => headlineText.length > 0 ? currentTheme.colors.secondary : currentTheme.colors.onSurfaceVariant
+                      } icon="clock-check-outline"/>}
                     onChangeText={input => {
                       setDateText(input);
                     }}

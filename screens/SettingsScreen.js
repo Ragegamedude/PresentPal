@@ -53,6 +53,12 @@ export default SettingsScreen = ({navigation, props}) => {
               ></SettingsSection>
           )}
           <SettingsSection
+            action={AvailableSettingsActions.RATE_APP}
+            iconName={'info'}
+            headline={currentLanguage.settingsRateAppHeadline}
+            description={currentLanguage.settingsRateAppDescription}
+          ></SettingsSection>
+          <SettingsSection
               action={AvailableSettingsActions.OPEN_TERMS_CONDITION}
               iconName={'lock'}
               headline={currentLanguage.settingsTermsConditionsHeadline}
