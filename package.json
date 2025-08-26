@@ -47,7 +47,8 @@
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-vector-icons": "^9.2.0",
-    "expo-store-review": "~8.1.5"
+    "expo-store-review": "~8.1.5",
+    "expo-image-picker": "~16.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

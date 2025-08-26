@@ -124,16 +124,11 @@ export default SettingsSection = (props) => {
   const openReviews = async () => {
     const isAvailable = await StoreReview.isAvailableAsync();
     if (isAvailable) {
-      try {
-        await StoreReview.requestReview();
-      } catch (error) {
-        console.log(error);
-      }
+      await StoreReview.requestReview();
     } else {
-      ToastAndroid.show(currentLanguage.settingsContactCantOpenUrlError,
+      ToastAndroid.show(currentLanguage.settingsRateAppNotSupportedError,
         ToastAndroid.SHORT);
     }
-
   }
 
   const openUrl = async (url) => {

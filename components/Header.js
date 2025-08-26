@@ -1,7 +1,7 @@
 import {useNavigation} from "@react-navigation/native";
 import {useSQLiteContext} from "expo-sqlite";
-import React, {useContext, useState} from "react";
-import {Modal, Text, ToastAndroid, View} from "react-native";
+import React, {useContext, useRef, useState} from "react";
+import {Modal, Text, View} from "react-native";
 import {HelperText, TextInput, TouchableRipple} from "react-native-paper";
 import MaterialCommunityIcon from "react-native-paper/src/components/MaterialCommunityIcon";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -14,6 +14,7 @@ import createModalStyle from "./ModalStyle";
 import {DatePickerModal} from "react-native-paper-dates";
 import {format} from "date-fns";
 import {TranslationManager} from "../translations/TranslationManager";
+import * as ImagePicker from 'expo-image-picker';
 
 export default Header = (props) => {
   const database = useSQLiteContext();
@@ -31,9 +32,14 @@ export default Header = (props) => {
   const [descriptionError, setDescriptionError] = useState(false);
   const [eventText, setEventText] = useState("");
   const [eventError, setEventError] = useState(false);
+  const [imageText, setImageText] = useState("");
+  const [imageError, setImageError] = useState(false);
   const [dateText, setDateText] = useState("");
   const [dateTextUnformatted, setDateTextUnformatted] = useState(new Date());
   const [dateError, setDateError] = useState(false);
+
+  const datePickerRef = useRef(null);
+  const imageSelectInputRef = useRef(null)
 
   const HeaderStyle = createHeaderStyle(currentTheme);
   const ModalStyle = createModalStyle(currentTheme);
@@ -65,6 +71,8 @@ export default Header = (props) => {
     setEventError(false);
     setDateText("");
     setDateError(false);
+    setImageText("")
+    setImageError(false);
   };
 
   const validateForm = () => {
@@ -72,23 +80,22 @@ export default Header = (props) => {
     const descriptionValidationResult = validateRequired(descriptionText);
     const eventValidationResult = validateRequired(eventText);
     const dateValidationResult = validateDate(dateText);
+    const imageValidationResult = validateRequired(imageText);
     setHeadlineError(!headlineValidationResult);
     setDescriptionError(!descriptionValidationResult);
     setEventError(!eventValidationResult);
     setDateError(!dateValidationResult);
+    setImageError(!imageValidationResult);
     return headlineValidationResult && descriptionValidationResult
-      && eventValidationResult && dateValidationResult;
+      && eventValidationResult && dateValidationResult && imageValidationResult;
   };
 
   const processForm = async () => {
     const validationResult = validateForm();
     if (validationResult) {
-      const result = true;
-      if (result) {
-        await addList();
-        setShowListModal(false);
-        resetForm();
-      }
+      await addList();
+      setShowListModal(false);
+      resetForm();
     }
   };
 
@@ -97,6 +104,18 @@ export default Header = (props) => {
     setDateText(formatted);
     setDateTextUnformatted(input.date);
     setShowDateModal(false);
+  }
+
+  const pickListImage = async () => {
+    let imageResult = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: 'images',
+      allowsEditing: false,
+      quality: 1,
+    })
+
+    if (!imageResult.canceled) {
+      setImageText(imageResult.assets[0].uri);
+    }
   }
 
   return (
@@ -205,6 +224,7 @@ export default Header = (props) => {
                   </HelperText>)}
                 <View style={ModalStyle.modalContentInputFieldWrapper}>
                   <TextInput
+                    ref={datePickerRef}
                     style={ModalStyle.modalContentInputField}
                     outlineStyle={ModalStyle.modalContentInputFieldOutline}
                     placeholder={currentLanguage.inputFieldDatePlaceholder}
@@ -218,12 +238,10 @@ export default Header = (props) => {
                     left={<TextInput.Icon
                       color={() => headlineText.length > 0 ? currentTheme.colors.secondary : currentTheme.colors.onSurfaceVariant
                       } icon="clock-check-outline"/>}
-                    onChangeText={input => {
-                      setDateText(input);
-                    }}
                     onFocus={() => {
                       setDateError(false);
-                      setShowDateModal(true)
+                      setShowDateModal(true);
+                      datePickerRef.current.blur();
                     }}
                   />
                 </View>
@@ -231,6 +249,32 @@ export default Header = (props) => {
                   <HelperText style={ModalStyle.modalContentInputHelperText}
                               type="error" visible={dateError}>
                     {currentLanguage.inputFieldDateError}
+                  </HelperText>)}
+                <View style={ModalStyle.modalContentInputFieldWrapper}>
+                  <TextInput
+                    ref={imageSelectInputRef}
+                    style={ModalStyle.modalContentInputField}
+                    outlineStyle={ModalStyle.modalContentInputFieldOutline}
+                    placeholder={currentLanguage.inputFieldImagePlaceholder}
+                    textColor={currentTheme.colors.secondary}
+                    outlineColor={'transparent'}
+                    mode={"outlined"}
+                    value={imageText}
+                    dense={true}
+                    left={<TextInput.Icon
+                      color={() => imageText.length > 0 ? currentTheme.colors.secondary : currentTheme.colors.onSurfaceVariant
+                      }
+                      icon="image"/>}
+                    onFocus={() => {
+                      pickListImage();
+                      imageSelectInputRef.current.blur();
+                    }}
+                  />
+                </View>
+                {imageError && (
+                  <HelperText style={ModalStyle.modalContentInputHelperText}
+                              type="error" visible={imageError}>
+                    {currentLanguage.inputFieldErrorMandatory}
                   </HelperText>)}
                 <View style={ModalStyle.modalButtonWrapper}>
                   <TouchableRipple
