@@ -6,6 +6,7 @@ export const StyleSettings = {
   defaultMarginDouble: 30,
   introductionMargin: 30,
   defaultBorderRadius: 5,
+  defaultImageBorderRadius: 30,
   defaultPaddingModal: 50,
   defaultDividerWidth: 1,
   defaultBorderWidth: 2,

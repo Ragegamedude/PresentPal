@@ -32,7 +32,6 @@ export const createHeaderStyle = (currentTheme) =>
 		},
 		rightIcon: {
 			borderRadius: StyleSettings.defaultBorderRadius,
-			padding: StyleSettings.defaultMargin/2,
-			marginRight: StyleSettings.defaultPadding
+			marginRight: StyleSettings.defaultMargin
 		}
 	});

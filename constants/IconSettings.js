@@ -9,6 +9,7 @@ export const IconSettings = {
   introductionMiniIconSize: 32,
   listIconSize: 16,
   listsAvatarSize: 64,
+  listsDefaultAvatarSize: 24,
   giftsInformationSize: 64,
   giftsChipSize: 38,
   giftImage: 38,

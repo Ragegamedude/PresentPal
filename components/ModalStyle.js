@@ -182,5 +182,59 @@ export default createModalStyle = (currentTheme) =>
     },
     settingsSectionLanguageWrapper: {
       marginTop: StyleSettings.defaultMargin / 2,
+    },
+    modalDefaultImageSelectorTextWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: StyleSettings.defaultPadding,
+      marginHorizontal: StyleSettings.defaultMargin,
+      borderRadius: StyleSettings.defaultBorderRadius,
+    },
+    modalDefaultImageSelectorText: {
+      fontSize: TextSettings.textSmallSize,
+      color: currentTheme.colors.secondary,
+    },
+
+    modalDefaultImageSelector: {
+      justifyContent: 'space-evenly',
+      alignItems: 'space-between',
+      backgroundColor: currentTheme.colors.onBackground,
+      borderRadius: StyleSettings.defaultBorderRadius,
+      elevation: StyleSettings.defaultElevation
+    },
+    modalDefaultImageSelectorCheckbox: {
+      marginLeft: 0,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    modalDefaultImageButtonWrapper: {
+      marginTop: StyleSettings.defaultMargin / 2,
+      flexDirection: 'row',
+    },
+    modalDefaultImageButton1: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: StyleSettings.defaultMargin,
+      marginRight: StyleSettings.defaultPadding / 2,
+    },
+    modalDefaultImageButton2: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: currentTheme.colors.onBackground,
+      marginHorizontal: StyleSettings.defaultPadding / 2,
+    },
+    modalDefaultImageButton3: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: currentTheme.colors.onBackground,
+      marginRight: StyleSettings.defaultMargin,
+      marginLeft: StyleSettings.defaultPadding / 2,
+    },
+    modalDefaultImage:{
+      backgroundColor: 'transparent',
     }
   });

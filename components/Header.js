@@ -2,7 +2,7 @@ import {useNavigation} from "@react-navigation/native";
 import {useSQLiteContext} from "expo-sqlite";
 import React, {useContext, useRef, useState} from "react";
 import {Modal, Text, View} from "react-native";
-import {HelperText, TextInput, TouchableRipple} from "react-native-paper";
+import {Avatar, Checkbox, TextInput, TouchableRipple} from "react-native-paper";
 import MaterialCommunityIcon from "react-native-paper/src/components/MaterialCommunityIcon";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {IconSettings} from "../constants/IconSettings";
@@ -17,15 +17,18 @@ import {TranslationManager} from "../translations/TranslationManager";
 import * as ImagePicker from 'expo-image-picker';
 
 export default Header = (props) => {
+  // context
   const database = useSQLiteContext();
   const {theme, language, version, personalAds, lists} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [currentLists, setCurrentLists] = lists;
 
+  // modals
   const [showAddListModal, setShowListModal] = useState(false);
   const [showDateModal, setShowDateModal] = useState(false);
 
+  // states
   const [headlineText, setHeadlineText] = useState("");
   const [headlineError, setHeadlineError] = useState(false);
   const [descriptionText, setDescriptionText] = useState("");
@@ -38,6 +41,9 @@ export default Header = (props) => {
   const [dateTextUnformatted, setDateTextUnformatted] = useState(new Date());
   const [dateError, setDateError] = useState(false);
 
+  const [useDefaultImage, setUseDefaultImage] = useState(false);
+
+  // refs
   const datePickerRef = useRef(null);
   const imageSelectInputRef = useRef(null)
 
@@ -47,7 +53,7 @@ export default Header = (props) => {
   const addList = async () => {
     const gifts = {gifts: []};
     await DatabaseAdapter.addList(database, 0,
-      headlineText, descriptionText, "", dateText, eventText, JSON.stringify(gifts));
+      headlineText, descriptionText, imageText, dateText, eventText, JSON.stringify(gifts));
     const lists = await DatabaseAdapter.getLists(database);
     setCurrentLists(lists);
   };
@@ -73,6 +79,7 @@ export default Header = (props) => {
     setDateError(false);
     setImageText("")
     setImageError(false);
+    setUseDefaultImage(false);
   };
 
   const validateForm = () => {
@@ -146,7 +153,7 @@ export default Header = (props) => {
                   <TextInput
                     style={ModalStyle.modalContentInputField}
                     outlineStyle={ModalStyle.modalContentInputFieldOutline}
-                    placeholder={currentLanguage.inputFieldHeadlinePlaceholder}
+                    placeholder={headlineError ? currentLanguage.inputFieldErrorMandatory + currentLanguage.inputFieldHeadline: currentLanguage.inputFieldHeadlinePlaceholder}
                     textColor={currentTheme.colors.secondary}
                     outlineColor={'transparent'}
                     mode={"outlined"}
@@ -163,16 +170,11 @@ export default Header = (props) => {
                     onFocus={() => setHeadlineError(false)}
                   />
                 </View>
-                {headlineError && (
-                  <HelperText style={ModalStyle.modalContentInputHelperText}
-                              type="error" visible={headlineError}>
-                    {currentLanguage.inputFieldErrorMandatory}
-                  </HelperText>)}
                 <View style={ModalStyle.modalContentInputFieldWrapper}>
                   <TextInput
                     style={ModalStyle.modalContentInputField}
                     outlineStyle={ModalStyle.modalContentInputFieldOutline}
-                    placeholder={currentLanguage.inputFieldDescriptionPlaceholder}
+                    placeholder={descriptionError ? currentLanguage.inputFieldErrorMandatory + currentLanguage.inputFieldDescription : currentLanguage.inputFieldDescriptionPlaceholder}
                     textColor={currentTheme.colors.secondary}
                     outlineColor={'transparent'}
                     mode={"outlined"}
@@ -190,16 +192,11 @@ export default Header = (props) => {
                     onFocus={() => setDescriptionError(false)}
                   />
                 </View>
-                {descriptionError && (
-                  <HelperText style={ModalStyle.modalContentInputHelperText}
-                              type="error" visible={descriptionError}>
-                    {currentLanguage.inputFieldErrorMandatory}
-                  </HelperText>)}
                 <View style={ModalStyle.modalContentInputFieldWrapper}>
                   <TextInput
                     style={ModalStyle.modalContentInputField}
                     outlineStyle={ModalStyle.modalContentInputFieldOutline}
-                    placeholder={currentLanguage.inputFieldEventPlaceholder}
+                    placeholder={eventError ? currentLanguage.inputFieldErrorMandatory + currentLanguage.inputFieldEvent : currentLanguage.inputFieldEventPlaceholder}
                     textColor={currentTheme.colors.secondary}
                     outlineColor={'transparent'}
                     mode={"outlined"}
@@ -217,17 +214,12 @@ export default Header = (props) => {
                     onFocus={() => setEventError(false)}
                   />
                 </View>
-                {eventError && (
-                  <HelperText style={ModalStyle.modalContentInputHelperText}
-                              type="error" visible={eventError}>
-                    {currentLanguage.inputFieldErrorMandatory}
-                  </HelperText>)}
                 <View style={ModalStyle.modalContentInputFieldWrapper}>
                   <TextInput
                     ref={datePickerRef}
                     style={ModalStyle.modalContentInputField}
                     outlineStyle={ModalStyle.modalContentInputFieldOutline}
-                    placeholder={currentLanguage.inputFieldDatePlaceholder}
+                    placeholder={dateError ? currentLanguage.inputFieldErrorMandatory + currentLanguage.inputFieldDate: currentLanguage.inputFieldDatePlaceholder}
                     textColor={currentTheme.colors.secondary}
                     outlineColor={'transparent'}
                     mode={"outlined"}
@@ -245,37 +237,130 @@ export default Header = (props) => {
                     }}
                   />
                 </View>
-                {dateError && (
-                  <HelperText style={ModalStyle.modalContentInputHelperText}
-                              type="error" visible={dateError}>
-                    {currentLanguage.inputFieldDateError}
-                  </HelperText>)}
                 <View style={ModalStyle.modalContentInputFieldWrapper}>
                   <TextInput
                     ref={imageSelectInputRef}
                     style={ModalStyle.modalContentInputField}
                     outlineStyle={ModalStyle.modalContentInputFieldOutline}
-                    placeholder={currentLanguage.inputFieldImagePlaceholder}
+                    placeholder={imageError ? currentLanguage.inputFieldErrorMandatory + currentLanguage.inputFieldImage: currentLanguage.inputFieldImagePlaceholder}
                     textColor={currentTheme.colors.secondary}
                     outlineColor={'transparent'}
                     mode={"outlined"}
                     value={imageText}
+                    error={imageError}
                     dense={true}
                     left={<TextInput.Icon
                       color={() => imageText.length > 0 ? currentTheme.colors.secondary : currentTheme.colors.onSurfaceVariant
                       }
                       icon="image"/>}
                     onFocus={() => {
+                      setImageError(false);
                       pickListImage();
                       imageSelectInputRef.current.blur();
                     }}
                   />
                 </View>
-                {imageError && (
-                  <HelperText style={ModalStyle.modalContentInputHelperText}
-                              type="error" visible={imageError}>
-                    {currentLanguage.inputFieldErrorMandatory}
-                  </HelperText>)}
+                <View style={ModalStyle.modalDefaultImageSelectorTextWrapper}>
+                  <Checkbox
+                    style={ModalStyle.modalDefaultImageSelectorCheckbox}
+                    status={useDefaultImage ? 'checked' : 'unchecked'}
+                    position={"leading"}
+                    onPress={() => {
+                      setUseDefaultImage(!useDefaultImage);
+                    }}
+                  />
+                  <Text style={ModalStyle.modalDefaultImageSelectorText}>{currentLanguage.modalImageDefaultHint}</Text>
+                </View>
+                {useDefaultImage && (<View>
+                  <View style={ModalStyle.modalDefaultImageButtonWrapper}>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton1}
+                      onPress={() => setImageText('../assets/avatars/0.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/0.png')}
+                      />
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton2}
+                      onPress={() => setImageText('../assets/avatars/1.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/1.png')}
+                      />
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton2}
+                      onPress={() => setImageText('../assets/avatars/2.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/2.png')}
+                      />
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton2}
+                      onPress={() => setImageText('../assets/avatars/3.png')}>
+
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/3.png')}
+                      />
+
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton3}
+                      onPress={() => setImageText('../assets/avatars/4.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/4.png')}
+                      />
+                    </TouchableRipple>
+                  </View>
+                  <View style={ModalStyle.modalDefaultImageButtonWrapper}>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton1}
+                      onPress={() => setImageText('../assets/avatars/5.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/5.png')}
+                      />
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton2}
+                      onPress={() => setImageText('../assets/avatars/6.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/6.png')}
+                      />
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton2}
+                      onPress={() => setImageText('../assets/avatars/7.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/7.png')}
+                      />
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton2}
+                      onPress={() => setImageText('../assets/avatars/8.png')}>
+
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/8.png')}
+                      />
+
+                    </TouchableRipple>
+                    <TouchableRipple
+                      style={ModalStyle.modalDefaultImageButton3}
+                      onPress={() => setImageText('../assets/avatars/9.png')}>
+                      <Avatar.Image
+                        style={ModalStyle.modalDefaultImage}
+                        source={require('../assets/avatars/9.png')}
+                      />
+                    </TouchableRipple>
+                  </View>
+                </View>)}
                 <View style={ModalStyle.modalButtonWrapper}>
                   <TouchableRipple
                     theme={currentTheme}

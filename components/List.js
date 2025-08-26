@@ -6,10 +6,11 @@ import {IconSettings} from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {Context} from "../context/Context";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useSQLiteContext} from "expo-sqlite";
 import * as DatabaseAdapter from "../database/DatabaseAdapter";
 import createModalStyle from "./ModalStyle";
+import {localAvatars} from "../constants/StaticImageLoader";
 
 export default List = (props) => {
   const database = useSQLiteContext();
@@ -17,6 +18,17 @@ export default List = (props) => {
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = language;
   const [currentLists, setCurrentLists] = lists;
+  const [imageSource, setImageSource] = useState(null);
+
+  useEffect(() => {
+    if (props.data.image.includes('../assets/avatars/')) {
+      setImageSource(localAvatars[props.data.image]);
+    } else {
+      setImageSource({
+        uri: props.data.image,
+      })
+    }
+  }, []);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -38,6 +50,10 @@ export default List = (props) => {
     const lists = await DatabaseAdapter.getLists(database);
     setCurrentLists(lists);
   };
+
+  const useFallbackImage = () => {
+    setImageSource(localAvatars['../assets/avatars/Fallback.png']);
+  }
 
   return (
     <View
@@ -86,17 +102,14 @@ export default List = (props) => {
         theme={currentTheme}
         borderless={true}
         style={ListStyle.listContainer}
-        onPress={() => executeAction(props.action)}
+        onPress={() => console.log()}
       ><View style={ListStyle.list}>
         <View style={ListStyle.imageWrapper}>
           <Text style={ListStyle.birthday}>{props.data.event}</Text>
           <Avatar.Image
             size={IconSettings.listsAvatarSize}
-            source={
-              props.data.image
-                ? props.data.image
-                : require("../assets/avatars/0.png")
-            }
+            source={imageSource}
+            onError={() => useFallbackImage()}
           />
           <Text style={ListStyle.date}>{props.data.event_date}</Text>
         </View>
