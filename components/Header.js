@@ -116,8 +116,8 @@ export default Header = (props) => {
   const pickListImage = async () => {
     let imageResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: 'images',
-      allowsEditing: false,
-      quality: 1,
+      allowsEditing: true,
+      quality: 0.1,
     })
 
     if (!imageResult.canceled) {
