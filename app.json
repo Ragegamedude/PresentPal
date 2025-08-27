@@ -9,7 +9,7 @@
   "icon": "./assets/icon_premium.png",
   "userInterfaceStyle": "light",
   "expo-splash-screen": {
-    "image": "./assets/splash_premium.png",
+    "image": "./assets/icon_premium.png",
     "resizeMode": "contain",
     "backgroundColor": "#ffffff"
   },
