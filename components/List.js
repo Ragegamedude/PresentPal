@@ -1,4 +1,4 @@
-import {Modal, Text, View} from "react-native";
+import {Text, View} from "react-native";
 import {createListStyle} from "./ListStyle";
 import {Avatar, TouchableRipple} from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather";
@@ -7,49 +7,28 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {Context} from "../context/Context";
 import React, {useContext, useEffect, useState} from "react";
-import {useSQLiteContext} from "expo-sqlite";
-import * as DatabaseAdapter from "../database/DatabaseAdapter";
-import createModalStyle from "./ModalStyle";
 import {localAvatars} from "../constants/StaticImageLoader";
 
 export default List = (props) => {
-  const database = useSQLiteContext();
-  const {theme, lists, language} = useContext(Context);
+  const {theme} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
-  const [currentLanguage, setCurrentLanguage] = language;
-  const [currentLists, setCurrentLists] = lists;
   const [imageSource, setImageSource] = useState(null);
 
   useEffect(() => {
-    if (props.data.image.includes('../assets/avatars/')) {
-      setImageSource(localAvatars[props.data.image]);
+    if (props.item.image.includes('../assets/avatars/')) {
+      setImageSource(localAvatars[props.item.image]);
     } else {
       setImageSource({
-        uri: props.data.image,
+        uri: props.item.image,
       })
     }
-  }, []);
-
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  }, [props.item.image]);
 
   const ListStyle = createListStyle(currentTheme);
-  const ModalStyle = createModalStyle(currentTheme);
 
   const giftsAmount = 0;
   const giftsTotal = 0;
   const giftsFinished = 0;
-
-  const deleteListItem = async () => {
-    await DatabaseAdapter.deleteList(database, props.data.id);
-    const lists = await DatabaseAdapter.getLists(database);
-    setCurrentLists(lists);
-  };
-
-  const toggleFavoriteItem = async () => {
-    await DatabaseAdapter.toggleFavorite(database, props.data.id, props.data.favorite);
-    const lists = await DatabaseAdapter.getLists(database);
-    setCurrentLists(lists);
-  };
 
   const useFallbackImage = () => {
     setImageSource(localAvatars['../assets/avatars/Fallback.png']);
@@ -59,45 +38,6 @@ export default List = (props) => {
     <View
       style={ListStyle.listWrapper}
     >
-      <Modal animationType={"fade"} transparent={true}
-             visible={showDeleteModal}>
-        <View style={ModalStyle.modalWrapper}>
-          <View style={ModalStyle.modal}>
-            <View style={ModalStyle.modalHeader}>
-              <Text style={ModalStyle.modalHeaderText}>
-                {currentLanguage.modalDeleteHeadline}
-              </Text>
-            </View>
-            <View style={ModalStyle.modalContent}>
-              <Text style={ModalStyle.modalContentWarningText}>
-                {currentLanguage.modalDeleteWarning}
-              </Text>
-              <View style={ModalStyle.modalButtonWrapper}>
-                <TouchableRipple
-                  theme={currentTheme}
-                  borderless={true}
-                  style={ModalStyle.modalContentButton2}
-                  onPress={() => deleteListItem()}
-                >
-                  <Text style={ModalStyle.modalContentButtonText}>
-                    {currentLanguage.buttonConfirmText}
-                  </Text>
-                </TouchableRipple>
-                <TouchableRipple
-                  theme={currentTheme}
-                  borderless={true}
-                  style={ModalStyle.modalContentButton3}
-                  onPress={() => setShowDeleteModal(false)}
-                >
-                  <Text style={ModalStyle.modalContentButtonText}>
-                    {currentLanguage.buttonDeclineText}
-                  </Text>
-                </TouchableRipple>
-              </View>
-            </View>
-          </View>
-        </View>
-      </Modal>
       <TouchableRipple
         theme={currentTheme}
         borderless={true}
@@ -105,19 +45,19 @@ export default List = (props) => {
         onPress={() => console.log()}
       ><View style={ListStyle.list}>
         <View style={ListStyle.imageWrapper}>
-          <Text style={ListStyle.birthday}>{props.data.event}</Text>
+          <Text style={ListStyle.birthday}>{props.item.event}</Text>
           <Avatar.Image
             size={IconSettings.listsAvatarSize}
             source={imageSource}
             onError={() => useFallbackImage()}
           />
-          <Text style={ListStyle.date}>{props.data.event_date}</Text>
+          <Text style={ListStyle.date}>{props.item.event_date}</Text>
         </View>
         <View style={ListStyle.contentWrapper}>
           <View style={ListStyle.content}>
-            <Text style={ListStyle.contentHeadline}>{props.data.headline}</Text>
+            <Text style={ListStyle.contentHeadline}>{props.item.headline}</Text>
             <Text numberOfLines={3} style={ListStyle.contentDescription}>
-              {props.data.description}
+              {props.item.description}
             </Text>
           </View>
           <View style={ListStyle.statsWrapper}>
@@ -154,13 +94,13 @@ export default List = (props) => {
           <TouchableRipple
             borderless={true}
             style={ListStyle.function}
-            onPress={() => toggleFavoriteItem()}
+            onPress={() => props.toggleFavoriteFunction(props.item)}
           >
             <MaterialIcons
-              name={props.data.favorite ? "favorite" : "favorite-outline"}
+              name={props.item.favorite ? "favorite" : "favorite-outline"}
               size={IconSettings.buttonIconSize}
               color={
-                props.data.favorite
+                props.item.favorite
                   ? currentTheme.colors.primary
                   : currentTheme.colors.secondary
               }
@@ -169,7 +109,7 @@ export default List = (props) => {
           <TouchableRipple
             borderless={true}
             style={ListStyle.function}
-            onPress={() => console.log()}
+            onPress={() => props.editFunction(props.item)}
           >
             <Feather
               name="edit"
@@ -180,7 +120,7 @@ export default List = (props) => {
           <TouchableRipple
             borderless={true}
             style={ListStyle.function}
-            onPress={() => setShowDeleteModal(true)}
+            onPress={() => props.deleteFunction(props.item)}
           >
             <MaterialIcons
               name="delete-outline"

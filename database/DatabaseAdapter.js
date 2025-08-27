@@ -17,6 +17,26 @@ export const addList = async (database, favorite, headline, description, image, 
   );
 };
 
+export const editList = async (database, id, favorite, headlineText, descriptionText, imageText, dateText, eventText, gifts) => {
+  console.log("edit list")
+  console.log(id)
+  console.log(favorite)
+  console.log(headlineText)
+  console.log(descriptionText)
+  console.log(imageText)
+  console.log(dateText)
+  console.log(eventText)
+  console.log(gifts)
+  try {
+    await database.runAsync(
+      `UPDATE lists SET favorite = ?, headline = ?, description = ?, image = ?, event_date = ?, event = ?, gifts = ? WHERE id = ?`,
+      favorite ? 1 : 0, headlineText, descriptionText, imageText, dateText, eventText, gifts, id
+    );
+  }catch(err) {
+    console.log(err);
+  }
+}
+
 export const deleteList = async (database, id) => {
   await database.runAsync("DELETE FROM lists WHERE id = ?", id);
 };

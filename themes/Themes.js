@@ -72,7 +72,7 @@ export const Themes = {
       surface: "rgb(17,17,19)",
       onSurface: "rgb(230,230,230)",
       surfaceVariant: "rgb(28,28,30)",
-      onSurfaceVariant: "rgba(150, 150, 150,0.8)",
+      onSurfaceVariant: "rgba(130, 130, 130,1)",
       outline: "rgb(150, 142, 152)",
       outlineVariant: "rgb(74, 69, 78)",
       shadow: "rgb(0, 0, 0)",

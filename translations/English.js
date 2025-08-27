@@ -98,6 +98,8 @@ export const English = {
   listGiftTotal: "Total: ",
   listsAdd: "Add",
   listsAddList: "Create New List",
+  listsEdit: "Update",
+  listsEditList: "Edit List",
   listsDeleteList: "List successfully deleted.",
   listsScreenEmptyText: "You have no lists yet.\nClick the add list button at the top right corner.",
   listsScreenTitle: "Lists",
