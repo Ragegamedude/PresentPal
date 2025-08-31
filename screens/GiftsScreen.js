@@ -9,6 +9,7 @@ import Information from "../components/Information";
 import {StorageKeys} from "../constants/StorageKeys";
 import Chip from "../components/Chip";
 import {Categories} from "../constants/Categories";
+import {Screens} from "../constants/Screens";
 
 export default GiftsScreen = ({navigation, props}) => {
   const {
@@ -28,7 +29,7 @@ export default GiftsScreen = ({navigation, props}) => {
       : 'ca-app-pub-9694787014775307/4284015587';
 
   const openGiftCategory = (category, title) => {
-    navigation.navigate("CategoryScreen", {
+    navigation.navigate(Screens.CATEGORY, {
       category,
       title,
     })

@@ -9,6 +9,7 @@ import {Context} from "../context/Context";
 import React, {useContext, useEffect, useState} from "react";
 import {localAvatars} from "../constants/StaticImageLoader";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import {Screens} from "../constants/Screens";
 
 export default List = (props) => {
   const {theme} = useContext(Context);
@@ -53,6 +54,12 @@ export default List = (props) => {
     setImageSource(localAvatars['../assets/avatars/Fallback.png']);
   }
 
+  const openListDetails = () => {
+    props.navigation.navigate(Screens.LISTS_DETAILS,{
+      item: props.item,
+    })
+  }
+
   return (
     <View
       style={ListStyle.listWrapper}
@@ -61,7 +68,7 @@ export default List = (props) => {
         theme={currentTheme}
         borderless={true}
         style={ListStyle.listContainer}
-        onPress={() => console.log()}
+        onPress={() => openListDetails()}
       ><View style={ListStyle.list}>
         <View style={ListStyle.imageWrapper}>
           <Text style={ListStyle.event}>{props.item.event}</Text>

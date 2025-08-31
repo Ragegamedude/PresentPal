@@ -7,6 +7,7 @@ import {IconSettings} from "../constants/IconSettings";
 import {Context} from "../context/Context";
 import {createHeaderStyle} from "./HeaderStyle";
 import Entypo from "react-native-vector-icons/Entypo";
+import {Screens} from "../constants/Screens";
 
 export default Header = (props) => {
   // context
@@ -20,7 +21,7 @@ export default Header = (props) => {
   return (
     <View style={HeaderStyle.headerWrapper}>
       <View style={HeaderStyle.leftContainer}>
-        {props.screen === "category" && (
+        {(props.screen === Screens.CATEGORY || props.screen === Screens.LISTS_DETAILS)  && (
           <TouchableRipple theme={currentTheme} borderless={true}
                            onPress={() => navigation.goBack()}
                            style={HeaderStyle.leftIcon}>

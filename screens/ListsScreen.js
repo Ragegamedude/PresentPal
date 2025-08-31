@@ -547,6 +547,7 @@ export default ListsScreen = ({navigation, props}) => {
               <List
                 key={item.id}
                 item={item}
+                navigation={navigation}
                 editFunction={openEditModal}
                 deleteFunction={openDeleteModal}
                 toggleFavoriteFunction={toggleFavoriteItem}

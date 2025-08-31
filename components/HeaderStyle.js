@@ -15,7 +15,6 @@ export const createHeaderStyle = (currentTheme) =>
 		},
 		leftIcon: {
 			borderRadius: StyleSettings.defaultBorderRadius,
-			padding: StyleSettings.defaultMargin/2,
 			marginLeft: StyleSettings.defaultPadding
 		},
 		centerContainer: {

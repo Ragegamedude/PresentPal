@@ -4,6 +4,7 @@ import React, {useContext} from "react";
 import {Context} from "../context/Context";
 import {createCategoryScreenStyle} from "./CategoryScreenStyle";
 import Gift from "../components/Gift";
+import {Screens} from "../constants/Screens";
 
 export default CategoryScreen = ({route, navigation}) => {
 
@@ -18,7 +19,7 @@ export default CategoryScreen = ({route, navigation}) => {
   return (
 
       <View style={CategoryStyle.category}>
-        <Header screen={'category'}
+        <Header screen={Screens.CATEGORY}
                 title={title}
                 currentTheme={currentTheme}></Header>
         <ScrollView>

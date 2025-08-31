@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import React, {useContext} from "react";
 import {Context} from "../context/Context";
 import {createListDetailScreenStyle} from "./ListDetailScreenStyle";
+import {Screens} from "../constants/Screens";
 
 export default ListDetailScreen = ({route, navigation}) => {
 
@@ -10,15 +11,15 @@ export default ListDetailScreen = ({route, navigation}) => {
   const [currentTheme, setCurrentTheme] = theme;
   const [currentLanguage, setCurrentLanguage] = theme;
 
-  const {title, category} = route.params;
+  const {item, category} = route.params;
 
   const ListDetailStyle = createListDetailScreenStyle(currentTheme);
 
   return (
 
     <View style={ListDetailStyle.list}>
-      <Header screen={'listDetail'}
-              title={title}
+      <Header screen={Screens.LISTS_DETAILS}
+              title={item.headline}
               currentTheme={currentTheme}></Header>
       <ScrollView>
       </ScrollView>
