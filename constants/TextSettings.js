@@ -6,10 +6,10 @@ export const TextSettings = {
 	textIntroductionIntroductionSize: 28,
 	textIntroductionHeadlineSize: 20,
 	textHeaderSize: 22,
-	textBiggestSize: 20,
-	textBigSize: 18,
+	textXXLSize: 20,
+	textXLSize: 18,
 	textDefaultSize: 16,
-	textSmallSize: 14,
-	textSmallestSize: 12,
+	textXSSize: 14,
+	textXXSSize: 12,
 	tabTextSize: 12
 };

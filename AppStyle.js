@@ -20,7 +20,7 @@ export default createAppStyle = (currentTheme) =>
     introductionLanguageDescriptionText: {
       color: currentTheme.colors.secondary,
       fontFamily: TextSettings.defaultFontRegular,
-      fontSize: TextSettings.textBiggestSize,
+      fontSize: TextSettings.textXXLSize,
       textAlign: "center"
     },
     introductionLanguageWrapper: {
@@ -84,7 +84,7 @@ export default createAppStyle = (currentTheme) =>
     introductionText: {
       color: currentTheme.colors.secondary,
       fontFamily: TextSettings.defaultFontRegular,
-      fontSize: TextSettings.textSmallestSize,
+      fontSize: TextSettings.textXXSSize,
       marginTop: 2,
     },
     activeDotStyle: {

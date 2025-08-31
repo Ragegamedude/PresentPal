@@ -48,7 +48,7 @@ export const createGiftStyle = (currentTheme) =>
       contentDescription: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontLight,
-        fontSize: TextSettings.textSmallSize
+        fontSize: TextSettings.textXSSize
       },
       functionWrapper: {
         marginVertical: StyleSettings.defaultPadding,

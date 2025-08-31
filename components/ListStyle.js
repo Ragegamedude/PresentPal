@@ -29,13 +29,13 @@ export const createListStyle = (currentTheme) =>
     },
     date: {
       fontFamily: TextSettings.defaultFontMedium,
-      fontSize: TextSettings.textSmallestSize,
+      fontSize: TextSettings.textXXSSize,
       color: currentTheme.colors.secondary,
       marginTop: StyleSettings.defaultPadding,
     },
-    birthday: {
+    event: {
       fontFamily: TextSettings.defaultFontMedium,
-      fontSize: TextSettings.textSmallestSize,
+      fontSize: TextSettings.textXXSSize,
       color: currentTheme.colors.secondary,
       marginBottom: StyleSettings.defaultPadding,
     },
@@ -55,7 +55,7 @@ export const createListStyle = (currentTheme) =>
     contentDescription: {
       color: currentTheme.colors.secondary,
       fontFamily: TextSettings.defaultFontLight,
-      fontSize: TextSettings.textSmallSize
+      fontSize: TextSettings.textXSSize
     },
     statsWrapper: {
       flexDirection: 'row',
@@ -82,15 +82,15 @@ export const createListStyle = (currentTheme) =>
     statValue: {
       color: currentTheme.colors.secondary,
       fontFamily: TextSettings.defaultFontLight,
-      fontSize: TextSettings.textSmallestSize,
+      fontSize: TextSettings.textXXSSize,
+      marginLeft: StyleSettings.defaultPadding,
     },
     functionWrapper: {
-      marginVertical: StyleSettings.defaultPadding,
-      justifyContent: 'center',
+      marginLeft: StyleSettings.defaultPadding,
     },
     function: {
-      borderRadius: StyleSettings.defaultBorderRadius,
       padding: StyleSettings.defaultPadding,
+      borderRadius: StyleSettings.defaultBorderRadius,
       marginHorizontal: StyleSettings.defaultPadding,
       marginVertical: StyleSettings.defaultPadding,
     }

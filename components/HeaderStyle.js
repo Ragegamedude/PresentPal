@@ -29,9 +29,11 @@ export const createHeaderStyle = (currentTheme) =>
 			marginLeft: StyleSettings.defaultMargin
 		},
 		rightContainer: {
+			marginRight: StyleSettings.defaultPadding
 		},
 		rightIcon: {
 			borderRadius: StyleSettings.defaultBorderRadius,
-			marginRight: StyleSettings.defaultMargin
+			paddingVertical: StyleSettings.defaultPadding,
+			paddingHorizontal: StyleSettings.defaultPadding
 		}
 	});

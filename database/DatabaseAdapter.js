@@ -11,30 +11,22 @@ export const initTables = async (database) => {
 };
 
 export const addList = async (database, favorite, headline, description, image, event_date, event, gifts) => {
-  await database.runAsync(`INSERT INTO lists (favorite, headline, description, image, event_date, event, gifts)
-                            VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [favorite, headline, description, image, event_date, event, gifts]
-  );
-};
-
-export const editList = async (database, id, favorite, headlineText, descriptionText, imageText, dateText, eventText, gifts) => {
-  console.log("edit list")
-  console.log(id)
-  console.log(favorite)
-  console.log(headlineText)
-  console.log(descriptionText)
-  console.log(imageText)
-  console.log(dateText)
-  console.log(eventText)
-  console.log(gifts)
+  console.log("in adapter")
   try {
-    await database.runAsync(
-      `UPDATE lists SET favorite = ?, headline = ?, description = ?, image = ?, event_date = ?, event = ?, gifts = ? WHERE id = ?`,
-      favorite ? 1 : 0, headlineText, descriptionText, imageText, dateText, eventText, gifts, id
+    await database.runAsync(`INSERT INTO lists (favorite, headline, description, image, event_date, event, gifts)
+                            VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [favorite, headline, description, image, event_date, event, gifts]
     );
   }catch(err) {
     console.log(err);
   }
+};
+
+export const editList = async (database, id, favorite, headlineText, descriptionText, imageText, dateText, eventText, gifts) => {
+  await database.runAsync(
+    `UPDATE lists SET favorite = ?, headline = ?, description = ?, image = ?, event_date = ?, event = ?, gifts = ? WHERE id = ?`,
+    favorite ? 1 : 0, headlineText, descriptionText, imageText, dateText, eventText, gifts, id
+  );
 }
 
 export const deleteList = async (database, id) => {

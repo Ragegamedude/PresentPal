@@ -26,6 +26,6 @@ export const createChipStyle = (currentTheme) => StyleSheet.create({
     marginHorizontal: StyleSettings.defaultMargin,
     color: currentTheme.colors.secondary,
     fontFamily: TextSettings.defaultFontRegular,
-    fontSize: TextSettings.textSmallSize
+    fontSize: TextSettings.textXSSize
   }
 })

@@ -59,7 +59,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
     settingsDescription: {
       color: currentTheme.colors.secondary,
       fontFamily: TextSettings.defaultFontLight,
-      fontSize: TextSettings.textSmallSize
+      fontSize: TextSettings.textXSSize
     },
     settingsFunctionText: {
       color: currentTheme.secondaryColor,

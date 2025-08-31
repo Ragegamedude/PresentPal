@@ -2,11 +2,11 @@ import {useNavigation} from "@react-navigation/native";
 import React, {useContext} from "react";
 import {Text, View} from "react-native";
 import {TouchableRipple} from "react-native-paper";
-import MaterialCommunityIcon from "react-native-paper/src/components/MaterialCommunityIcon";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {IconSettings} from "../constants/IconSettings";
 import {Context} from "../context/Context";
 import {createHeaderStyle} from "./HeaderStyle";
+import Entypo from "react-native-vector-icons/Entypo";
 
 export default Header = (props) => {
   // context
@@ -40,10 +40,10 @@ export default Header = (props) => {
           <TouchableRipple theme={currentTheme} borderless={true}
                            onPress={() => props.rightFunction()}
                            style={HeaderStyle.rightIcon}>
-            <MaterialCommunityIcon name={props.modalIconAdd}
-                                   size={IconSettings.buttonIconSize}
-                                   color={currentTheme.colors.secondary}
-                                   direction={"rtl"}/>
+            <Entypo name={props.modalIconAdd}
+                    size={IconSettings.buttonIconSize}
+                    color={currentTheme.colors.secondary}
+                    direction={"rtl"}/>
           </TouchableRipple>
         )}
       </View>

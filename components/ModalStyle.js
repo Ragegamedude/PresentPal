@@ -36,7 +36,7 @@ export default createModalStyle = (currentTheme) =>
     },
     modalHeaderText: {
       marginLeft: StyleSettings.defaultPadding,
-      fontSize: TextSettings.textBigSize,
+      fontSize: TextSettings.textXLSize,
       fontFamily: TextSettings.defaultFontBold,
       color: currentTheme.colors.secondary
     },
@@ -60,14 +60,14 @@ export default createModalStyle = (currentTheme) =>
     modalContentText: {
       marginHorizontal: StyleSettings.defaultMargin + StyleSettings.defaultPadding,
       marginTop: StyleSettings.defaultPadding,
-      fontSize: TextSettings.textSmallSize,
+      fontSize: TextSettings.textXSSize,
       fontFamily: TextSettings.defaultFontLight,
       color: currentTheme.colors.secondary
     },
     modalContentWarningText: {
       marginHorizontal: StyleSettings.defaultMargin,
       marginTop: StyleSettings.defaultMargin,
-      fontSize: TextSettings.textSmallSize,
+      fontSize: TextSettings.textXSSize,
       fontFamily: TextSettings.defaultFontLight,
       color: currentTheme.colors.secondary
     },
@@ -79,7 +79,7 @@ export default createModalStyle = (currentTheme) =>
       backgroundColor: currentTheme.colors.onBackground,
     },
     modalContentInputField: {
-      fontSize: TextSettings.textSmallSize,
+      fontSize: TextSettings.textXSSize,
       fontFamily: TextSettings.defaultFontLight,
       backgroundColor: currentTheme.colors.onBackground,
     },
@@ -191,7 +191,7 @@ export default createModalStyle = (currentTheme) =>
       borderRadius: StyleSettings.defaultBorderRadius,
     },
     modalDefaultImageSelectorText: {
-      fontSize: TextSettings.textSmallSize,
+      fontSize: TextSettings.textXSSize,
       color: currentTheme.colors.secondary,
     },
 

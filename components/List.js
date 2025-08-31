@@ -8,13 +8,36 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {Context} from "../context/Context";
 import React, {useContext, useEffect, useState} from "react";
 import {localAvatars} from "../constants/StaticImageLoader";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default List = (props) => {
   const {theme} = useContext(Context);
   const [currentTheme, setCurrentTheme] = theme;
+
   const [imageSource, setImageSource] = useState(null);
+  const [giftsAmount, setGiftsAmount] = useState(2);
+  const [giftsAmountFinished, setGiftsAmountFinished] = useState(0);
+  const [giftsTotalPrice, setGiftsTotalPrice] = useState(0);
+  const [giftsTotalPriceFinished, setGiftsTotalPriceFinished] = useState(0);
+  const [giftsTotalProgress, setGiftsTotalProgress] = useState("0%");
 
   useEffect(() => {
+    // stats calculations
+    const length = props.item.gifts.length;
+    const giftsFinished = props.item.gifts.filter((gift) => gift.finished).length;
+    setGiftsAmount(length);
+    setGiftsAmountFinished(giftsFinished);
+    setGiftsTotalProgress(((100 / length) * giftsFinished) + "%");
+    setGiftsTotalPrice(props.item.gifts.reduce((total, gift) => {
+      return total + gift.price;
+    }, 0).toFixed(2));
+    setGiftsTotalPriceFinished(props.item.gifts.reduce((total, gift) => {
+      if (gift.finished) {
+        return total + gift.price;
+      }
+      return total;
+    }, 0).toFixed(2));
+    // image selection
     if (props.item.image.includes('../assets/avatars/')) {
       setImageSource(localAvatars[props.item.image]);
     } else {
@@ -22,13 +45,9 @@ export default List = (props) => {
         uri: props.item.image,
       })
     }
-  }, [props.item.image]);
+  }, [props.item]);
 
   const ListStyle = createListStyle(currentTheme);
-
-  const giftsAmount = 0;
-  const giftsTotal = 0;
-  const giftsFinished = 0;
 
   const useFallbackImage = () => {
     setImageSource(localAvatars['../assets/avatars/Fallback.png']);
@@ -45,7 +64,7 @@ export default List = (props) => {
         onPress={() => console.log()}
       ><View style={ListStyle.list}>
         <View style={ListStyle.imageWrapper}>
-          <Text style={ListStyle.birthday}>{props.item.event}</Text>
+          <Text style={ListStyle.event}>{props.item.event}</Text>
           <Avatar.Image
             size={IconSettings.listsAvatarSize}
             source={imageSource}
@@ -62,22 +81,13 @@ export default List = (props) => {
           </View>
           <View style={ListStyle.statsWrapper}>
             <View style={ListStyle.statsFirst}>
-              <Feather
+              <Ionicons
                 style={ListStyle.statKey}
-                name="gift"
+                name="gift-outline"
                 size={IconSettings.listIconSize}
                 color={currentTheme.colors.secondary}
               />
-              <Text style={ListStyle.statValue}>{" " + giftsAmount}</Text>
-            </View>
-            <View style={ListStyle.statsSecond}>
-              <MaterialIcons
-                style={ListStyle.statKey}
-                name="done"
-                size={IconSettings.listIconSize}
-                color={currentTheme.colors.secondary}
-              />
-              <Text style={ListStyle.statValue}>{giftsFinished}</Text>
+              <Text style={ListStyle.statValue}>{giftsAmountFinished + "/" + giftsAmount}</Text>
             </View>
             <View style={ListStyle.statsSecond}>
               <Ionicons
@@ -86,7 +96,16 @@ export default List = (props) => {
                 size={IconSettings.listIconSize}
                 color={currentTheme.colors.secondary}
               />
-              <Text style={ListStyle.statValue}>{giftsTotal}</Text>
+              <Text style={ListStyle.statValue}>{giftsTotalPriceFinished + "/" + giftsTotalPrice}</Text>
+            </View>
+            <View style={ListStyle.statsSecond}>
+              <MaterialCommunityIcons
+                style={ListStyle.statKey}
+                name="progress-check"
+                size={IconSettings.listIconSize}
+                color={currentTheme.colors.secondary}
+              />
+              <Text style={ListStyle.statValue}>{giftsTotalProgress}</Text>
             </View>
           </View>
         </View>
@@ -111,8 +130,8 @@ export default List = (props) => {
             style={ListStyle.function}
             onPress={() => props.editFunction(props.item)}
           >
-            <Feather
-              name="edit"
+            <MaterialCommunityIcons
+              name="square-edit-outline"
               size={IconSettings.buttonIconSize}
               color={currentTheme.colors.secondary}
             />
@@ -122,7 +141,7 @@ export default List = (props) => {
             style={ListStyle.function}
             onPress={() => props.deleteFunction(props.item)}
           >
-            <MaterialIcons
+            <MaterialCommunityIcons
               name="delete-outline"
               size={IconSettings.buttonIconSize}
               color={currentTheme.colors.secondary}

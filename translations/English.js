@@ -103,6 +103,7 @@ export const English = {
   listsDeleteList: "List successfully deleted.",
   listsScreenEmptyText: "You have no lists yet.\nClick the add list button at the top right corner.",
   listsScreenTitle: "Lists",
+  listsDetailScreenTitle: "List details",
   loading: "Loading...",
   modalDeleteHeadline: "Delete List",
   modalDeleteWarning: "Are you sure you want to delete this list? This action cannot be undone.",

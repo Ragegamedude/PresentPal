@@ -36,7 +36,7 @@ export const createInformationStyle = (currentTheme) =>
       informationText: {
         color: currentTheme.colors.secondary,
         fontFamily: TextSettings.defaultFontLight,
-        fontSize: TextSettings.textSmallSize
+        fontSize: TextSettings.textXSSize
       },
       informationIconWrapper: {
         marginHorizontal: StyleSettings.defaultPadding,
