@@ -1,7 +1,6 @@
 import {Text, View} from "react-native";
 import {createListStyle} from "./ListStyle";
 import {Avatar, TouchableRipple} from "react-native-paper";
-import Feather from "react-native-vector-icons/Feather";
 import {IconSettings} from "../constants/IconSettings";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -28,7 +27,7 @@ export default List = (props) => {
     const giftsFinished = props.item.gifts.filter((gift) => gift.finished).length;
     setGiftsAmount(length);
     setGiftsAmountFinished(giftsFinished);
-    setGiftsTotalProgress(((100 / length) * giftsFinished) + "%");
+    setGiftsTotalProgress((length > 0 ? ((100 / length) * giftsFinished) : '0') + "%");
     setGiftsTotalPrice(props.item.gifts.reduce((total, gift) => {
       return total + gift.price;
     }, 0).toFixed(2));
@@ -55,8 +54,9 @@ export default List = (props) => {
   }
 
   const openListDetails = () => {
-    props.navigation.navigate(Screens.LISTS_DETAILS,{
+    props.navigation.navigate(Screens.LISTS_DETAILS, {
       item: props.item,
+      image: imageSource
     })
   }
 
@@ -73,7 +73,6 @@ export default List = (props) => {
         <View style={ListStyle.imageWrapper}>
           <Text style={ListStyle.event}>{props.item.event}</Text>
           <Avatar.Image
-            size={IconSettings.listsAvatarSize}
             source={imageSource}
             onError={() => useFallbackImage()}
           />

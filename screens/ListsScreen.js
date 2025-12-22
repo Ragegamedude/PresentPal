@@ -74,43 +74,7 @@ export default ListsScreen = ({navigation, props}) => {
 
   const addList = async () => {
     await DatabaseAdapter.addList(database, 0,
-      headlineText, descriptionText, imageText, dateText, eventText, JSON.stringify([
-        {
-          id: 'b6f2c3d5-7e8c-4a1b-9d4f-5e6f7g8h9i0j',
-          name: 'Wireless Noise-Cancelling Headphones',
-          price: 24.99,
-          finished: true,
-          link: 'https://www.google.com/search?q=https://example.com/headphones'
-        },
-        {
-          id: 'c8a9d0f1-2b3c-4d5e-6f7a-8b9c0d1e2f3g',
-          name: 'Gourmet Coffee Subscription',
-          price: 45.00,
-          finished: true,
-          link: 'https://www.google.com/search?q=https://example.com/coffee'
-        },
-        {
-          id: 'e1g2h3i4-5j6k-7l8m-9n0o-1p2q3r4s5t6u',
-          name: 'Portable Bluetooth Speaker',
-          price: 79.99,
-          finished: false,
-          link: 'https://www.google.com/search?q=https://example.com/speaker'
-        },
-        {
-          id: 'f9h0i1j2-3k4l-5m6n-7o8p-9q0r1s2t3u4v',
-          name: 'Scented Candle Set',
-          price: 28.50,
-          finished: true,
-          link: 'https://www.google.com/search?q=https://example.com/candles'
-        },
-        {
-          id: 'a0b1c2d3-4e5f-6g7h-8i9j-0k1l2m3n4o5p',
-          name: 'Personalized Leather Wallet',
-          price: 65.00,
-          finished: true,
-          link: 'https://www.google.com/search?q=https://example.com/wallet'
-        }
-      ]));
+      headlineText, descriptionText, imageText, dateText, eventText, JSON.stringify([]));
     const lists = await DatabaseAdapter.getLists(database);
     setCurrentLists(lists);
   };

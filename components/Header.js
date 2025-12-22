@@ -34,7 +34,7 @@ export default Header = (props) => {
         )}
       </View>
       <View style={HeaderStyle.centerContainer}>
-        <Text style={HeaderStyle.centerText}>{props.title}</Text>
+        <Text style={props.screen === Screens.CATEGORY || props.screen === Screens.LISTS_DETAILS ? HeaderStyle.centerText : HeaderStyle.centerTextWithoutIcon}>{props.title}</Text>
       </View>
       <View style={HeaderStyle.rightContainer}>
         {props.screen === "lists" && (

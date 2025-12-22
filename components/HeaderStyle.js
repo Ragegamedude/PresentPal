@@ -15,13 +15,20 @@ export const createHeaderStyle = (currentTheme) =>
 		},
 		leftIcon: {
 			borderRadius: StyleSettings.defaultBorderRadius,
-			marginLeft: StyleSettings.defaultPadding
+			marginLeft: StyleSettings.defaultPadding,
+			padding: StyleSettings.defaultPadding
 		},
 		centerContainer: {
 			flex: 1,
 			marginVertical: StyleSettings.defaultMargin
 		},
 		centerText: {
+			color: currentTheme.colors.secondary,
+			fontFamily: TextSettings.defaultFontBold,
+			fontSize: TextSettings.textHeaderSize,
+			marginLeft: StyleSettings.defaultPadding
+		},
+		centerTextWithoutIcon: {
 			color: currentTheme.colors.secondary,
 			fontFamily: TextSettings.defaultFontBold,
 			fontSize: TextSettings.textHeaderSize,

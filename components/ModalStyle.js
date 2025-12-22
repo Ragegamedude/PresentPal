@@ -211,28 +211,11 @@ export default createModalStyle = (currentTheme) =>
     modalDefaultImageButtonWrapper: {
       marginTop: StyleSettings.defaultMargin / 2,
       flexDirection: 'row',
-    },
-    modalDefaultImageButton1: {
-      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      marginLeft: StyleSettings.defaultMargin,
-      marginRight: StyleSettings.defaultPadding / 2,
+      marginHorizontal: StyleSettings.defaultMargin,
     },
-    modalDefaultImageButton2: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: currentTheme.colors.onBackground,
-      marginHorizontal: StyleSettings.defaultPadding / 2,
-    },
-    modalDefaultImageButton3: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: currentTheme.colors.onBackground,
-      marginRight: StyleSettings.defaultMargin,
-      marginLeft: StyleSettings.defaultPadding / 2,
+    modalDefaultImageButton: {
     },
     modalDefaultImage:{
       backgroundColor: 'transparent',
