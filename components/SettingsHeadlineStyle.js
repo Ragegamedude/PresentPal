@@ -9,7 +9,7 @@ export const createSettingsHeadlineStyle = (currentTheme) =>
       flex: 1,
       flexDirection: 'row',
       alignItems: 'center',
-      paddingTop: StyleSettings.defaultPadding,
+      paddingTop: StyleSettings.defaultMargin,
       marginHorizontal: StyleSettings.defaultMargin,
       marginVertical: StyleSettings.defaultPadding / 2,
     },
