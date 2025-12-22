@@ -8,7 +8,7 @@ export const createSocialButtonsBarStyle = (currentTheme) =>
 			alignItems: 'center',
 			justifyContent: 'center',
 			marginHorizontal: StyleSettings.defaultPadding / 2,
-			marginTop: StyleSettings.defaultPadding
+			marginTop: StyleSettings.defaultPadding / 2,
 		},
 		socialButton: {
 			flex: 1,

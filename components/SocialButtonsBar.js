@@ -7,7 +7,7 @@ import { TouchableRipple } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 
-export default SocialButtonBar = () => {
+export default SocialButtonsBar = () => {
 	const { theme, language, version } = useContext(Context);
 	const [currentTheme, setCurrentTheme] = theme;
 	const [currentLanguage, setCurrentLanguage] = language;

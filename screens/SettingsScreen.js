@@ -7,6 +7,7 @@ import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {AppVersions} from '../constants/AppVersions';
 import Header from '../components/Header';
 import SettingsHeadline from "../components/SettingsHeadline";
+import SocialButtonsBar from '../components/SocialButtonsBar';
 
 export default SettingsScreen = ({navigation, props}) => {
   const {theme, language, version, personalAds} = useContext(Context);
@@ -25,6 +26,7 @@ export default SettingsScreen = ({navigation, props}) => {
       <Header screen={'settings'} title={currentLanguage.settingsScreenTitle}
               currentTheme={currentTheme}></Header>
       <ScrollView style={SettingsScreenStyle.settingsWrapper}>
+        <SocialButtonsBar></SocialButtonsBar>
         <SettingsHeadline
           headline={currentLanguage.settingsConfigurationTitle}
           icon={'settings'}
@@ -81,7 +83,7 @@ export default SettingsScreen = ({navigation, props}) => {
         ></SettingsSection>
         <SettingsHeadline
           headline={currentLanguage.settingsOtherTitle}
-          icon={'more-horizontal'}>
+          icon={'mail'}>
         </SettingsHeadline>
         <SettingsSection
           action={AvailableSettingsActions.RATE_APP}
