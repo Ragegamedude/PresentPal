@@ -176,6 +176,11 @@ export default ListsScreen = ({navigation, props}) => {
     setShowListModal(true);
   }
 
+  const setImage = (image) => {
+    setImageText(image);
+    setImageError(false);
+  }
+
   const openDeleteModal = (item) => {
     setSelectedList(item);
     setShowDeleteModal(true);
@@ -339,7 +344,7 @@ export default ListsScreen = ({navigation, props}) => {
                     <View style={ModalStyle.modalDefaultImageButtonWrapper}>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton1}
-                        onPress={() => setImageText('../assets/avatars/0.png')}>
+                        onPress={() => setImage('../assets/avatars/0.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/0.png')}
@@ -347,7 +352,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton2}
-                        onPress={() => setImageText('../assets/avatars/1.png')}>
+                        onPress={() => setImage('../assets/avatars/1.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/1.png')}
@@ -355,7 +360,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton2}
-                        onPress={() => setImageText('../assets/avatars/2.png')}>
+                        onPress={() => setImage('../assets/avatars/2.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/2.png')}
@@ -363,7 +368,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton2}
-                        onPress={() => setImageText('../assets/avatars/3.png')}>
+                        onPress={() => setImage('../assets/avatars/3.png')}>
 
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
@@ -373,7 +378,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton3}
-                        onPress={() => setImageText('../assets/avatars/4.png')}>
+                        onPress={() => setImage('../assets/avatars/4.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/4.png')}
@@ -383,7 +388,7 @@ export default ListsScreen = ({navigation, props}) => {
                     <View style={ModalStyle.modalDefaultImageButtonWrapper}>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton1}
-                        onPress={() => setImageText('../assets/avatars/5.png')}>
+                        onPress={() => setImage('../assets/avatars/5.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/5.png')}
@@ -391,7 +396,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton2}
-                        onPress={() => setImageText('../assets/avatars/6.png')}>
+                        onPress={() => setImage('../assets/avatars/6.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/6.png')}
@@ -399,7 +404,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton2}
-                        onPress={() => setImageText('../assets/avatars/7.png')}>
+                        onPress={() => setImage('../assets/avatars/7.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/7.png')}
@@ -407,7 +412,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton2}
-                        onPress={() => setImageText('../assets/avatars/8.png')}>
+                        onPress={() => setImage('../assets/avatars/8.png')}>
 
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
@@ -417,7 +422,7 @@ export default ListsScreen = ({navigation, props}) => {
                       </TouchableRipple>
                       <TouchableRipple
                         style={ModalStyle.modalDefaultImageButton3}
-                        onPress={() => setImageText('../assets/avatars/9.png')}>
+                        onPress={() => setImage('../assets/avatars/9.png')}>
                         <Avatar.Image
                           style={ModalStyle.modalDefaultImage}
                           source={require('../assets/avatars/9.png')}
