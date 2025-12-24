@@ -24,8 +24,8 @@ export const createListsScreenStyle = (currentTheme) =>
     },
     contentEmptyText: {
       marginHorizontal: StyleSettings.defaultMargin,
-      fontSize: TextSettings.textDefaultSize,
-      fontFamily: TextSettings.defaultFontRegular,
+      fontSize: TextSettings.textXSSize,
+      fontFamily: TextSettings.defaultFontLight,
       color: currentTheme.colors.secondary,
       textAlign: 'center'
     }

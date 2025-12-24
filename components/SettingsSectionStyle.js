@@ -53,7 +53,7 @@ export default createSettingsSectionStyle = (currentTheme) =>
     },
     settingsHeadline: {
       color: currentTheme.colors.secondary,
-      fontFamily: TextSettings.defaultFontBold,
+      fontFamily: TextSettings.defaultFontMedium,
       fontSize: TextSettings.textDefaultSize
     },
     settingsDescription: {
