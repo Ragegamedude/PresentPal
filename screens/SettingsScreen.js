@@ -83,7 +83,7 @@ export default SettingsScreen = ({navigation, props}) => {
         ></SettingsSection>
         <SettingsHeadline
           headline={currentLanguage.settingsOtherTitle}
-          icon={'mail'}>
+          icon={'info'}>
         </SettingsHeadline>
         <SettingsSection
           action={AvailableSettingsActions.RATE_APP}

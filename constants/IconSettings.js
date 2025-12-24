@@ -18,7 +18,7 @@ export const IconSettings = {
   modalInputIconSize: 32,
   settingsFlagSize: 20,
   settingsSectionIconSize: 32,
-  settingsHeadlineIconSize: 22,
+  settingsHeadlineIconSize: 16,
   socialIconSize: 32,
   tabNavigationIconSize: 28,
   loadingIndicatorSize: 64,
