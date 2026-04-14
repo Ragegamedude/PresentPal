@@ -61,14 +61,14 @@ export default createModalStyle = (currentTheme) =>
       marginHorizontal: StyleSettings.defaultMargin + StyleSettings.defaultPadding,
       marginTop: StyleSettings.defaultPadding,
       fontSize: TextSettings.textXSSize,
-      fontFamily: TextSettings.defaultFontLight,
+      fontFamily: TextSettings.defaultFontRegular,
       color: currentTheme.colors.secondary
     },
     modalContentWarningText: {
       marginHorizontal: StyleSettings.defaultMargin,
       marginTop: StyleSettings.defaultMargin,
       fontSize: TextSettings.textXSSize,
-      fontFamily: TextSettings.defaultFontLight,
+      fontFamily: TextSettings.defaultFontRegular,
       color: currentTheme.colors.secondary
     },
     modalContentInputFieldWrapper: {
@@ -80,7 +80,7 @@ export default createModalStyle = (currentTheme) =>
     },
     modalContentInputField: {
       fontSize: TextSettings.textXSSize,
-      fontFamily: TextSettings.defaultFontLight,
+      fontFamily: TextSettings.defaultFontRegular,
       backgroundColor: currentTheme.colors.onBackground,
     },
     modalContentInputFieldOutline: {
@@ -168,16 +168,14 @@ export default createModalStyle = (currentTheme) =>
     },
     modalInputFieldTextActive: {
       marginVertical: StyleSettings.defaultMargin / 2,
-      marginHorizontal: StyleSettings.defaultMargin / 2,
       fontSize: TextSettings.textDefaultSize,
       fontFamily: TextSettings.defaultFontBold,
       color: currentTheme.colors.primary
     },
     modalInputFieldTextInactive: {
       marginVertical: StyleSettings.defaultMargin / 2,
-      marginHorizontal: StyleSettings.defaultMargin / 2,
       fontSize: TextSettings.textDefaultSize,
-      fontFamily: TextSettings.defaultFontLight,
+      fontFamily: TextSettings.defaultFontRegular,
       color: currentTheme.colors.secondary
     },
     settingsSectionLanguageWrapper: {
